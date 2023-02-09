@@ -2,7 +2,7 @@ import { InputField } from "./Field";
 import { shallow, ShallowWrapper } from 'enzyme';
 
 describe("Input field functionality", () => {
-    let inputField, inputElement: ShallowWrapper;
+    let inputField: ShallowWrapper, inputElement: ShallowWrapper;
     beforeEach(() => {
         inputField = shallow(<InputField defaultValue="Motasem" />);
         inputElement = inputField.find('input');
@@ -17,7 +17,8 @@ describe("Input field functionality", () => {
     });
 
     it("Value is changed", () => {
-        const newInput = inputElement.simulate('change', { target: { value: "New value" } });
+        inputElement.simulate('change', { target: { value: "New value" } });
+        const newInput = inputField.find('input');
         const value = newInput.prop('value');
         expect(value).not.toEqual("Motasem");
         expect(value).toEqual("New value");
