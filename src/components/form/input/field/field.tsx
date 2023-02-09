@@ -11,7 +11,7 @@
  * @member errorMessage - Input error message, when it is null or undefined, no error considered
  */
 
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 export interface InputFieldProps {
     id?: string;

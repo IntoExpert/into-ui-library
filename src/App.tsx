@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { InputField } from './components/form/input/field/field';
+import { InputField } from './components';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
 
       </header>
       <body>
-        <InputField id="test" label='Motasem' errorMessage='Error' />
+        <InputField id="test" label='Motasem' />
       </body>
     </div>
   );
