@@ -9,7 +9,7 @@ const packageJson = require("./package.json");
 
 module.exports = [
     {
-        input: "src/index.ts",
+        input: "src/components/index.ts",
         output: [
             {
                 file: packageJson.main,

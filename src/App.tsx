@@ -10,7 +10,7 @@ function App() {
 
       </header>
       <body>
-        <InputField id="test" label='Motasem' />
+        <InputField id="test" label='Motasem' errorMessage='Error' />
       </body>
     </div>
   );
