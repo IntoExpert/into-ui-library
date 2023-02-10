@@ -1,25 +1,34 @@
-/**
- * Input field properties
- * 
- * @interface InputFieldProps
- * @member id - The id of the input element
- * @member label - Input label, if you leave it empty no label will show
- * @member placeholder - Input placeholder
- * @member value - Input current value, it will be sync to the input element
- * @member defaultValue - Input initial value
- * @member onChange - On input value change callback
- * @member errorMessage - Input error message, when it is null or undefined, no error considered
- */
 
 import { ChangeEvent, useEffect, useState } from "react";
 
 export interface InputFieldProps {
+    /**
+     * The id of the input element
+     */
     id?: string;
+    /**
+     * Input label, if you leave it empty no label will show
+     */
     label?: string;
+    /**
+     * Input placeholder
+     */
     placeholder?: string;
+    /**
+     * Input current value, it will be sync to the input element
+     */
     value?: string;
+    /**
+     * Input initial value
+     */
     defaultValue?: string;
+    /**
+     * Input error message, when it is null or undefined, no error considered
+     */
     errorMessage?: string;
+    /**
+     * On input value change callback
+     */
     onChange?: (value: string) => void;
 }
 
@@ -28,7 +37,7 @@ interface InputStateProps {
 }
 
 /**
- * A controlled input element, with much features
+ * A controlled input element, with too much features
  * 
  * @param props 
  * @returns Controlled input element
