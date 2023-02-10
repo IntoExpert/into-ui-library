@@ -1,11 +1,10 @@
 const resolve = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
 const typescript = require("@rollup/plugin-typescript");
-const dts = require("rollup-plugin-dts");
-const terser = require("@rollup/plugin-terser");
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
-
+const babel = require('@rollup/plugin-babel');
 const packageJson = require("./package.json");
+const { default: terser } = require("@rollup/plugin-terser");
 
 module.exports = [
     {
@@ -28,18 +27,12 @@ module.exports = [
             typescript({
                 tsconfig: "./rollup.tsconfig.json"
             }),
-            commonjs({
-                include: ["node_modules/**"],
-                namedExports: {
-                    "node_modules/react/react.js": [
-                        "Children",
-                        "Component",
-                        "PropTypes",
-                        "createElement"
-                    ],
-                    "node_modules/react-dom/index.js": ["render"]
-                }
-            })
+            commonjs(),
+            babel({
+                exclude: 'node_modules/**',
+                babelHelpers: 'bundled',
+            }),
+            terser()
         ]
     }
 ];

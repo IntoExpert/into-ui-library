@@ -3,6 +3,7 @@ import { shallow, ShallowWrapper } from 'enzyme';
 
 describe("Input field functionality", () => {
     let inputField: ShallowWrapper, inputElement: ShallowWrapper;
+
     describe("Basice functionality and state", () => {
         beforeEach(() => {
             inputField = shallow(<InputField defaultValue="Motasem" />);
