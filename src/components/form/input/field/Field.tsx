@@ -71,7 +71,7 @@ export const InputField = (props: InputFieldProps) => {
                 onChange={handleInputValueChange}
                 placeholder={props.label} />
 
-            {props.errorMessage && <p className="text-red-500 text-xs italic mt-1">{props.errorMessage}</p>}
+            {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
         </div>
     );
 }

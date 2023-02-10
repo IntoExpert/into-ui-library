@@ -1,4 +1,4 @@
-import { InputField } from "./Field";
+import { InputField } from "./field";
 import { shallow, ShallowWrapper } from 'enzyme';
 
 describe("Input field functionality", () => {
