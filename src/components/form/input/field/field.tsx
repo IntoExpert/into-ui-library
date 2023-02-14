@@ -27,7 +27,7 @@ export interface InputFieldProps {
      */
     errorMessage?: string;
     /**
-     * Field type, one of ["text" | "password" | "number" | "email" | "url"]
+     * Field type
      */
     type?: HTMLInputTypeAttribute | undefined
     /**
@@ -87,11 +87,12 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
             </label>
             <input className={`shadow appearance-none border 
                  rounded-lg py-2 px-3 text-grey-700 leading-tight 
-                 focus:outline-none focus:shadow-outline
-                 ${props.errorMessage ? 'border-red-600' : 'border-secondary'}`}
+                 focus:outline-none focus:shadow-outline 
+                 ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
+                 ${props.className ?? ''}`}
                 id={props.id}
                 name={props.name}
-                placeholder={props.label}
+                placeholder={props.placeholder}
                 type={props.type ?? 'text'}
                 value={inputState.value}
                 onChange={handleInputValueChange}
