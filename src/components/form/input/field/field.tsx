@@ -1,5 +1,5 @@
 
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef, useEffect, useState } from "react";
 
 export interface InputFieldProps {
     /**
@@ -27,9 +27,31 @@ export interface InputFieldProps {
      */
     errorMessage?: string;
     /**
+     * Field type, one of ["text" | "password" | "number" | "email" | "url"]
+     */
+    type?: HTMLInputTypeAttribute | undefined
+    /**
+     * Field input name, it is better to set a name for your input field
+     */
+    name?: string;
+    /**
+     * Field ref, reference to the input Field
+     */
+    ref?: Ref<any>
+    /**
+     * Css class name for the field
+     */
+    className?: string;
+
+    // Events
+    /**
      * On input value change callback
      */
-    onChange?: (value: string) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    /**
+     * On input blur event handler
+     */
+    onBlur?: (event: FocusEvent<HTMLInputElement, Element>) => void;
 }
 
 interface InputStateProps {
@@ -42,19 +64,21 @@ interface InputStateProps {
  * @param props 
  * @returns Controlled input element
  */
-export const InputField = (props: InputFieldProps) => {
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
 
     const [inputState, setInputState] = useState<InputStateProps>({ value: props.defaultValue });
 
     const handleInputValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setInputState(state => ({ ...state, value }));
-        props.onChange?.(value);
+        props.onChange?.(event);
     };
+
+    const handleOnBlur = (event: FocusEvent<HTMLInputElement, Element>) => {
+        props.onBlur?.(event);
+    }
 
     useEffect(() => {
         setInputState(state => ({ ...state, value: props.value }));
-    }, [props.value])
+    }, [props.value]);
 
     return (
         <div className="text-start">
@@ -66,12 +90,16 @@ export const InputField = (props: InputFieldProps) => {
                  focus:outline-none focus:shadow-outline
                  ${props.errorMessage ? 'border-red-600' : 'border-secondary'}`}
                 id={props.id}
-                type="text"
+                name={props.name}
+                placeholder={props.label}
+                type={props.type ?? 'text'}
                 value={inputState.value}
                 onChange={handleInputValueChange}
-                placeholder={props.label} />
+                onBlur={handleOnBlur}
+                ref={ref}
+            />
 
             {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
         </div>
     );
-}
+})
