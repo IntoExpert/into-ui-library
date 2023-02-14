@@ -20,8 +20,6 @@ export interface FormProps<TFieldValues> {
 export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues>) {
 
     const {
-        setValue,
-        getValues,
         register,
         handleSubmit,
         formState: { errors }
