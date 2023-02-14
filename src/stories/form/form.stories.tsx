@@ -52,7 +52,7 @@ RadioInput.args = {
         {
             label: 'Email',
             name: 'email',
-            className: ``,
+            className: `border-blue-300`,
             validation: {
                 required: true,
                 validate: (value) => {
