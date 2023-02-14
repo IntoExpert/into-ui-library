@@ -36,22 +36,30 @@ DefaultState.args = {
     ]
 };
 
-export const OnError = Template.bind({});
-OnError.args = {
+export const RadioInput = Template.bind({});
+RadioInput.args = {
     fields: [
         {
-            name: 'Name',
-            className: ``,
+            label: 'Hi',
+            name: 'name',
+            className: `text-red-500 rounded-full`,
+            errorMessage: "Fill it please!",
             validation: {
                 required: true,
-            }
+            },
+            defaultValue: 'Hi'
         },
         {
-            name: 'Email',
+            label: 'Email',
+            name: 'email',
             className: ``,
             validation: {
                 required: true,
-            }
+                validate: (value) => {
+                    return /[a-z]*@[a-z]*\.[a-z]*/.test(value)
+                },
+            },
+            defaultValue: "Email"
         }
     ]
 };
