@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DynamicForm, InputField } from '../../components';
+import { DynamicForm } from '../../components';
 import "../../index.css";
 
 

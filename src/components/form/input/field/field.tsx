@@ -1,5 +1,4 @@
 
-import { type } from "os";
 import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef, useEffect, useState } from "react";
 
 export interface InputFieldProps {
