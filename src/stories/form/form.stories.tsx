@@ -38,28 +38,35 @@ DefaultState.args = {
 
 export const RadioInput = Template.bind({});
 RadioInput.args = {
+    cssClasses: `grid grid-cols-12`,
     fields: [
         {
             label: 'Hi',
             name: 'name',
-            className: `text-red-500 rounded-full`,
-            errorMessage: "Fill it please!",
-            validation: {
-                required: true,
-            },
-            defaultValue: 'Hi'
+            defaultValue: 'hi',
+            type: 'radio',
+            containerClassName: `col-span-4`
+        },
+        {
+            label: 'Hello',
+            name: 'name',
+            defaultValue: 'hello',
+            type: 'radio',
+            containerClassName: `col-span-4`
         },
         {
             label: 'Email',
             name: 'email',
-            className: `border-blue-300`,
+            type: 'checkbox',
+            containerClassName: `col-span-4`
+        },
+        {
+            label: 'Text',
+            name: 'text',
+            containerClassName: `col-span-12`,
             validation: {
                 required: true,
-                validate: (value) => {
-                    return /[a-z]*@[a-z]*\.[a-z]*/.test(value)
-                },
             },
-            defaultValue: "Email"
-        }
-    ]
+        },
+    ],
 };

@@ -1,4 +1,5 @@
 
+import { type } from "os";
 import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef, useEffect, useState } from "react";
 
 export interface InputFieldProps {
@@ -39,10 +40,13 @@ export interface InputFieldProps {
      */
     ref?: Ref<any>
     /**
-     * Css class name for the field
+     * Css class name for the input element
      */
     className?: string;
-
+    /**
+     * Css classses for input label container
+     */
+    containerClassName?: string;
     // Events
     /**
      * On input value change callback
@@ -80,27 +84,57 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
         setInputState(state => ({ ...state, value: props.value }));
     }, [props.value]);
 
-    return (
-        <div className="text-start">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={props.id}>
-                {props.label}
-            </label>
-            <input className={`shadow appearance-none border 
-                 rounded-lg py-2 px-3 text-grey-700 leading-tight 
-                 focus:outline-none focus:shadow-outline 
-                 ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
-                 ${props.className ?? ''}`}
-                id={props.id}
-                name={props.name}
-                placeholder={props.placeholder}
-                type={props.type ?? 'text'}
-                value={inputState.value}
-                onChange={handleInputValueChange}
-                onBlur={handleOnBlur}
-                ref={ref}
-            />
+    const Label = ({ className }: { className?: string }) =>
+        <label className={`text-gray-700 text-sm font-bold ${className ?? ''}`} htmlFor={props.id}>
+            {props.label}
+        </label>;
+    const RadioOrCheckBox = () => {
 
-            {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
-        </div>
+        const isRadio = props.type === 'radio';
+        const radioClasses = `appearance-none rounded-full border border-gray-300 bg-white checked:bg-white 
+        checked:border-secondary checked:border-4 focus:outline-secondary transition duration-300 
+        cursor-pointer focus:ring-2 focus:ring-secondary focus:shadow-none`;
+        const checkBoxClasses = `rounded accent-secondary focus:outline-secondary`;
+
+        return (
+            <div className={`flex justify-start align-baseline ${props.containerClassName}`}>
+                <input
+                    {...props}
+                    className={`h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
+                     ${props.className ?? ''}`}
+                    value={props.name}
+                    ref={ref} />
+                <Label className="mx-2 inline-block" />
+            </div>
+        );
+    }
+
+    const DefaultInput = () => <div className={`text-start ${props.containerClassName}`}>
+        <Label className="block" />
+        <input
+            {...props}
+            className={`shadow appearance-none border
+         rounded-lg py-2 px-3 text-grey-700 leading-tight 
+         focus:outline-none focus:shadow-outline 
+         ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
+         ${props.className ?? ''}`}
+            ref={ref}
+        />
+
+        {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
+    </div>;
+
+    const InputReducer = () => {
+        switch (props.type) {
+            case "radio":
+            case "checkbox":
+                return <RadioOrCheckBox />;
+            default:
+                return <DefaultInput />;
+        }
+    }
+
+    return (
+        <InputReducer />
     );
 })

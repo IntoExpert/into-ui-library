@@ -45,6 +45,10 @@ export interface FormProps<TFieldValues> {
      * Input fields structure, to build your dynamic form
      */
     fields?: FormFieldProps[] | undefined;
+    /**
+     * Css classes for the form container
+     */
+    cssClasses?: string;
 };
 
 export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues>) {
@@ -73,7 +77,7 @@ export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues
     }
 
     return (
-        <form id={props.id} className="row space-y-3" onSubmit={handleSubmit(props.onSubmit)}>
+        <form id={props.id} className={`gap-3 ${props.cssClasses ?? ''}`} onSubmit={handleSubmit(props.onSubmit)}>
             {props.fields?.map((field: FormFieldProps, index: number) => {
                 return <Input key={index} {...field} />;
             })}
