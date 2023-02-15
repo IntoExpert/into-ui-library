@@ -66,6 +66,9 @@ RadioInput.args = {
             containerClassName: `col-span-12`,
             validation: {
                 required: true,
+                messages: {
+                    required: 'Text is required'
+                }
             },
         },
     ],

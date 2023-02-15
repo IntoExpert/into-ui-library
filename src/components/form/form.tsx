@@ -1,6 +1,9 @@
 import { InputField, InputFieldProps } from "./input/field/field";
-import { useForm } from "react-hook-form";
+import { FieldError, LiteralUnion, Merge, RegisterOptions, useForm } from "react-hook-form";
 
+/**
+ * Dynamic form field props
+ */
 export interface FormFieldProps extends InputFieldProps {
     /**
      * Validation logic
@@ -17,6 +20,7 @@ export interface FormFieldProps extends InputFieldProps {
          * @returns false if the field is not valid
          */
         validate?: (value: any) => boolean;
+        messages?: { [key: string]: string };
     };
     /**
      * HTML input element type
@@ -63,6 +67,14 @@ export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues
         mode: "onBlur"
     });
 
+    const defaultValidationMessage = `Invalid field`;
+
+    const getValidationMessage = (field: FormFieldProps, type: any) => {
+        if (!type) return undefined;
+
+        return field.validation?.messages ? (field.validation.messages[type] ?? defaultValidationMessage) : defaultValidationMessage;
+    }
+
     const Input = (field: FormFieldProps) => {
         const inputProps = {
             ...field,
@@ -72,7 +84,7 @@ export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues
         return (
             <InputField
                 {...inputProps}
-                errorMessage={errors[field.name ?? ''] ? 'Error' : ''} />
+                errorMessage={getValidationMessage(field, errors[field.name ?? '']?.type)} />
         );
     }
 
