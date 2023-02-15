@@ -13,6 +13,7 @@ const Template: ComponentStory<typeof DynamicForm> = (args) => <DynamicForm {...
 
 export const DefaultState = Template.bind({});
 DefaultState.args = {
+    cssClasses: `space-y-3`,
     fields: [
         {
             label: 'name',
