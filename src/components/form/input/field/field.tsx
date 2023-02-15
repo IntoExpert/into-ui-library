@@ -35,6 +35,10 @@ export interface InputFieldProps {
      */
     name?: string;
     /**
+     * Check if input is disabled
+     */
+    disabled?: boolean;
+    /**
      * Field ref, reference to the input Field
      */
     ref?: Ref<any>
@@ -46,6 +50,7 @@ export interface InputFieldProps {
      * Css classses for input label container
      */
     containerClassName?: string;
+
     // Events
     /**
      * On input value change callback
