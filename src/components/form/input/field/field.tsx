@@ -76,14 +76,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
 
     const [inputState, setInputState] = useState<InputStateProps>({ value: props.defaultValue });
 
-    const handleInputValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-        props.onChange?.(event);
-    };
-
-    const handleOnBlur = (event: FocusEvent<HTMLInputElement, Element>) => {
-        props.onBlur?.(event);
-    }
-
     useEffect(() => {
         setInputState(state => ({ ...state, value: props.value }));
     }, [props.value]);
