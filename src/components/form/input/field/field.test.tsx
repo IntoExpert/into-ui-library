@@ -1,29 +1,34 @@
+import { fireEvent, getAllByRole, render } from "@testing-library/react";
 import { InputField } from "./field";
-import { shallow, ShallowWrapper } from 'enzyme';
+
+let container: any = null;
+beforeEach(() => {
+    // setup a DOM element as a render target
+    container = document.createElement("div");
+    document.body.appendChild(container);
+});
 
 describe("Input field functionality", () => {
-    let inputField: ShallowWrapper, inputElement: ShallowWrapper;
 
     describe("Basice functionality and state", () => {
-        beforeEach(() => {
-            inputField = shallow(<InputField defaultValue="Motasem" />);
-            inputElement = inputField.find('input');
-        });
+
         it("Render without crashing", () => {
-            shallow(<InputField />);
+            render(<InputField defaultValue="Motasem" />, container);
         });
 
         it("Reflect the default value", () => {
-            const value = inputElement.prop('value');
+            const inputField = render(<InputField data-testid="input" defaultValue="Motasem" />, container);
+            const element = inputField.getByTestId("input");
+            const value = element?.value;
             expect(value).toEqual("Motasem");
         });
 
         it("Value is changed", () => {
-            inputElement.simulate('change', { target: { value: "New value" } });
-            const newInput = inputField.find('input');
-            const value = newInput.prop('value');
-            expect(value).not.toEqual("Motasem");
-            expect(value).toEqual("New value");
+            const inputField = render(<InputField data-testid="input" defaultValue="Motasem" />, container);
+            const element = inputField.getByTestId("input");
+            fireEvent.change(element, { target: { value: "New value" } });
+            expect(element.value).not.toEqual("Motasem");
+            expect(element.value).toEqual("New value");
         })
     })
 });
