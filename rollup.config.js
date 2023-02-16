@@ -25,7 +25,7 @@ module.exports = [
             peerDepsExternal(),
             resolve(),
             typescript({
-                tsconfig: "./rollup.tsconfig.json"
+                tsconfig: "./rollup.tsconfig.json",
             }),
             commonjs(),
             babel({
@@ -33,6 +33,6 @@ module.exports = [
                 babelHelpers: 'bundled',
             }),
             terser()
-        ]
+        ],
     }
 ];

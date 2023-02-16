@@ -1,6 +1,14 @@
 {
   "include": ["src"],
-  "exclude": ["dist", "node_modules"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "src/stories",
+    "src/App.*",
+    "src/reportWebVitals.ts",
+    "src/setupTests.ts",
+    "src/index.*"
+  ],
   "compilerOptions": {
     "module": "esnext",
     "lib": ["dom", "esnext"],
