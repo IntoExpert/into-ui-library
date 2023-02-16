@@ -18,7 +18,7 @@ describe("Input field functionality", () => {
 
         it("Reflect the default value", () => {
             render(<InputField data-testid="input" defaultValue="Motasem" />, container)
-            const element = screen.getByDisplayValue("Motasem");
+            const element = screen.getByDisplayValue<HTMLInputElement>("Motasem");
             const value = element?.value;
             expect(value).toEqual("Motasem");
         });
@@ -26,7 +26,7 @@ describe("Input field functionality", () => {
         it("Value is changed", () => {
 
             render(<InputField data-testid="input" defaultValue="Motasem" />, container)
-            const element = screen.getByTestId("input");
+            const element = screen.getByTestId<HTMLInputElement>("input");
             fireEvent.change(element, { target: { value: "New value" } });
             expect(element.value).not.toEqual("Motasem");
             expect(element.value).toEqual("New value");
