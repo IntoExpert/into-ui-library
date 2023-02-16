@@ -1,3 +1,4 @@
+import { Button } from "../button/button";
 import { InputField, InputFieldProps } from "./input/field/field";
 import { useForm } from "react-hook-form";
 
@@ -93,6 +94,11 @@ export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues
             {props.fields?.map((field: FormFieldProps, index: number) => {
                 return <Input key={index} {...field} />;
             })}
+            <div className="flex justify-end">
+                <Button type="submit">
+                    Submit
+                </Button>
+            </div>
         </form>
     );
 };
