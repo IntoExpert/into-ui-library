@@ -1,4 +1,4 @@
-import { fireEvent, getAllByRole, render } from "@testing-library/react";
+import { fireEvent, screen, render } from "@testing-library/react";
 import { InputField } from "./field";
 
 let container: any = null;
@@ -17,15 +17,16 @@ describe("Input field functionality", () => {
         });
 
         it("Reflect the default value", () => {
-            const inputField = render(<InputField data-testid="input" defaultValue="Motasem" />, container);
-            const element = inputField.getByTestId("input");
+            render(<InputField data-testid="input" defaultValue="Motasem" />, container)
+            const element = screen.getByDisplayValue("Motasem");
             const value = element?.value;
             expect(value).toEqual("Motasem");
         });
 
         it("Value is changed", () => {
-            const inputField = render(<InputField data-testid="input" defaultValue="Motasem" />, container);
-            const element = inputField.getByTestId("input");
+
+            render(<InputField data-testid="input" defaultValue="Motasem" />, container)
+            const element = screen.getByTestId("input");
             fireEvent.change(element, { target: { value: "New value" } });
             expect(element.value).not.toEqual("Motasem");
             expect(element.value).toEqual("New value");
