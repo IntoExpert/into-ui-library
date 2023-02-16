@@ -15,6 +15,25 @@ export interface FileUploadProps {
      */
     accept?: { [key: string]: Array<string> };
     /**
+     * Max files count to upload
+     * 
+     * @param files 
+     * @returns 
+     */
+    maxFilesCount?: number;
+    /**
+     * Max file size in bytes
+     */
+    maxSize?: number;
+    /**
+     * Min file size in bytes
+     */
+    minSize?: number;
+    /**
+     * Upload multiple files
+     */
+    multiple?: boolean;
+    /**
      * Handle files dropped or added by user
      */
     onAdd?: (files: Array<File>) => void;
@@ -24,7 +43,7 @@ export interface FileUploadProps {
     onFilesRejected?: (rejections: FileRejection[]) => void;
 };
 
-export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected }: FileUploadProps) => {
+export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected, maxFilesCount, maxSize, minSize, multiple }: FileUploadProps) => {
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
 
@@ -37,7 +56,8 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
         }
     }, [onAdd, onFilesRejected]);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: accept });
+    const { getRootProps, getInputProps, isDragActive } =
+        useDropzone({ onDrop, accept: accept, maxFiles: maxFilesCount, maxSize, minSize, multiple });
 
     return (
         <div {...getRootProps({
