@@ -1,5 +1,5 @@
 
-import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef, useEffect, useState } from "react";
+import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef } from "react";
 
 export interface InputFieldProps {
     /**
@@ -62,10 +62,6 @@ export interface InputFieldProps {
     onBlur?: (event: FocusEvent<HTMLInputElement, Element>) => void;
 }
 
-interface InputStateProps {
-    value?: string;
-}
-
 /**
  * A controlled input element, with too much features
  * 
@@ -73,12 +69,6 @@ interface InputStateProps {
  * @returns Controlled input element
  */
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
-
-    const [inputState, setInputState] = useState<InputStateProps>({ value: props.defaultValue });
-
-    useEffect(() => {
-        setInputState(state => ({ ...state, value: props.value }));
-    }, [props.value]);
 
     const Label = ({ className }: { className?: string }) =>
         <label className={`text-gray-700 text-sm font-bold ${className ?? ''}`} htmlFor={props.id}>

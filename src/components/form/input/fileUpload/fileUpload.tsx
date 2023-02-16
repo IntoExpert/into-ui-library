@@ -24,17 +24,20 @@ export interface FileUploadProps {
     onFilesRejected?: (rejections: FileRejection[]) => void;
 };
 
-export const FileUpload = (props: FileUploadProps) => {
+export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected }: FileUploadProps) => {
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
-        debugger;
 
-        if (acceptedFiles?.length) props.onAdd?.(acceptedFiles);
+        if (acceptedFiles?.length) {
+            onAdd?.(acceptedFiles);
+        }
 
-        if (fileRejections?.length) props.onFilesRejected?.(fileRejections);
-    }, []);
+        if (fileRejections?.length) {
+            onFilesRejected?.(fileRejections);
+        }
+    }, [onAdd, onFilesRejected]);
 
-    const { getRootProps, getInputProps, isDragActive, fileRejections } = useDropzone({ onDrop, accept: props.accept });
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: accept });
 
     return (
         <div {...getRootProps({
@@ -43,8 +46,8 @@ export const FileUpload = (props: FileUploadProps) => {
             <input {...getInputProps()} />
             {
                 isDragActive ?
-                    (props.onDropAvailableContent || <p>Drop the files here ...</p>) :
-                    (props.body || <p>Drag 'n' drop some files here, or click to select files</p>)
+                    (onDropAvailableContent || <p>Drop the files here ...</p>) :
+                    (body || <p>Drag 'n' drop some files here, or click to select files</p>)
             }
         </div>
     )
