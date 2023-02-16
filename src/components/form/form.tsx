@@ -1,6 +1,7 @@
-import { Button } from "../button/button";
+import { ReactElement, ReactNode } from "react";
+import { Button, ButtonProps } from "../button/button";
 import { InputField, InputFieldProps } from "./input/field/field";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 /**
  * Dynamic form field props
@@ -30,22 +31,18 @@ export interface FormFieldProps extends InputFieldProps {
     elementType?: "input" | "select" | "textarea";
 };
 
-export interface FormProps<TFieldValues> {
+export interface FormProps {
     /**
      * Form id
      */
     id?: string;
-    /**
-     * Inputs default values
-     */
-    defaultValues?: any;
     /**
      * On form submit event
      * 
      * @param values 
      * @returns form values
      */
-    onSubmit: (values: TFieldValues) => void;
+    onSubmit: SubmitHandler<any>;
     /**
      * Input fields structure, to build your dynamic form
      */
@@ -54,16 +51,19 @@ export interface FormProps<TFieldValues> {
      * Css classes for the form container
      */
     cssClasses?: string;
+    /**
+     * Submit button
+     */
+    submitButton?: ButtonProps | ReactElement<ButtonProps> | undefined;
 };
 
-export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues>) {
+export const DynamicForm = function (props: FormProps) {
 
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm({
-        defaultValues: props.defaultValues,
+    } = useForm<any>({
         reValidateMode: "onBlur",
         mode: "onBlur"
     });
@@ -95,9 +95,9 @@ export const DynamicForm = function <TFieldValues>(props: FormProps<TFieldValues
                 return <Input key={index} {...field} />;
             })}
             <div className="flex justify-end">
-                <Button type="submit">
+                {props.submitButton && <Button type="submit">
                     Submit
-                </Button>
+                </Button>}
             </div>
         </form>
     );
