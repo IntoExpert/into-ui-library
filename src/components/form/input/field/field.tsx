@@ -120,17 +120,12 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
         {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
     </div>;
 
-    const InputReducer = () => {
-        switch (props.type) {
-            case "radio":
-            case "checkbox":
-                return <RadioOrCheckBox />;
-            default:
-                return <DefaultInput />;
-        }
-    }
 
-    return (
-        <InputReducer />
-    );
+    switch (props.type) {
+        case "radio":
+        case "checkbox":
+            return <RadioOrCheckBox />;
+        default:
+            return <DefaultInput />;
+    };
 })
