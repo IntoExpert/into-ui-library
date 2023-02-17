@@ -1,6 +1,4 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DynamicForm } from '../../components';
 import "../../index.css";
 import { Avatar } from '../../components/image';
 
