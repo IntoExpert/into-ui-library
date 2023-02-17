@@ -18,5 +18,5 @@ RatingBar1.args = {
 
 export const RatingBar2 = Template.bind({});
 RatingBar2.args = {
-    value: 0.2
+    value: 0.2,
 };
