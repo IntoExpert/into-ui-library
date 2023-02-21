@@ -24,6 +24,9 @@ export interface RatingStarsProps extends UiElementProps {
 
 const STARS_COUNT = 5;
 
+/**
+ * Shows rating stars
+ */
 export const RatingStar = (props: RatingStarsProps) => {
 
     const [state, setState] = useState<{ value: number }>({ value: props.value ?? 0 });

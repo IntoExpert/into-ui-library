@@ -17,7 +17,14 @@ export interface StarIconProps extends UiElementProps {
     state?: StarIconState;
 }
 
+/**
+ * Default star size
+ */
 const SIZE = `24px`;
+
+/**
+ * Star icons for rating stars component
+ */
 export const StarIcon = ({ size, state, className }: StarIconProps) => {
 
     const Empty = ({ className }: UiElementProps) => (

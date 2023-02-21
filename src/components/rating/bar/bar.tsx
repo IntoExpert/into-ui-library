@@ -17,6 +17,12 @@ export interface RatingBarProps extends UiElementProps {
     containerCssClasses?: string;
 };
 
+/**
+ * 
+ * Shows a progress bar
+ * @param props 
+ * @returns 
+ */
 export const RatingBar = (props: RatingBarProps) => {
 
     return (<div className={`w-full bg-gray-200 rounded-full dark:bg-gray-300 ${props.containerCssClasses}`}>

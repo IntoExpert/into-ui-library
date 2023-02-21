@@ -1,19 +1,33 @@
 import { createContext, useContext, useState } from "react";
 import { UiElementProps } from "../common/uiElement";
-import { BelowNavBarAlert } from "./belowNavBar/belowNavBarAlert";
+import { OnTopOfElementNavbar } from "./belowNavBar/belowNavBarAlert";
 
 export interface AlertOptions extends UiElementProps {
+    /**
+     * Alert message
+     */
     message: string | JSX.Element;
 };
 
 export interface AlertContextProps {
+    /**
+     * Fire default alert without any predefined props
+     */
     fireAlert: (options: AlertOptions) => void;
+    /**
+     * Fire success alert with predefined colors
+     */
     fireSuccessAlert: (options: AlertOptions) => void;
+    /**
+     * Fire error alert with predefined colors
+     */
     fireErrorAlert: (options: AlertOptions) => void;
 };
 
 
-
+/**
+ * Alert context, that provide ability to fire an alert in any react component 
+ */
 const AlertContext = createContext<AlertContextProps>({
     fireAlert: (options) => { },
     fireSuccessAlert: (options) => { },
@@ -26,6 +40,9 @@ export interface AlertProviderProps {
     children?: JSX.Element;
 }
 
+/**
+ * Inject alert in the app and manage its state
+ */
 export const AlertProvider = ({ rootElementId, children }: AlertProviderProps) => {
 
     const [state, setState] = useState<AlertOptions>({ message: "", className: ' ' });
@@ -63,7 +80,7 @@ export const AlertProvider = ({ rootElementId, children }: AlertProviderProps) =
 
     return (
         <AlertContext.Provider value={{ fireAlert, fireSuccessAlert, fireErrorAlert }}>
-            <BelowNavBarAlert {...state} onClose={onClose} />
+            <OnTopOfElementNavbar {...state} onClose={onClose} />
             {children}
         </AlertContext.Provider>
     );

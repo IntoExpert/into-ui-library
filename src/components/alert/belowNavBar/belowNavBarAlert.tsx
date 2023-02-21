@@ -2,11 +2,27 @@ import { createPortal } from "react-dom";
 import { UiElementProps } from "../../common/uiElement"
 
 export interface BelowNavBarAlertProps extends UiElementProps {
+    /**
+     * Alert message to show
+     */
     message: string | JSX.Element;
+    /**
+     * Element id to show the alert message on top of it
+     */
+    elementId?: string;
+    /**
+     * On alert close callback
+     */
     onClose?: () => void;
 };
 
-export const BelowNavBarAlert = ({ message, onClose, className }: BelowNavBarAlertProps) => {
+
+/**
+ * Alert component that shows in top of an element
+ */
+export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }: BelowNavBarAlertProps) => {
+
+    const element = document.getElementById(elementId ?? '') ?? document.body;
 
     const handleClose = () => {
         onClose?.();
@@ -22,7 +38,7 @@ export const BelowNavBarAlert = ({ message, onClose, className }: BelowNavBarAle
 
     return (
         <>
-            {createPortal(<MessageComponent />, document.body)}
+            {createPortal(<MessageComponent />, element)}
         </>
     );
 }

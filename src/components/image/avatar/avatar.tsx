@@ -20,6 +20,9 @@ export interface AvatarProps extends ImageProps {
     containerClassName?: string;
 };
 
+/**
+ * User avatar
+ */
 export const Avatar = (props: AvatarProps) => {
 
     return (
