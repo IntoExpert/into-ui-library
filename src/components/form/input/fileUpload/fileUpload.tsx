@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useDropzone, FileRejection } from 'react-dropzone'
+import { useDropzone, FileRejection } from 'react-dropzone';
 import { UiElementProps } from "../../../common/uiElement/uiElement";
 
 export interface FileUploadProps extends UiElementProps {
