@@ -10,12 +10,12 @@
     "src/index.*"
   ],
   "compilerOptions": {
+    "target": "es5",
     "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "importHelpers": true,
+    "lib": ["dom", "dom.iterable", "es2018"],
     "declaration": true,
     "sourceMap": true,
-    "rootDir": "./src",
+    "rootDir": "./src/components",
     "outDir": "./dist/esm",
     "strict": true,
     "noImplicitReturns": true,
@@ -23,7 +23,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

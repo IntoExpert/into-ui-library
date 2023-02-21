@@ -1,6 +1,6 @@
 {
   "name": "@intoexpert/into-ui-library",
-  "version": "0.1.14",
+  "version": "0.1.18",
   "repository": {
     "type": "git",
     "url": "https://github.com/IntoExpert/into-ui-library.git"
@@ -66,6 +66,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^5.0.2",
     "@rollup/plugin-terser": "^0.4.0",
     "@rollup/plugin-typescript": "^11.0.0",
     "@storybook/addon-actions": "^6.5.16",
@@ -80,8 +81,8 @@
     "@storybook/testing-library": "0.0.13",
     "babel-plugin-named-exports-order": "0.0.2",
     "prop-types": "^15.8.1",
-    "rollup": "^3.0.0",
-    "rollup-plugin-dts": "^5.1.1",
+    "rollup": "^3.17.2",
+    "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tailwindcss": "^3.2.6",
     "webpack": "^5.75.0"
