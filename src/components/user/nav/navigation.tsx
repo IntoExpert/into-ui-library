@@ -1,4 +1,5 @@
 import { UiElementProps } from "../../common";
+import { ExpandablePanel } from "../../expandable";
 import { Avatar, AvatarProps } from "../../image";
 import { Link, LinkProps } from "../../links";
 
@@ -30,6 +31,12 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
         }
     };
 
+    const ListGroupHeader = ({ title }: { title: string }) => (
+        <div className="">
+            {title}
+        </div>
+    )
+
     return (
         <aside className={`bg-surface w-56 shadow-xl`}>
             {/* User avatar */}
@@ -55,14 +62,16 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
                 </nav>
             </article>
             <article>
-                <ul>
-                    <li>s</li>
-                    <li>s</li>
-                    <li>s</li>
-                    <li>s</li>
-                    <li>s</li>
-                    <li>s</li>
-                </ul>
+                <ExpandablePanel header={<ListGroupHeader title="Expert" />} toggle={<div className={`align-middle -rotate-90`}>&#10094;</div>}>
+                    <ul>
+                        <li>s</li>
+                        <li>s</li>
+                        <li>s</li>
+                        <li>s</li>
+                        <li>s</li>
+                        <li>s</li>
+                    </ul>
+                </ExpandablePanel>
             </article>
         </aside>
     );

@@ -6,6 +6,7 @@ export interface ExpandablePanelProps extends UiElementProps {
     children?: JSX.Element | string;
     toggle?: JSX.Element;
     isOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
 };
 
 export interface ExpandablePanelState {
@@ -20,6 +21,7 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
 
     const togglePanel = () => {
         setState(prevState => ({ ...prevState, isOpen: !prevState.isOpen }));
+        props.onToggle?.(!state.isOpen);
     };
 
     return (
