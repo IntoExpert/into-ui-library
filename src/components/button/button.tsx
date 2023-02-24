@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
+import { UiElementProps } from "../common";
 
-export interface ButtonProps {
+export interface ButtonProps extends UiElementProps {
     /**
      * Button tooltip title
      */
@@ -26,9 +27,9 @@ export interface ButtonProps {
     children?: JSX.Element | string | undefined;
 };
 
-export const Button = ({ title, disabled, onClick, children, type }: ButtonProps) =>
+export const Button = ({ title, disabled, onClick, children, type, className }: ButtonProps) =>
 (<button
-    className={`bg-primary text-white font-bold rounded px-3 py-2`}
+    className={`bg-primary text-white font-bold rounded px-3 py-2 ${className ?? ''}`}
     title={title}
     type={type}
     onClick={onClick}>

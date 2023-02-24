@@ -44,10 +44,10 @@ export interface FileUploadProps extends UiElementProps {
     onFilesRejected?: (rejections: FileRejection[]) => void;
 };
 
-export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected, maxFilesCount, maxSize, minSize, multiple, className }: FileUploadProps) => {
+export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected,
+    maxFilesCount, maxSize, minSize, multiple, className }: FileUploadProps) => {
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
-
         if (acceptedFiles?.length) {
             onAdd?.(acceptedFiles);
         }
@@ -62,7 +62,8 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
 
     return (
         <div {...getRootProps({
-            className: `p-5 border-2 border-dashed border-primary rounded-md flex justify-center items-center ${className ?? ''}`
+            className: `border-2 border-dashed border-gray-200 rounded-md flex justify-center items-center 
+                bg-background bg-opacity-30 ${className ?? ''}`
         })}>
             <input {...getInputProps()} />
             {
