@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { MouseEvent, useRef } from "react";
 import { UiElementProps } from "../common";
 import Webcam from "react-webcam";
 
@@ -12,7 +12,8 @@ export const Camera = (props: CameraProps) => {
 
     const webcamRef = useRef<Webcam>(null);
 
-    const capturePhoto = () => {
+    const capturePhoto = (event: MouseEvent) => {
+        event.stopPropagation();
         const src = webcamRef?.current?.getScreenshot()
 
         if (!src) return;
@@ -22,9 +23,8 @@ export const Camera = (props: CameraProps) => {
 
     const CaptureClick = () => {
         return <div className={`w-14 h-14 bg-white bg-opacity-80 transition rounded-full flex justify-center items-center 
-        absolute bottom-10 left-1/2 -translate-x-1/2 group hover:bg-opacity-70`}>
-            <div className={`min-w-[3rem] min-h-[3rem] bg-white rounded-full transition group-hover:min-w-[2.5rem] group-hover:min-h-[2.5rem]`}>
-
+        absolute bottom-10 left-1/2 -translate-x-1/2 group hover:bg-opacity-70 `}>
+            <div className={`min-w-[3rem] min-h-[3rem] bg-white rounded-full transition group-hover:min-w-[2.5rem] group-hover:min-h-[2.5rem] hover:hue-rotate-180`}>
             </div>
         </div>
     }

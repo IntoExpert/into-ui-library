@@ -60,7 +60,7 @@ export const ImageUpload = (props: ImageUpload) => {
                 <div>
                     {props.uploadOptions?.body ?? `Drag your image here to start uploading.`}
                 </div>
-                <div className={`mt-5`}>
+                <div className={`mt-10`}>
                     <Actions />
                 </div>
             </article>
