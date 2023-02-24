@@ -63,7 +63,7 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
     return (
         <div {...getRootProps({
             className: `border-2 border-dashed border-gray-200 rounded-md flex justify-center items-center 
-                bg-background bg-opacity-30 ${className ?? ''}`
+                bg-background bg-opacity-30 overflow-hidden ${className ?? ''}`
         })}>
             <input {...getInputProps()} />
             {
