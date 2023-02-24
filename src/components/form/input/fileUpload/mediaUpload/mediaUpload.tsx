@@ -7,14 +7,14 @@ import { RetakeButton } from "../retakeButton/retakeButton";
 import { readFileThenGenerateUrl } from "../helpers";
 import { Camera } from "../../../../camera/camera";
 
-export interface ImageUpload extends UiElementProps {
+export interface MediaUploadProps extends UiElementProps {
     uploadOptions?: FileUploadProps;
     image?: ImageProps;
     uploadButton?: ButtonProps;
     retakeButton?: ButtonProps;
 };
 
-export interface UploadImageState {
+export interface MediaUploadState {
     image?: {
         src?: string;
         file?: File;
@@ -22,9 +22,9 @@ export interface UploadImageState {
     isRetake?: boolean;
 };
 
-export const ImageUpload = (props: ImageUpload) => {
+export const MediaUpload = (props: MediaUploadProps) => {
 
-    const [state, setState] = useState<UploadImageState>({});
+    const [state, setState] = useState<MediaUploadState>({});
 
     const onAdd = (files: File[]) => {
         if (!files.length) return;
@@ -89,7 +89,7 @@ export const ImageUpload = (props: ImageUpload) => {
                     {...FileUpload}
                     onAdd={onAdd}
                     body={state.isRetake
-                        ? <Camera onCapture={onImageLoadToBrowser} />
+                        ? <Camera mode="photo" onCapture={onImageLoadToBrowser} />
                         : !state.image?.src
                             ? <NoImageDropzoneBody />
                             : <ImageDropzoneBody />} />

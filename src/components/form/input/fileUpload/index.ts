@@ -1,3 +1,3 @@
 export * from "./fileUpload";
-export * from "./imageUpload/imageUpload";
+export * from "./mediaUpload/mediaUpload";
 export * from "./helpers";

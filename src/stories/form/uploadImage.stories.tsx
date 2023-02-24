@@ -1,14 +1,14 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ImageUpload } from '../../components/form/input/fileUpload/imageUpload/imageUpload';
+import { MediaUpload } from '../../components/form/input/fileUpload/mediaUpload/mediaUpload';
 
 
 export default {
     title: 'Form/Upload image',
-    component: ImageUpload,
+    component: MediaUpload,
 
-} as ComponentMeta<typeof ImageUpload>;
+} as ComponentMeta<typeof MediaUpload>;
 
-const Template: ComponentStory<typeof ImageUpload> = (args) => <ImageUpload {...args} />;
+const Template: ComponentStory<typeof MediaUpload> = (args) => <MediaUpload {...args} />;
 
 export const UploadImageComponent = Template.bind({});
 UploadImageComponent.args = {
