@@ -41,7 +41,7 @@ export const Camera = (props: CameraProps) => {
     }, [webcamRef, setCapturing, mediaRecorderRef]);
 
     const handleDataAvailable = useCallback(
-        ({ data }) => {
+        ({ data }: any) => {
             if (data.size > 0) {
                 props.onVideoRecorded?.(data);
                 setRecordedChunks((prev) => prev.concat(data));
@@ -88,6 +88,8 @@ export const Camera = (props: CameraProps) => {
                 videoConstraints={VIDEO_CONSTRAINT}
             />
             <button
+                type="button"
+                title="Upload"
                 onClick={props.mode === "video" ? (!capturing ? handleStartCaptureClick : handleStopCaptureClick) : capturePhoto}
             >
                 <CaptureClick />
