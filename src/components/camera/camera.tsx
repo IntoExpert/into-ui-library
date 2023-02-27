@@ -17,7 +17,9 @@ export const Camera = (props: CameraProps) => {
     const [capturing, setCapturing] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
 
-    /** Take user photo */
+    /** 
+     * Take user photo 
+     */
     const capturePhoto = (event: MouseEvent) => {
         event.stopPropagation();
         const src = webcamRef?.current?.getScreenshot()
@@ -27,6 +29,9 @@ export const Camera = (props: CameraProps) => {
         props.onCapture?.(src);
     };
 
+    /**
+     * Start video recording
+     */
     const handleStartCaptureClick = useCallback((event: MouseEvent) => {
         event.stopPropagation();
         setCapturing(true);
@@ -40,6 +45,9 @@ export const Camera = (props: CameraProps) => {
         mediaRecorderRef.current.start();
     }, [webcamRef, setCapturing, mediaRecorderRef]);
 
+    /**
+     * Handle data after stop video recording
+     */
     const handleDataAvailable = useCallback(
         ({ data }: any) => {
             if (data.size > 0) {
@@ -50,6 +58,9 @@ export const Camera = (props: CameraProps) => {
         [setRecordedChunks]
     );
 
+    /**
+     *  Handle stop video recording
+     */
     const handleStopCaptureClick = useCallback((event: MouseEvent) => {
         event.stopPropagation();
         mediaRecorderRef?.current?.stop();
@@ -61,7 +72,7 @@ export const Camera = (props: CameraProps) => {
         return props.mode === "video"
             ? (
                 <div className={`w-16 h-16 border-4 border-white border-opacity-80 bg-opacity-80 transition rounded-full 
-                    flex justify-center items-center absolute bottom-10 left-1/2 -translate-x-1/2 group hover:bg-opacity-70 
+                    flex justify-center items-center group hover:bg-opacity-70 
                     hover:border-opacity-60 hover:scale-95`}>
                     <div className={`min-w-[3rem] min-h-[3rem] bg-red-500 transition 
                     ${capturing ? 'min-w-[2rem] min-h-[2rem] rounded animate-pulse' : 'rounded-full'}`}>
@@ -70,7 +81,7 @@ export const Camera = (props: CameraProps) => {
             )
             : (
                 <div className={`w-16 h-16 border-4 border-white border-opacity-80 bg-white bg-opacity-80 transition rounded-full flex justify-center items-center
-                        absolute bottom-10 left-1 /2 -translate-x-1/2 group hover:bg-opacity-70 hover:border-opacity-60 hover:border-b-transparent hover:border-t-transparent hover:rotate-180 `}>
+                         group hover:bg-opacity-70 hover:border-opacity-60 hover:border-b-transparent hover:border-t-transparent hover:rotate-180 `}>
                     <div className={`min-w-[3rem] min-h-[3rem] bg-white rounded-full transition group-hover:min-w-[2.5rem] 
             group-hover:min-h-[2.5rem] hover:hue-rotate-180`}>
                     </div>
@@ -90,6 +101,7 @@ export const Camera = (props: CameraProps) => {
             <button
                 type="button"
                 title="Upload"
+                className={`absolute left-1/2 -translate-x-1/2 bottom-10`}
                 onClick={props.mode === "video" ? (!capturing ? handleStartCaptureClick : handleStopCaptureClick) : capturePhoto}
             >
                 <CaptureClick />
