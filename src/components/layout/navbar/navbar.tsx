@@ -10,7 +10,7 @@ export interface IntoNavbarProps extends UiElementProps {
 
 export const IntoNavbar = (props: IntoNavbarProps) => {
     return (
-        <nav className={`shadow-md bg-surface py-2 px-4 flex items-center`}>
+        <nav className={`shadow-md bg-surface py-2 px-4 flex items-center ${props.className}`}>
             <div className={`w-24`}>
                 {props.logo}
             </div>

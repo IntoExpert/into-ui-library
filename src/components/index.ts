@@ -6,3 +6,4 @@ export * from "./alert";
 export * from "./user";
 export * from "./expandable";
 export * from "./layout";
+export * from "./image";
