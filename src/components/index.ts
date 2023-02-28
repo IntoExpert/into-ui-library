@@ -8,3 +8,4 @@ export * from "./expandable";
 export * from "./layout";
 export * from "./image";
 export * from "./links";
+export * from "./card";
