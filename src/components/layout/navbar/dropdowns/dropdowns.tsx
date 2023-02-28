@@ -8,9 +8,9 @@ export interface NavbarDropdownProps extends UiElementProps {
 export const NavbarDropdowns = (props: NavbarDropdownProps) => {
 
     return (
-        <div className={`flex items-center${props.className ?? ''}`}>
+        <div className={`flex ${props.className ?? ''}`}>
             {props.dropdowns?.map((dropdown, index) => (
-                <div key={index}>
+                <div className={`flex items-center`} key={index}>
                     {index > 0 ? <span className={`mx-1`}></span> : null}
                     <Dropdown {...dropdown} />
                 </div>
