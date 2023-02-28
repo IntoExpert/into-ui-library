@@ -3,7 +3,7 @@ import { UiElementProps } from '../../../common';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 
 export interface SelectProps extends UiElementProps, StateManagerProps {
-
+    errorMessage?: string;
 };
 
 export const Select = (props: SelectProps) => {
@@ -23,6 +23,7 @@ export const Select = (props: SelectProps) => {
                 }}
                 {...props}
             />
+            {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
         </div>
     )
 }
