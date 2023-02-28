@@ -44,16 +44,14 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
                     <ul className="flex flex-justify-between">
                         {props.horizontalNavigationItems?.map((item, index) => {
                             return (
-                                <>
-                                    <li className={`text-sm`} key={index}>
-                                        <Link {...item}>{item.children}</Link>
-                                        {
-                                            index < props.horizontalNavigationItems.length - 1 ?
-                                                <span className={`mx-2`}>.</span>
-                                                : null
-                                        }
-                                    </li>
-                                </>
+                                <li className={`text-sm`} key={index}>
+                                    <Link {...item}>{item.children}</Link>
+                                    {
+                                        index < props.horizontalNavigationItems.length - 1 ?
+                                            <span className={`mx-2`}>.</span>
+                                            : null
+                                    }
+                                </li>
                             );
                         })}
                     </ul>
@@ -61,7 +59,7 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
             </article>
             <article>
                 {props.expandablePanels?.map((panel, index) =>
-                    <ExpandablePanel {...panel} >
+                    <ExpandablePanel key={index} {...panel} >
                         {panel.children}
                     </ExpandablePanel>
                 )}
