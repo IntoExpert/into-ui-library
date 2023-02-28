@@ -30,14 +30,15 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
     return (
         <article className={`rounded-none border-t border-t-gray-100 p-2 ${props.className ?? ''}`} >
             <button
-                className={`flex justify-between py-3 w-full 
+                className={`flex justify-between py-3 px-2 w-full 
                 ${state.isOpen ? 'text-blue-600' : 'text-black'}
                 ${props.header?.className ?? ''}`}
                 onClick={togglePanel}>
                 {props.header?.content}
                 {/* Toggle icons */}
                 <span className={`${state.isOpen ? 'transition-transform rotate-180' : ''}`}>{props.toggle ??
-                    <div className={`align-middle -rotate-90`}>&#10094;</div>}</span>
+                    <div className={`align-middle -rotate-90`}>&#10094;</div>}
+                </span>
             </button>
             <div
                 className={`overflow-hidden transition-all ${state.isOpen ? 'max-h-screen' : 'max-h-0'}`}>
