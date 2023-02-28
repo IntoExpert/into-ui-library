@@ -97,7 +97,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
         <input
             {...props}
             className={`shadow appearance-none border
-         rounded py-2 px-3 text-grey-700 leading-tight 
+         rounded h-14 px-3 text-grey-700 leading-tight 
          focus:outline-none focus:shadow-outline 
          ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
          ${props.className ?? ''}`}

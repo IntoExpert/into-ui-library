@@ -20,10 +20,9 @@ export const Select = (props: SelectProps) => {
                 classNames={{
                     container: (state) =>
                         `w-full`
-
                     ,
                     control: (state) =>
-                        `!rounded ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
+                        `!rounded h-14 ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: (state) => `!bg-transparent`,
                     dropdownIndicator: (state) => `!text-black`,
                 }}
