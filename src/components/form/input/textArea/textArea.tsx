@@ -19,7 +19,7 @@ export const TextArea = (props: TextAreaProps) => {
             <InputLabel inputId={props.id} name={props.label} className="block mb-2" />
             <textarea
                 {...props}
-                className={`border border-secondary text-gray-800 placeholder:text-gray-500 px-2 py-5 rounded ${props.className ?? ''}`}
+                className={`border border-secondary text-grey-700 placeholder:text-gray-500 px-2 py-5 rounded ${props.className ?? ''}`}
                 title={props.title ?? props.placeholder}
             >{props.defaultValue}</textarea>
             {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}

@@ -98,7 +98,8 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
             {...props}
             className={`shadow appearance-none border
          rounded h-14 px-3 text-grey-700 leading-tight 
-         focus:outline-none focus:shadow-outline 
+         focus:outline-none focus:shadow-outline
+         placeholder:text-gray-500
          ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
          ${props.className ?? ''}`}
             ref={ref}
