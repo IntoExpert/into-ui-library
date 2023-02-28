@@ -1,14 +1,14 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Navbar } from '../../../components/layout';
+import { IntoNavbar } from '../../../components/layout';
 import { Avatar } from '../../../components/image';
 
 
 export default {
     title: 'Layout/Navbar',
-    component: Navbar,
-} as ComponentMeta<typeof Navbar>;
+    component: IntoNavbar,
+} as ComponentMeta<typeof IntoNavbar>;
 
-const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
+const Template: ComponentStory<typeof IntoNavbar> = (args) => <IntoNavbar {...args} />;
 
 export const NavbarWithAuth = Template.bind({});
 NavbarWithAuth.args = {

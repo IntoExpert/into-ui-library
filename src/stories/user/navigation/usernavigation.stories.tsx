@@ -35,5 +35,15 @@ userNavigation.args = {
             href: "#History",
             children: 'History',
         }
+    ],
+    expandablePanels: [
+        {
+            className: "px-5",
+            header: 'Expert',
+            children: <ul>
+                <li>Hi</li>
+                <li>Hello</li>
+            </ul>
+        }
     ]
 };

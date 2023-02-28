@@ -2,13 +2,13 @@ import { UiElementProps } from "../../common";
 import { NavbarDropdownProps, NavbarDropdowns } from "./dropdowns/dropdowns";
 import { NavbarLinkProps, NavbarLinks } from "./links/links";
 
-export interface NavbarProps extends UiElementProps {
+export interface IntoNavbarProps extends UiElementProps {
     logo?: JSX.Element;
     links?: NavbarLinkProps;
     dropdowns?: NavbarDropdownProps;
 };
 
-export const Navbar = (props: NavbarProps) => {
+export const IntoNavbar = (props: IntoNavbarProps) => {
     return (
         <nav className={`shadow-md bg-surface py-2 px-4 flex items-center`}>
             <div className={`w-24`}>

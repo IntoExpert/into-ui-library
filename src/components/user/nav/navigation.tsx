@@ -1,5 +1,5 @@
 import { UiElementProps } from "../../common";
-import { ExpandablePanel } from "../../expandable";
+import { ExpandablePanel, ExpandablePanelProps } from "../../expandable";
 import { Avatar, AvatarProps } from "../../image";
 import { Link, LinkProps } from "../../links";
 
@@ -12,6 +12,10 @@ export interface UserNavigationPanelProps extends UiElementProps {
      * Horizontal aligned links, that come after the user avatar directly 
      */
     horizontalNavigationItems: LinkProps[];
+    /**
+     * Expandable panels
+     */
+    expandablePanels: ExpandablePanelProps[];
 };
 
 /**
@@ -30,12 +34,6 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
             ...props.avatar.label
         }
     };
-
-    const ListGroupHeader = ({ title }: { title: string }) => (
-        <div className="">
-            {title}
-        </div>
-    )
 
     return (
         <aside className={`bg-surface w-56 shadow-xl`}>
@@ -62,16 +60,11 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
                 </nav>
             </article>
             <article>
-                <ExpandablePanel header={<ListGroupHeader title="Expert" />} toggle={<div className={`align-middle -rotate-90`}>&#10094;</div>}>
-                    <ul>
-                        <li>s</li>
-                        <li>s</li>
-                        <li>s</li>
-                        <li>s</li>
-                        <li>s</li>
-                        <li>s</li>
-                    </ul>
-                </ExpandablePanel>
+                {props.expandablePanels?.map((panel, index) =>
+                    <ExpandablePanel {...panel} >
+                        {panel.children}
+                    </ExpandablePanel>
+                )}
             </article>
         </aside>
     );
