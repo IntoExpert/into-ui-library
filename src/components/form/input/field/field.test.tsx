@@ -10,7 +10,7 @@ beforeEach(() => {
 
 describe("Input field functionality", () => {
 
-    describe("Basice functionality and state", () => {
+    describe("Basic functionality and state", () => {
 
         it("Render without crashing", () => {
             render(<InputField defaultValue="Motasem" />, container);
