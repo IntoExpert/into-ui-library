@@ -13,7 +13,7 @@ export interface UserNavigationPanelProps extends UiElementProps {
      */
     horizontalNavigationItems: LinkProps[];
     /**
-     * Expandable panels
+     * Expandable panels in the end of the card
      */
     expandablePanels: ExpandablePanelProps[];
 };
