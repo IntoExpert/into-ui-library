@@ -1,15 +1,21 @@
 import ReactSelect from 'react-select';
 import { UiElementProps } from '../../../common';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
+import { InputLabel } from '../label';
 
 export interface SelectProps extends UiElementProps, StateManagerProps {
     errorMessage?: string;
+    /**
+     * Select label, if you leave it empty no label will show
+     */
+    label?: string;
 };
 
 export const Select = (props: SelectProps) => {
 
     return (
-        <div className={`w-96 ${props.className}`}>
+        <div className={`${props.className}`}>
+            <InputLabel inputId={props.id} name={props.label} className="block mb-2" />
             <ReactSelect
                 classNames={{
                     container: (state) =>
