@@ -6,6 +6,6 @@ export interface InputLabelProps extends UiElementProps {
 }
 
 export const InputLabel = ({ inputId, name, className }: InputLabelProps) =>
-    <label className={`text-grey-700 text-sm font-bold ${className ?? ''}`} htmlFor={inputId}>
+    <label className={`text-gray-700 text-sm font-bold ${className ?? ''}`} htmlFor={inputId}>
         {name}
     </label>;
