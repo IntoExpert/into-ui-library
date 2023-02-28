@@ -39,7 +39,9 @@ userNavigation.args = {
     expandablePanels: [
         {
             className: "px-5",
-            header: 'Expert',
+            header: {
+                content: 'Expert'
+            },
             children: <ul>
                 <li>Hi</li>
                 <li>Hello</li>
