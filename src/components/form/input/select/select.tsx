@@ -25,7 +25,7 @@ export const Select = (props: SelectProps) => {
                         `!rounded h-14 ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: (state) => `!bg-transparent`,
                     dropdownIndicator: (state) => `!text-black`,
-                    placeholder: (state) => `!placeholder:text-gray-500`,
+                    placeholder: (state) => `!placeholder:text-gray-500 !text-gray-500`,
                 }}
                 {...props}
             />
