@@ -1,5 +1,6 @@
 
 import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef } from "react";
+import { InputLabel } from "../label/label";
 
 export interface InputFieldProps {
     /**
@@ -70,10 +71,6 @@ export interface InputFieldProps {
  */
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
 
-    const Label = ({ className }: { className?: string }) =>
-        <label className={`text-gray-700 text-sm font-bold ${className ?? ''}`} htmlFor={props.id}>
-            {props.label}
-        </label>;
     const RadioOrCheckBox = () => {
 
         const isRadio = props.type === 'radio';
@@ -90,13 +87,13 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
                      ${props.className ?? ''}`}
                     value={props.name}
                     ref={ref} />
-                <Label className="mx-2 inline-block" />
+                <InputLabel inputId={props.id} name={props.label} className="mx-2 inline-block" />
             </div>
         );
     }
 
     const DefaultInput = () => <div className={`text-start ${props.containerClassName}`}>
-        <Label className="block mb-2" />
+        <InputLabel inputId={props.id} name={props.label} className="block mb-2" />
         <input
             {...props}
             className={`shadow appearance-none border
