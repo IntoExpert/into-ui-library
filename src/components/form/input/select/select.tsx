@@ -20,7 +20,6 @@ export const Select = (props: SelectProps) => {
                         `!rounded ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: (state) => `!bg-transparent`,
                     dropdownIndicator: (state) => `!text-black`,
-
                 }}
                 {...props}
             />
