@@ -1,11 +1,12 @@
+import { ReactElement } from "react";
 import { UiElementProps } from "../../../common";
 
 export interface InputLabelProps extends UiElementProps {
     inputId?: string;
-    name?: string;
+    content?: ReactElement | string;
 }
 
-export const InputLabel = ({ inputId, name, className }: InputLabelProps) =>
+export const InputLabel = ({ inputId, content, className }: InputLabelProps) =>
     <label className={`text-gray-700 text-sm font-bold ${className ?? ''}`} htmlFor={inputId}>
-        {name}
+        {content}
     </label>;

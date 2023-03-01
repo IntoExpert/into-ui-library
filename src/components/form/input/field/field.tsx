@@ -1,5 +1,5 @@
 
-import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef } from "react";
+import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef } from "react";
 import { InputLabel } from "../label/label";
 
 export interface InputFieldProps {
@@ -10,7 +10,7 @@ export interface InputFieldProps {
     /**
      * Input label, if you leave it empty no label will show
      */
-    label?: string;
+    label?: ReactElement | string;
     /**
      * Input placeholder
      */
@@ -87,13 +87,13 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
                      ${props.className ?? ''}`}
                     value={props.name}
                     ref={ref} />
-                <InputLabel inputId={props.id} name={props.label} className="mx-2 inline-block" />
+                <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
             </div>
         );
     }
 
     const DefaultInput = () => <div className={`text-start ${props.containerClassName}`}>
-        <InputLabel inputId={props.id} name={props.label} className="block mb-2" />
+        <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
         <input
             {...props}
             className={`shadow appearance-none border
