@@ -107,11 +107,12 @@ export const Camera = (props: CameraProps) => {
                 ref={webcamRef}
                 videoConstraints={VIDEO_CONSTRAINT}
                 onUserMedia={() => setShowCapture(true)}
+                audio={true}
             />
             {showCapture ? <button
                 type="button"
                 title="Upload"
-                className={`absolute left-1/2 -translate-x-1/2 bottom-10`}
+                className={`absolute left-1/2 -translate-x-1/2 bottom-4`}
                 onClick={props.mode === "video" ?
                     (!capturing ? handleStartCaptureClick : handleStopCaptureClick) :
                     capturePhoto}
@@ -125,4 +126,5 @@ export const Camera = (props: CameraProps) => {
 const VIDEO_CONSTRAINT: MediaTrackConstraints = {
     aspectRatio: 16 / 9,
     facingMode: "user",
+
 }
