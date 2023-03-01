@@ -34,6 +34,8 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
         const file = files[0];
 
+        props.uploadOptions?.onAdd?.([file]);
+
         readFileThenGenerateUrl(file, onObjectUrlCreated);
     };
 
@@ -95,7 +97,10 @@ export const MediaUpload = (props: MediaUploadProps) => {
             {
                 <FileUpload
                     {...DEFAULT_FILE_UPLOAD_OPTIONS}
-                    {...FileUpload}
+                    {...{
+                        ...FileUpload,
+                        ...props.uploadOptions,
+                    }}
                     onAdd={onAdd}
                     body={state.isRetake
                         ? <Camera mode={props.mode}
@@ -113,7 +118,7 @@ const DEFAULT_FILE_UPLOAD_OPTIONS: FileUploadProps = {
     accept: {
         'image/*': []
     },
-    maxSize: 5 * 1024 * 1024,
+    maxSize: 50 * 1024 * 1024,
     maxFilesCount: 1,
     multiple: false,
     className: 'aspect-video'

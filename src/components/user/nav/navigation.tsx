@@ -36,7 +36,7 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
     };
 
     return (
-        <aside className={`bg-surface w-56 shadow-xl ${props.className}`}>
+        <aside className={`bg-surface w-56 shadow-xl ${props.className ?? ''}`}>
             {/* User avatar */}
             <article className={`p-5 border-b border-gray-100`}>
                 <Avatar {...avatar} className={`h-20 w-20 ${props.className}`} />
