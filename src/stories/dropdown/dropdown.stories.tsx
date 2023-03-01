@@ -4,8 +4,8 @@ import { Avatar } from '../../components/image';
 
 
 export default {
-    title: 'Layout/Navbar',
-    component: Dropdown,
+  title: "dropdown/dropdown",
+  component: Dropdown,
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;
