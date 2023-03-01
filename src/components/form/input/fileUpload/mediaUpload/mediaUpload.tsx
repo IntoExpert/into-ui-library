@@ -14,6 +14,7 @@ export interface MediaUploadProps extends UiElementProps {
     uploadButton?: ButtonProps;
     retakeButton?: ButtonProps;
     mode?: "photo" | "video";
+    onUpload?: (file: File) => void;
 };
 
 export interface MediaUploadState {
@@ -97,7 +98,9 @@ export const MediaUpload = (props: MediaUploadProps) => {
                     {...FileUpload}
                     onAdd={onAdd}
                     body={state.isRetake
-                        ? <Camera mode={props.mode} onCapture={onObjectUrlCreated} onVideoRecorded={onVideoRecorded} />
+                        ? <Camera mode={props.mode}
+                            onCapture={onObjectUrlCreated}
+                            onVideoRecorded={onVideoRecorded} />
                         : !state.media?.src
                             ? <NoImageDropzoneBody />
                             : <MediaDropzoneBody />} />

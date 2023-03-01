@@ -38,6 +38,19 @@ export const Camera = (props: CameraProps) => {
     };
 
     /**
+     * Handle data after stop video recording
+     */
+    const handleDataAvailable = useCallback(
+        ({ data }: any) => {
+            if (data.size > 0) {
+                console.log(data.size);
+                setRecordedChunks((prev) => prev.concat(data));
+            }
+        },
+        [setRecordedChunks]
+    );
+
+    /**
      * Start video recording
      */
     const handleStartCaptureClick = useCallback((event: MouseEvent) => {
@@ -52,20 +65,7 @@ export const Camera = (props: CameraProps) => {
             handleDataAvailable
         );
         mediaRecorderRef.current.start();
-    }, [webcamRef, setCapturing, mediaRecorderRef]);
-
-    /**
-     * Handle data after stop video recording
-     */
-    const handleDataAvailable = useCallback(
-        ({ data }: any) => {
-            if (data.size > 0) {
-                console.log(data.size);
-                setRecordedChunks((prev) => prev.concat(data));
-            }
-        },
-        [setRecordedChunks]
-    );
+    }, [webcamRef, setCapturing, mediaRecorderRef, handleDataAvailable]);
 
     /**
      *  Handle stop video recording
@@ -74,7 +74,7 @@ export const Camera = (props: CameraProps) => {
         event.stopPropagation();
         mediaRecorderRef?.current?.stop();
         setCapturing(false);
-    }, [mediaRecorderRef, webcamRef, setCapturing]);
+    }, [mediaRecorderRef, setCapturing]);
 
     /** Camera capture click button */
     const CaptureClick = () => {
