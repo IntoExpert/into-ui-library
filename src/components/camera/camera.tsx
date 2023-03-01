@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useRef, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import { UiElementProps } from "../common";
 import Webcam from "react-webcam";
 
@@ -15,7 +15,15 @@ export const Camera = (props: CameraProps) => {
 
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
     const [capturing, setCapturing] = useState(false);
-    const [recordedChunks, setRecordedChunks] = useState([]);
+    const [startedCapturing, setStartedCapturing] = useState(false);
+    const [showCapture, setShowCapture] = useState(false);
+    const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
+
+    useEffect(() => {
+        if (capturing || !startedCapturing) return;
+
+        props.onVideoRecorded?.(new Blob(recordedChunks, { type: 'video/webm' }));
+    }, [recordedChunks]);
 
     /** 
      * Take user photo 
@@ -33,6 +41,7 @@ export const Camera = (props: CameraProps) => {
      * Start video recording
      */
     const handleStartCaptureClick = useCallback((event: MouseEvent) => {
+        setStartedCapturing(true);
         event.stopPropagation();
         setCapturing(true);
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current?.stream!, {
@@ -51,7 +60,7 @@ export const Camera = (props: CameraProps) => {
     const handleDataAvailable = useCallback(
         ({ data }: any) => {
             if (data.size > 0) {
-                props.onVideoRecorded?.(data);
+                console.log(data.size);
                 setRecordedChunks((prev) => prev.concat(data));
             }
         },
@@ -74,8 +83,8 @@ export const Camera = (props: CameraProps) => {
                 <div className={`w-16 h-16 border-4 border-white border-opacity-80 bg-opacity-80 transition rounded-full 
                     flex justify-center items-center group hover:bg-opacity-70 
                     hover:border-opacity-60 hover:scale-95`}>
-                    <div className={`min-w-[3rem] min-h-[3rem] bg-red-500 transition 
-                    ${capturing ? 'min-w-[2rem] min-h-[2rem] rounded animate-pulse' : 'rounded-full'}`}>
+                    <div className={` bg-red-500 transition 
+                    ${capturing ? 'min-w-[2rem] min-h-[2rem] rounded animate-pulse' : 'min-w-[3rem] min-h-[3rem] rounded-full'}`}>
                     </div>
                 </div>
             )
@@ -97,15 +106,18 @@ export const Camera = (props: CameraProps) => {
                 screenshotFormat="image/jpeg"
                 ref={webcamRef}
                 videoConstraints={VIDEO_CONSTRAINT}
+                onUserMedia={() => setShowCapture(true)}
             />
-            <button
+            {showCapture ? <button
                 type="button"
                 title="Upload"
                 className={`absolute left-1/2 -translate-x-1/2 bottom-10`}
-                onClick={props.mode === "video" ? (!capturing ? handleStartCaptureClick : handleStopCaptureClick) : capturePhoto}
+                onClick={props.mode === "video" ?
+                    (!capturing ? handleStartCaptureClick : handleStopCaptureClick) :
+                    capturePhoto}
             >
                 <CaptureClick />
-            </button>
+            </button> : null}
         </div >
     );
 }
