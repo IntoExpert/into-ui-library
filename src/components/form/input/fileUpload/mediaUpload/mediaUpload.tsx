@@ -81,7 +81,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
         return (
             <>
                 <div className={`w-full h-full relative`}>
-                    {props.mode === "photo"
+                    {!props.mode || props.mode === "photo"
                         ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
                         : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} controls={true} />}
                     <div className={`absolute bottom-10 left-1/2 -translate-x-1/2`}>
@@ -97,11 +97,9 @@ export const MediaUpload = (props: MediaUploadProps) => {
             {
                 <FileUpload
                     {...DEFAULT_FILE_UPLOAD_OPTIONS}
-                    {...{
-                        ...FileUpload,
-                        ...props.uploadOptions,
-                    }}
+                    {...props.uploadOptions}
                     onAdd={onAdd}
+                    className={`${state.media?.src || state.isRetake ? '!border-none' : ''} ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
                     body={state.isRetake
                         ? <Camera mode={props.mode}
                             onCapture={onObjectUrlCreated}
