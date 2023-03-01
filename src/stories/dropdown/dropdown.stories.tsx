@@ -4,7 +4,7 @@ import { Avatar } from '../../components/image';
 
 
 export default {
-    title: 'Layout/Navbar',
+    title: 'Dropdown/dropdown',
     component: Dropdown,
 } as ComponentMeta<typeof Dropdown>;
 
