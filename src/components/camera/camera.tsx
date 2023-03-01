@@ -80,19 +80,19 @@ export const Camera = (props: CameraProps) => {
     const CaptureClick = () => {
         return props.mode === "video"
             ? (
-                <div className={`w-16 h-16 border-4 border-white border-opacity-80 bg-opacity-80 transition rounded-full 
+                <div className={`w-[2rem] h-[2rem] border-4 border-white border-opacity-80 bg-opacity-80 transition rounded-full 
                     flex justify-center items-center group hover:bg-opacity-70 
                     hover:border-opacity-60 hover:scale-95`}>
                     <div className={` bg-red-500 transition 
-                    ${capturing ? 'min-w-[2rem] min-h-[2rem] rounded animate-pulse' : 'min-w-[3rem] min-h-[3rem] rounded-full'}`}>
+                    ${capturing ? 'min-w-[1rem] min-h-[1rem] rounded animate-pulse' : 'min-w-[1rem] min-h-[1rem] rounded-full'}`}>
                     </div>
                 </div>
             )
             : (
-                <div className={`w-16 h-16 border-4 border-white border-opacity-80 bg-white bg-opacity-80 transition rounded-full flex justify-center items-center
+                <div className={`w-[2rem] h-[2rem] border-2 border-white border-opacity-80 bg-white bg-opacity-80 transition rounded-full flex justify-center items-center
                          group hover:bg-opacity-70 hover:border-opacity-60 hover:border-b-transparent hover:border-t-transparent hover:rotate-180 `}>
-                    <div className={`min-w-[3rem] min-h-[3rem] bg-white rounded-full transition group-hover:min-w-[2.5rem] 
-            group-hover:min-h-[2.5rem] hover:hue-rotate-180`}>
+                    <div className={`min-w-[1.5rem] min-h-[1.5rem] bg-white rounded-full transition group-hover:min-w-[1.2rem] 
+            group-hover:min-h-[1.2rem] hover:hue-rotate-180`}>
                     </div>
                 </div>
             );
