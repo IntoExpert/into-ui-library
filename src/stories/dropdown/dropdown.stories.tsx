@@ -4,8 +4,13 @@ import { Avatar } from '../../components/image';
 
 
 export default {
+<<<<<<< HEAD
   title: "dropdown/dropdown",
   component: Dropdown,
+=======
+    title: 'Dropdown/dropdown',
+    component: Dropdown,
+>>>>>>> develop
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;

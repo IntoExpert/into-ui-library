@@ -27,6 +27,7 @@ WithCustomBody.args = {
 
 export const WithValidation = Template.bind({});
 WithValidation.args = {
+    label: "Attachment",
     body: <div className="text-danger">Drag and drop your files to upload them</div>,
     onDropAvailableContent: <div className="text-danger">Drop your file here</div>,
     onAdd(files) {

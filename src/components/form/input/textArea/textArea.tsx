@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, TextareaHTMLAttributes } from "react";
+import { DetailedHTMLProps, ReactElement, TextareaHTMLAttributes } from "react";
 import { UiElementProps } from "../../../common";
 import { InputLabel } from "../label";
 
@@ -6,7 +6,7 @@ export interface TextAreaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
     /**
      * Input label, if you leave it empty no label will show
      */
-    label?: string;
+    label?: ReactElement | string;
     /**
      * Input error message, when it is null or undefined, no error considered
      */
@@ -16,7 +16,7 @@ export interface TextAreaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
 export const TextArea = (props: TextAreaProps) => {
     return (
         <div className={``}>
-            <InputLabel inputId={props.id} name={props.label} className="block mb-2" />
+            <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
             <textarea
                 {...props}
                 className={`border border-secondary text-gray-700 placeholder:text-gray-500 px-2 py-5 rounded ${props.className ?? ''}`}

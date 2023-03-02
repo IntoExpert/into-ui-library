@@ -6,16 +6,19 @@ import { Button, ButtonProps } from "../../../../button";
 import { RetakeButton } from "../retakeButton/retakeButton";
 import { readFileThenGenerateUrl } from "../helpers";
 import { Camera } from "../../../../camera/camera";
+import { VideoPlayer } from "../../../../video";
 
 export interface MediaUploadProps extends UiElementProps {
     uploadOptions?: FileUploadProps;
     image?: ImageProps;
     uploadButton?: ButtonProps;
     retakeButton?: ButtonProps;
+    mode?: "photo" | "video";
+    onUpload?: (file: File) => void;
 };
 
 export interface MediaUploadState {
-    image?: {
+    media?: {
         src?: string;
         file?: File;
     };
@@ -31,11 +34,17 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
         const file = files[0];
 
-        readFileThenGenerateUrl(file, onImageLoadToBrowser);
+        props.uploadOptions?.onAdd?.([file]);
+
+        readFileThenGenerateUrl(file, onObjectUrlCreated);
     };
 
-    const onImageLoadToBrowser = (url: string) => {
-        setState(prevState => ({ ...prevState, image: { src: url }, isRetake: false }));
+    const onObjectUrlCreated = (url: string) => {
+        setState(prevState => ({ ...prevState, media: { src: url }, isRetake: false }));
+    };
+
+    const onVideoRecorded = (videoBlobs: Blob) => {
+        onObjectUrlCreated(URL.createObjectURL(videoBlobs));
     };
 
     const handleRetakeRequest = (event: MouseEvent) => {
@@ -45,7 +54,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
 
 
-    const Actions = () => <div className={`flex`}>
+    const Actions = () => <div className={`flex gap-2`}>
         <Button className={`bg-secondary flex-1`}>
             {props.uploadButton?.children}
         </Button>
@@ -67,12 +76,14 @@ export const MediaUpload = (props: MediaUploadProps) => {
         );
     };
 
-    const ImageDropzoneBody = () => {
+    const MediaDropzoneBody = () => {
 
         return (
             <>
                 <div className={`w-full h-full relative`}>
-                    <img className={`w-full h-full`} src={state.image?.src} alt="Uploaded" />
+                    {!props.mode || props.mode === "photo"
+                        ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
+                        : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} controls={true} />}
                     <div className={`absolute bottom-10 left-1/2 -translate-x-1/2`}>
                         <Actions />
                     </div>
@@ -86,13 +97,16 @@ export const MediaUpload = (props: MediaUploadProps) => {
             {
                 <FileUpload
                     {...DEFAULT_FILE_UPLOAD_OPTIONS}
-                    {...FileUpload}
+                    {...props.uploadOptions}
                     onAdd={onAdd}
+                    className={`${state.media?.src || state.isRetake ? '!border-none' : ''} ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
                     body={state.isRetake
-                        ? <Camera mode="photo" onCapture={onImageLoadToBrowser} />
-                        : !state.image?.src
+                        ? <Camera mode={props.mode}
+                            onCapture={onObjectUrlCreated}
+                            onVideoRecorded={onVideoRecorded} />
+                        : !state.media?.src
                             ? <NoImageDropzoneBody />
-                            : <ImageDropzoneBody />} />
+                            : <MediaDropzoneBody />} />
             }
         </div>
     );
@@ -102,7 +116,7 @@ const DEFAULT_FILE_UPLOAD_OPTIONS: FileUploadProps = {
     accept: {
         'image/*': []
     },
-    maxSize: 5 * 1024 * 1024,
+    maxSize: 50 * 1024 * 1024,
     maxFilesCount: 1,
     multiple: false,
     className: 'aspect-video'
