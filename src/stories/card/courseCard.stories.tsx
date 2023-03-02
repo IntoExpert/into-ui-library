@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { CourseCard } from "../../components/card/courseCard";
+import { Edit } from "../../icons/icon-edit/edit";
+import { Delete } from "../../icons/icon-delete/delete";
 
 export default {
   title: "Cards/Course card",
@@ -27,6 +29,34 @@ defaultState.args = {
     },
   },
   state: {
-    children: <h2 className={`px-4 py-1`}>pending</h2>,
+    children: <h2 className={`px-4 py-1`}>Pending</h2>,
+  },
+  badge: {
+    price: "$1,400",
+    earlyBirdPrice: "$1,200",
+  },
+  dropdown: {
+    icon: <Edit />,
+    menu: {
+      className: "top-8 ",
+      items: [
+        {
+          icon: <Edit className=" flex" />,
+          link: {
+            className: "flex ",
+            children: "Edit",
+          },
+        },
+        {
+          icon: <Delete className=" flex" />,
+
+          link: {
+            className: "flex",
+
+            children: "Delete",
+          },
+        },
+      ],
+    },
   },
 };

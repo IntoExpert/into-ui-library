@@ -10,5 +10,6 @@ const Template: ComponentStory<typeof Badge> = (args) => <Badge {...args} />;
 
 export const defaultState = Template.bind({});
 defaultState.args = {
-    children: <h2 className={`p-5`}>Hi!</h2>,
+  price: "$1,400",
+  earlyBirdPrice: "$1,200",
 };

@@ -20,7 +20,10 @@ defaultState.args = {
   },
 
   children: <h2 className={`p-5`}>Hi!</h2>,
-
+  badge: {
+    price: "$1,400",
+    earlyBirdPrice: "$1,200",
+  },
 };
 
 
