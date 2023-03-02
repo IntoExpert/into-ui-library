@@ -1,5 +1,6 @@
 
-import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, Ref, forwardRef } from "react";
+import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef } from "react";
+import { InputLabel } from "../label/label";
 
 export interface InputFieldProps {
     /**
@@ -9,7 +10,7 @@ export interface InputFieldProps {
     /**
      * Input label, if you leave it empty no label will show
      */
-    label?: string;
+    label?: ReactElement | string;
     /**
      * Input placeholder
      */
@@ -70,10 +71,6 @@ export interface InputFieldProps {
  */
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
 
-    const Label = ({ className }: { className?: string }) =>
-        <label className={`text-gray-700 text-sm font-bold ${className ?? ''}`} htmlFor={props.id}>
-            {props.label}
-        </label>;
     const RadioOrCheckBox = () => {
 
         const isRadio = props.type === 'radio';
@@ -90,18 +87,19 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
                      ${props.className ?? ''}`}
                     value={props.name}
                     ref={ref} />
-                <Label className="mx-2 inline-block" />
+                <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
             </div>
         );
     }
 
     const DefaultInput = () => <div className={`text-start ${props.containerClassName}`}>
-        <Label className="block" />
+        <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
         <input
             {...props}
             className={`shadow appearance-none border
-         rounded-lg py-2 px-3 text-grey-700 leading-tight 
-         focus:outline-none focus:shadow-outline 
+         rounded h-14 px-3 text-gray-700 leading-tight 
+         focus:outline-none focus:shadow-outline
+         placeholder:text-gray-500
          ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
          ${props.className ?? ''}`}
             ref={ref}

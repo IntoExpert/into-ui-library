@@ -1,6 +1,7 @@
-import { useCallback } from "react";
+import { ReactElement, useCallback } from "react";
 import { useDropzone, FileRejection } from 'react-dropzone';
 import { UiElementProps } from "../../../common/uiElement/uiElement";
+import { InputLabel } from "../label";
 
 export interface FileUploadProps extends UiElementProps {
     /**
@@ -8,8 +9,13 @@ export interface FileUploadProps extends UiElementProps {
      */
     body?: JSX.Element | string | undefined;
     /**
+     * Input label, if you leave it empty no label will show
+     */
+    label?: ReactElement | string;
+    /**
      * Content that shows when a file is able to be dropped on the drop zone
      */
+
     onDropAvailableContent?: JSX.Element | string | undefined;
     /**
      * List of accepted file types, the map key is to specify the file type, and the associated array is to specify extensions, empty array means that, accept all files that have the same type
@@ -44,10 +50,10 @@ export interface FileUploadProps extends UiElementProps {
     onFilesRejected?: (rejections: FileRejection[]) => void;
 };
 
-export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected, maxFilesCount, maxSize, minSize, multiple, className }: FileUploadProps) => {
+export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected,
+    maxFilesCount, maxSize, minSize, multiple, label, className }: FileUploadProps) => {
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
-
         if (acceptedFiles?.length) {
             onAdd?.(acceptedFiles);
         }
@@ -61,15 +67,19 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
         useDropzone({ onDrop, accept: accept, maxFiles: maxFilesCount, maxSize, minSize, multiple });
 
     return (
-        <div {...getRootProps({
-            className: `p-5 border-2 border-dashed border-primary rounded-md flex justify-center items-center ${className ?? ''}`
-        })}>
-            <input {...getInputProps()} />
-            {
-                isDragActive ?
-                    (onDropAvailableContent || <p>Drop the files here ...</p>) :
-                    (body || <p>Drag 'n' drop some files here, or click to select files</p>)
-            }
+        <div>
+            {label ? <InputLabel content={label} className="inline-block" /> : null}
+            <div {...getRootProps({
+                className: `border-2 border-dashed border-gray-200 rounded-md flex justify-center items-center 
+                bg-background bg-opacity-30 overflow-hidden ${className ?? ''}`
+            })}>
+                <input {...getInputProps()} />
+                {
+                    isDragActive ?
+                        (onDropAvailableContent || <p>Drop the files here ...</p>) :
+                        (body || <p>Drag 'n' drop some files here, or click to select files</p>)
+                }
+            </div>
         </div>
     )
 };

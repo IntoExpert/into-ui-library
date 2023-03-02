@@ -1,6 +1,6 @@
 {
   "name": "@intoexpert/into-ui-library",
-  "version": "0.1.20",
+  "version": "0.1.239",
   "repository": {
     "type": "git",
     "url": "https://github.com/IntoExpert/into-ui-library.git"
@@ -20,8 +20,11 @@
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.43.1",
+    "react-player": "^2.11.2",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.0",
     "react-star-rating-component": "^1.4.1",
+    "react-webcam": "^7.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
