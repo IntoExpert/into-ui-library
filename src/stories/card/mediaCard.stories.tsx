@@ -20,13 +20,7 @@ defaultState.args = {
   },
 
   children: <h2 className={`p-5`}>Hi!</h2>,
-  avatar: {
-    alt: "Face portrait",
-    src: "https://cdn.dribbble.com/users/544003/screenshots/18063915/media/13befc9277da37247dad63ddb46c235f.jpg?compress=1&resize=400x300",
-    label: {
-      name: "Face portrait",
-    },
-  },
+
 };
 
 
