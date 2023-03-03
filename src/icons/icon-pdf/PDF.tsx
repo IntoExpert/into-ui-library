@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface pdfProps extends UiElementProps {}
+export interface PDFIconProps extends UiElementProps {}
 
-export const PDF = (props: pdfProps) => {
+export const PDFIcon = (props: PDFIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

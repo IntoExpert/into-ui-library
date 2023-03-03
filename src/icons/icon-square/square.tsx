@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface squareProps extends UiElementProps {}
+export interface ThickSquareIconProps extends UiElementProps {}
 
-export const Square = (props: squareProps) => {
+export const ThickSquareIcon = (props: ThickSquareIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

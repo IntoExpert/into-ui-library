@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface copyProps extends UiElementProps {}
+export interface CopyIconProps extends UiElementProps {}
 
-export const Copy = (props: copyProps) => {
+export const CopyIcon = (props: CopyIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

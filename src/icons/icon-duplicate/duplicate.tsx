@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface duplicateProps extends UiElementProps {}
+export interface DuplicateIconProps extends UiElementProps {}
 
-export const Duplicate = (props: duplicateProps) => {
+export const DuplicateIcon = (props: DuplicateIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

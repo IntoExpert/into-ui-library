@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface leftArrowProps extends UiElementProps {}
+export interface LeftArrowIconProps extends UiElementProps {}
 
-export const LeftArrow = (props: leftArrowProps) => {
+export const LeftArrowIcon = (props: LeftArrowIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

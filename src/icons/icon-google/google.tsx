@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface googleProps extends UiElementProps {}
+export interface GoogleIconProps extends UiElementProps {}
 
-export const Google = (props: googleProps) => {
+export const GoogleIcon = (props: GoogleIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

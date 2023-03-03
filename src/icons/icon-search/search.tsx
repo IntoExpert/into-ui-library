@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface searchProps extends UiElementProps {}
+export interface SearchIconProps extends UiElementProps {}
 
-export const Search = (props: searchProps) => {
+export const SearchIcon = (props: SearchIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

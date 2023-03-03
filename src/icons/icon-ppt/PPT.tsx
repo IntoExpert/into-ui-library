@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface pptProps extends UiElementProps {}
+export interface PPTIconProps extends UiElementProps {}
 
-export const PPT = (props: pptProps) => {
+export const PPTIcon = (props: PPTIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

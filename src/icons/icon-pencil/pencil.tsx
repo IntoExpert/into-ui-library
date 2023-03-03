@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface pencilProps extends UiElementProps {}
+export interface PencilIconProps extends UiElementProps {}
 
-export const Pencil = (props: pencilProps) => {
+export const PencilIcon = (props: PencilIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

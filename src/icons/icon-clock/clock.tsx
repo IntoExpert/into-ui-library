@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface clockProps extends UiElementProps {}
+export interface ClockIconProps extends UiElementProps {}
 
-export const Clock = (props: clockProps) => {
+export const ClockIcon = (props: ClockIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

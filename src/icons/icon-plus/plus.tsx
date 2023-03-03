@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface plusProps extends UiElementProps {}
+export interface PlusIconProps extends UiElementProps {}
 
-export const Plus = (props: plusProps) => {
+export const PlusIcon = (props: PlusIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

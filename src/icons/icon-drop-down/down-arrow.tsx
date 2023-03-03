@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface dropdownArrowProps extends UiElementProps {}
+export interface DropdownArrowIconProps extends UiElementProps {}
 
-export const DropdownArrow = (props: dropdownArrowProps) => {
+export const DropdownArrowIcon = (props: DropdownArrowIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

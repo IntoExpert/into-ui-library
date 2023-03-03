@@ -1,8 +1,8 @@
 import { UiElementProps } from "../../components";
 
-export interface camera1Props extends UiElementProps {}
+export interface CameraProps extends UiElementProps {}
 
-export const Camera1 = (props: camera1Props) => {
+export const Camera1 = (props: CameraProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

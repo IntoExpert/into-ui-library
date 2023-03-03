@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface playProps extends UiElementProps {}
+export interface PlayIconProps extends UiElementProps {}
 
-export const Play = (props: playProps) => {
+export const PlayIcon = (props: PlayIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

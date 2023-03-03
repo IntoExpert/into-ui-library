@@ -1,8 +1,8 @@
 import { UiElementProps } from "../../components";
 
-export interface buttoProps extends UiElementProps {}
+export interface ButtoProps extends UiElementProps {}
 
-export const Button = (props: buttoProps) => {
+export const Button = (props: ButtoProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

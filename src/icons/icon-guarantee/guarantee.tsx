@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface guaranteeProps extends UiElementProps {}
+export interface GuaranteeIconProps extends UiElementProps {}
 
-export const Guarantee = (props: guaranteeProps) => {
+export const GuaranteeIcon = (props: GuaranteeIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

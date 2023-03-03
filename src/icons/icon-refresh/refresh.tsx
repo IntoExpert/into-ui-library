@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface refreshProps extends UiElementProps {}
+export interface RefreshIconProps extends UiElementProps {}
 
-export const Refresh = (props: refreshProps) => {
+export const RefreshIcon = (props: RefreshIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg
