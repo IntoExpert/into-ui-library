@@ -46,7 +46,7 @@ export const TextArea = (props: TextAreaProps) => {
 
 
     return (
-        <div className={`w-full h-full`}>
+        <div className={`w-full h-full flex flex-col`}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
             <div className={`relative ${props.className ?? ''}`}>
                 <textarea
