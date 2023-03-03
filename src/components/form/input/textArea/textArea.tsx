@@ -48,11 +48,10 @@ export const TextArea = (props: TextAreaProps) => {
     return (
         <div className={``}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
-            <div className={`relative w-fit`}>
+            <div className={`relative ${props.className ?? ''}`}>
                 <textarea
                     {...props}
-                    className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded 
-                    ${props.className ?? ''}`}
+                    className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded w-full`}
                     title={props.title ?? props.placeholder}
                     onChange={handleOnChange}
                     onScroll={handleOnScroll}
