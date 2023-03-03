@@ -13,7 +13,9 @@ const Template: ComponentStory<typeof TextArea> = (args) => <TextArea {...args} 
 
 export const DefaultState = Template.bind({});
 DefaultState.args = {
-    placeholder: `Text area`
+    placeholder: `Text area`,
+    maxLength: 300,
+    charLeftCountRenderer: (charLeftCount) => <span>${charLeftCount} characters left</span>,
 };
 
 export const OnError = Template.bind({});

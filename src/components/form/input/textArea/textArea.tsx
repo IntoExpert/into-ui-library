@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, ReactElement, TextareaHTMLAttributes } from "react";
+import { ChangeEvent, DetailedHTMLProps, ReactElement, TextareaHTMLAttributes, UIEvent, useState } from "react";
 import { UiElementProps } from "../../../common";
 import { InputLabel } from "../label";
 
@@ -11,17 +11,59 @@ export interface TextAreaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
      * Input error message, when it is null or undefined, no error considered
      */
     errorMessage?: string;
+    /**
+     * Chars count left renderer
+     */
+    charLeftCountRenderer?: (count: number) => ReactElement;
+    defaultValue?: string;
+};
+
+interface TextAreaState {
+    value?: string;
+    charsLeftCount?: number;
+    isHideCharCount?: boolean;
 };
 
 export const TextArea = (props: TextAreaProps) => {
+
+    const [state, setState] = useState<TextAreaState>({ value: props.defaultValue, charsLeftCount: props.maxLength });
+
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChange?.(event);
+        const value = event.target.value;
+        setState(prevState =>
+            ({ ...prevState, value: value, charsLeftCount: (props.maxLength ?? 0) - value.length }));
+    };
+
+    const handleOnScroll = (event: UIEvent<HTMLTextAreaElement>) => {
+        // console.log(event);
+        const target = event.currentTarget;
+        const scrollOffset = target.scrollTop;
+        const isHideCharCount = target.clientHeight + scrollOffset < target.scrollHeight;
+        console.log(scrollOffset, target.scrollHeight, target.clientHeight)
+        setState(prevState => ({ ...prevState, isHideCharCount }))
+    }
+
+
     return (
         <div className={``}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
-            <textarea
-                {...props}
-                className={`border border-secondary text-gray-700 placeholder:text-gray-500 px-2 py-5 rounded ${props.className ?? ''}`}
-                title={props.title ?? props.placeholder}
-            >{props.defaultValue}</textarea>
+            <div className={`relative w-fit`}>
+                <textarea
+                    {...props}
+                    className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded 
+                    ${props.className ?? ''}`}
+                    title={props.title ?? props.placeholder}
+                    onChange={handleOnChange}
+                    onScroll={handleOnScroll}
+                >{props.defaultValue}
+                </textarea>
+                {props.maxLength && props.charLeftCountRenderer
+                    ? <span className={`absolute left-2 right-4 bg-white text-xs text-gray-500 bottom-[8px] 
+                        transition-opacity p-1 ${state.isHideCharCount ? 'opacity-0' : ''}`}>
+                        {props.charLeftCountRenderer?.(state.charsLeftCount ?? 0)}</span>
+                    : null}
+            </div>
             {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
         </div>
     )
