@@ -1,7 +1,7 @@
+import { Button } from "../../components";
 import { AlertProvider, useAlert } from "../../components/alert/context";
 import "../../index.css";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Button } from "../Button";
 
 
 export default {
@@ -15,9 +15,9 @@ const AlertButton = (args: any) => {
 
     return (
         <div>
-            <Button onClick={() => alert.fireAlert({ message: 'Hello world!' })} label={`Alert`} />
-            <Button onClick={() => alert.fireSuccessAlert({ message: 'Hello world!' })} label={`Success Alert`} />
-            <Button onClick={() => alert.fireErrorAlert({ message: 'Hello world!' })} label={`Error Alert`} />
+            <Button onClick={() => alert.fireAlert({ message: 'Hello world!' })}>Alert</Button>
+            <Button onClick={() => alert.fireSuccessAlert({ message: 'Hello world!' })}>Success Alert</Button>
+            <Button onClick={() => alert.fireErrorAlert({ message: 'Hello world!' })}>Error Alert</Button>
         </div>
     )
 };
