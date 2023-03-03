@@ -2,7 +2,7 @@ import { UiElementProps } from "../../components";
 
 export interface AvailabiltyProps extends UiElementProps {}
 
-export const Availabilty = (props: appleProps) => {
+export const Availabilty = (props: AvailabiltyProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

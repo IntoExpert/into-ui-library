@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface shareProps extends UiElementProps {}
+export interface share1Props extends UiElementProps {}
 
-export const Share = (props: shareProps) => {
+export const Share1 = (props: share1Props) => {
   return (
     <div className={props.className ?? " "}>
       <svg

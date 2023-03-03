@@ -1,6 +1,6 @@
-export interface DeleteProps {
-  className?: string;
-}
+import { UiElementProps } from "../../components";
+
+export interface DeleteProps extends UiElementProps {}
 
 export const Delete = (props: DeleteProps) => {
   return (

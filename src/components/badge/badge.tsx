@@ -20,7 +20,6 @@ export const Badge = (props: badgeProps) => {
           data-name="Path 71787"
           d="M0,22.807H85.766V95L43.19,113.389,0,95Z"
           transform="translate(0 -22.807)"
-          fill="#f6bd60"
         />{" "}
         <text
           x="20"

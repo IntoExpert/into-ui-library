@@ -3,12 +3,9 @@ import { CardProps } from "./card";
 import { Card } from "./card";
 import { Dropdown } from "../dropdown";
 import { More } from "../../icons/icon-more/more";
-import { Edit } from "../../icons/icon-edit/edit";
-import { Delete } from "../../icons/icon-delete/delete";
 import { Avatar } from "../image";
 import { State, stateProps } from "../badge/state";
 import { Badge, badgeProps } from "../badge/badge";
-import { Badgebg } from "../../icons/icon-badge/badge-bg";
 import { DropdownProps } from "../dropdown";
 export interface CourseCardProps extends CardProps {
   media: ImageProps;
@@ -49,7 +46,7 @@ export const CourseCard = ({
             {...badge}
             price={badge?.price}
             earlyBirdPrice={badge?.earlyBirdPrice}
-            className="bottom-2 relative"
+            className="bottom-2 relative fill-red-500 "
           />
         </div>
         <div className="relative bottom-20 flex justify-between px-2 ">
