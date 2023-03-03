@@ -1,5 +1,5 @@
 
-import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef } from "react";
+import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef, useEffect, useState } from "react";
 import { InputLabel } from "../label/label";
 
 export interface InputFieldProps {
@@ -67,13 +67,32 @@ export interface InputFieldProps {
     featuredPlaceholder?: ReactElement | string;
 }
 
+interface InputFieldState {
+    isDirty?: boolean;
+    value?: string;
+}
+
 /**
  * A controlled input element, with too much features
  * 
  * @param props 
  * @returns Controlled input element
  */
-export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, ...props }, ref) => {
+
+    const [state, setState] = useState<InputFieldState>({ isDirty: false, value: props.defaultValue });
+
+    useEffect(() => {
+        setState(prevState => ({ ...prevState, value: value }));
+    }, [value])
+
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+        debugger;
+        const value = event.target.value;
+        setState({ isDirty: true, value });
+        props.onChange?.(event);
+    }
+
 
     const RadioOrCheckBox = () => {
 
@@ -107,11 +126,13 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
               placeholder:text-gray-500
                 ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
                 ${props.className ?? ''}`}
+                onChange={handleOnChange}
+                value={state.value}
                 ref={ref}
             />
             {/* Featured placeholder */}
             {
-                props.featuredPlaceholder
+                props.featuredPlaceholder && !state.value
                     ? <div className={`absolute top-1/2 -translate-y-1/2 left-3 text-gray-500`}>
                         {props.featuredPlaceholder}
                     </div>
