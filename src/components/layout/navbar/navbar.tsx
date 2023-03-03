@@ -15,7 +15,7 @@ export const IntoNavbar = (props: IntoNavbarProps) => {
                 {props.logo}
             </div>
             <span className={`mx-4`}></span>
-            <NavbarLinks {...props.links} />
+            <NavbarLinks {...props.links} className={`hidden md:flex ${props.links?.className}`} />
             <span className={`mx-auto`}></span>
             <NavbarDropdowns {...props.dropdowns} />
         </nav>
