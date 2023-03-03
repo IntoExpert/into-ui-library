@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface dailyProps extends UiElementProps {}
+export interface DailyIconProps extends UiElementProps {}
 
-export const Daily = (props: dailyProps) => {
+export const DailyIcon = (props: DailyIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

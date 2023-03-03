@@ -1,10 +1,10 @@
 import { UiElementProps } from "../../components";
 
-export interface MoreProps extends UiElementProps {
+export interface MoreIconProps extends UiElementProps {
   colorCSS?: string;
 }
 
-export const More = (props: MoreProps) => {
+export const MoreIcon = (props: MoreIconProps) => {
   return (
     <div className={`${props.className}`}>
       <svg

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface keyProps extends UiElementProps {}
+export interface KeyIconProps extends UiElementProps {}
 
-export const Key = (props: keyProps) => {
+export const KeyIcon = (props: KeyIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface edit1Props extends UiElementProps {}
+export interface EditFilledIconProps extends UiElementProps {}
 
-export const Edit1 = (props: edit1Props) => {
+export const EditFilledIcon = (props: EditFilledIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

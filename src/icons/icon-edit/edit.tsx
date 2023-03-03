@@ -1,8 +1,8 @@
-export interface EditProps {
+export interface EditIconProps {
   className?: string;
 }
 
-export const Edit = (props: EditProps) => {
+export const EditIcon = (props: EditIconProps) => {
   return (
     <div className={`${props.className}`}>
       <svg

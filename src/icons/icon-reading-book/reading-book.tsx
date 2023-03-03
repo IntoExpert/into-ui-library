@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface readingBookProps extends UiElementProps {}
+export interface ReadingBookIconProps extends UiElementProps {}
 
-export const ReadingBook = (props: readingBookProps) => {
+export const ReadingBookIcon = (props: ReadingBookIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface redoProps extends UiElementProps {}
+export interface RedoIconProps extends UiElementProps {}
 
-export const Redo = (props: redoProps) => {
+export const RedoIcon = (props: RedoIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

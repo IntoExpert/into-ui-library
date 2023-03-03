@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface monthlyProps extends UiElementProps {}
+export interface MonthlyIconProps extends UiElementProps {}
 
-export const Monthly = (props: monthlyProps) => {
+export const MonthlyIcon = (props: MonthlyIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

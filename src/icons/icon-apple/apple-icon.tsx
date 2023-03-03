@@ -1,8 +1,8 @@
 import { UiElementProps } from "../../components";
 
-export interface appleProps extends UiElementProps {}
+export interface AppleProps extends UiElementProps {}
 
-export const Apple = (props: appleProps) => {
+export const AppleIcon = (props: AppleProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface lebanonprops extends UiElementProps {}
+export interface LebanonIconprops extends UiElementProps {}
 
-export const Lebanon = (props: lebanonprops) => {
+export const LebanonIcon = (props: LebanonIconprops) => {
   return (
     <div className={props.className ?? " "}>
       <svg

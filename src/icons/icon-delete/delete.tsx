@@ -1,8 +1,8 @@
 import { UiElementProps } from "../../components";
 
-export interface DeleteProps extends UiElementProps {}
+export interface DeleteIconProps extends UiElementProps {}
 
-export const Delete = (props: DeleteProps) => {
+export const DeleteIcon = (props: DeleteIconProps) => {
   return (
     <div className={`${props.className}`}>
       <svg

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface walletProps extends UiElementProps {}
+export interface WalletIconProps extends UiElementProps {}
 
-export const Wallet = (props: walletProps) => {
+export const WalletIcon = (props: WalletIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface normalCaseProps extends UiElementProps {}
+export interface NormalCaseIconProps extends UiElementProps {}
 
-export const NormalCase = (props: normalCaseProps) => {
+export const NormalCaseIcon = (props: NormalCaseIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

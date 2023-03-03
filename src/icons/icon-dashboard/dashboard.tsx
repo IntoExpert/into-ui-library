@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface dashboardProps extends UiElementProps {}
+export interface DashboardIconProps extends UiElementProps {}
 
-export const Dashboard = (props: dashboardProps) => {
+export const DashboardIcon = (props: DashboardIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

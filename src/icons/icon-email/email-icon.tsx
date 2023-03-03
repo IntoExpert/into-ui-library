@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface emailProps extends UiElementProps {}
+export interface EmailIconProps extends UiElementProps {}
 
-export const Email = (props: emailProps) => {
+export const EmailIcon = (props: EmailIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

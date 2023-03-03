@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface checkMarkProps extends UiElementProps {}
+export interface CheckMarkProps extends UiElementProps {}
 
-export const CheckMark = (props: checkMarkProps) => {
+export const CheckMarkIcon = (props: CheckMarkProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

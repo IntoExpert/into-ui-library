@@ -1,49 +1,37 @@
 import { UiElementProps } from "../../components";
-export interface xprops extends UiElementProps {}
+export interface XIconprops extends UiElementProps {}
 
-export const X = (props: xprops) => {
+export const XIcon = (props: XIconprops) => {
   return (
     <div className={props.className ?? " "}>
       <svg
-        id="Component_606_9"
-        data-name="Component 606 – 9"
         xmlns="http://www.w3.org/2000/svg"
-        width="21"
-        height="21"
-        viewBox="0 0 21 21"
+        width="7.777"
+        height="7.778"
+        viewBox="0 0 7.777 7.778"
       >
         <g
-          id="Ellipse_1617"
-          data-name="Ellipse 1617"
-          fill="none"
-          stroke="#f28382"
-          stroke-width="1"
+          id="Component_667_3"
+          data-name="Component 667 – 3"
+          transform="translate(0.354 0.354)"
         >
-          <circle cx="10.5" cy="10.5" r="10.5" stroke="none" />
-          <circle cx="10.5" cy="10.5" r="10" fill="none" />
-        </g>
-        <g
-          id="Group_13085"
-          data-name="Group 13085"
-          transform="translate(-1316.66 -518.6)"
-        >
-          <path
-            id="Path_72322"
-            data-name="Path 72322"
-            d="M-15530.8-17623h10.851"
-            transform="translate(-155.744 23968.877) rotate(45)"
+          <line
+            id="Line_3138"
+            data-name="Line 3138"
+            y2="10"
+            transform="translate(7.071) rotate(45)"
             fill="none"
-            stroke="#f28382"
-            stroke-width="1.5"
+            stroke="#fff"
+            stroke-width="1"
           />
-          <path
-            id="Path_72327"
-            data-name="Path 72327"
-            d="M-15530.8-17623h10.851"
-            transform="translate(-22111.945 -953.809) rotate(135)"
+          <line
+            id="Line_3139"
+            data-name="Line 3139"
+            x1="10"
+            transform="translate(0.001) rotate(45)"
             fill="none"
-            stroke="#f28382"
-            stroke-width="1.5"
+            stroke="#fff"
+            stroke-width="1"
           />
         </g>
       </svg>

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface eyeProps extends UiElementProps {}
+export interface EyeIconProps extends UiElementProps {}
 
-export const Eye = (props: eyeProps) => {
+export const EyeIcon = (props: EyeIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

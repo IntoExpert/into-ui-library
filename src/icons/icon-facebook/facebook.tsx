@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface facebookProps extends UiElementProps {}
+export interface FacebookIconProps extends UiElementProps {}
 
-export const Facebook = (props: facebookProps) => {
+export const FacebookIcon = (props: FacebookIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface verifiedProps extends UiElementProps {}
+export interface VerifiedIconProps extends UiElementProps {}
 
-export const Verified = (props: verifiedProps) => {
+export const VerifiedIcon = (props: VerifiedIconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg
