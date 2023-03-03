@@ -68,7 +68,6 @@ export interface InputFieldProps {
 }
 
 interface InputFieldState {
-    isDirty?: boolean;
     value?: string;
 }
 
@@ -80,75 +79,66 @@ interface InputFieldState {
  */
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, ...props }, ref) => {
 
-    const [state, setState] = useState<InputFieldState>({ isDirty: false, value: props.defaultValue });
+    const [state, setState] = useState<InputFieldState>({ value: props.defaultValue });
 
     useEffect(() => {
         setState(prevState => ({ ...prevState, value: value }));
     }, [value])
 
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-        debugger;
         const value = event.target.value;
-        setState({ isDirty: true, value });
+        setState(prevState => ({ prevState, value }));
         props.onChange?.(event);
     }
-
-
-    const RadioOrCheckBox = () => {
-
-        const isRadio = props.type === 'radio';
-        const radioClasses = `appearance-none rounded-full border border-gray-300 bg-white checked:bg-white 
-        checked:border-secondary checked:border-4 focus:outline-secondary transition duration-300 
-        cursor-pointer focus:ring-2 focus:ring-secondary focus:shadow-none`;
-        const checkBoxClasses = `rounded accent-secondary focus:outline-secondary`;
-
-        return (
-            <div className={`flex justify-start align-baseline ${props.containerClassName}`}>
-                <input
-                    {...props}
-                    className={`h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
-                     ${props.className ?? ''}`}
-                    value={props.name}
-                    ref={ref} />
-                <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
-            </div>
-        );
-    }
-
-    const DefaultInput = () => <div className={`text-start ${props.containerClassName}`}>
-        <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
-        <div className={`relative`}>
-            <input
-                {...props}
-                className={`shadow appearance-none border
-                rounded h-14 px-3 text-gray-700 leading-tight 
-                focus:outline-none focus:shadow-outline
-              placeholder:text-gray-500
-                ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
-                ${props.className ?? ''}`}
-                onChange={handleOnChange}
-                value={state.value}
-                ref={ref}
-            />
-            {/* Featured placeholder */}
-            {
-                props.featuredPlaceholder && !state.value
-                    ? <div className={`absolute top-1/2 -translate-y-1/2 left-3 text-gray-500`}>
-                        {props.featuredPlaceholder}
-                    </div>
-                    : null
-            }
-        </div>
-
-        {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
-    </div>;
 
 
     switch (props.type) {
         case "radio":
         case "checkbox":
-            return <RadioOrCheckBox />;
+            const isRadio = props.type === 'radio';
+            const radioClasses = `appearance-none rounded-full border border-gray-300 bg-white checked:bg-white 
+            checked:border-secondary checked:border-4 focus:outline-secondary transition duration-300 
+            cursor-pointer focus:ring-2 focus:ring-secondary focus:shadow-none`;
+            const checkBoxClasses = `rounded accent-secondary focus:outline-secondary`;
+
+            return (
+                <div className={`flex justify-start align-baseline ${props.containerClassName}`}>
+                    <input
+                        {...props}
+                        className={`h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
+                         ${props.className ?? ''}`}
+                        value={props.name}
+                        ref={ref} />
+                    <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
+                </div>
+            );
         default:
-            return <DefaultInput />;
+            return <div className={`text-start ${props.containerClassName}`}>
+                <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
+                <div className={`relative`}>
+                    <input
+                        {...props}
+                        className={`shadow appearance-none border
+                    rounded h-14 px-3 text-gray-700 leading-tight 
+                    focus:outline-none focus:shadow-outline
+                  placeholder:text-gray-500
+                    ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
+                    ${props.className ?? ''}`}
+                        onChange={handleOnChange}
+                        value={state.value}
+                        ref={ref}
+                    />
+                    {/* Featured placeholder */}
+                    {
+                        props.featuredPlaceholder && !state.value
+                            ? <div className={`absolute top-1/2 -translate-y-1/2 left-3 text-gray-500`}>
+                                {props.featuredPlaceholder}
+                            </div>
+                            : null
+                    }
+                </div>
+
+                {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
+            </div>;
     };
 })
