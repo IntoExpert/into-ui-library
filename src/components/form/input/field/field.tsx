@@ -61,6 +61,10 @@ export interface InputFieldProps {
      * On input blur event handler
      */
     onBlur?: (event: FocusEvent<HTMLInputElement, Element>) => void;
+    /**
+     * Featured placeholder, show JSX elements as placeholder
+     */
+    featuredPlaceholder?: ReactElement | string;
 }
 
 /**
@@ -94,16 +98,26 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, 
 
     const DefaultInput = () => <div className={`text-start ${props.containerClassName}`}>
         <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
-        <input
-            {...props}
-            className={`shadow appearance-none border
-         rounded h-14 px-3 text-gray-700 leading-tight 
-         focus:outline-none focus:shadow-outline
-         placeholder:text-gray-500
-         ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
-         ${props.className ?? ''}`}
-            ref={ref}
-        />
+        <div className={`relative`}>
+            <input
+                {...props}
+                className={`shadow appearance-none border
+                rounded h-14 px-3 text-gray-700 leading-tight 
+                focus:outline-none focus:shadow-outline
+              placeholder:text-gray-500
+                ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
+                ${props.className ?? ''}`}
+                ref={ref}
+            />
+            {/* Featured placeholder */}
+            {
+                props.featuredPlaceholder
+                    ? <div className={`absolute top-1/2 -translate-y-1/2 left-3 text-gray-500`}>
+                        {props.featuredPlaceholder}
+                    </div>
+                    : null
+            }
+        </div>
 
         {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
     </div>;
