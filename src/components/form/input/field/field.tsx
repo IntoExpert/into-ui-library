@@ -131,7 +131,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     {/* Featured placeholder */}
                     {
                         props.featuredPlaceholder && !state.value
-                            ? <div className={`absolute top-1/2 -translate-y-1/2 left-3 text-gray-500`}>
+                            ? <div className={`absolute pointer-events-none top-1/2 -translate-y-1/2 left-3 text-gray-500`}>
                                 {props.featuredPlaceholder}
                             </div>
                             : null
