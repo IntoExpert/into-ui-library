@@ -58,7 +58,7 @@ export const TextArea = (props: TextAreaProps) => {
                 >{props.defaultValue}
                 </textarea>
                 {props.maxLength && props.charLeftCountRenderer
-                    ? <span className={`absolute left-2 right-4 bg-white text-xs text-gray-500 bottom-[8px] 
+                    ? <span className={`absolute left-2 right-4 text-xs text-gray-400 bottom-[8px] 
                         transition-opacity p-1 ${state.isHideCharCount ? 'opacity-0' : ''}`}>
                         {props.charLeftCountRenderer?.(state.charsLeftCount ?? 0)}</span>
                     : null}
