@@ -8,7 +8,7 @@ export interface NavbarLinkProps extends UiElementProps {
 export const NavbarLinks = (props: NavbarLinkProps) => {
 
     return (
-        <ul className="flex justify-start">
+        <ul className={`flex justify-start ${props.className}`}>
             {props.links?.map((link, index) => (
                 <li key={index} className={``}>
                     {index > 0 ? <span className={`mx-2`}></span> : null}
