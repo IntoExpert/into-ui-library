@@ -1,8 +1,8 @@
 import { UiElementProps } from "../../components";
 
-export interface PaymentErrorProps extends UiElementProps {}
+export interface PaymentErroriconProps extends UiElementProps {}
 
-export const PaymentErrorIcon = (props: PaymentErrorProps) => {
+export const PaymentErrorIcon = (props: PaymentErroriconProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

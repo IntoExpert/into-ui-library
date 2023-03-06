@@ -1,4 +1,6 @@
-export interface EditIconProps {}
+import { UiElementProps } from "../../components";
+
+export interface EditIconProps extends UiElementProps {}
 
 export const EditIcon = (props: EditIconProps) => {
   return (

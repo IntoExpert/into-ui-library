@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface XIconprops extends UiElementProps {}
+export interface CloseIconprops extends UiElementProps {}
 
-export const XIcon = (props: XIconprops) => {
+export const CloseIcon = (props: CloseIconprops) => {
   return (
     <div className={props.className ?? " "}>
       <svg

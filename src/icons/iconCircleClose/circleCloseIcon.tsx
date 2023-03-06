@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../components";
-export interface RedCirlceXIconprops extends UiElementProps {}
+export interface CircleCloseIconprops extends UiElementProps {}
 
-export const RedCirlceXIcon = (props: RedCirlceXIconprops) => {
+export const CircleCloseIcon = (props: CircleCloseIconprops) => {
   return (
     <div className={props.className ?? " "}>
       <svg

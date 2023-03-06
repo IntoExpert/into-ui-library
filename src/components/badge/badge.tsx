@@ -1,12 +1,12 @@
 import { UiElementProps } from "../common";
 
-export interface badgeProps extends UiElementProps {
+export interface BadgeProps extends UiElementProps {
   price?: string;
   earlyBirdPrice?: string;
   soldOut?: string;
 }
 
-export const Badge = (props: badgeProps) => {
+export const Badge = (props: BadgeProps) => {
   return (
     <div className={props?.className ?? " "}>
       <svg
