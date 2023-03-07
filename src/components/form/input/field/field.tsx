@@ -109,7 +109,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                         {...props}
                         className={`relative h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
                          ${props.className ?? ''}`}
-                        value={props.name}
+                        value={props.type === "radio" ? props.name : value}
                         ref={ref} />
                     <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
                 </div>
