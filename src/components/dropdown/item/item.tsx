@@ -1,15 +1,18 @@
+import { link } from "fs";
+import { Button, ButtonProps } from "../../button";
 import { UiElementProps } from "../../common";
 import { Link, LinkProps } from "../../links";
 
 export interface DropdownItemProps extends UiElementProps {
     icon?: JSX.Element;
     link?: LinkProps;
+    button?: ButtonProps;
 };
 
 export const DropdownItem = (props: DropdownItemProps) => {
 
     return (<li className={`px-5 py-2 text-gray-700 text-sm rounded-md transition hover:bg-blue-100 ${props.className ?? ''}`}>
-        <Link {...props.link}>
+        {props.link ? <Link {...props.link}>
             <>
                 {props.icon
                     ? <>
@@ -20,5 +23,11 @@ export const DropdownItem = (props: DropdownItemProps) => {
                 {props.link?.children}
             </>
         </Link>
+            : <Button>
+                <>
+                    {props.icon ? <span>{props.icon}<span className={`mx-2`}></span></span> : null}
+                    {props.button?.children}
+                </>
+            </Button>}
     </li>);
 }

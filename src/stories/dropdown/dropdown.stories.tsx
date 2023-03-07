@@ -22,8 +22,8 @@ NavbarWithAuth.args = {
                 }
             },
             {
-                link: {
-                    children: 'Home',
+                button: {
+                    children: "Home"
                 }
             },
             {
