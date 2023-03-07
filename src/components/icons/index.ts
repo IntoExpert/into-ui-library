@@ -57,3 +57,4 @@ export * from "./iconWallet/walletIcon";
 export * from "./icponCamera/cameraIcon";
 export * from "./iconschedual/scheduleIcon";
 export * from "./iconlayer/layerIcon";
+export * from "./iconCopyCalenderEvents/copyCalenderEvents";
