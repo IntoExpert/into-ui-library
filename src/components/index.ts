@@ -10,3 +10,4 @@ export * from "./image";
 export * from "./links";
 export * from "./card";
 export * from "./icons";
+export * from "./dropdown";
