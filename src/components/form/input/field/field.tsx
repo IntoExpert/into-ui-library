@@ -79,7 +79,7 @@ interface InputFieldState {
  */
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, ...props }, ref) => {
 
-    const [state, setState] = useState<InputFieldState>({ value: props.defaultValue });
+    const [state, setState] = useState<InputFieldState>({ value: value ?? props.defaultValue });
 
     useEffect(() => {
         setState(prevState => ({ ...prevState, value: value }));
@@ -121,11 +121,11 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     <input
                         {...props}
                         className={`shadow appearance-none border
-                    rounded h-14 px-3 text-gray-700 leading-tight 
-                    focus:outline-none focus:shadow-outline
-                  placeholder:text-gray-500
-                    ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
-                    ${props.className ?? ''}`}
+                            rounded h-14 px-3 text-gray-700 leading-tight 
+                            focus:outline-none focus:shadow-outline
+                        placeholder:text-gray-500
+                            ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
+                            ${props.className ?? ''}`}
                         onChange={handleOnChange}
                         value={state.value}
                         ref={ref}
