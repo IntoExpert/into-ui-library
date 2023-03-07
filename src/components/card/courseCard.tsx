@@ -63,12 +63,13 @@ export const CourseCard = ({
         </div>
         <div className="px-2 py-2 text-red-400">{deadline}</div>
         <div className="flex px-2 py-3">
-          <RatingStar1 {...rating} />
-
-          <div className="px-2 text-gray-500">
+          <div className="py-1">
+            <RatingStar1 {...rating} />
+          </div>
+          <div className="px-2 text-gray-500 text-lg">
             <strong>{rating?.value}</strong>
           </div>
-          <div className="text-gray-500"> {numberOfRatings}</div>
+          <div className="text-gray-500 text-lg"> {numberOfRatings}</div>
         </div>
       </div>
     </Card>
