@@ -2,7 +2,7 @@ import { AvatarProps, ImageProps } from "../image";
 import { CardProps } from "./card";
 import { Card } from "./card";
 import { Dropdown } from "../dropdown";
-import { More } from "../../icons/icon-more/more";
+import { More } from "../icons/icon-more/more";
 import { Avatar } from "../image";
 import { State, stateProps } from "../badge/state";
 import { Badge, badgeProps } from "../badge/badge";

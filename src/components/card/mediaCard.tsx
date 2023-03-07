@@ -1,9 +1,9 @@
 import { Dropdown } from "../dropdown";
 import { ImageProps } from "../image";
 import { Card, CardProps } from "./card";
-import { More } from "../../icons/icon-more/more";
-import { Edit } from "../../icons/icon-edit/edit";
-import { Delete } from "../../icons/icon-delete/delete";
+import { More } from "../icons/icon-more/more";
+import { Edit } from "../icons/icon-edit/edit";
+import { Delete } from "../icons/icon-delete/delete";
 import { Badge, badgeProps } from "../badge/badge";
 export interface MediaCardProps extends CardProps {
   media: ImageProps;
