@@ -15,7 +15,7 @@ export const DropdownItem = (props: DropdownItemProps) => {
 
     return (
         props.custom
-            ? <li>props.custom</li>
+            ? <li>{props.custom}</li>
             : <li className={`px-5 py-2 text-gray-700 text-sm rounded-md transition hover:bg-blue-100 ${props.className ?? ''}`}>
                 {props.link ? <Link {...props.link}>
                     <>
