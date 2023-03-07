@@ -1,10 +1,10 @@
 import { IconProps } from "../iconProps";
 
-export interface CircleAddProps extends IconProps {
+export interface CircleAddIconProps extends IconProps {
 
 };
 
-export const CircleAdd = ({ size = 21, className }: CircleAddProps) =>
+export const CircleAddIcon = ({ size = 21, className }: CircleAddProps) =>
 (<svg id="Component_605_2" className={`${className ?? ''}`} data-name="Component 605 – 2" xmlns="http://www.w3.org/2000/svg"
     width={size} height={size} viewBox="0 0 21 21">
     <g id="Ellipse_1618" data-name="Ellipse 1618" fill="none" stroke="#85a59d" stroke-width="1">
