@@ -101,7 +101,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
             cursor-pointer focus:ring-2 focus:ring-secondary focus:shadow-none`;
             const checkBoxClasses = `rounded border border-gray-400 checked:bg-red-400 checked:after:content-['✓'] 
             checked:border-red-400 after:text-surface after:absolute after:0 after:w-full after:flex after:justify-center 
-            after:items-center after:text-xs appearance-none focus:outline-secondary`;
+            after:items-center after:text-xs appearance-none focus:outline-secondary after:pointer-events-none`;
 
             return (
                 <div className={`flex justify-start align-baseline ${props.containerClassName}`}>
@@ -109,8 +109,12 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                         {...props}
                         className={`relative h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
                          ${props.className ?? ''}`}
-                        checked={value === props.name || value === '1' ? true : false}
+                        checked={state.value && (state.value === props.name || state.value === '1') ? true : false}
                         value={props.name}
+                        onClick={e => {
+                            const newValue = state.value ? '' : e.currentTarget.value;
+                            setState(prevState => ({ ...prevState, value: newValue }));
+                        }}
                         ref={ref} />
                     <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
                 </div>

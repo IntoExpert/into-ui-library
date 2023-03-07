@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { UiElementProps } from "../common";
 import { DropdownItem, DropdownItemProps } from "./item/item";
 
@@ -19,9 +19,26 @@ export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
 
     const [state, setState] = useState<DropdownState>({ isOpen: false });
 
-    const handleToggle = () => setState(prevState => ({ isOpen: !prevState.isOpen }));
+    const menuRef = useRef<HTMLUListElement>(null);
 
-    const handleClose = () => setState({ isOpen: false });
+    const handleToggle = () => {
+        setState(prevState => {
+            const newIsOpen = !prevState.isOpen;
+            if (newIsOpen) {
+                document.addEventListener("mousedown", closeOpenMenus)
+            } else {
+                document.removeEventListener("mousedown", closeOpenMenus);
+            }
+            return ({ isOpen: !prevState.isOpen })
+        })
+    };
+
+    const closeOpenMenus = (e: MouseEvent) => {
+        if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+            document.removeEventListener("mousedown", closeOpenMenus);
+            setState(prevState => ({ ...prevState, isOpen: false }));
+        };
+    }
 
     return (
         <div className={`rela`}>
@@ -37,7 +54,7 @@ export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
             <ul className={`absolute shadow-md rounded overflow-hidden bg-white z-10
             ${state.isOpen ? 'max-w-fit px-1 p-2 ' : 'max-w-0'} 
             ${menu?.className ?? ''}`}
-                onBlur={handleClose}>
+                ref={menuRef}>
                 {menu?.items?.map((item, index) => (<DropdownItem key={index} {...item} />))}
             </ul>
         </div>

@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Dropdown } from '../../components/dropdown/dropdown';
 import { Avatar } from '../../components/image';
+import { InputField } from '../../components';
 
 
 export default {
@@ -33,6 +34,9 @@ NavbarWithAuth.args = {
                 link: {
                     children: 'Home',
                 }
+            },
+            {
+                custom: <InputField name='motasem' type='checkbox' />
             }
         ]
     }

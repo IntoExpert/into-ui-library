@@ -26,6 +26,7 @@ OnError.args = {
 export const Checkbox = Template.bind({});
 Checkbox.args = {
     type: "checkbox",
+    name: "checkbox"
 };
 
 export const featuredPlaceholder = Template.bind({});
