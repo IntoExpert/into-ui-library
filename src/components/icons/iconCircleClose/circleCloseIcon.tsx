@@ -1,15 +1,15 @@
-import { UiElementProps } from "../..";
-export interface CircleCloseIconprops extends UiElementProps { }
+import { IconProps } from "../iconProps";
+export interface CircleCloseIconprops extends IconProps { }
 
-export const CircleCloseIcon = (props: CircleCloseIconprops) => {
+export const CircleCloseIcon = ({ size = 21, className }: CircleCloseIconprops) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={`${className ?? " "}`}>
       <svg
         id="Component_606_9"
         data-name="Component 606 – 9"
         xmlns="http://www.w3.org/2000/svg"
-        width="21"
-        height="21"
+        width={size}
+        height={size}
         viewBox="0 0 21 21"
       >
         <g
