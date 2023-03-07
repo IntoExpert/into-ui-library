@@ -56,7 +56,7 @@ export const CourseCard = ({
           </div>
         </div>
 
-        <div className="px-2 py-2">{title}</div>
+        <div className="px-2 py-2 text-2xl">{title}</div>
         <div className="px-2 py-2 text-gray-500">{description}</div>
         <div className="px-2 py-2 text-primary">
           <strong>{duration}</strong>
