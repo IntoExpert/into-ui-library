@@ -24,19 +24,20 @@ export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
     const handleClose = () => setState({ isOpen: false });
 
     return (
-        <div className={`relative`}>
+        <div className={`rela`}>
             <button
                 type="button"
                 className={`w-10 h-10 cursor-pointer rounded transition hover:bg-blue-50 relative ${className ?? ''}`}
                 onClick={handleToggle}
-                onBlur={handleClose}>
+            >
                 <span className={`flex justify-center`}>
                     {icon}
                 </span>
             </button>
-            <ul className={`absolute shadow-md rounded overflow-hidden bg-white
-        ${state.isOpen ? 'max-w-fit px-1 p-2 ' : 'max-w-0'} 
-        ${menu?.className ?? ''}`}>
+            <ul className={`absolute shadow-md rounded overflow-hidden bg-white z-10
+            ${state.isOpen ? 'max-w-fit px-1 p-2 ' : 'max-w-0'} 
+            ${menu?.className ?? ''}`}
+                onBlur={handleClose}>
                 {menu?.items?.map((item, index) => (<DropdownItem key={index} {...item} />))}
             </ul>
         </div>
