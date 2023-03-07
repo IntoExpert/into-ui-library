@@ -1,13 +1,12 @@
 import { Dropdown } from "../dropdown";
 import { ImageProps } from "../image";
 import { Card, CardProps } from "./card";
-import { More } from "../../icons/icon-more/more";
-import { Edit } from "../../icons/icon-edit/edit";
-import { Delete } from "../../icons/icon-delete/delete";
-import { Badge, badgeProps } from "../badge/badge";
+import { MoreIcon, EditIcon, DeleteIcon } from "../../icons";
+
+import { Badge, BadgeProps } from "../badge/badge";
 export interface MediaCardProps extends CardProps {
   media: ImageProps;
-  badge: badgeProps;
+  badge: BadgeProps;
 }
 
 export const MediaCard = ({
@@ -20,14 +19,14 @@ export const MediaCard = ({
     className: "top-11  ",
     items: [
       {
-        icon: <Edit className=" flex" />,
+        icon: <EditIcon className=" flex" />,
         link: {
           className: "flex ",
           children: "Edit",
         },
       },
       {
-        icon: <Delete className=" flex" />,
+        icon: <DeleteIcon className=" flex" />,
 
         link: {
           className: "flex",
@@ -48,10 +47,10 @@ export const MediaCard = ({
             className={`w-full aspect-video object-cover ${className ?? ""}`}
           ></img>
         </div>
-        <div className=" relative flex bottom-36 px-2 my-2 justify-between">
+        <div className="relative flex bottom-36 px-2 my-2 justify-between">
           <Dropdown
             icon={
-              <More className="group group-hover:!fill-primary !fill-white" />
+              <MoreIcon className="group group-hover:!fill-primary !fill-white" />
             }
             className=" group  z-10 bg-primary hover:bg-primaryVariant rounded-3xl  w-6 h-6"
             menu={items}

@@ -2,16 +2,16 @@ import { AvatarProps, ImageProps } from "../image";
 import { CardProps } from "./card";
 import { Card } from "./card";
 import { Dropdown } from "../dropdown";
-import { More } from "../../icons/icon-more/more";
+import { MoreIcon } from "../../icons";
 import { Avatar } from "../image";
-import { State, stateProps } from "../badge/state";
-import { Badge, badgeProps } from "../badge/badge";
+import { State, StateProps } from "../badge/state";
+import { Badge, BadgeProps } from "../badge/badge";
 import { DropdownProps } from "../dropdown";
 export interface CourseCardProps extends CardProps {
   media: ImageProps;
   avatar: AvatarProps;
-  state: stateProps;
-  badge: badgeProps;
+  state: StateProps;
+  badge: BadgeProps;
   dropdown: DropdownProps;
 }
 
@@ -37,7 +37,7 @@ export const CourseCard = ({
         <div className=" relative flex bottom-36 px-2 my-2 justify-between">
           <Dropdown
             icon={
-              <More className="group group-hover:!fill-primary !fill-white group-focus:!fill-primary " />
+              <MoreIcon className="group group-hover:!fill-primary !fill-white group-focus:!fill-primary " />
             }
             className=" group  z-10 bg-primary hover:bg-primaryVariant focus:bg-primaryVariant rounded-3xl  w-6 h-6 shadow-md"
             menu={dropdown.menu}
