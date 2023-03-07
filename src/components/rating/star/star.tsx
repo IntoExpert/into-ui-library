@@ -47,7 +47,11 @@ export const RatingStar = (props: RatingStarsProps) => {
                 state = StarIconState.Full;
             }
         }
-        return <span><StarIcon state={state} size={`24px`} /></span>
+        return (
+          <span>
+            <StarIcon state={state} size={`20px`} />
+          </span>
+        );
     };
 
     return (<StarRatingComponent
