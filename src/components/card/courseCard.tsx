@@ -66,7 +66,7 @@ export const CourseCard = ({
           <div className="py-1">
             <RatingStar1 {...rating} />
           </div>
-          <div className="px-2 text-gray-500 text-lg">
+          <div className="px-1 text-gray-500 text-lg">
             <strong>{rating?.value}</strong>
           </div>
           <div className="text-gray-500 text-lg"> {numberOfRatings}</div>
