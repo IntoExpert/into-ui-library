@@ -16,6 +16,9 @@ NavbarWithAuth.args = {
     menu: {
         items: [
             {
+                custom: <h1>Link</h1>
+            },
+            {
                 icon: <span>&uarr;</span>,
                 link: {
                     children: 'Home',
