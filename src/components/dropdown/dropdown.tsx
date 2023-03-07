@@ -25,6 +25,7 @@ export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
 
     return (
         <button
+            type="button"
             className={`w-10 h-10 cursor-pointer rounded transition hover:bg-blue-50 relative ${className ?? ''}`}
             onClick={handleToggle}
             onBlur={handleClose}>
