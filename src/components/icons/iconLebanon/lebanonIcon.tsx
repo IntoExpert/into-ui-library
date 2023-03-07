@@ -8,7 +8,7 @@ export const LebanonIcon = (props: LebanonIconprops) => {
         id="Component_681_10"
         data-name="Component 681 – 10"
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
+        //  xmlns:xlink="http://www.w3.org/1999/xlink"
         width="19.65"
         height="14.148"
         viewBox="0 0 19.65 14.148"

@@ -1,13 +1,13 @@
-import { Dropdown } from "../dropdown";
+import { Dropdown, DropdownProps } from "../dropdown";
 import { ImageProps } from "../image";
 import { Card, CardProps } from "./card";
-import { More } from "../icons/icon-more/more";
-import { Edit } from "../icons/icon-edit/edit";
-import { Delete } from "../icons/icon-delete/delete";
-import { Badge, badgeProps } from "../badge/badge";
+import { MoreIcon, EditIcon, DeleteIcon } from "../icons";
+
+import { Badge, BadgeProps } from "../badge/badge";
 export interface MediaCardProps extends CardProps {
   media: ImageProps;
-  badge: badgeProps;
+  badge: BadgeProps;
+  dropdown: DropdownProps;
 }
 
 export const MediaCard = ({
@@ -15,32 +15,11 @@ export const MediaCard = ({
   children,
   className,
   badge,
+  dropdown,
 }: MediaCardProps) => {
-  const items = {
-    className: "top-11  ",
-    items: [
-      {
-        icon: <Edit className=" flex" />,
-        link: {
-          className: "flex ",
-          children: "Edit",
-        },
-      },
-      {
-        icon: <Delete className=" flex" />,
-
-        link: {
-          className: "flex",
-
-          children: "Delete",
-        },
-      },
-    ],
-  };
-
   return (
     <Card className={`${className ?? ""}`}>
-      <div className="">
+      <div className="relative ">
         <div className={``}>
           <img
             {...media}
@@ -48,20 +27,24 @@ export const MediaCard = ({
             className={`w-full aspect-video object-cover ${className ?? ""}`}
           ></img>
         </div>
-        <div className=" relative flex bottom-36 px-2 my-2 justify-between">
-          <Dropdown
-            icon={
-              <More className="group group-hover:!fill-primary !fill-white" />
-            }
-            className=" group  z-10 bg-primary hover:bg-primaryVariant rounded-3xl  w-6 h-6"
-            menu={items}
-          />
-          <Badge
-            {...badge}
-            price={badge?.price}
-            earlyBirdPrice={badge?.earlyBirdPrice}
-            className="bottom-2 relative"
-          />
+        <div className=" flex px-2 my-2 justify-between">
+          <div className="absolute top-0 left-0 px-2 py-2">
+            <Dropdown
+              icon={
+                <MoreIcon className="group group-hover:!fill-primary !fill-white" />
+              }
+              className=" group  z-10 bg-primary hover:bg-primaryVariant rounded-3xl  w-6 h-6"
+              menu={dropdown.menu}
+            />
+          </div>
+          <div className="absolute top-0 right-0 px-2 ">
+            <Badge
+              {...badge}
+              price={badge?.price}
+              children={badge.children}
+              className="bottom-2 relative fill-secondary"
+            />
+          </div>
         </div>
 
         {children}

@@ -1,55 +1,45 @@
 import { AvatarProps, ImageProps } from "../image";
 import { CardProps } from "./card";
 import { Card } from "./card";
-import { Dropdown } from "../dropdown";
-import { More } from "../icons/icon-more/more";
+
 import { Avatar } from "../image";
-import { State, stateProps } from "../badge/state";
-import { Badge, badgeProps } from "../badge/badge";
-import { DropdownProps } from "../dropdown";
+import { State, StateProps } from "../badge/state";
+
+import { MediaCard, MediaCardProps } from "./mediaCard";
+import { ReactElement } from "react";
+import { RatingStar1 } from "../../stories/rating/star.stories";
+import { RatingStarsProps } from "../rating";
 export interface CourseCardProps extends CardProps {
-  media: ImageProps;
-  avatar: AvatarProps;
-  state: stateProps;
-  badge: badgeProps;
-  dropdown: DropdownProps;
+  mediaCard: MediaCardProps;
+  avatar?: AvatarProps;
+  state?: StateProps;
+  title?: ReactElement;
+  description?: ReactElement;
+  duration?: ReactElement;
+  deadline?: ReactElement;
+  rating?: RatingStarsProps;
+  numberOfRatings?: ReactElement;
 }
 
 export const CourseCard = ({
-  media,
-  children,
+  mediaCard,
+  title,
   className,
   avatar,
   state,
-  badge,
-  dropdown,
+  description,
+  duration,
+  deadline,
+  rating,
+  numberOfRatings,
 }: CourseCardProps) => {
   return (
     <Card className={`${className ?? ""}`}>
       <div className="">
-        <div className={``}>
-          <img
-            {...media}
-            alt={media.alt ?? ""}
-            className={`w-full aspect-video object-cover ${className ?? ""}`}
-          ></img>
+        <div>
+          <MediaCard {...mediaCard} className="shadow-none" />
         </div>
-        <div className=" relative flex bottom-36 px-2 my-2 justify-between">
-          <Dropdown
-            icon={
-              <More className="group group-hover:!fill-primary !fill-white group-focus:!fill-primary " />
-            }
-            className=" group  z-10 bg-primary hover:bg-primaryVariant focus:bg-primaryVariant rounded-3xl  w-6 h-6 shadow-md"
-            menu={dropdown.menu}
-          />
-          <Badge
-            {...badge}
-            price={badge?.price}
-            earlyBirdPrice={badge?.earlyBirdPrice}
-            className="bottom-2 relative fill-red-500 "
-          />
-        </div>
-        <div className="relative bottom-20 flex justify-between px-2 ">
+        <div className="flex justify-between px-2 relative">
           <div className="sm:truncate md:truncate">
             <Avatar
               {...avatar}
@@ -61,12 +51,25 @@ export const CourseCard = ({
           <div className="py-1">
             <State
               {...state}
-              className="!border-red-400 text-red-400 relative text-sm"
+              className="!border-red-400 text-red-400 relative text-sm px-2 py-1"
             />
           </div>
         </div>
 
-        {children}
+        <div className="px-2 py-2">{title}</div>
+        <div className="px-2 py-2 text-gray-500">{description}</div>
+        <div className="px-2 py-2 text-primary">
+          <strong>{duration}</strong>
+        </div>
+        <div className="px-2 py-2 text-red-400">{deadline}</div>
+        <div className="flex px-2 py-3">
+          <RatingStar1 {...rating} />
+
+          <div className="px-2 text-gray-500">
+            <strong>{rating?.value}</strong>
+          </div>
+          <div className="text-gray-500"> {numberOfRatings}</div>
+        </div>
       </div>
     </Card>
   );
