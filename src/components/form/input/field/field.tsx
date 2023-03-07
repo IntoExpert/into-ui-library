@@ -99,13 +99,14 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
             const radioClasses = `appearance-none rounded-full border border-gray-300 bg-white checked:bg-white 
             checked:border-secondary checked:border-4 focus:outline-secondary transition duration-300 
             cursor-pointer focus:ring-2 focus:ring-secondary focus:shadow-none`;
-            const checkBoxClasses = `rounded accent-secondary focus:outline-secondary`;
+            const checkBoxClasses = `rounded border border-gray-400 checked:bg-red-400 checked:after:content-['✔'] 
+            checked:border-red-400 after:text-surface after:absolute after:left-0.5 after:text-xs appearance-none focus:outline-secondary`;
 
             return (
                 <div className={`flex justify-start align-baseline ${props.containerClassName}`}>
                     <input
                         {...props}
-                        className={`h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
+                        className={`relative h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
                          ${props.className ?? ''}`}
                         value={props.name}
                         ref={ref} />
