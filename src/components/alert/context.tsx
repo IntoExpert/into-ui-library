@@ -38,12 +38,13 @@ const AlertContext = createContext<AlertContextProps>({
 export interface AlertProviderProps {
     rootElementId?: string;
     children?: JSX.Element;
+    classname?: string;
 }
 
 /**
  * Inject alert in the app and manage its state
  */
-export const AlertProvider = ({ rootElementId, children }: AlertProviderProps) => {
+export const AlertProvider = ({ rootElementId, children, classname }: AlertProviderProps) => {
 
     const [state, setState] = useState<AlertOptions>({ message: "", className: ' ' });
 
@@ -80,7 +81,10 @@ export const AlertProvider = ({ rootElementId, children }: AlertProviderProps) =
 
     return (
         <AlertContext.Provider value={{ fireAlert, fireSuccessAlert, fireErrorAlert }}>
-            <OnTopOfElementNavbar {...state} elementId={rootElementId} onClose={onClose} />
+            <OnTopOfElementNavbar {...state}
+                className={`${classname ?? ''} ${state.className ?? ''}`}
+                elementId={rootElementId}
+                onClose={onClose} />
             {children}
         </AlertContext.Provider>
     );
