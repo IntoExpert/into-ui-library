@@ -12,4 +12,5 @@ const Template: ComponentStory<typeof TimePicker> = (args) => <TimePicker {...ar
 export const defaultState = Template.bind({});
 defaultState.args = {
     minDate: new Date(),
+    selected: new Date(),
 };

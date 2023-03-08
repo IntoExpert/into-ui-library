@@ -21,6 +21,5 @@ export const TimePicker = ({ className, value, ...props }: TimePickerProps) => {
             rounded h-10 w-24 px-3 text-gray-700 leading-tight 
             focus:outline-none focus:shadow-outline
           placeholder:text-gray-500 ${className ?? ''}`}
-        onChange={(value) => console.log(value)}
     />);
 }
