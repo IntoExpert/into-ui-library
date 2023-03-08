@@ -80,7 +80,7 @@ export const AlertProvider = ({ rootElementId, children }: AlertProviderProps) =
 
     return (
         <AlertContext.Provider value={{ fireAlert, fireSuccessAlert, fireErrorAlert }}>
-            <OnTopOfElementNavbar {...state} onClose={onClose} />
+            <OnTopOfElementNavbar {...state} elementId={rootElementId} onClose={onClose} />
             {children}
         </AlertContext.Provider>
     );
