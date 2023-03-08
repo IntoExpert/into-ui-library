@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { UiElementProps } from "../common/uiElement";
-import { OnTopOfElementNavbar } from "./belowNavBar/belowNavBarAlert";
+import { OnTopOfElementNavbar as SnackBarAlert } from "./belowNavBar/belowNavBarAlert";
 
 export interface AlertOptions extends UiElementProps {
     /**
@@ -69,7 +69,7 @@ export const AlertProvider = ({ rootElementId, children, classname }: AlertProvi
     const fireErrorAlert = (options: AlertOptions) => {
         const errorAlertDefaultOptions: AlertOptions = {
             message: "Error",
-            className: "bg-red-500 text-white",
+            className: "bg-red-400 text-white text-sm",
         };
 
         setState({ ...errorAlertDefaultOptions, ...options });
@@ -81,7 +81,7 @@ export const AlertProvider = ({ rootElementId, children, classname }: AlertProvi
 
     return (
         <AlertContext.Provider value={{ fireAlert, fireSuccessAlert, fireErrorAlert }}>
-            <OnTopOfElementNavbar {...state}
+            <SnackBarAlert {...state}
                 className={`${classname ?? ''} ${state.className ?? ''}`}
                 elementId={rootElementId}
                 onClose={onClose} />
