@@ -4,6 +4,7 @@ const typescript = require("@rollup/plugin-typescript");
 const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 const packageJson = require("./package.json");
 const { default: terser } = require("@rollup/plugin-terser");
+const scss = require('rollup-plugin-scss');
 
 module.exports = [
     {
@@ -26,7 +27,8 @@ module.exports = [
                 tsconfig: "./rollup.tsconfig.json",
             }),
             commonjs(),
-            terser()
+            terser(),
+            scss()
         ],
     }
 ];
