@@ -1,6 +1,10 @@
 $primary-color: #0092fc;
 $border-color: rgb(229, 231, 235);
 
+.react-datepicker__month-container {
+  border: none;
+}
+
 .react-datepicker {
   border: none;
 
