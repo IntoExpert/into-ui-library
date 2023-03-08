@@ -11,3 +11,4 @@ export * from "./links";
 export * from "./card";
 export * from "./icons";
 export * from "./dropdown";
+export * from "./modal";
