@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { UiElementProps } from "../common/uiElement";
-import { OnTopOfElementNavbar as SnackBarAlert } from "./belowNavBar/belowNavBarAlert";
+import { OnTopOfElementNavbar as SnackBarAlert } from "./snackBar/snackBar";
 
 export interface AlertOptions extends UiElementProps {
     /**
