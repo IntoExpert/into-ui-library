@@ -85,7 +85,7 @@ export const DynamicForm = function (props: FormProps) {
         return (
             <InputField
                 {...inputProps}
-                errorMessage={getValidationMessage(field, errors[field.name ?? '']?.type)} />
+                errormessage={getValidationMessage(field, errors[field.name ?? '']?.type)} />
         );
     }
 

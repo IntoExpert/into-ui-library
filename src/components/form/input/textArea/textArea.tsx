@@ -10,7 +10,7 @@ export interface TextAreaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
     /**
      * Input error message, when it is null or undefined, no error considered
      */
-    errorMessage?: string;
+    errormessage?: string;
     /**
      * Chars count left renderer
      */
@@ -63,7 +63,7 @@ export const TextArea = (props: TextAreaProps) => {
                         {props.charLeftCountRenderer?.(state.charsLeftCount ?? 0)}</span>
                     : null}
             </div>
-            {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
+            {props.errormessage && <p className="text-red-600 text-xs italic mt-1">{props.errormessage}</p>}
         </div>
     )
 }

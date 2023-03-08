@@ -20,7 +20,7 @@ DefaultState.args = {
 export const OnError = Template.bind({});
 OnError.args = {
     defaultValue: "Mg",
-    errorMessage: "Type at least 4 characters"
+    errormessage: "Type at least 4 characters"
 };
 
 export const Checkbox = Template.bind({});

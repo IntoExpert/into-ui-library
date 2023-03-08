@@ -4,7 +4,7 @@ import { StateManagerProps } from 'react-select/dist/declarations/src/useStateMa
 import { InputLabel } from '../label';
 
 export interface SelectProps extends UiElementProps, StateManagerProps {
-    errorMessage?: string;
+    errormessage?: string;
     /**
      * Select label, if you leave it empty no label will show
      */
@@ -15,7 +15,7 @@ export const Select = (props: SelectProps) => {
 
     return (
         <div className={`${props.className}`}>
-            <InputLabel inputId={props.id} name={props.label} className="block mb-2" />
+            <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
             <ReactSelect
                 classNames={{
                     container: (state) =>
@@ -29,7 +29,7 @@ export const Select = (props: SelectProps) => {
                 }}
                 {...props}
             />
-            {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
+            {props.errormessage && <p className="text-red-600 text-xs italic mt-1">{props.errormessage}</p>}
         </div>
     )
 }

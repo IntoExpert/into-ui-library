@@ -26,7 +26,7 @@ export interface InputFieldProps {
     /**
      * Input error message, when it is null or undefined, no error considered
      */
-    errorMessage?: string;
+    errormessage?: string;
     /**
      * Field type
      */
@@ -129,7 +129,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                             rounded h-14 px-3 text-gray-700 leading-tight 
                             focus:outline-none focus:shadow-outline
                         placeholder:text-gray-500
-                            ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
+                            ${props.errormessage ? 'border-red-600' : 'border-secondary'}
                             ${props.className ?? ''}`}
                         onChange={handleOnChange}
                         value={state.value}
@@ -145,7 +145,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     }
                 </div>
 
-                {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
+                {props.errormessage && <p className="text-red-600 text-xs italic mt-1">{props.errormessage}</p>}
             </div>;
     };
 })
