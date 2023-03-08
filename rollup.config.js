@@ -23,12 +23,12 @@ module.exports = [
         ],
         plugins: [
             peerDepsExternal(),
+            scss(),
             resolve(),
             typescript({
                 tsconfig: "./rollup.tsconfig.json",
             }),
             commonjs(),
-            scss(),
             terser(),
         ],
     }

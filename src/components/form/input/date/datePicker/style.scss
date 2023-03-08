@@ -1,4 +1,5 @@
 $primary-color: #0092fc;
+$secondary-color: #f6bd60;
 $border-color: rgb(229, 231, 235);
 
 .react-datepicker__month-container {
@@ -6,7 +7,7 @@ $border-color: rgb(229, 231, 235);
 }
 
 .react-datepicker {
-  border: none;
+  border: none !important;
 
   .react-datepicker__header {
     background: none;
@@ -58,5 +59,19 @@ $border-color: rgb(229, 231, 235);
 
   .react-datepicker__day--outside-month {
     visibility: hidden;
+  }
+
+  .react-datepicker__triangle {
+    &::after,
+    &::before {
+      border-bottom-color: $secondary-color !important;
+      display: none;
+    }
+  }
+
+  .react-datepicker__time-container {
+    box-shadow: 0 0 9px -1px #fafafa;
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
   }
 }
