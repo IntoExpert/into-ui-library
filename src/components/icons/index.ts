@@ -28,7 +28,6 @@ export * from "./iconHeart/heartIcon";
 export * from "./iconKey/keyIcon";
 export * from "./iconLebanon/lebanonIcon";
 export * from "./iconLeftArrow/leftArrowIcon";
-export * from "./iconMonthly/monthlycon";
 export * from "./iconMore/moreIcon";
 export * from "./iconNormalCase/normalcaseIcon";
 export * from "./iconPPt/pptIcon";
