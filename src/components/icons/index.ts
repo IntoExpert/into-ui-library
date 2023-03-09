@@ -59,3 +59,4 @@ export * from "./iconschedual/scheduleIcon";
 export * from "./iconlayer/layerIcon";
 export * from "./iconCopyCalenderEvents/copyCalenderEvents";
 export * from "./iconCircleAdd/circleAdd";
+export * from "./iconCalenderMonthlyView/iconCalenderMonthlyView";
