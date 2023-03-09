@@ -1,13 +1,14 @@
 import { UiElementProps } from "../..";
-export interface RefreshIconProps extends UiElementProps { }
+import { IconProps } from "../iconProps";
+export interface RefreshIconProps extends IconProps { }
 
-export const RefreshIcon = (props: RefreshIconProps) => {
+export const RefreshIcon = ({ size = 14, className }: RefreshIconProps) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={className ?? " "}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="14.207"
-        height="15.539"
+        width={size}
+        height={size * 0.914}
         viewBox="0 0 14.207 15.539"
       >
         <g
