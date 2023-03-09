@@ -1,16 +1,17 @@
 import { UiElementProps } from "../..";
+import { IconProps } from "../iconProps";
 
-export interface CalenderIconDaySelectedProps extends UiElementProps { }
+export interface CalenderIconDaySelectedProps extends IconProps { }
 
 export const CalenderIconDaySelected = (
-  props: CalenderIconDaySelectedProps
+  { size = 13, className }: CalenderIconDaySelectedProps
 ) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={className ?? " "}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="12.961"
-        height="12.959"
+        width={13}
+        height={13}
         viewBox="0 0 12.961 12.959"
       >
         <g
