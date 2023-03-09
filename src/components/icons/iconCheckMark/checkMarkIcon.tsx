@@ -18,14 +18,12 @@ export const CheckMarkIcon = (props: CheckMarkIconProps) => {
           cx="10"
           cy="10"
           r="10"
-          fill="#000"
         />
         <path
           id="Path_72357"
           data-name="Path 72357"
           d="M9130.971,265.917l3.424,3.424,5.5-5.5"
           transform="translate(-9125.433 -256.591)"
-          fill="none"
           stroke="#fff"
           stroke-linecap="round"
           stroke-linejoin="round"
