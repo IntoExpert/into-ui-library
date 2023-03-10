@@ -28,7 +28,7 @@ export const Table = (props: TableProps) => {
               <p className="text-gray-600"> {item.description}</p>
               <p className="text-gray-600">{item.anotherDescription}</p>
             </div>
-            <div className="border-gray-200 border-l"></div>
+            <div className="border-gray-200 border-l mb-1"></div>
             <div className="text-[10px] w-3/4 px-2">{item.coloumn}</div>
           </div>
           <hr className="mx-3"></hr>
