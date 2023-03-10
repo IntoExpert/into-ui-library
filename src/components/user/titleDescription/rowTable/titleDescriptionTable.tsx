@@ -6,8 +6,6 @@ import {
 } from "../titleDescription";
 
 export interface TitleAndTableProps extends TitleAndDiscriptionProps {
-  numberOfRows?: number;
-
   body?: {
     title?: string;
     subTitle?: string;
@@ -37,7 +35,7 @@ export const TitleAndTable = (props: TitleAndTableProps) => {
               </p>
             </div>
           </div>
-          <hr></hr>
+          <hr className="mx-3"></hr>
         </div>
       ))}
     </div>

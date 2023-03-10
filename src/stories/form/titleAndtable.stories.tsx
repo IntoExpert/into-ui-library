@@ -16,7 +16,6 @@ DefaultState.args = {
   title: {
     content: "Education",
   },
-  numberOfRows: 2,
   body: [
     {
       title: "Hochschule Anhalt",
