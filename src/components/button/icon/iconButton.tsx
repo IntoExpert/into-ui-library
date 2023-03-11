@@ -9,7 +9,7 @@ export interface IconButtonProps extends ButtonProps {
 export const IconButton = ({ icon, withoutBg, className, ...props }: IconButtonProps) => {
 
     return (<Button {...props}
-        className={`rounded-full aspect-square !p-1 fill-surface 
+        className={`rounded-full aspect-square !p-1 fill-surface
         ${withoutBg ? 'bg-transparent hover:bg-primaryVariant' : ''} 
         ${className ?? ''}`}>
         {icon}
