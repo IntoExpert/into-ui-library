@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useCallback, useState } from "react";
 import { UiElementProps } from "../../../../common";
 import { ImageProps } from "../../../../image";
 import { FileUpload, FileUploadProps } from "../fileUpload";
@@ -35,15 +35,30 @@ export const MediaUpload = (props: MediaUploadProps) => {
         const file = files[0];
 
         props.uploadOptions?.onAdd?.([file]);
+        setState(prevState => ({
+            ...prevState, media: {
+                ...prevState.media,
+                file: file
+            }
+        }))
 
         readFileThenGenerateUrl(file, onObjectUrlCreated);
     };
 
     const onObjectUrlCreated = (url: string) => {
+
         setState(prevState => ({ ...prevState, media: { src: url }, isRetake: false }));
     };
 
     const onVideoRecorded = (videoBlobs: Blob) => {
+        setState(prevState => ({
+            ...prevState, media: {
+                ...prevState.media,
+                file: new File([videoBlobs], `recorded-promoVideo.${new Date().getTime()}`, {
+                    type: 'video/webm'
+                }),
+            }
+        }))
         onObjectUrlCreated(URL.createObjectURL(videoBlobs));
     };
 
@@ -52,10 +67,16 @@ export const MediaUpload = (props: MediaUploadProps) => {
         setState(prevState => ({ ...prevState, isRetake: true }));
     }
 
+    const handleMediaUpload = useCallback(() => {
+        if (!state.media?.file) return;
+
+        props.onUpload?.(state.media?.file)
+    }, [props, state.media?.file])
+
 
 
     const Actions = () => <div className={`flex gap-2`}>
-        <Button className={`bg-secondary flex-1`}>
+        <Button className={`bg-secondary flex-1`} onClick={handleMediaUpload}>
             {props.uploadButton?.children}
         </Button>
         <RetakeButton className={`flex-1`} onClick={handleRetakeRequest}>
