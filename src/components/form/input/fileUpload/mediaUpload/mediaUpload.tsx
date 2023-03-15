@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useState } from "react";
+import { MouseEvent, MouseEventHandler, useCallback, useState } from "react";
 import { UiElementProps } from "../../../../common";
 import { ImageProps } from "../../../../image";
 import { FileUpload, FileUploadProps } from "../fileUpload";
@@ -31,7 +31,6 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
     const onAdd = (files: File[]) => {
         if (!files.length) return;
-
         const file = files[0];
 
         props.uploadOptions?.onAdd?.([file]);
@@ -47,7 +46,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
     const onObjectUrlCreated = (url: string) => {
 
-        setState(prevState => ({ ...prevState, media: { src: url }, isRetake: false }));
+        setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
     };
 
     const onVideoRecorded = (videoBlobs: Blob) => {
@@ -67,7 +66,8 @@ export const MediaUpload = (props: MediaUploadProps) => {
         setState(prevState => ({ ...prevState, isRetake: true }));
     }
 
-    const handleMediaUpload = useCallback(() => {
+    const handleMediaUpload: MouseEventHandler = useCallback((event) => {
+        event.stopPropagation();
         if (!state.media?.file) return;
 
         props.onUpload?.(state.media?.file)
