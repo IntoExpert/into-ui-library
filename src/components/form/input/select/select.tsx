@@ -4,7 +4,7 @@ import { StateManagerProps } from 'react-select/dist/declarations/src/useStateMa
 import { InputLabel } from '../label';
 import { SelectOption } from './option';
 
-export interface SelectProps extends UiElementProps, StateManagerProps<SelectOption> {
+export interface SelectProps extends UiElementProps, StateManagerProps {
     errormessage?: string;
     /**
      * Select label, if you leave it empty no label will show
