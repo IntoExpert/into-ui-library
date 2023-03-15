@@ -15,6 +15,7 @@ export interface MediaUploadProps extends UiElementProps {
     retakeButton?: ButtonProps;
     mode?: "photo" | "video";
     onUpload?: (file: File) => void;
+    isLoading?: boolean;
 };
 
 export interface MediaUploadState {
