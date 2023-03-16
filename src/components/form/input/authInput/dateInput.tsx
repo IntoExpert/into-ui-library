@@ -15,7 +15,11 @@ export const DateInput = (props: DateInputProps) => {
         type={`date`}
         className="placeholder: pb-[2px] rounded-lg w-96 text-sm z-10  "
       />
-      <div className={`fill-yellow-500 absolute  ${props.icon ?? " "}`}>
+      <div
+        className={`fill-yellow-500 absolute left-[350px] top-[15px] ${
+          props.icon ?? " "
+        }`}
+      >
         {props.icon}
       </div>
     </div>
