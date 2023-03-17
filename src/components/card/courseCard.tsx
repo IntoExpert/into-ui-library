@@ -7,8 +7,8 @@ import { State, StateProps } from "../badge/state";
 
 import { MediaCard, MediaCardProps } from "./mediaCard";
 import { ReactElement } from "react";
-import { RatingStar1 } from "../../stories/rating/star.stories";
-import { RatingStarsProps } from "../rating";
+import { RatingStar, RatingStarsProps } from "../rating";
+
 export interface CourseCardProps extends CardProps {
   mediaCard: MediaCardProps;
   avatar?: AvatarProps;
@@ -64,7 +64,7 @@ export const CourseCard = ({
         <div className="px-2 py-2 text-red-400">{deadline}</div>
         <div className="flex px-2 py-3">
           <div className="py-1">
-            <RatingStar1 {...rating} />
+            <RatingStar {...rating} />
           </div>
           <div className="px-1 text-gray-500 text-lg">
             <strong>{rating?.value}</strong>

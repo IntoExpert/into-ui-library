@@ -24,12 +24,6 @@ export interface BelowNavBarAlertProps extends UiElementProps {
  */
 export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }: BelowNavBarAlertProps) => {
 
-    const [element, setElement] = useState<HTMLElement | null>(null);
-
-    useEffect(() => {
-        setElement(document.getElementById(elementId ?? ''));
-    }, [elementId])
-
     const handleClose = () => {
         onClose?.();
     };
@@ -47,7 +41,7 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
     );
 
     if (typeof window === "object") {
-        return createPortal(<MessageComponent />, element ?? document.body);
+        return createPortal(<MessageComponent />, document.getElementById(elementId ?? '') ?? document.body);
     }
 
     return (
