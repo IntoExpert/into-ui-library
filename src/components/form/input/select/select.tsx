@@ -10,6 +10,10 @@ export interface SelectProps extends UiElementProps, StateManagerProps {
      * Select label, if you leave it empty no label will show
      */
     label?: string;
+    /**
+     * 
+     */
+    size?: 'sm' | 'md'
 };
 
 export const Select = (props: SelectProps) => {
@@ -23,7 +27,8 @@ export const Select = (props: SelectProps) => {
                         `w-full`
                     ,
                     control: (state) =>
-                        `!rounded h-14 ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
+                        `!rounded ${props.size === 'sm' ? 'h-10' : 'h-14'} 
+                        ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: (state) => `!bg-transparent`,
                     dropdownIndicator: (state) => `!text-black`,
                     placeholder: (state) => `!placeholder:text-gray-500 !text-gray-500`,
