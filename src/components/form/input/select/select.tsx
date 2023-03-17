@@ -1,8 +1,9 @@
-import ReactSelect from 'react-select';
+import ReactSelect, { components } from 'react-select';
 import { UiElementProps } from '../../../common';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 import { InputLabel } from '../label';
-import { SelectOption } from './option';
+import { SearchIcon } from '../../../icons';
+import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 
 export interface SelectProps extends UiElementProps, StateManagerProps {
     errormessage?: string;
@@ -18,6 +19,14 @@ export interface SelectProps extends UiElementProps, StateManagerProps {
 
 export const Select = (props: SelectProps) => {
 
+    const DropdownIcon = (props: DropdownIndicatorProps) => {
+        return (
+            <components.DropdownIndicator {...props}>
+                <SearchIcon className={`fill-secondary`} />
+            </components.DropdownIndicator>
+        );
+    }
+
     return (
         <div className={`${props.className}`}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
@@ -31,7 +40,10 @@ export const Select = (props: SelectProps) => {
                         ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: (state) => `!bg-transparent`,
                     dropdownIndicator: (state) => `!text-black`,
-                    placeholder: (state) => `!placeholder:text-gray-500 !text-gray-500`,
+                    placeholder: (state) => `!placeholder:text-gray-500 !text-gray-500 text-sm`,
+                }}
+                components={{
+                    DropdownIndicator: props.isSearchable ? DropdownIcon : undefined,
                 }}
                 {...props}
             />
