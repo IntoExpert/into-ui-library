@@ -105,7 +105,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
                 <div className={`w-full h-full relative`}>
                     {!props.mode || props.mode === "photo"
                         ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
-                        : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} controls={true} />}
+                        : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} showPlayButton />}
                     <div className={`absolute bottom-10 left-1/2 -translate-x-1/2`}>
                         <Actions />
                     </div>
