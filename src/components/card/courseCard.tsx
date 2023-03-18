@@ -52,7 +52,7 @@ export const CourseCard = ({
             {state
               ? <State
                 {...state}
-                className="!border-red-400 text-red-400 relative text-sm px-2 py-1"
+                className={`relative text-sm px-2 py-1 ${state.className}`}
               />
               : null}
           </div>

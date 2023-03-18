@@ -2,12 +2,11 @@ import { UiElementProps } from "../common";
 
 export interface BadgeProps extends UiElementProps {
   children: string;
-  price?: string;
 }
 
-export const Badge = (props: BadgeProps) => {
+export const Badge = ({ className, children }: BadgeProps) => {
   return (
-    <div className={props?.className ?? "fill-secondary"}>
+    <div className={`relative ${className ?? "fill-secondary"}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="85.766"
@@ -21,13 +20,12 @@ export const Badge = (props: BadgeProps) => {
           transform="translate(0 -22.807)"
         />{" "}
       </svg>
-      <h1 className="text-white relative flex bottom-12 justify-center">
-        {" "}
-        {props?.children}
-      </h1>
-      <h2 className=" relative bottom-24 w-full text-sm text-center line-through decoration-red-500 decoration-1">
-        {props.price}
-      </h2>
+      <div className={`absolute w-full top-1/2 -translate-y-1/2`}>
+        <h1 className="text-white flex justify-center">
+          {" "}
+          {children}
+        </h1>
+      </div>
     </div>
   );
 };

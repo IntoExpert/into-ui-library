@@ -45,7 +45,6 @@ export const MediaCard = ({
             {badge ? (
               <Badge
                 {...badge}
-                price={badge?.price}
                 children={badge.children}
                 className="bottom-2 relative fill-secondary"
               />
