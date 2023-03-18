@@ -28,8 +28,8 @@ export const DropdownItem = (props: DropdownItemProps) => {
                         {props.link?.children}
                     </>
                 </Link>
-                    : <Button className={`!bg-transparent !p-0 !text-gray-700 !text-sm rounded-md transition 
-                    hover:bg-blue-100 hover:!text-primary`}>
+                    : <Button {...props.button} className={`!bg-transparent !p-0 !text-gray-700 !text-sm rounded-md transition 
+                    hover:bg-blue-100 hover:!text-primary ${props.button?.className ?? ''}`}>
                         <>
                             {props.icon ? <>{props.icon}<span className={`mx-2`}></span></> : null}
                             {props.button?.children}
