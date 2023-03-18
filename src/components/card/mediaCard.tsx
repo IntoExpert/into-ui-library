@@ -32,7 +32,7 @@ export const MediaCard = ({
             {dropdown ? (
               <Dropdown
                 icon={
-                  <MoreIcon className="group group-hover:!fill-primary !fill-white" />
+                  <MoreIcon className="group group-hover:!fill-primary !fill-white shadow-md" />
                 }
                 className=" group  z-10 bg-primary hover:bg-primaryVariant rounded-3xl  w-6 h-6"
                 menu={dropdown.menu}
