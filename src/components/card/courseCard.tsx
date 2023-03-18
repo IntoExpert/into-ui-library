@@ -1,4 +1,4 @@
-import { AvatarProps, ImageProps } from "../image";
+import { AvatarProps } from "../image";
 import { CardProps } from "./card";
 import { Card } from "./card";
 
@@ -49,10 +49,12 @@ export const CourseCard = ({
             />
           </div>
           <div className="py-1">
-            <State
-              {...state}
-              className="!border-red-400 text-red-400 relative text-sm px-2 py-1"
-            />
+            {state
+              ? <State
+                {...state}
+                className="!border-red-400 text-red-400 relative text-sm px-2 py-1"
+              />
+              : null}
           </div>
         </div>
 

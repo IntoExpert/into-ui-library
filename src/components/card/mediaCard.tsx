@@ -1,13 +1,13 @@
 import { Dropdown, DropdownProps } from "../dropdown";
 import { ImageProps } from "../image";
 import { Card, CardProps } from "./card";
-import { MoreIcon, EditIcon, DeleteIcon } from "../icons";
+import { MoreIcon } from "../icons";
 
 import { Badge, BadgeProps } from "../badge/badge";
 export interface MediaCardProps extends CardProps {
   media: ImageProps;
   badge: BadgeProps;
-  dropdown: DropdownProps;
+  dropdown?: DropdownProps;
 }
 
 export const MediaCard = ({
