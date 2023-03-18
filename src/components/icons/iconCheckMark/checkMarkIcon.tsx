@@ -1,15 +1,16 @@
-import { UiElementProps } from "../..";
-export interface CheckMarkIconProps extends UiElementProps { }
+import { IconProps } from "../iconProps";
 
-export const CheckMarkIcon = (props: CheckMarkIconProps) => {
+export interface CheckMarkIconProps extends IconProps { }
+
+export const CheckMarkIcon = ({ className, size = 20 }: CheckMarkIconProps) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={className ?? " "}>
       <svg
         id="Component_633_7"
         data-name="Component 633 – 7"
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
+        width={size}
+        height={size}
         viewBox="0 0 20 20"
       >
         <circle
@@ -18,7 +19,6 @@ export const CheckMarkIcon = (props: CheckMarkIconProps) => {
           cx="10"
           cy="10"
           r="10"
-          fill="#000"
         />
         <path
           id="Path_72357"
@@ -32,6 +32,6 @@ export const CheckMarkIcon = (props: CheckMarkIconProps) => {
           stroke-width="2"
         />
       </svg>
-    </div>
+    </div >
   );
 };

@@ -21,12 +21,12 @@ export const Badge = (props: BadgeProps) => {
           transform="translate(0 -22.807)"
         />{" "}
       </svg>
-      <h1 className="text-white relative flex bottom-12 left-4">
+      <h1 className="text-white relative flex bottom-12 justify-center">
         {" "}
-        <strong>{props?.children}</strong>
+        {props?.children}
       </h1>
-      <h2 className=" relative bottom-24 text-sm left-5 line-through decoration-red-500 decoration-1">
-        <strong>{props.price}</strong>
+      <h2 className=" relative bottom-24 w-full text-sm text-center line-through decoration-red-500 decoration-1">
+        {props.price}
       </h2>
     </div>
   );

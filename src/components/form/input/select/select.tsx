@@ -4,6 +4,7 @@ import { StateManagerProps } from 'react-select/dist/declarations/src/useStateMa
 import { InputLabel } from '../label';
 import { SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
+import { size } from 'lodash';
 
 export interface SelectProps extends UiElementProps, StateManagerProps {
     errormessage?: string;
@@ -40,7 +41,7 @@ export const Select = (props: SelectProps) => {
                         ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: (state) => `!bg-transparent`,
                     dropdownIndicator: (state) => `!text-black`,
-                    placeholder: (state) => `!placeholder:text-gray-500 !text-gray-500 text-sm`,
+                    placeholder: (state) => `!placeholder:text-gray-500 ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
                 }}
                 components={{
                     DropdownIndicator: props.isSearchable ? DropdownIcon : undefined,
