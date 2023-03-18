@@ -1,7 +1,8 @@
+import { ReactElement } from "react";
 import { UiElementProps } from "../common";
 
 export interface BadgeProps extends UiElementProps {
-  children: string;
+  children: ReactElement;
 }
 
 export const Badge = ({ className, children }: BadgeProps) => {

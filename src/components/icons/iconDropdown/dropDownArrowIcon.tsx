@@ -1,14 +1,14 @@
-import { UiElementProps } from "../..";
-export interface DropdownArrowIconProps extends UiElementProps { }
+import { IconProps } from "../iconProps";
+export interface DropdownArrowIconProps extends IconProps { }
 
-export const DropdownArrowIcon = (props: DropdownArrowIconProps) => {
+export const DropdownArrowIcon = ({ className, size = 7.5 }: DropdownArrowIconProps) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={className ?? " "}>
       <svg
         id="Shape"
         xmlns="http://www.w3.org/2000/svg"
-        width="12.916"
-        height="7.5"
+        width={size * 1.72}
+        height={size}
         viewBox="0 0 12.916 7.5"
       >
         <path
