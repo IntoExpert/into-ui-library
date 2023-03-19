@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { UiElementProps } from "../../common/uiElement"
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IconButton } from "../../button";
 
 export interface BelowNavBarAlertProps extends UiElementProps {
@@ -24,9 +24,9 @@ export interface BelowNavBarAlertProps extends UiElementProps {
  */
 export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }: BelowNavBarAlertProps) => {
 
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         onClose?.();
-    };
+    }, [onClose]);
 
     const MessageComponent = () => (
         <div className={`p-3 shadow-lg absolute left-0 right-0 top-0 transition-all  ${className ?? ''} 

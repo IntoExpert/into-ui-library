@@ -27,7 +27,7 @@ export const Modal = ({ show, hasCloseButton, onClose, children, size, className
         <div className={`fixed w-screen h-screen top-0 flex justify-center items-center z-30 ${bgClassname ?? ''}`}>
             <div className={`${size ? (`max-w-${size}`) : ''}`}>
                 <section className={`relative w-full bg-surface ${className}`}>
-                    {hasCloseButton && <IconButton className={`absolute top-1 right-1 `} icon={<span>&times;</span>} onClick={onClose}></IconButton>}
+                    {hasCloseButton && <IconButton className={`absolute top-1 right-1 !p-0 flex items-center`} icon={<span>&times;</span>} onClick={onClose}></IconButton>}
                     {children}
                 </section>
             </div >
