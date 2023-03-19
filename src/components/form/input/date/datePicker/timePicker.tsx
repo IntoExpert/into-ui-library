@@ -18,9 +18,10 @@ export interface TimePickerProps extends UiElementProps, ReactDatePickerProps {
      * Input error message, when it is null or undefined, no error considered
      */
     errormessage?: string;
+    hasError?: boolean;
 };
 
-export const TimePicker = ({ className, value, ...props }: TimePickerProps) => {
+export const TimePicker = ({ className, hasError, value, ...props }: TimePickerProps) => {
 
     return (
         <div className={`text-start ${props.containerClassName}`}>
@@ -33,7 +34,7 @@ export const TimePicker = ({ className, value, ...props }: TimePickerProps) => {
                     timeIntervals={30}
                     dateFormat={`hh:mm aa`}
                     {...props}
-                    className={`timpicker shadow appearance-none border border-secondary
+                    className={`timpicker shadow appearance-none border ${(hasError || props.errormessage) ? 'border-error' : 'border-secondary'}
             rounded h-10 w-24 px-3 text-gray-700 leading-tight 
             focus:outline-none focus:shadow-outline
           placeholder:text-gray-500 ${props.errormessage ? 'border-red-400' : 'border-secondary'} 
