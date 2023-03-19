@@ -59,12 +59,12 @@ export const CourseCard = ({
         </div>
 
         <div className="px-2 py-2 text-lg font-semibold">{title}</div>
-        <div className="px-2 pb-1 text-gray-500 text-xs font-semibold">{description}</div>
-        <div className={`px-2 py-2 space-y-2`}>
-          <div className="text-primary font-semibold text-xs">
+        <div className="px-2 pb-1 text-gray-500 text-xs font-semibold h-[3em]">{description}</div>
+        <div className={`px-2 py-2 space-y-3`}>
+          <div className="text-primary text-xs h-[1em]">
             {duration}
           </div>
-          <div className="text-xs font-semibold text-red-400">{deadline}</div>
+          <div className="text-xs font-semibold text-red-400 h=[1em]">{deadline}</div>
         </div>
         {/* Rating */}
         {/* <div className="flex px-2 py-3">

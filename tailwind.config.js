@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
@@ -15,7 +16,11 @@ module.exports = {
       surface: "#fff",
       error: colors.red['600']
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Lato', ...defaultTheme.fontFamily.sans]
+      }
+    },
   },
   plugins: [],
 }
