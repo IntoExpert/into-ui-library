@@ -30,7 +30,7 @@ export const VideoPlayer = ({ showPlayButton, playButtonPosition = 'center', ...
                         ${playButtonPosition === 'center' ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' : ''}
                         transition-all hover:shadow hover:scale-105 cursor-pointer
                         `}>
-                    {!play ? <PlayIcon className={`fill-surface`} /> : <PauseIcon className={`fill-surface`} />}
+                    {!play ? <PlayIcon className={`fill-surface rounded-full`} /> : <PauseIcon className={`fill-surface`} />}
                 </span>
                 : null}
         </div>

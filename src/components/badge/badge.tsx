@@ -10,8 +10,7 @@ export const Badge = ({ className, children }: BadgeProps) => {
     <div className={`relative ${className ?? "fill-secondary"}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="85.766"
-        height="90.582"
+        width="100%"
         viewBox="0 0 85.766 90.582"
       >
         <path

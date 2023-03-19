@@ -41,12 +41,12 @@ export const MediaCard = ({
               " "
             )}
           </div>
-          <div className="absolute top-0 right-0 px-2 ">
+          <div className="absolute top-0 right-2 px-2 ">
             {badge ? (
               <Badge
                 {...badge}
                 children={badge.children}
-                className="bottom-2 relative fill-secondary"
+                className="bottom-2 relative fill-secondary w-20"
               />
             ) : (
               " "
