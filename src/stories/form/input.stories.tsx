@@ -31,5 +31,6 @@ Checkbox.args = {
 
 export const featuredPlaceholder = Template.bind({});
 featuredPlaceholder.args = {
+    value: "Hi",
     featuredPlaceholder: <div className={``}>Hello <span className={`text-xs`}>70 chars</span></div>
 };

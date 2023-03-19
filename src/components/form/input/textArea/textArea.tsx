@@ -40,7 +40,6 @@ export const TextArea = (props: TextAreaProps) => {
         const target = event.currentTarget;
         const scrollOffset = target.scrollTop;
         const isHideCharCount = target.clientHeight + scrollOffset < target.scrollHeight;
-        console.log(scrollOffset, target.scrollHeight, target.clientHeight)
         setState(prevState => ({ ...prevState, isHideCharCount }))
     }
 
@@ -51,11 +50,11 @@ export const TextArea = (props: TextAreaProps) => {
             <div className={`relative ${props.className ?? ''}`}>
                 <textarea
                     {...props}
-                    className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded w-full h-full`}
+                    className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded w-full h-full ${props.errormessage ? '!border-error-500' : ''}`}
                     title={props.title ?? props.placeholder}
                     onChange={handleOnChange}
                     onScroll={handleOnScroll}
-                >{props.defaultValue}
+                >{props.value}
                 </textarea>
                 {props.maxLength && props.charLeftCountRenderer
                     ? <span className={`absolute left-2 right-4 text-xs text-gray-400 bottom-[8px] 
