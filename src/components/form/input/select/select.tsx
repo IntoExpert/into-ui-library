@@ -48,7 +48,7 @@ export const Select = (props: SelectProps) => {
                 }}
                 {...props}
             />
-            {props.errormessage && <p className="text-red-600 text-xs italic mt-1">{props.errormessage}</p>}
+            {props.errormessage && <p className="text-error text-xs italic mt-1">{props.errormessage}</p>}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { ChangeEvent, DetailedHTMLProps, ReactElement, TextareaHTMLAttributes, UIEvent, useState } from "react";
+import { ChangeEvent, DetailedHTMLProps, ReactElement, TextareaHTMLAttributes, UIEvent, useEffect, useState } from "react";
 import { UiElementProps } from "../../../common";
 import { InputLabel } from "../label";
 
@@ -19,20 +19,17 @@ export interface TextAreaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
 };
 
 interface TextAreaState {
-    value?: string;
+    value?: any;
     charsLeftCount?: number;
     isHideCharCount?: boolean;
 };
 
 export const TextArea = (props: TextAreaProps) => {
 
-    const [state, setState] = useState<TextAreaState>({ value: props.defaultValue, charsLeftCount: props.maxLength });
+    const [state, setState] = useState<TextAreaState>({ value: props.value, charsLeftCount: props.maxLength });
 
     const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         props.onChange?.(event);
-        const value = event.target.value;
-        setState(prevState =>
-            ({ ...prevState, value: value, charsLeftCount: (props.maxLength ?? 0) - value.length }));
     };
 
     const handleOnScroll = (event: UIEvent<HTMLTextAreaElement>) => {
@@ -43,6 +40,10 @@ export const TextArea = (props: TextAreaProps) => {
         setState(prevState => ({ ...prevState, isHideCharCount }))
     }
 
+    useEffect(() => {
+        setState(prevState =>
+            ({ ...prevState, value: props.value, charsLeftCount: (props.maxLength ?? 0) - (props.value?.toString()?.length ?? 0) }));
+    }, [props.maxLength, props.value])
 
     return (
         <div className={`w-full h-full flex flex-col`}>
@@ -50,11 +51,12 @@ export const TextArea = (props: TextAreaProps) => {
             <div className={`relative ${props.className ?? ''}`}>
                 <textarea
                     {...props}
-                    className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded w-full h-full ${props.errormessage ? '!border-error-500' : ''}`}
+                    className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded w-full 
+                    h-full ${props.errormessage ? '!border-error' : ''}`}
                     title={props.title ?? props.placeholder}
                     onChange={handleOnChange}
                     onScroll={handleOnScroll}
-                >{props.value}
+                >{state.value}
                 </textarea>
                 {props.maxLength && props.charLeftCountRenderer
                     ? <span className={`absolute left-2 right-4 text-xs text-gray-400 bottom-[8px] 
@@ -62,7 +64,7 @@ export const TextArea = (props: TextAreaProps) => {
                         {props.charLeftCountRenderer?.(state.charsLeftCount ?? 0)}</span>
                     : null}
             </div>
-            {props.errormessage && <p className="text-red-600 text-xs italic mt-1">{props.errormessage}</p>}
+            {props.errormessage && <p className="text-error text-xs italic mt-1">{props.errormessage}</p>}
         </div>
     )
 }
