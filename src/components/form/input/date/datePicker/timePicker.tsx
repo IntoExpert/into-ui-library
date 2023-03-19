@@ -34,10 +34,10 @@ export const TimePicker = ({ className, hasError, value, ...props }: TimePickerP
                     timeIntervals={30}
                     dateFormat={`hh:mm aa`}
                     {...props}
-                    className={`timpicker shadow appearance-none border ${(hasError || props.errormessage) ? 'border-error' : 'border-secondary'}
+                    className={`timpicker shadow appearance-none border 
             rounded h-10 w-24 px-3 text-gray-700 leading-tight 
             focus:outline-none focus:shadow-outline
-          placeholder:text-gray-500 ${props.errormessage ? 'border-red-400' : 'border-secondary'} 
+          placeholder:text-gray-500 ${hasError || props.errormessage ? 'border-error' : 'border-secondary'} 
           ${className ?? ''}`}
                 />
             </div>
