@@ -10,7 +10,7 @@ import { VideoPlayer } from "../../../../video";
 
 export interface MediaUploadProps extends UiElementProps {
     uploadOptions?: FileUploadProps;
-    image?: ImageProps;
+    mediaSrc?: string;
     uploadButton?: ButtonProps;
     retakeButton?: ButtonProps;
     mode?: "photo" | "video";
@@ -28,7 +28,7 @@ export interface MediaUploadState {
 
 export const MediaUpload = (props: MediaUploadProps) => {
 
-    const [state, setState] = useState<MediaUploadState>({});
+    const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
     const onAdd = (files: File[]) => {
         if (!files.length) return;
