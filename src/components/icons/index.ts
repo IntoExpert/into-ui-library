@@ -60,3 +60,4 @@ export * from "./iconCopyCalenderEvents/copyCalenderEvents";
 export * from "./iconCircleAdd/circleAdd";
 export * from "./iconCalenderMonthlyView/iconCalenderMonthlyView";
 export * from "./calenderWeeklySchedule/calenderWeeklyScheduleIcon";
+export * from "./pauseIcon/pauseIcon";
