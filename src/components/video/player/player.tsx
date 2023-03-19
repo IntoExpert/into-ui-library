@@ -18,7 +18,7 @@ export const VideoPlayer = ({ showPlayButton, playButtonPosition = 'center', ...
     }
         , [play])
     return (
-        <div className={`relative w-fit`}>
+        <div className={`relative`}>
             <ReactPlayer {...props} playing={showPlayButton ? play : props.playing} />
             {showPlayButton
                 ? <span

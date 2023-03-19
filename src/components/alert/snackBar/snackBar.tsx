@@ -44,16 +44,24 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
         </div >
     );
 
+    const handleClickOutside = useCallback((e: MouseEvent) => {
+        console.log("click outside")
+        if (!ref?.current?.contains(e.target as Node)) {
+            onClose?.();
+        }
+    }, [onClose])
+
     useEffect(() => {
-        document.addEventListener("click", (e) => {
-            if (!ref?.current?.contains(e.target as Node)) {
-                onClose?.();
-            }
-        })
-    }, [onClose]);
+        if (!message) {
+            console.log("remove click outside")
+            document.removeEventListener('click', handleClickOutside, true);
+            return;
+        }
+        document.addEventListener('click', handleClickOutside, true)
+    }, [handleClickOutside, message]);
 
     if (typeof window === "object") {
-        return createPortal(<MessageComponent />, document.getElementById(elementId ?? '') ?? document.body);
+        return createPortal(<MessageComponent />, document.getElementById(elementId ?? 'root') ?? document.body);
     }
 
     return (

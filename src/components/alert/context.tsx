@@ -97,7 +97,7 @@ export const AlertProvider = ({ rootElementId, children, classname }: AlertProvi
         setState(prevState => ({ ...prevState, snackBarAlert: { ...errorAlertDefaultOptions, ...options } }))
     }
 
-    const onSnackBarClose = useCallback(() => () => {
+    const onSnackBarClose = useCallback(() => {
         setState(prevState => ({ ...prevState, snackBarAlert: { message: "", className: '' } }));
     }, []);
 

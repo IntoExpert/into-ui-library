@@ -12,7 +12,6 @@ export interface DialogAlertOptions extends UiElementProps {
 };
 
 export const DialogAlert = ({ confirmButton, cancelButton, body, show, onClose, className }: DialogAlertOptions) => {
-    console.log(onClose);
     return <Modal
         show={show}
         size="sm"
