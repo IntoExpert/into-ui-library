@@ -34,7 +34,7 @@ export const CourseCard = ({
   numberOfRatings,
 }: CourseCardProps) => {
   return (
-    <Card className={`${className ?? ""}`}>
+    <Card className={`pb-4 ${className ?? ""}`}>
       <div className="">
         <div>
           <MediaCard {...mediaCard} className="shadow-none" />
@@ -60,10 +60,12 @@ export const CourseCard = ({
 
         <div className="px-2 py-2 text-lg">{title}</div>
         <div className="px-2 pb-1 text-gray-500 text-xs font-semibold">{description}</div>
-        <div className="px-2 py-2 text-primary text-sm font-light">
-          <strong>{duration}</strong>
+        <div className={`px-2 py-2 space-y-2`}>
+          <div className="text-primary font-semibold text-xs">
+            {duration}
+          </div>
+          <div className="text-xs font-semibold text-red-400">{deadline}</div>
         </div>
-        <div className="px-2 py-2 text-red-400">{deadline}</div>
         {/* Rating */}
         {/* <div className="flex px-2 py-3">
           <div className="py-1">
