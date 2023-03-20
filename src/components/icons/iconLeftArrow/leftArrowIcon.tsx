@@ -1,14 +1,13 @@
-import { UiElementProps } from "../..";
-export interface LeftArrowIconProps extends UiElementProps { }
+import { IconProps } from "../iconProps";
+export interface LeftArrowIconProps extends IconProps { }
 
-export const LeftArrowIcon = (props: LeftArrowIconProps) => {
+export const LeftArrowIcon = ({ size = 7.5, className }: LeftArrowIconProps) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={className ?? " "}>
       <svg
         id="Shape"
         xmlns="http://www.w3.org/2000/svg"
-        width="7.5"
-        height="12.916"
+        width={size}
         viewBox="0 0 7.5 12.916"
       >
         <path
