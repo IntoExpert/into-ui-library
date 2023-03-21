@@ -1,9 +1,6 @@
-import StarRatingComponent from 'react-star-rating-component';
 import { UiElementProps } from '../../common/uiElement';
 import { useState } from 'react';
-import { StarIcon, StarIconState } from './starIcon';
 import StarsRating from 'react-star-rate';
-import { isEditable } from '@testing-library/user-event/dist/utils';
 
 export interface RatingStarsProps extends UiElementProps {
     /**
@@ -54,12 +51,12 @@ export const RatingStar = (props: RatingStarsProps) => {
                 },
                 full: {
                     star: {
-                        color: '#FDB901 !important'
+                        color: '#FDB901'
                     }
                 },
                 half: {
                     star: {
-                        color: '#FDB901 !important'
+                        color: '#FDB901'
                     }
                 },
                 zero: {
