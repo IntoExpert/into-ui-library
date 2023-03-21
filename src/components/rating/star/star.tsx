@@ -22,8 +22,9 @@ export interface RatingStarsProps extends UiElementProps {
      * On rate event
      */
     onRate?: (value: number) => void;
-    direction: 'rtl' | 'ltr' | undefined;
+    direction?: 'rtl' | 'ltr' | undefined;
     emptyStarColor?: string;
+    fontSize?: number;
 };
 
 const STARS_COUNT = 5;
@@ -40,29 +41,34 @@ export const RatingStar = (props: RatingStarsProps) => {
         setState({ value: value ?? 0 });
     };
 
-    return (<StarsRating
-        count={props.starsCount ?? STARS_COUNT}
-        value={state.value}
-        onChange={handleRating}
-        direction={props.direction ?? 'ltr'}
-        disabled={props.disabled}
-        style={{
-            full: {
-                star: {
-                    color: '#FDB901 !important'
+    return (<span className={`${props.className ?? ''}`}>
+        <StarsRating
+            count={props.starsCount ?? STARS_COUNT}
+            value={state.value}
+            onChange={handleRating}
+            direction={props.direction ?? 'ltr'}
+            disabled={props.disabled}
+            style={{
+                style: {
+                    fontSize: props.style.fontSize
+                },
+                full: {
+                    star: {
+                        color: '#FDB901 !important'
+                    }
+                },
+                half: {
+                    star: {
+                        color: '#FDB901 !important'
+                    }
+                },
+                zero: {
+                    star: {
+                        color: props.emptyStarColor
+                    }
                 }
-            },
-            half: {
-                star: {
-                    color: '#FDB901 !important'
-                }
-            },
-            zero: {
-                star: {
-                    color: props.emptyStarColor
-                }
-            }
 
-        }}
-    />)
+            }}
+        />
+    </span>)
 }
