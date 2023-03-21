@@ -24,7 +24,7 @@ export interface RatingStarsProps extends UiElementProps {
     onRate?: (value: number) => void;
     direction?: 'rtl' | 'ltr' | undefined;
     emptyStarColor?: string;
-    fontSize?: number;
+    fontSize?: string;
 };
 
 const STARS_COUNT = 5;
@@ -50,7 +50,7 @@ export const RatingStar = (props: RatingStarsProps) => {
             disabled={props.disabled}
             style={{
                 style: {
-                    fontSize: props.style.fontSize
+                    fontSize: props.fontSize ?? '18px'
                 },
                 full: {
                     star: {
