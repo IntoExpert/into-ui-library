@@ -30,7 +30,9 @@ export interface AvatarProps extends ImageProps {
 export const Avatar = (props: AvatarProps) => {
 
     return (
-        <div className={`flex justify-center items-center ${props.label?.place === "bottom" ? "flex-col" : ""}`}>
+        <div className={`flex justify-center items-center 
+            ${props.label?.place === "bottom" ? "flex-col" : ""} 
+            ${props.className ?? ''}`}>
             <img {...props}
                 alt={props.alt ?? props.label?.name ?? ''}
                 title={props.label?.name ?? props.alt ?? ''}
