@@ -1,17 +1,17 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../../index.css";
-import { AuthEmailInput } from "../../components/form/input/authInput/emailInput";
+import { AuthInput } from "../../components/form/input/authInput/emailInput";
 import { EmailIcon } from "../../components";
 import { UserSolidIcon } from "../../components";
 import { UserFilledIcon } from "../../components";
 
 export default {
   title: "Form/Auth Inputs",
-  component: AuthEmailInput,
-} as ComponentMeta<typeof AuthEmailInput>;
+  component: AuthInput,
+} as ComponentMeta<typeof AuthInput>;
 
-const Template: ComponentStory<typeof AuthEmailInput> = (args) => (
-  <AuthEmailInput {...args} />
+const Template: ComponentStory<typeof AuthInput> = (args) => (
+  <AuthInput {...args} />
 );
 
 export const DefaultState = Template.bind({});

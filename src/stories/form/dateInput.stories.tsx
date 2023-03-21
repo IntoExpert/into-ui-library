@@ -3,7 +3,7 @@ import "../../index.css";
 import { DateInput } from "../../components/form/input/authInput/dateInput";
 import { CalenderIcon, UserFilledIcon } from "../../components";
 export default {
-  title: "Form/name Inputs",
+  title: "Form/Date Inputs",
   component: DateInput,
 } as ComponentMeta<typeof DateInput>;
 
