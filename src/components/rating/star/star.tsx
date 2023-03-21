@@ -2,6 +2,8 @@ import StarRatingComponent from 'react-star-rating-component';
 import { UiElementProps } from '../../common/uiElement';
 import { useState } from 'react';
 import { StarIcon, StarIconState } from './starIcon';
+import StarsRating from 'react-star-rate';
+import { isEditable } from '@testing-library/user-event/dist/utils';
 
 export interface RatingStarsProps extends UiElementProps {
     /**
@@ -9,9 +11,9 @@ export interface RatingStarsProps extends UiElementProps {
      */
     value?: number;
     /**
-     * Specify if the user can edit and rate using these stars
+     * Specify if the user cannot edit and rate using these stars
      */
-    isEditable?: boolean;
+    disabled?: boolean;
     /**
      * Stars count
      */
@@ -20,6 +22,8 @@ export interface RatingStarsProps extends UiElementProps {
      * On rate event
      */
     onRate?: (value: number) => void;
+    direction: 'rtl' | 'ltr' | undefined;
+    emptyStarColor?: string;
 };
 
 const STARS_COUNT = 5;
@@ -31,35 +35,34 @@ export const RatingStar = (props: RatingStarsProps) => {
 
     const [state, setState] = useState<{ value: number }>({ value: props.value ?? 0 });
 
-    const handleRating = (value: number) => {
-        props.onRate?.(value);
-        setState({ value });
+    const handleRating = (value?: number) => {
+        props.onRate?.(value ?? 0);
+        setState({ value: value ?? 0 });
     };
 
-    const renderStars = (ratingValue: number, starIndex: number, name: string) => {
-        let state = StarIconState.Empty;
-        if (starIndex >= ratingValue) {
-
-            if (starIndex < ratingValue + 0.5) {
-                state = StarIconState.Full;
-            }
-            else {
-                state = StarIconState.Full;
-            }
-        }
-        return (
-          <span>
-            <StarIcon state={state} size={`20px`} />
-          </span>
-        );
-    };
-
-    return (<StarRatingComponent
-        name="rate2"
-        editing={props.isEditable}
-        starCount={props.starsCount ?? STARS_COUNT}
+    return (<StarsRating
+        count={props.starsCount ?? STARS_COUNT}
         value={state.value}
-        onStarClick={handleRating}
-        renderStarIcon={renderStars}
+        onChange={handleRating}
+        direction={props.direction ?? 'ltr'}
+        disabled={props.disabled}
+        style={{
+            full: {
+                star: {
+                    color: '#FDB901 !important'
+                }
+            },
+            half: {
+                star: {
+                    color: '#FDB901 !important'
+                }
+            },
+            zero: {
+                star: {
+                    color: props.emptyStarColor
+                }
+            }
+
+        }}
     />)
 }
