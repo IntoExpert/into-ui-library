@@ -1,11 +1,8 @@
 import { ReactElement } from "react";
 import { UiElementProps } from "../../../common";
-import {
-  TitleAndDiscription,
-  TitleAndDiscriptionProps,
-} from "../titleDescription";
+import { Biography, BiographyProps } from "../biography";
 
-export interface EducationProps extends TitleAndDiscriptionProps {
+export interface EducationProps extends BiographyProps {
   body?: {
     universityName?: string;
     degree?: string;
@@ -17,7 +14,7 @@ export interface EducationProps extends TitleAndDiscriptionProps {
 export const Education = (props: EducationProps) => {
   return (
     <div className="shadow rounded-lg">
-      <TitleAndDiscription title={props.title} className="shadow-none" />
+      <Biography title={props.title} className="shadow-none" />
       {props.body?.map((item) => (
         <div className="text-[10px]">
           {" "}

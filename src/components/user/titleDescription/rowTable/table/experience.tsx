@@ -1,10 +1,7 @@
-import {
-  TitleAndDiscription,
-  TitleAndDiscriptionProps,
-} from "../../titleDescription";
+import { Biography, BiographyProps } from "../../biography";
 import { ReactElement } from "react";
 
-export interface ExperienceProps extends TitleAndDiscriptionProps {
+export interface ExperienceProps extends BiographyProps {
   body?: {
     title?: string;
     companyName?: string;
@@ -17,7 +14,7 @@ export interface ExperienceProps extends TitleAndDiscriptionProps {
 export const Experience = (props: ExperienceProps) => {
   return (
     <div className={`shadow rounded-lg ${props.className ?? " "}`}>
-      <TitleAndDiscription title={props.title} className={"shadow-none"} />
+      <Biography title={props.title} className={"shadow-none"} />
       {props.body?.map((item) => (
         <div className="text-[10px] ">
           {" "}
