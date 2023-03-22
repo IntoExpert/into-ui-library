@@ -1,31 +1,28 @@
 import { ReactElement } from "react";
 import { UiElementProps } from "../../../common";
-import {
-  TitleAndDiscription,
-  TitleAndDiscriptionProps,
-} from "../titleDescription";
+import { Biography, BiographyProps } from "../biography";
 
-export interface TitleAndTableProps extends TitleAndDiscriptionProps {
+export interface EducationProps extends BiographyProps {
   body?: {
-    title?: string;
-    subTitle?: string;
-    description?: string;
+    universityName?: string;
+    degree?: string;
+    location?: string;
     icon?: ReactElement;
     iconDescription?: string;
   }[];
 }
-export const TitleAndTable = (props: TitleAndTableProps) => {
+export const Education = (props: EducationProps) => {
   return (
     <div className="shadow rounded-lg">
-      <TitleAndDiscription title={props.title} className="shadow-none" />
+      <Biography title={props.title} className="shadow-none" />
       {props.body?.map((item) => (
         <div className="text-[10px]">
           {" "}
           <div className="flex justify-between px-3 pb-3 pt-2">
             <div>
-              <strong className="py-2">{item.title}</strong>
-              <p>{item.subTitle}</p>
-              <p> {item.description}</p>
+              <strong className="py-2">{item.universityName}</strong>
+              <p>{item.degree}</p>
+              <p> {item.location}</p>
             </div>
             <div className="flex my-auto">
               {item.icon}{" "}

@@ -1,6 +1,6 @@
 import { UiElementProps } from "../../common";
 
-export interface TitleAndDiscriptionProps extends UiElementProps {
+export interface BiographyProps extends UiElementProps {
   title?: {
     className?: string;
     content?: string;
@@ -11,7 +11,7 @@ export interface TitleAndDiscriptionProps extends UiElementProps {
   };
 }
 
-export const TitleAndDiscription = (props: TitleAndDiscriptionProps) => {
+export const Biography = (props: BiographyProps) => {
   return (
     <div className={`rounded-lg shadow ${props.className ?? " "}`}>
       <h1 className="text-primary py-3 px-3">
