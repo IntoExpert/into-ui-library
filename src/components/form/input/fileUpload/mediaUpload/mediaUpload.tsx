@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, MouseEventHandler, useCallback, useState } from "react";
 import { UiElementProps } from "../../../../common";
 import { ImageProps } from "../../../../image";
 import { FileUpload, FileUploadProps } from "../fileUpload";
@@ -10,11 +10,12 @@ import { VideoPlayer } from "../../../../video";
 
 export interface MediaUploadProps extends UiElementProps {
     uploadOptions?: FileUploadProps;
-    image?: ImageProps;
+    mediaSrc?: string;
     uploadButton?: ButtonProps;
     retakeButton?: ButtonProps;
     mode?: "photo" | "video";
     onUpload?: (file: File) => void;
+    isLoading?: boolean;
 };
 
 export interface MediaUploadState {
@@ -27,23 +28,37 @@ export interface MediaUploadState {
 
 export const MediaUpload = (props: MediaUploadProps) => {
 
-    const [state, setState] = useState<MediaUploadState>({});
+    const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
     const onAdd = (files: File[]) => {
         if (!files.length) return;
-
         const file = files[0];
 
         props.uploadOptions?.onAdd?.([file]);
+        setState(prevState => ({
+            ...prevState, media: {
+                ...prevState.media,
+                file: file
+            }
+        }))
 
         readFileThenGenerateUrl(file, onObjectUrlCreated);
     };
 
     const onObjectUrlCreated = (url: string) => {
-        setState(prevState => ({ ...prevState, media: { src: url }, isRetake: false }));
+
+        setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
     };
 
     const onVideoRecorded = (videoBlobs: Blob) => {
+        setState(prevState => ({
+            ...prevState, media: {
+                ...prevState.media,
+                file: new File([videoBlobs], `recorded-promoVideo.${new Date().getTime()}`, {
+                    type: 'video/webm'
+                }),
+            }
+        }))
         onObjectUrlCreated(URL.createObjectURL(videoBlobs));
     };
 
@@ -52,13 +67,20 @@ export const MediaUpload = (props: MediaUploadProps) => {
         setState(prevState => ({ ...prevState, isRetake: true }));
     }
 
+    const handleMediaUpload: MouseEventHandler = useCallback((event) => {
+        event.stopPropagation();
+        if (!state.media?.file) return;
+
+        props.onUpload?.(state.media?.file)
+    }, [props, state.media?.file])
+
 
 
     const Actions = () => <div className={`flex gap-2`}>
-        <Button className={`bg-secondary flex-1`}>
+        <Button isLoading={props.isLoading} type="button" className={`bg-secondary flex-1`} onClick={handleMediaUpload}>
             {props.uploadButton?.children}
         </Button>
-        <RetakeButton className={`flex-1`} onClick={handleRetakeRequest}>
+        <RetakeButton type="button" className={`flex-1`} onClick={handleRetakeRequest}>
             {props.retakeButton?.children}
         </RetakeButton>
     </div>;
@@ -83,7 +105,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
                 <div className={`w-full h-full relative`}>
                     {!props.mode || props.mode === "photo"
                         ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
-                        : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} controls={true} />}
+                        : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} showPlayButton playButtonPosition="topLeft" />}
                     <div className={`absolute bottom-10 left-1/2 -translate-x-1/2`}>
                         <Actions />
                     </div>

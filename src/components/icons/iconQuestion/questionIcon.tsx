@@ -1,14 +1,14 @@
-import { UiElementProps } from "../..";
-export interface QuestionIconProps extends UiElementProps { }
+import { IconProps } from "../iconProps";
+export interface QuestionIconProps extends IconProps { }
 
-export const QuestionIcon = (props: QuestionIconProps) => {
+export const QuestionIcon = ({ className, size = 17 }: QuestionIconProps) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={className ?? " "}>
       <svg
         id="question"
         xmlns="http://www.w3.org/2000/svg"
-        width="17"
-        height="17"
+        width={size}
+        height={size}
         viewBox="0 0 17 17"
       >
         <g id="Group_12755" data-name="Group 12755">

@@ -21,3 +21,9 @@ OnError.args = {
     defaultValue: "Mg",
     options: ["Hi", "Hello"]
 };
+
+export const Searchable = Template.bind({});
+Searchable.args = {
+    isSearchable: true,
+    size: "sm"
+};

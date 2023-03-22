@@ -5,13 +5,13 @@ export interface LinkProps extends UiElementProps {
     title?: string;
     target?: React.HTMLAttributeAnchorTarget;
     children?: JSX.Element | string;
-    showAsButton?: boolean;
+    hasButtonStyle?: boolean;
 };
 
 export const Link = (props: LinkProps) => (
     <a  {...props}
         className={`transition-colors 
-            ${props.showAsButton ? 'hover:bg-primaryVariant' : 'hover:text-blue-600'} 
+            ${props.hasButtonStyle ? 'hover:bg-primaryVariant' : 'hover:text-primary'} 
             ${props.className ?? ''}`}
     >
         {props.children}

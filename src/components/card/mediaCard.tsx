@@ -1,13 +1,13 @@
 import { Dropdown, DropdownProps } from "../dropdown";
 import { ImageProps } from "../image";
 import { Card, CardProps } from "./card";
-import { MoreIcon, EditIcon, DeleteIcon } from "../icons";
+import { MoreIcon } from "../icons";
 
 import { Badge, BadgeProps } from "../badge/badge";
 export interface MediaCardProps extends CardProps {
   media: ImageProps;
   badge: BadgeProps;
-  dropdown: DropdownProps;
+  dropdown?: DropdownProps;
 }
 
 export const MediaCard = ({
@@ -32,7 +32,7 @@ export const MediaCard = ({
             {dropdown ? (
               <Dropdown
                 icon={
-                  <MoreIcon className="group group-hover:!fill-primary !fill-white" />
+                  <MoreIcon className="group group-hover:!fill-primary !fill-white shadow-md" />
                 }
                 className=" group  z-10 bg-primary hover:bg-primaryVariant rounded-3xl  w-6 h-6"
                 menu={dropdown.menu}
@@ -41,13 +41,12 @@ export const MediaCard = ({
               " "
             )}
           </div>
-          <div className="absolute top-0 right-0 px-2 ">
+          <div className="absolute top-0 right-2 px-2 ">
             {badge ? (
               <Badge
                 {...badge}
-                price={badge?.price}
                 children={badge.children}
-                className="bottom-2 relative fill-secondary"
+                className="bottom-2 relative fill-secondary w-20"
               />
             ) : (
               " "

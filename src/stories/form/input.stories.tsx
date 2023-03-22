@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InputField } from '../../components';
 import "../../index.css";
@@ -21,10 +20,17 @@ DefaultState.args = {
 export const OnError = Template.bind({});
 OnError.args = {
     defaultValue: "Mg",
-    errorMessage: "Type at least 4 characters"
+    errormessage: "Type at least 4 characters"
+};
+
+export const Checkbox = Template.bind({});
+Checkbox.args = {
+    type: "checkbox",
+    name: "checkbox"
 };
 
 export const featuredPlaceholder = Template.bind({});
 featuredPlaceholder.args = {
+    value: "Hi",
     featuredPlaceholder: <div className={``}>Hello <span className={`text-xs`}>70 chars</span></div>
 };

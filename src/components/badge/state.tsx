@@ -8,11 +8,10 @@ export interface StateProps extends UiElementProps {
 export const State = ({ children, className }: StateProps): ReactElement => {
   return (
     <div
-      className={`border border-black border-1 rounded-md inline-block ${
-        className ?? ""
-      }`}
+      className={`border rounded-md inline-block ${className ?? ""
+        }`}
     >
-      <div className="">
+      <div className="w-16 text-center">
         <strong>{children}</strong>
       </div>
     </div>

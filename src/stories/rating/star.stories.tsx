@@ -4,8 +4,8 @@ import { RatingStar } from '../../components/rating';
 
 
 export default {
-    title: 'Rating & Reviews/stars',
-    component: RatingStar,
+  title: 'Rating & Reviews/stars',
+  component: RatingStar,
 } as ComponentMeta<typeof RatingStar>;
 
 const Template: ComponentStory<typeof RatingStar> = (args) => <RatingStar {...args} />;
@@ -17,6 +17,6 @@ RatingStar1.args = {
 
 export const RatingStar2 = Template.bind({});
 RatingStar2.args = {
-    isEditable: true,
-    onRate: (value) => alert(value),
+  disabled: true,
+  onRate: (value) => alert(value),
 };

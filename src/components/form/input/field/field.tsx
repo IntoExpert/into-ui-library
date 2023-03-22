@@ -26,7 +26,7 @@ export interface InputFieldProps {
     /**
      * Input error message, when it is null or undefined, no error considered
      */
-    errorMessage?: string;
+    errormessage?: string;
     /**
      * Field type
      */
@@ -79,7 +79,7 @@ interface InputFieldState {
  */
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, ...props }, ref) => {
 
-    const [state, setState] = useState<InputFieldState>({ value: props.defaultValue });
+    const [state, setState] = useState<InputFieldState>({ value: value ?? props.defaultValue });
 
     useEffect(() => {
         setState(prevState => ({ ...prevState, value: value }));
@@ -99,15 +99,22 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
             const radioClasses = `appearance-none rounded-full border border-gray-300 bg-white checked:bg-white 
             checked:border-secondary checked:border-4 focus:outline-secondary transition duration-300 
             cursor-pointer focus:ring-2 focus:ring-secondary focus:shadow-none`;
-            const checkBoxClasses = `rounded accent-secondary focus:outline-secondary`;
+            const checkBoxClasses = `rounded border border-gray-400 checked:bg-red-400 checked:after:content-['✓'] 
+            checked:border-red-400 after:text-surface after:absolute after:0 after:w-full after:flex after:justify-center 
+            after:items-center after:text-xs appearance-none focus:outline-secondary after:pointer-events-none`;
 
             return (
                 <div className={`flex justify-start align-baseline ${props.containerClassName}`}>
                     <input
                         {...props}
-                        className={`h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
+                        className={`relative h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
                          ${props.className ?? ''}`}
+                        checked={state.value && (state.value === props.name || state.value === '1') ? true : false}
                         value={props.name}
+                        onClick={e => {
+                            const newValue = state.value ? '' : e.currentTarget.value;
+                            setState(prevState => ({ ...prevState, value: newValue }));
+                        }}
                         ref={ref} />
                     <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
                 </div>
@@ -119,11 +126,11 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     <input
                         {...props}
                         className={`shadow appearance-none border
-                    rounded h-14 px-3 text-gray-700 leading-tight 
-                    focus:outline-none focus:shadow-outline
-                  placeholder:text-gray-500
-                    ${props.errorMessage ? 'border-red-600' : 'border-secondary'}
-                    ${props.className ?? ''}`}
+                            rounded h-14 px-3 text-gray-700 leading-tight 
+                            focus:outline-none focus:shadow-outline
+                        placeholder:text-gray-500
+                            ${props.errormessage ? 'border-error' : 'border-secondary'}
+                            ${props.className ?? ''}`}
                         onChange={handleOnChange}
                         value={state.value}
                         ref={ref}
@@ -138,7 +145,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     }
                 </div>
 
-                {props.errorMessage && <p className="text-red-600 text-xs italic mt-1">{props.errorMessage}</p>}
+                {props.errormessage && <p className="text-error text-xs italic mt-1">{props.errormessage}</p>}
             </div>;
     };
 })

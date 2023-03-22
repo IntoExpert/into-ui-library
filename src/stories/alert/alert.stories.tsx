@@ -18,6 +18,13 @@ const AlertButton = (args: any) => {
             <Button onClick={() => alert.fireAlert({ message: 'Hello world!' })}>Alert</Button>
             <Button onClick={() => alert.fireSuccessAlert({ message: 'Hello world!' })}>Success Alert</Button>
             <Button onClick={() => alert.fireErrorAlert({ message: 'Hello world!' })}>Error Alert</Button>
+            <Button
+                onClick={() => alert.fireConfirmAlert({
+                    message: 'Hello world!',
+                    cancelTitle: "Cancel",
+                    confirmTitle: "Confirm", onConfirm: () => window.alert("Confirmed")
+                })}>
+                Confirm</Button>
         </div>
     )
 };

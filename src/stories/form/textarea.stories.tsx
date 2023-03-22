@@ -15,6 +15,7 @@ export const DefaultState = Template.bind({});
 DefaultState.args = {
     placeholder: `Text area`,
     maxLength: 300,
+    value: "Text area value",
     charLeftCountRenderer: (charLeftCount) => <span>${charLeftCount} characters left</span>,
 };
 

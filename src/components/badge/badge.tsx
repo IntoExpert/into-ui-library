@@ -1,17 +1,16 @@
+import { ReactElement } from "react";
 import { UiElementProps } from "../common";
 
 export interface BadgeProps extends UiElementProps {
-  children: string;
-  price?: string;
+  children: ReactElement;
 }
 
-export const Badge = (props: BadgeProps) => {
+export const Badge = ({ className, children }: BadgeProps) => {
   return (
-    <div className={props?.className ?? "fill-secondary"}>
+    <div className={`relative ${className ?? "fill-secondary"}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="85.766"
-        height="90.582"
+        width="100%"
         viewBox="0 0 85.766 90.582"
       >
         <path
@@ -21,13 +20,12 @@ export const Badge = (props: BadgeProps) => {
           transform="translate(0 -22.807)"
         />{" "}
       </svg>
-      <h1 className="text-white relative flex bottom-12 left-4">
-        {" "}
-        <strong>{props?.children}</strong>
-      </h1>
-      <h2 className=" relative bottom-24 text-sm left-5 line-through decoration-red-500 decoration-1">
-        <strong>{props.price}</strong>
-      </h2>
+      <div className={`absolute w-full top-1/2 -translate-y-1/2`}>
+        <h1 className="text-white flex justify-center">
+          {" "}
+          {children}
+        </h1>
+      </div>
     </div>
   );
 };
