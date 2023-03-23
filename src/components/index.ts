@@ -14,3 +14,4 @@ export * from "./dropdown";
 export * from "./modal";
 export * from "./spinner";
 export * from "./badge";
+export * from "./video";
