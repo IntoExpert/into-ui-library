@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { CheckMarkIcon, VerifiedIcon } from "../../components";
+import { CheckMarkIcon } from "../../components";
 import { Education } from "../../components/user/publicProfile";
 export default {
   title: "Form/Education ",
