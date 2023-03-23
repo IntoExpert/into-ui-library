@@ -8,7 +8,7 @@ export interface CardProps extends UiElementProps {
 
 export const Card = ({ id, children, className }: CardProps) => {
     return (
-        <article className={`shadow rounded-lg overflow-clip bg-surface ${className ?? ''}`}>
+        <article id={id} className={`shadow rounded-lg overflow-clip bg-surface ${className ?? ''}`}>
             {children}
         </article>
     );
