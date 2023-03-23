@@ -1,5 +1,4 @@
 import { Biography, BiographyProps } from "./biography";
-import { ReactElement } from "react";
 
 export interface ExperienceProps extends BiographyProps {
   body?: {
@@ -12,10 +11,11 @@ export interface ExperienceProps extends BiographyProps {
 }
 
 export const Experience = (props: ExperienceProps) => {
+  const lenght = props.body?.length;
   return (
     <div className={`shadow rounded-lg ${props.className ?? " "}`}>
       <Biography title={props.title} className={"shadow-none"} />
-      {props.body?.map((item) => (
+      {props.body?.map((item, index) => (
         <div className="text-[10px] ">
           {" "}
           <div className="flex justify-between px-3 pb-3 pt-2">
@@ -28,7 +28,7 @@ export const Experience = (props: ExperienceProps) => {
             <div className="border-gray-200 border-l mb-1"></div>
             <div className="text-[10px] w-3/4 px-2">{item.discription}</div>
           </div>
-          <hr className="mx-3"></hr>
+          {index !== lenght - 1 && <hr className="mx-3" />}
         </div>
       ))}
     </div>
