@@ -29,7 +29,7 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
     const avatar: AvatarProps = {
         ...props.avatar,
         label: {
-            classname: `text-black ${props.className ?? ''}`,
+            classname: `text-black !text-xs ${props.className ?? ''}`,
             place: "bottom",
             ...props.avatar.label
         }
@@ -39,7 +39,9 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
         <aside className={`bg-surface w-56 shadow-xl ${props.className ?? ''}`}>
             {/* User avatar */}
             <article className={`p-5 border-b border-gray-100`}>
-                <Avatar {...avatar} className={`h-20 w-20 ${props.className}`} />
+                <div className={`flex justify-center my-2`}>
+                    <Avatar {...avatar} className={`!h-16 !w-16 ${props.className ?? ''}`} />
+                </div>
                 <nav className={`flex justify-center mt-4`}>
                     <ul className="flex flex-justify-between">
                         {props.horizontalNavigationItems?.map((item, index) => {
