@@ -11,7 +11,7 @@ export interface ExperienceProps extends BiographyProps {
 }
 
 export const Experience = (props: ExperienceProps) => {
-  const lenght = props.body?.length;
+  const length = props.body?.length ?? 0;
   return (
     <div className={`shadow rounded-lg ${props.className ?? " "}`}>
       <Biography title={props.title} className={"shadow-none"} />
@@ -28,7 +28,7 @@ export const Experience = (props: ExperienceProps) => {
             <div className="border-gray-200 border-l mb-1"></div>
             <div className="text-[10px] w-3/4 px-2">{item.discription}</div>
           </div>
-          {index !== lenght - 1 && <hr className="mx-3" />}
+          {index !== length - 1 && <hr className="mx-3" />}
         </div>
       ))}
     </div>
