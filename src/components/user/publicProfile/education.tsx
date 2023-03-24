@@ -19,11 +19,13 @@ export const Education = (props: EducationProps) => {
         {props.body?.map((item, index) => (
           <div className="text-[10px]" key={index}>
             {" "}
-            <div className="flex justify-between px-3 pb-3 pt-2">
+            <div className="flex justify-between px-3 pb-3 ">
               <div>
-                <strong className="py-2">{item.universityName}</strong>
-                <p>{item.degree}</p>
-                <p> {item.location}</p>
+                <strong className="py-2 text-[13px]">
+                  {item.universityName}
+                </strong>
+                <p className="opacity-60">{item.degree}</p>
+                <p className="opacity-60"> {item.location}</p>
               </div>
               <div className="flex my-auto">
                 {item.icon}{" "}
