@@ -40,7 +40,7 @@ export const UserNavigationPanel = (props: UserNavigationPanelProps) => {
             {/* User avatar */}
             <article className={`p-5 border-b border-gray-100`}>
                 <div className={`flex justify-center my-2`}>
-                    <Avatar {...avatar} className={`!h-16 !w-16 ${props.className ?? ''}`} />
+                    <Avatar {...avatar} className={`!h-16 !w-16`} />
                 </div>
                 <nav className={`flex justify-center mt-4`}>
                     <ul className="flex flex-justify-between">

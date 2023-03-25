@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { UiElementProps } from "../common";
 import { DropdownItem, DropdownItemProps } from "./item/item";
 
@@ -21,7 +21,8 @@ export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
 
     const menuRef = useRef<HTMLUListElement>(null);
 
-    const handleToggle = () => {
+    const handleToggle = (e: React.MouseEvent) => {
+        e.stopPropagation();
         setState(prevState => {
             const newIsOpen = !prevState.isOpen;
             if (newIsOpen) {
@@ -41,7 +42,7 @@ export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
     }
 
     return (
-        <div className={`rela`}>
+        <div className={`relative`} onClick={(e) => { e.preventDefault() }}>
             <button
                 type="button"
                 className={`w-10 h-10 cursor-pointer rounded transition hover:bg-blue-50 relative ${className ?? ''}`}
