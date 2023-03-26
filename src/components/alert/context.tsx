@@ -125,7 +125,7 @@ export const AlertProvider = ({ rootElementId, children, classname }: AlertProvi
             },
             confirmButton: {
                 children: <span>{confirmTitle}</span>,
-                className: `border text-red-500 !border-red-500 bg-transparent hover:!bg-red-500 hover:!text-surface`,
+                className: `border !text-red-500 !border-red-500 bg-transparent hover:!bg-red-500 hover:!text-surface`,
                 onClick: onConfirm
             }
         })
