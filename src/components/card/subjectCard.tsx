@@ -29,12 +29,15 @@ export const SubjectCard = (props: SubjectCardProps) => {
           <div className="text-white underline px-3 py-4">{props.children}</div>
         </div>
         <div className=" absolute top-0 right-0 ">
-          <Badge
-            {...props.badge}
-            price={props.badge?.price}
-            children={props.badge?.children}
-            className="bottom-2 relative fill-secondary px-4 "
-          />
+          {props.badge ? (
+            <Badge
+              {...props.badge}
+              children={props.badge.children}
+              className="bottom-2 relative fill-secondary w-24 pr-2"
+            />
+          ) : (
+            " "
+          )}
         </div>
         <div className="bg-red-50">
           <div className=" text-[11px]  px-3 pt-3 text-gray-600">
