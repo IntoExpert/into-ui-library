@@ -18,7 +18,7 @@ export const DropdownItem = (props: DropdownItemProps) => {
             ? <li>{props.custom}</li>
             : <li onClick={e => e.stopPropagation()} className={`text-gray-700 text-sm rounded-md transition hover:bg-blue-100 ${props.className ?? ''}`}>
                 {props.link
-                    ? <Link {...props.link}>
+                    ? <Link {...props.link} className={`px-5 py-2`}>
                         <>
                             {props.icon
                                 ? <>
@@ -32,7 +32,7 @@ export const DropdownItem = (props: DropdownItemProps) => {
                     : <Button {...props.button}
                         onClick={(e) => { e.stopPropagation(); props.button?.onClick?.(e) }}
                         className={`
-                    !bg-transparent !p-0 
+                    !bg-transparent !px-5 !py-2
                     !text-gray-700 !text-sm rounded-md transition w-full h-full
                     hover:bg-blue-100 hover:!text-primary ${props.button?.className ?? ''}`}>
                         <>
