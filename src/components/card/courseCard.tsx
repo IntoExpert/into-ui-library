@@ -7,7 +7,7 @@ import { State, StateProps } from "../badge/state";
 
 import { MediaCard, MediaCardProps } from "./mediaCard";
 import { ReactElement } from "react";
-import { RatingStar, RatingStarsProps } from "../rating";
+import { RatingStarsProps } from "../rating";
 
 export interface CourseCardProps extends CardProps {
   mediaCard: MediaCardProps;
@@ -32,12 +32,13 @@ export const CourseCard = ({
   deadline,
   rating,
   numberOfRatings,
+  dir = "ltr"
 }: CourseCardProps) => {
   return (
     <Card className={`pb-4 ${className ?? ""}`}>
       <div className="">
         <div>
-          <MediaCard {...mediaCard} className="shadow-none" />
+          <MediaCard {...mediaCard} className="shadow-none" dir={dir} />
         </div>
         <div className="flex justify-between px-2 relative">
           <div className="sm:truncate md:truncate">

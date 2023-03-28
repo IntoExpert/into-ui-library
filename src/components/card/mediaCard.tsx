@@ -16,6 +16,7 @@ export const MediaCard = ({
   className,
   badge,
   dropdown,
+  dir = 'ltr'
 }: MediaCardProps) => {
   return (
     <Card className={`${className ?? ""}`}>
@@ -28,7 +29,7 @@ export const MediaCard = ({
           ></img>
         </div>
         <div className=" flex px-2 my-2 justify-between">
-          <div className="absolute top-0 left-0 px-2 py-2">
+          <div className={`absolute top-0 px-2 py-2 ${dir === 'rtl' ? 'right-0' : 'left-0'}`}>
             {dropdown ? (
               <Dropdown
                 icon={
@@ -41,7 +42,7 @@ export const MediaCard = ({
               " "
             )}
           </div>
-          <div className="absolute top-0 right-2 px-2 ">
+          <div className={`absolute top-0 px-2 ${dir === 'rtl' ? 'left-2' : 'right-2'}`}>
             {badge ? (
               <Badge
                 {...badge}
