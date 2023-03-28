@@ -33,8 +33,7 @@ export const DropdownItem = (props: DropdownItemProps) => {
                         onClick={(e) => { e.stopPropagation(); props.button?.onClick?.(e) }}
                         className={`
                     !bg-transparent !p-0 
-                    !text-gray-700 !text-sm rounded-md 
-                    transition 
+                    !text-gray-700 !text-sm rounded-md transition w-full h-full
                     hover:bg-blue-100 hover:!text-primary ${props.button?.className ?? ''}`}>
                         <>
                             {props.icon ? <>{props.icon}<span className={`mx-2`}></span></> : null}
