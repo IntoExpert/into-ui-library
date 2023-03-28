@@ -1,10 +1,11 @@
+import { ReactElement } from "react";
 import { Biography, BiographyProps } from "./biography";
 
 export interface ExperienceProps extends BiographyProps {
   body?: {
     title?: string;
     companyName?: string;
-    duration?: string;
+    duration?: string | ReactElement;
     location?: string;
     discription?: string;
   }[];
