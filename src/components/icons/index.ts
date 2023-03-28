@@ -1,3 +1,4 @@
+import { NotificationsIcon } from "./notificationsIcon/notificationsIcon";
 export * from "./iconApple/iconApple";
 export * from "./IconAvailablity/IconAvailablity";
 export * from "./iconButton/iconButton";
@@ -61,3 +62,4 @@ export * from "./iconCircleAdd/circleAdd";
 export * from "./iconCalenderMonthlyView/iconCalenderMonthlyView";
 export * from "./calenderWeeklySchedule/calenderWeeklyScheduleIcon";
 export * from "./pauseIcon/pauseIcon";
+export * from "./notificationsIcon/notificationsIcon";
