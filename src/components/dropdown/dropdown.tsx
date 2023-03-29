@@ -54,7 +54,7 @@ export const Dropdown = ({ icon, menu, dir, className }: DropdownProps) => {
             </button>
             <ul className={`absolute shadow-md rounded overflow-hidden bg-white z-10
                 ${state.isOpen ? 'max-w-fit px-1 p-2' : 'max-w-0'} 
-                ${menu?.className ?? ''} ${dir === 'rtl' ? 'left-0' : ''}`}
+                ${menu?.className ?? ''} ${dir === 'rtl' ? 'left-0 right-auto' : ''}`}
                 ref={menuRef}>
                 {menu?.items?.map((item, index) => (<DropdownItem key={index} {...item} />))}
             </ul>
