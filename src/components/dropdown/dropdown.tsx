@@ -8,6 +8,7 @@ export interface DropdownMenuProps extends UiElementProps {
 
 export interface DropdownProps extends UiElementProps {
     icon: JSX.Element;
+    onClick: (event: React.MouseEvent) => void;
     menu?: DropdownMenuProps
 };
 
@@ -15,7 +16,7 @@ export interface DropdownState {
     isOpen?: boolean;
 }
 
-export const Dropdown = ({ icon, menu, dir, className }: DropdownProps) => {
+export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps) => {
 
     const [state, setState] = useState<DropdownState>({ isOpen: false });
 
@@ -32,6 +33,7 @@ export const Dropdown = ({ icon, menu, dir, className }: DropdownProps) => {
             }
             return ({ isOpen: !prevState.isOpen })
         })
+        onClick?.(e);
     };
 
     const closeOpenMenus = (e: MouseEvent) => {
