@@ -8,7 +8,7 @@ export interface DropdownMenuProps extends UiElementProps {
 
 export interface DropdownProps extends UiElementProps {
     icon: JSX.Element;
-    onClick: (event: React.MouseEvent) => void;
+    onClick?: (event: React.MouseEvent) => void;
     menu?: DropdownMenuProps
 };
 
