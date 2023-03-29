@@ -15,7 +15,7 @@ export interface DropdownState {
     isOpen?: boolean;
 }
 
-export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
+export const Dropdown = ({ icon, menu, dir, className }: DropdownProps) => {
 
     const [state, setState] = useState<DropdownState>({ isOpen: false });
 
@@ -53,8 +53,8 @@ export const Dropdown = ({ icon, menu, className }: DropdownProps) => {
                 </span>
             </button>
             <ul className={`absolute shadow-md rounded overflow-hidden bg-white z-10
-            ${state.isOpen ? 'max-w-fit px-1 p-2 ' : 'max-w-0'} 
-            ${menu?.className ?? ''}`}
+                ${state.isOpen ? 'max-w-fit px-1 p-2' : 'max-w-0'} 
+                ${menu?.className ?? ''} ${dir === 'rtl' ? 'left-0' : ''}`}
                 ref={menuRef}>
                 {menu?.items?.map((item, index) => (<DropdownItem key={index} {...item} />))}
             </ul>
