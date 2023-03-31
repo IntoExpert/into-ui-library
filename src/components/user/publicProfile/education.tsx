@@ -14,7 +14,7 @@ export const Education = (props: EducationProps) => {
   const length = props.body?.length;
 
   return (
-    <div className={`${props.className ?? " "} shadow rounded-lg`}>
+    <div className={`${props.className ?? ""} shadow rounded-lg`}>
       <Biography title={props.title} className="shadow-none" />
       {props.body?.map((item, index) => (
         <div className="text-[10px]" key={index}>

@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useCallback, useEffect, useRef, useState } from "react";
 import { UiElementProps } from "../common";
 import { IconButton } from "../button";
 
@@ -17,14 +17,23 @@ export const Modal = ({ show, hasCloseButton, onClose, children, size, className
 
     const [element, setElement] = useState<HTMLElement | null>(null);
 
+    const ref = useRef<HTMLDivElement>(null);
+
+    const handleClickOutside = useCallback((e: MouseEvent) => {
+        if (!ref?.current?.contains(e.target as Node)) {
+            onClose?.();
+        }
+    }, [onClose]);
+
     useEffect(() => {
         setElement(document.body);
-    }, []);
+        document.addEventListener('click', handleClickOutside, true)
+    }, [handleClickOutside]);
 
     if (!show || !element) return null;
 
     return createPortal(
-        <div className={`fixed w-screen h-screen top-0 flex justify-center items-center z-30 ${bgClassname ?? ''}`}>
+        <div ref={ref} className={`fixed w-screen h-screen top-0 flex justify-center items-center z-30 ${bgClassname ?? ''}`}>
             <div className={`${size ? (`max-w-${size}`) : ''}`}>
                 <section className={`relative w-full bg-surface ${className}`}>
                     {hasCloseButton && <IconButton className={`absolute top-1 right-1 !p-0 flex items-center`} icon={<span>&times;</span>} onClick={onClose}></IconButton>}
