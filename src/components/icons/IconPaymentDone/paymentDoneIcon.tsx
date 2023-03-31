@@ -2,7 +2,7 @@ import { UiElementProps } from "../..";
 
 export interface PaymentDoneProps extends UiElementProps { }
 
-export const PaymentDone = (props: PaymentDoneProps) => {
+export const PaymentDoneIcon = (props: PaymentDoneProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg
