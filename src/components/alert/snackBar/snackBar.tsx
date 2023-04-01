@@ -45,19 +45,23 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
     );
 
     const handleClickOutside = useCallback((e: MouseEvent) => {
-        console.log("click outside")
+        if (!message) return;
+
         if (!ref?.current?.contains(e.target as Node)) {
             onClose?.();
         }
-    }, [onClose])
+    }, [onClose, message])
 
     useEffect(() => {
         if (!message) {
-            console.log("remove click outside")
             document.removeEventListener('click', handleClickOutside, true);
             return;
         }
         document.addEventListener('click', handleClickOutside, true)
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        }
     }, [handleClickOutside, message]);
 
     if (typeof window === "object") {

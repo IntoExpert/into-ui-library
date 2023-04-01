@@ -27,7 +27,15 @@ export const Modal = ({ show, hasCloseButton, onClose, children, size, className
 
     useEffect(() => {
         setElement(document.body);
-        document.addEventListener('click', handleClickOutside, true)
+        if (show) {
+            document.addEventListener('click', handleClickOutside, true)
+        } else {
+            document.removeEventListener('click', handleClickOutside, true)
+        }
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true)
+        }
     }, [handleClickOutside]);
 
     if (!show || !element) return null;
