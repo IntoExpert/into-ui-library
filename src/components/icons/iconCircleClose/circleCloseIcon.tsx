@@ -17,7 +17,7 @@ export const CircleCloseIcon = ({ size = 21, className }: CircleCloseIconprops) 
           data-name="Ellipse 1617"
           fill="none"
           stroke="#f28382"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <circle cx="10.5" cy="10.5" r="10.5" stroke="none" />
           <circle cx="10.5" cy="10.5" r="10" fill="none" />
@@ -34,7 +34,7 @@ export const CircleCloseIcon = ({ size = 21, className }: CircleCloseIconprops) 
             transform="translate(-155.744 23968.877) rotate(45)"
             fill="none"
             stroke="#f28382"
-            stroke-width="1.5"
+            strokeWidth="1.5"
           />
           <path
             id="Path_72327"
@@ -43,7 +43,7 @@ export const CircleCloseIcon = ({ size = 21, className }: CircleCloseIconprops) 
             transform="translate(-22111.945 -953.809) rotate(135)"
             fill="none"
             stroke="#f28382"
-            stroke-width="1.5"
+            strokeWidth="1.5"
           />
         </g>
       </svg>

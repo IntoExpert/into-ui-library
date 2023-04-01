@@ -29,7 +29,7 @@ export const CameraIcon = (props: CameraIconProps) => {
                 transform="translate(0 -44.8)"
                 fill="#fff"
                 stroke="#fff"
-                stroke-width="0.3"
+                strokeWidth="0.3"
               />
               <path
                 id="Path_71747"
@@ -38,7 +38,7 @@ export const CameraIcon = (props: CameraIconProps) => {
                 transform="translate(-108.109 -127.812)"
                 fill="#fff"
                 stroke="#fff"
-                stroke-width="0.3"
+                strokeWidth="0.3"
               />
               <circle
                 id="Ellipse_1593"
@@ -49,7 +49,7 @@ export const CameraIcon = (props: CameraIconProps) => {
                 transform="translate(11.576 2.974)"
                 fill="#fff"
                 stroke="#fff"
-                stroke-width="0.3"
+                strokeWidth="0.3"
               />
             </g>
           </g>

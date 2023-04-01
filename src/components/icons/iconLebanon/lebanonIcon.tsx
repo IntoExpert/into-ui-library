@@ -23,7 +23,7 @@ export const LebanonIcon = (props: LebanonIconprops) => {
               transform="translate(0 0)"
               fill="#fff"
               stroke="#707070"
-              stroke-width="1"
+              strokeWidth="1"
             />
           </clipPath>
           <clipPath id="clip-path-2">

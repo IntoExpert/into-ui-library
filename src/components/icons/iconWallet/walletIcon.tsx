@@ -18,7 +18,7 @@ export const WalletIcon = (props: WalletIconProps) => {
             transform="translate(-2 -14.881)"
             fill="#3f94f3"
             stroke="#3f94f3"
-            stroke-width="0.7"
+            strokeWidth="0.7"
           />
           <path
             id="Path_3315"
@@ -27,7 +27,7 @@ export const WalletIcon = (props: WalletIconProps) => {
             transform="translate(-37.881 -27.988)"
             fill="#3f94f3"
             stroke="#3f94f3"
-            stroke-width="0.7"
+            strokeWidth="0.7"
           />
           <path
             id="Path_3316"
@@ -36,7 +36,7 @@ export const WalletIcon = (props: WalletIconProps) => {
             transform="translate(-2 -4.659)"
             fill="#3f94f3"
             stroke="#3f94f3"
-            stroke-width="0.7"
+            strokeWidth="0.7"
           />
           <path
             id="Path_3317"
@@ -45,7 +45,7 @@ export const WalletIcon = (props: WalletIconProps) => {
             transform="translate(-41.784 -31.592)"
             fill="#3f94f3"
             stroke="#3f94f3"
-            stroke-width="0.7"
+            strokeWidth="0.7"
           />
         </g>
       </svg>

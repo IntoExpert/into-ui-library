@@ -22,7 +22,7 @@ export const HeartIcon = (props: HeartIconProps) => {
             transform="translate(-93 -238.821)"
             fill="#fdb901"
             stroke="#fdb901"
-            stroke-width="1"
+            strokeWidth="1"
           />
         </g>
       </svg>

@@ -17,7 +17,7 @@ export const ThickSquareIcon = (props: ThickSquareIconProps) => {
           data-name="Rectangle 7108"
           fill="none"
           stroke="#f28382"
-          stroke-width="2.5"
+          strokeWidth="2.5"
         >
           <rect width="17" height="17" rx="2" stroke="none" />
           <rect

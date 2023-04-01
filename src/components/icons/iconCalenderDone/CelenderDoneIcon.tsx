@@ -22,7 +22,7 @@ export const CalenderDoneIcon = (props: CalenderDoneIconProps) => {
             transform="translate(-5 -5.199)"
             fill="#fff"
             stroke="#fff"
-            stroke-width="0.2"
+            strokeWidth="0.2"
           />
           <path
             id="Path_2548"
@@ -31,7 +31,7 @@ export const CalenderDoneIcon = (props: CalenderDoneIconProps) => {
             transform="translate(-26.148 -35.818)"
             fill="#fff"
             stroke="#fff"
-            stroke-width="0.2"
+            strokeWidth="0.2"
           />
         </g>
       </svg>

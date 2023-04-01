@@ -22,9 +22,9 @@ export const StarIcon = (props: StarIconProps) => {
             transform="translate(-128.914 -1144.047)"
             fill="none"
             stroke="#fff"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.2"
           />
         </g>
       </svg>

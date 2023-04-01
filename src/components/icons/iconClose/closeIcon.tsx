@@ -22,7 +22,7 @@ export const CloseIcon = (props: CloseIconprops) => {
             transform="translate(7.071) rotate(45)"
             fill="none"
             stroke="#fff"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <line
             id="Line_3139"
@@ -31,7 +31,7 @@ export const CloseIcon = (props: CloseIconprops) => {
             transform="translate(0.001) rotate(45)"
             fill="none"
             stroke="#fff"
-            stroke-width="1"
+            strokeWidth="1"
           />
         </g>
       </svg>

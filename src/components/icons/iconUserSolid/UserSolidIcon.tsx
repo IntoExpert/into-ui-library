@@ -25,7 +25,7 @@ export const UserSolidIcon = (props: UserSolidIconProps) => {
           transform="translate(-1357.722 -3541.766)"
           fill="none"
           stroke="#fff"
-          stroke-width="1.2"
+          strokeWidth="1.2"
         />
       </svg>
     </div>

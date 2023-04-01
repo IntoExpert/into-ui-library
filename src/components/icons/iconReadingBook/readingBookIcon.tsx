@@ -18,7 +18,7 @@ export const ReadingBookIcon = (props: ReadingBookIconProps) => {
             transform="translate(-5.738 -4.94)"
             fill="#3f94f3"
             stroke="#3f94f3"
-            stroke-width="0.4"
+            strokeWidth="0.4"
           />
         </g>
       </svg>

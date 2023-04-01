@@ -23,7 +23,7 @@ export const PaymentErrorIcon = (props: PaymentErroriconProps) => {
             fill="#f6bd60"
             stroke="rgba(0,0,0,0)"
             stroke-miterlimit="10"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <path
             id="Union_21"

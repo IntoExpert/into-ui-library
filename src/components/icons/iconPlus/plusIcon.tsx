@@ -17,7 +17,7 @@ export const PlusIcon = (props: PlusIconProps) => {
           data-name="Ellipse 1618"
           fill="none"
           stroke="#85a59d"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <circle cx="10.5" cy="10.5" r="10.5" stroke="none" />
           <circle cx="10.5" cy="10.5" r="10" fill="none" />
@@ -34,7 +34,7 @@ export const PlusIcon = (props: PlusIconProps) => {
             transform="translate(16883.734 18151.402)"
             fill="none"
             stroke="#85a59d"
-            stroke-width="1.5"
+            strokeWidth="1.5"
           />
           <path
             id="Path_72324"
@@ -43,7 +43,7 @@ export const PlusIcon = (props: PlusIconProps) => {
             transform="translate(1357.908 523.41) rotate(90)"
             fill="none"
             stroke="#85a59d"
-            stroke-width="1.5"
+            strokeWidth="1.5"
           />
         </g>
       </svg>

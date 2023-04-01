@@ -17,7 +17,7 @@ export const DuplicateIcon = (props: DuplicateIconProps) => {
           data-name="Ellipse 1619"
           fill="none"
           stroke="#3f94f3"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <circle cx="10.5" cy="10.5" r="10.5" stroke="none" />
           <circle cx="10.5" cy="10.5" r="10" fill="none" />

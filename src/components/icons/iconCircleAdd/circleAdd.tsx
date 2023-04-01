@@ -19,7 +19,7 @@ export const CircleAddIcon = ({ size = 21, className }: CircleAddIconProps) => (
       data-name="Ellipse 1618"
       fill="none"
       stroke="#85a59d"
-      stroke-width="1"
+      strokeWidth="1"
     >
       <circle cx="10.5" cy="10.5" r="10.5" stroke="none" />
       <circle cx="10.5" cy="10.5" r="10" fill="none" />
@@ -36,7 +36,7 @@ export const CircleAddIcon = ({ size = 21, className }: CircleAddIconProps) => (
         transform="translate(15530.804 17627.992)"
         fill="none"
         stroke="#85a59d"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
       <path
         id="Path_72324"
@@ -45,7 +45,7 @@ export const CircleAddIcon = ({ size = 21, className }: CircleAddIconProps) => (
         transform="translate(4.978) rotate(90)"
         fill="none"
         stroke="#85a59d"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </g>
   </svg>

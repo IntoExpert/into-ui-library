@@ -27,9 +27,9 @@ export const CheckMarkIcon = ({ className, size = 20 }: CheckMarkIconProps) => {
           transform="translate(-9125.433 -256.591)"
           fill="none"
           stroke="#fff"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
         />
       </svg>
     </div >
