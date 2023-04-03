@@ -4,14 +4,14 @@ import { StateManagerProps } from 'react-select/dist/declarations/src/useStateMa
 import { InputLabel } from '../label';
 import { SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
-import { size } from 'lodash';
+import { ReactElement } from 'react';
 
 export interface SelectProps extends UiElementProps, StateManagerProps {
     errormessage?: string;
     /**
      * Select label, if you leave it empty no label will show
      */
-    label?: string;
+    label?: string | ReactElement;
     /**
      * 
      */
