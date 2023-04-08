@@ -113,7 +113,7 @@ export const Camera = (props: CameraProps) => {
                     sampleRate: 144100
                 }}
                 audio={props.mode === "video"}
-                muted={capturing ? true : false}
+                muted={true}
             />
             {showCapture ? <button
                 type="button"
