@@ -91,7 +91,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
     const Actions = () => <div className={`flex gap-2`}>
         {state.media?.src ? <Button
-            {...props.retakeButton}
+            {...props.uploadButton}
             isLoading={props.isLoading}
             type="button"
             className={`bg-secondary flex-1 ${props.retakeButton?.className ?? ''}`}
