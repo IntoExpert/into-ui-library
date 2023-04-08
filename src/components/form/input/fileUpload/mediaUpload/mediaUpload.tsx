@@ -45,6 +45,18 @@ export const MediaUpload = (props: MediaUploadProps) => {
         readFileThenGenerateUrl(file, onObjectUrlCreated);
     };
 
+    const onCapture = async (data: string) => {
+        // TODO make a better file name
+        const file = dataURLtoFile(data, `promo-image-${Date.now()}.jpeg`);
+        setState(prevState => ({
+            ...prevState, media: {
+                src: data,
+                file,
+            }
+        }))
+        onObjectUrlCreated(URL.createObjectURL(file))
+    };
+
     const onObjectUrlCreated = (url: string) => {
 
         setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
@@ -77,9 +89,9 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
 
     const Actions = () => <div className={`flex gap-2`}>
-        <Button isLoading={props.isLoading} type="button" className={`bg-secondary flex-1`} onClick={handleMediaUpload}>
+        {state.media?.src ? <Button isLoading={props.isLoading} type="button" className={`bg-secondary flex-1`} onClick={handleMediaUpload}>
             {props.uploadButton?.children}
-        </Button>
+        </Button> : null}
         <RetakeButton type="button" className={`flex-1`} onClick={handleRetakeRequest}>
             {props.retakeButton?.children}
         </RetakeButton>
@@ -124,7 +136,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
                     className={`${state.media?.src || state.isRetake ? '!border-none' : ''} ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
                     body={state.isRetake
                         ? <Camera mode={props.mode}
-                            onCapture={onObjectUrlCreated}
+                            onCapture={onCapture}
                             onVideoRecorded={onVideoRecorded} />
                         : !state.media?.src
                             ? <NoImageDropzoneBody />

@@ -5,6 +5,7 @@ import { Link, LinkProps } from "../../links";
 import { ReactElement } from "react";
 
 export interface DropdownItemProps extends UiElementProps {
+    key?: string | number;
     icon?: JSX.Element;
     link?: LinkProps;
     button?: ButtonProps;

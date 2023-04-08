@@ -58,7 +58,7 @@ export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps)
                 ${state.isOpen ? 'max-w-fit px-1 p-2' : 'max-w-0'} 
                 ${menu?.className ?? ''} ${dir === 'rtl' ? 'left-0 right-auto' : ''}`}
                 ref={menuRef}>
-                {menu?.items?.map((item, index) => (<DropdownItem key={index} {...item} />))}
+                {menu?.items?.map((item, index) => (<DropdownItem key={item.key ?? index} {...item} />))}
             </ul>
         </div>
     );

@@ -17,7 +17,7 @@ export const DialogAlert = ({ confirmButton, cancelButton, body, show, onClose, 
         size="sm"
         hasCloseButton
         onClose={onClose}
-        className={`p-4 bg-surface shadow-lg rounded ${className ?? ''}`}>
+        className={`p-4 w-md bg-surface shadow-lg rounded ${className ?? ''}`}>
         <div className={``}>
             <div className={`flex`}>
                 {body}

@@ -107,7 +107,10 @@ export const Camera = (props: CameraProps) => {
                 ref={webcamRef}
                 videoConstraints={VIDEO_CONSTRAINT}
                 onUserMedia={() => setShowCapture(true)}
-                audio={true}
+                audioConstraints={{
+                    noiseSuppression: true,
+                    echoCancellation: true,
+                }}
             />
             {showCapture ? <button
                 type="button"
