@@ -110,9 +110,10 @@ export const Camera = (props: CameraProps) => {
                 audioConstraints={{
                     noiseSuppression: true,
                     echoCancellation: true,
-                    sampleRate: 44.1
+                    sampleRate: 144100
                 }}
                 audio={props.mode === "video"}
+                muted={capturing ? true : false}
             />
             {showCapture ? <button
                 type="button"
