@@ -90,10 +90,17 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
 
     const Actions = () => <div className={`flex gap-2`}>
-        {state.media?.src ? <Button isLoading={props.isLoading} type="button" className={`bg-secondary flex-1`} onClick={handleMediaUpload}>
+        {state.media?.src ? <Button
+            {...props.retakeButton}
+            isLoading={props.isLoading}
+            type="button"
+            className={`bg-secondary flex-1 ${props.retakeButton?.className ?? ''}`}
+            onClick={handleMediaUpload}>
             {props.uploadButton?.children}
         </Button> : null}
-        <RetakeButton type="button" className={`flex-1`} onClick={handleRetakeRequest}>
+        <RetakeButton {...props.retakeButton} type="button"
+            className={`flex-1 ${props.retakeButton?.className ?? ''}`}
+            onClick={handleRetakeRequest}>
             {props.retakeButton?.children}
         </RetakeButton>
     </div>;
