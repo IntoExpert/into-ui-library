@@ -1,12 +1,12 @@
 import { MouseEvent, MouseEventHandler, useCallback, useState } from "react";
 import { UiElementProps } from "../../../../common";
-import { ImageProps } from "../../../../image";
 import { FileUpload, FileUploadProps } from "../fileUpload";
 import { Button, ButtonProps } from "../../../../button";
 import { RetakeButton } from "../retakeButton/retakeButton";
 import { readFileThenGenerateUrl } from "../helpers";
 import { Camera } from "../../../../camera/camera";
 import { VideoPlayer } from "../../../../video";
+import { dataURLtoFile } from "../../../../lib/files";
 
 export interface MediaUploadProps extends UiElementProps {
     uploadOptions?: FileUploadProps;
@@ -15,6 +15,7 @@ export interface MediaUploadProps extends UiElementProps {
     retakeButton?: ButtonProps;
     mode?: "photo" | "video";
     onUpload?: (file: File) => void;
+    onChange?: (url: string) => void;
     isLoading?: boolean;
 };
 
@@ -58,7 +59,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
     };
 
     const onObjectUrlCreated = (url: string) => {
-
+        props.onChange?.(url);
         setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
     };
 

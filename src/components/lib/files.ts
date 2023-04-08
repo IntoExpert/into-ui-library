@@ -1,4 +1,4 @@
-function dataURLtoFile(dataurl: string, filename: string) {
+export function dataURLtoFile(dataurl: string, filename: string) {
   var arr = dataurl.split(","),
     mime = arr[0]!.match(/:(.*?);/)![1],
     bstr = atob(arr[1]),
