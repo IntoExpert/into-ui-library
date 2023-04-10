@@ -18,18 +18,25 @@ defaultState.args = {
   badge: {
     children: <span>$1,400</span>,
   },
-  contentCurriculum: {
-    curriculum: <p>Curriculum</p>,
-    curriculumType: <p>American - Britch - Lebanese - French</p>,
-  },
-  contentGrade: {
-    grade: <p>Grade</p>,
-    gradeType: <p>Grade One To Five Grade Six To Nine</p>,
-  },
-  contentLanguage: {
-    Language: <p>Language</p>,
-    LanguageType: <p>Arabic - English</p>,
-  },
+  list: [
+    {
+      key: 0,
+      title: "Curriculum",
+      content: "American - Britch - Lebanese - French",
+    },
+
+    {
+      key: 1,
+      title: "Curriculum",
+      content: "American - Britch - Lebanese - French",
+    },
+    {
+      key: 2,
+      title: "Curriculum",
+      content: "American - Britch - Lebanese - French",
+    },
+  ],
+
   button: {
     className: " w-full",
     children: (

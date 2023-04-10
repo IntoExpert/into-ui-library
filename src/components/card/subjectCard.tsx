@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { Children, ReactElement } from "react";
 import { Badge, BadgeProps } from "../badge/badge";
 import { Button, ButtonProps } from "../button";
 import { Card, CardProps } from "./card";
@@ -6,22 +6,18 @@ import { Card, CardProps } from "./card";
 export interface SubjectCardProps extends CardProps {
   children?: ReactElement;
   badge?: BadgeProps;
-  contentCurriculum: {
-    curriculum: ReactElement;
-    curriculumType: ReactElement;
-  };
-  contentGrade: {
-    grade: ReactElement;
-    gradeType: ReactElement;
-  };
-  contentLanguage: {
-    Language: ReactElement;
-    LanguageType: ReactElement;
-  };
+  list?: {
+    key: number;
+    title: string;
+    content: string;
+  }[];
+
   button: ButtonProps;
 }
 
 export const SubjectCard = (props: SubjectCardProps) => {
+  const length = props.list?.length;
+
   return (
     <Card className={props.className ?? " "}>
       <div className=" relative">
@@ -33,40 +29,31 @@ export const SubjectCard = (props: SubjectCardProps) => {
             <Badge
               {...props.badge}
               children={props.badge.children}
-              className="bottom-2 relative fill-secondary w-24 pr-2"
+              className="bottom-2 relative fill-secondary w-[85px]  pr-2"
             />
           ) : (
             " "
           )}
         </div>
+
         <div className="bg-red-50">
-          <div className=" text-[11px]  px-3 pt-3 text-gray-600">
-            {props.contentCurriculum.curriculum}
-          </div>
-          <div className="text-[11px] px-3 pt-2 w-1/2">
-            {" "}
-            {props.contentCurriculum.curriculumType}
-          </div>
-        </div>
-        <hr></hr>
-        <div className="bg-red-50">
-          <div className=" text-[11px]  px-3 pt-3 text-gray-600">
-            {props.contentGrade.grade}
-          </div>
-          <div className="text-[11px] px-3 pt-2 w-1/2">
-            {" "}
-            {props.contentGrade.gradeType}
-          </div>
-        </div>
-        <hr></hr>
-        <div className="bg-red-50">
-          <div className=" text-[11px]  px-3 pt-3 text-gray-600">
-            {props.contentLanguage.Language}
-          </div>
-          <div className="text-[11px] px-3 pt-2 w-1/2">
-            {" "}
-            {props.contentLanguage.LanguageType}
-          </div>
+          {props.list?.map((items, index) => {
+            return (
+              <div>
+                <div
+                  key={items.key}
+                  className=" text-[11px]  px-3 pt-3 text-gray-600"
+                >
+                  {items.title}
+                </div>
+                <div className="text-[11px] px-3 py-2 w-1/2">
+                  {" "}
+                  {items.content}
+                </div>
+                {index !== length - 1 && <hr className="mx-3" />}
+              </div>
+            );
+          })}
         </div>
 
         <div className="bg-red-50">
