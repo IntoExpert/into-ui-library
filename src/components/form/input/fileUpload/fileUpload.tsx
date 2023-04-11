@@ -48,10 +48,12 @@ export interface FileUploadProps extends UiElementProps {
      * On files rejected event to handle rejected files
      */
     onFilesRejected?: (rejections: FileRejection[]) => void;
+
+    disabled?: boolean;
 };
 
 export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected,
-    maxFilesCount, maxSize, minSize, multiple, label, className }: FileUploadProps) => {
+    maxFilesCount, maxSize, minSize, multiple, label, disabled, className }: FileUploadProps) => {
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
         if (acceptedFiles?.length) {
@@ -73,7 +75,7 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
                 className: `border-2 border-dashed border-gray-200 rounded-md flex justify-center items-center 
                 bg-background bg-opacity-30 overflow-hidden ${className ?? ''}`
             })}>
-                <input {...getInputProps()} />
+                <input {...getInputProps({ disabled })} />
                 {
                     isDragActive ?
                         (onDropAvailableContent || <p>Drop the files here ...</p>) :

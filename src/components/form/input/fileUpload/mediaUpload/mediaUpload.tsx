@@ -9,6 +9,7 @@ import { VideoPlayer } from "../../../../video";
 import { dataURLtoFile } from "../../../../lib/files";
 
 export interface MediaUploadProps extends UiElementProps {
+    disabled?: boolean;
     uploadOptions?: FileUploadProps;
     mediaSrc?: string;
     uploadButton?: ButtonProps;
@@ -92,6 +93,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
     const Actions = () => <div className={`flex gap-2`}>
         {state.media?.src ? <Button
             {...props.uploadButton}
+            disabled={props.disabled || props.uploadButton?.disabled}
             isLoading={props.isLoading}
             type="button"
             className={`bg-secondary flex-1 ${props.retakeButton?.className ?? ''}`}
@@ -99,6 +101,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
             {props.uploadButton?.children}
         </Button> : null}
         <RetakeButton {...props.retakeButton} type="button"
+            disabled={props.disabled || props.retakeButton?.disabled}
             className={`flex-1 ${props.retakeButton?.className ?? ''}`}
             onClick={handleRetakeRequest}>
             {props.retakeButton?.children}
@@ -140,6 +143,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
                 <FileUpload
                     {...DEFAULT_FILE_UPLOAD_OPTIONS}
                     {...props.uploadOptions}
+                    disabled={props.disabled || props.uploadOptions?.disabled}
                     onAdd={onAdd}
                     className={`${state.media?.src || state.isRetake ? '!border-none' : ''} ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
                     body={state.isRetake
