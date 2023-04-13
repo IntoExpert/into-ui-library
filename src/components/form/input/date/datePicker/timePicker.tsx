@@ -19,9 +19,10 @@ export interface TimePickerProps extends UiElementProps, ReactDatePickerProps {
      */
     errormessage?: string;
     hasError?: boolean;
+    dateFormate?: string | string[];
 };
 
-export const TimePicker = ({ className, hasError, value, ...props }: TimePickerProps) => {
+export const TimePicker = ({ className, hasError, value, dateFormat = 'hh:mm aa', ...props }: TimePickerProps) => {
 
     return (
         <div className={`text-start ${props.containerClassName}`}>
@@ -32,7 +33,7 @@ export const TimePicker = ({ className, hasError, value, ...props }: TimePickerP
                     showTimeSelect
                     showTimeSelectOnly
                     timeIntervals={30}
-                    dateFormat={`hh:mm aa`}
+                    dateFormat={dateFormat}
                     {...props}
                     className={`timpicker shadow appearance-none border 
             rounded h-10 w-24 px-3 text-gray-700 leading-tight 
