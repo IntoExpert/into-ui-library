@@ -14,3 +14,14 @@ defaultState.args = {
     minDate: new Date(),
     selected: new Date(),
 };
+
+export const DateTimePicker = Template.bind({});
+DateTimePicker.args = {
+    showTimeSelectOnly: false,
+    showTimeSelect: true,
+    dateFormat: 'yyyy-MM-dd hh:mm aa',
+    className: 'w-48',
+    containerClassName: 'has-shadow',
+    minDate: new Date(),
+    selected: new Date(),
+};

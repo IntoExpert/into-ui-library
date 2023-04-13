@@ -31,8 +31,7 @@ $border-color: rgb(229, 231, 235);
     }
 
     &.react-datepicker__navigation--previous {
-      left: auto;
-      right: 2.5rem;
+      left: 12rem;
     }
   }
 
@@ -73,5 +72,16 @@ $border-color: rgb(229, 231, 235);
     box-shadow: 0 0 9px -1px #fafafa;
     border: 1px solid $border-color;
     border-radius: 0.25rem;
+  }
+}
+
+.has-shadow {
+  .react-datepicker__month-container {
+    box-shadow: -1px 1px 8px 0 #efefef;
+  }
+
+  .react-datepicker__time-container {
+    box-shadow: -1px 1px 8px 0 #efefef;
+    border: none;
   }
 }
