@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UiElementProps } from "../../common";
+import { bool } from "prop-types";
 
 export interface ExpandablePanelProps extends UiElementProps {
     header?: {
@@ -14,18 +15,28 @@ export interface ExpandablePanelProps extends UiElementProps {
 
 export interface ExpandablePanelState {
     isOpen?: boolean;
+    isOverflowVisible?: boolean;
 }
 
 export const ExpandablePanel = (props: ExpandablePanelProps) => {
 
     const [state, setState] = useState<ExpandablePanelState>({
-        isOpen: props.isOpen || false
+        isOpen: props.isOpen || false,
+        isOverflowVisible: false
     });
 
     const togglePanel = () => {
         setState(prevState => ({ ...prevState, isOpen: !prevState.isOpen }));
         props.onToggle?.(!state.isOpen);
     };
+
+    useEffect(() => {
+        if (!state.isOpen) setState(prevState => ({ ...prevState, isOverflowVisible: false }));
+
+        setTimeout(() => {
+            if (!state.isOpen) setState(prevState => ({ ...prevState, isOverflowVisible: true }));
+        }, 500);
+    }, [state.isOpen]);
 
     return (
         <article className={`rounded-none border-t border-t-gray-100 p-2 ${props.className ?? ''}`} >
@@ -41,7 +52,7 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
                 </span>
             </button>
             <div
-                className={`overflow-hidden transition-all ${state.isOpen ? 'max-h-screen' : 'max-h-0'}`}>
+                className={`${state.isOverflowVisible ? 'overflow-hidden' : ''} transition-all ${state.isOpen ? 'max-h-screen' : 'max-h-0'}`}>
                 {props.children}
             </div>
         </article>
