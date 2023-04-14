@@ -24,7 +24,9 @@ export const Modal = ({ show, hasCloseButton, onClose, children, size, className
 
     return createPortal(
         <div ref={ref} onClick={onClose} className={`fixed w-screen h-screen top-0 flex justify-center items-center z-30 ${bgClassname ?? ''}`}>
-            <section className={`relative w-full bg-surface ${size ? (`max-w-${size}`) : ''} ${className}`}>
+            <section
+                onClick={e => e.stopPropagation()}
+                className={`relative w-full bg-surface ${size ? (`max-w-${size}`) : ''} ${className}`}>
                 {hasCloseButton && <IconButton className={`absolute top-1 right-1 !p-0 flex items-center`} icon={<span>&times;</span>} onClick={onClose}></IconButton>}
                 {children}
             </section>
