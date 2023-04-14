@@ -31,10 +31,13 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
     };
 
     useEffect(() => {
-        if (!state.isOpen) setState(prevState => ({ ...prevState, isOverflowVisible: false }));
+        if (!state.isOpen) {
+            setState(prevState => ({ ...prevState, isOverflowVisible: false }));
+            return;
+        }
 
         setTimeout(() => {
-            if (!state.isOpen) setState(prevState => ({ ...prevState, isOverflowVisible: true }));
+            setState(prevState => ({ ...prevState, isOverflowVisible: true }));
         }, 500);
     }, [state.isOpen]);
 
@@ -53,7 +56,7 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
             </button>
             <div
                 className={`
-                ${state.isOverflowVisible || !state.isOpen ? 'overflow-hidden' : ''}
+                ${!state.isOverflowVisible || !state.isOpen ? 'overflow-hidden' : ''}
                  transition-all 
                  ${state.isOpen ? 'max-h-screen' : 'max-h-0'}`}>
                 {props.children}
