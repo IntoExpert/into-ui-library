@@ -19,24 +19,6 @@ export const Modal = ({ show, hasCloseButton, onClose, children, size, className
 
     const ref = useRef<HTMLDivElement>(null);
 
-    const handleClickOutside = useCallback((e: MouseEvent) => {
-        if (!ref?.current?.contains(e.target as Node)) {
-            onClose?.();
-        }
-    }, [onClose]);
-
-    useEffect(() => {
-        setElement(document.body);
-        if (show) {
-            document.addEventListener('click', handleClickOutside, true)
-        } else {
-            document.removeEventListener('click', handleClickOutside, true)
-        }
-
-        return () => {
-            document.removeEventListener('click', handleClickOutside, true)
-        }
-    }, [handleClickOutside]);
 
     if (!show || !element) return null;
 
