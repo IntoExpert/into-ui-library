@@ -68,3 +68,4 @@ export * from "./walletIcon/walletIcon";
 export * from "./reviewIcon/reviewIcon";
 export * from "./heartIcon2/heartIcon2";
 export * from "./dashboardHomeIcon/dashboardHomeIcon";
+export * from "./userIcon/userIcon";
