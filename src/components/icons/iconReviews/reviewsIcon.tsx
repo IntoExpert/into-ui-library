@@ -1,14 +1,12 @@
-import { UiElementProps } from "../..";
-export interface ReviewsIconProps extends UiElementProps { }
+import { IconProps } from "../iconProps";
 
-export const ReviewsIcon = (props: ReviewsIconProps) => {
+export const ReviewsIcon = ({ size = 14, className = 'fill-black' }: IconProps) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={`${className}`}>
       <svg
         id="LuiYfj"
         xmlns="http://www.w3.org/2000/svg"
-        width="19.764"
-        height="17.123"
+        width={size}
         viewBox="0 0 19.764 17.123"
       >
         <g id="Group_9560" data-name="Group 9560">
