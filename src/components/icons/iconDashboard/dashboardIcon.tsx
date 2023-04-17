@@ -1,15 +1,14 @@
-import { UiElementProps } from "../..";
-export interface DashboardIconProps extends UiElementProps { }
+import { IconProps } from "../iconProps";
 
-export const DashboardIcon = (props: DashboardIconProps) => {
+
+export const DashboardIcon = ({ size = 19, className = '' }: IconProps) => {
   return (
-    <div className={props.className ?? " "}>
+    <div className={`${className}`}>
       <svg
         id="Component_455_1"
         data-name="Component 455 – 1"
         xmlns="http://www.w3.org/2000/svg"
-        width="19.402"
-        height="19.402"
+        width={19}
         viewBox="0 0 19.402 19.402"
       >
         <path
