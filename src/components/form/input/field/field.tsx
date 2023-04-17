@@ -65,6 +65,8 @@ export interface InputFieldProps {
      * Featured placeholder, show JSX elements as placeholder
      */
     featuredPlaceholder?: ReactElement | string;
+    min?: number | string;
+    max?: number | string;
 }
 
 interface InputFieldState {
