@@ -47,7 +47,7 @@ export const MediaCard = ({
               <Badge
                 {...badge}
                 children={badge.children}
-                className="bottom-2 relative fill-secondary w-20"
+                className={`bottom-2 relative ${badge.className ?? 'fill-secondary'} w-20`}
               />
             ) : (
               " "

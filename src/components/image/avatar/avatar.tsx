@@ -39,7 +39,7 @@ export const Avatar = (props: AvatarProps) => {
                 className={`rounded-full object-cover w-10 h-10 aspect-square ${props.className ?? ''}`}
                 loading={props.loadingMethod ?? "lazy"} />
             {props.label?.name ?
-                <h4 className={`mx-2 my-2 text-sm font-bold text-gray-500 whitespace-nowrap ${props.label?.classname}`}>
+                <h4 dir="auto" className={`mx-2 my-2 text-sm font-bold text-gray-500 whitespace-nowrap ${props.label?.classname}`}>
                     {props.label?.name}
                 </h4> : null}
         </div>
