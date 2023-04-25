@@ -10,9 +10,10 @@ export interface ModalProps extends UiElementProps {
     children?: ReactElement;
     size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "full";
     bgClassname?: string;
+    containerElementId?: string;
 };
 
-export const Modal = ({ show, hasCloseButton, onClose, children, size, className, bgClassname }: ModalProps) => {
+export const Modal = ({ show, hasCloseButton, onClose, children, size, containerElementId, className, bgClassname }: ModalProps) => {
 
 
     const [element, setElement] = useState<HTMLElement | null>(null);
@@ -26,8 +27,9 @@ export const Modal = ({ show, hasCloseButton, onClose, children, size, className
     }, [ref, onClose]);
 
     useEffect(() => {
-        setElement(document.body);
-    }, []);
+        const modalContainerElement = containerElementId ? document.getElementById(containerElementId) : document.body;
+        setElement(modalContainerElement);
+    }, [containerElementId]);
 
     if (!show || !element) return null;
 
