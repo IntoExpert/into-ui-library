@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { UiElementProps } from "../../common";
-import { bool } from "prop-types";
 
 export interface ExpandablePanelProps extends UiElementProps {
     header?: {

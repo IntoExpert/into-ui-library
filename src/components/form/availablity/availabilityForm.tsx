@@ -15,14 +15,14 @@ export interface AvailabilityFormProps extends UiElementProps {
 
 export const AvailabilityForm = (props: AvailabilityFormProps) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const settings = {
+  /* const settings = {
     dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 7,
     initialSlide: 0,
-  };
+  }; */
   /* function handleItemClick(item) {
     setSelectedItem(item);
   } */

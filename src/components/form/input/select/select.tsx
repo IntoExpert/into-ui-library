@@ -39,9 +39,9 @@ export const Select = (props: SelectProps) => {
                     control: (state) =>
                         `!rounded ${props.size === 'sm' ? 'h-10' : 'h-14'} 
                         ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
-                    indicatorSeparator: (state) => `!bg-transparent`,
-                    dropdownIndicator: (state) => `!text-black`,
-                    placeholder: (state) => `!placeholder:text-gray-500 ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
+                    indicatorSeparator: () => `!bg-transparent`,
+                    dropdownIndicator: () => `!text-black`,
+                    placeholder: () => `!placeholder:text-gray-500 ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
                 }}
                 components={{
                     DropdownIndicator: props.isSearchable ? DropdownIcon : undefined,

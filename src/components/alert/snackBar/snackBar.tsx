@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { UiElementProps } from "../../common/uiElement"
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { IconButton } from "../../button";
 
 export interface BelowNavBarAlertProps extends UiElementProps {

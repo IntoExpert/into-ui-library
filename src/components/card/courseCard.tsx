@@ -30,8 +30,6 @@ export const CourseCard = ({
   description,
   duration,
   deadline,
-  rating,
-  numberOfRatings,
   dir = "ltr"
 }: CourseCardProps) => {
   return (
