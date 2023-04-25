@@ -2,7 +2,7 @@ import ReactSelect, { components } from 'react-select';
 import { UiElementProps } from '../../../common';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 import { InputLabel } from '../label';
-import { SearchIcon } from '../../../icons';
+import { DropdownArrowIcon, SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import { ReactElement } from 'react';
 
@@ -20,10 +20,18 @@ export interface SelectProps extends UiElementProps, StateManagerProps {
 
 export const Select = (props: SelectProps) => {
 
-    const DropdownIcon = (props: DropdownIndicatorProps) => {
+    const DropdownSearchIcon = (props: DropdownIndicatorProps) => {
         return (
             <components.DropdownIndicator {...props}>
                 <SearchIcon className={`fill-secondary`} />
+            </components.DropdownIndicator>
+        );
+    }
+
+    const DropdownIcon = (props: DropdownIndicatorProps) => {
+        return (
+            <components.DropdownIndicator {...props}>
+                <DropdownArrowIcon className={`fill-secondary`} />
             </components.DropdownIndicator>
         );
     }
@@ -44,7 +52,7 @@ export const Select = (props: SelectProps) => {
                     placeholder: () => `!placeholder:text-gray-500 ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
                 }}
                 components={{
-                    DropdownIndicator: props.isSearchable ? DropdownIcon : undefined,
+                    DropdownIndicator: props.isSearchable ? DropdownSearchIcon : DropdownIcon,
                 }}
                 {...props}
             />
