@@ -40,5 +40,5 @@ export const Modal = ({ show, hasCloseButton, onClose, children, size, container
                 {children}
             </section>
         </div >
-        , document.body)
+        , element ?? document.body)
 }
