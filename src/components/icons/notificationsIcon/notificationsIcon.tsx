@@ -1,9 +1,10 @@
 import { IconProps } from "../iconProps";
 
-export const NotificationsIcon = ({ size = 7.649, className }: IconProps) => {
+export const NotificationsIcon = ({ size = 15, className = '' }: IconProps) => {
 
     return (
-        <svg id="Component_244_82" data-name="Component 244 – 82" xmlns="http://www.w3.org/2000/svg" width="14.621" height="17.71" viewBox="0 0 14.621 17.71">
+        <svg className={`${className}`} id="Component_244_82" data-name="Component 244 – 82" xmlns="http://www.w3.org/2000/svg" width={size}
+            viewBox="0 0 14.621 17.71">
             <g id="Group_11773" data-name="Group 11773" transform="translate(-1714.503 -27)" opacity="0">
                 <g id="Group_11772" data-name="Group 11772" transform="translate(956.971 -267.067)">
                     <path id="Path_10445" data-name="Path 10445" d="M772.148,307.232a1.908,1.908,0,0,0-.253-.762,8.206,8.206,0,0,1-.811-1.661,5.459,5.459,0,0,1-.212-1.537c0-1.119.016-2.24-.009-3.36a6.022,6.022,0,0,0-11.979-.682,7.574,7.574,0,0,0-.061,1.018c-.013,1.163,0,2.326-.026,3.489a4.5,4.5,0,0,1-.645,2.125c-.123.215-.255.424-.381.637a1.534,1.534,0,0,0,1.343,2.355c1.911,0,3.822,0,5.734,0h5.734a1.515,1.515,0,0,0,1.569-1.459A1.425,1.425,0,0,0,772.148,307.232Z" transform="translate(0 0)" fill="#3f94f3" />

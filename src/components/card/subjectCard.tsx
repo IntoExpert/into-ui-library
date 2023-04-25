@@ -1,4 +1,4 @@
-import { Children, ReactElement } from "react";
+import { ReactElement } from "react";
 import { Badge, BadgeProps } from "../badge/badge";
 import { Button, ButtonProps } from "../button";
 import { Card, CardProps } from "./card";
@@ -16,7 +16,7 @@ export interface SubjectCardProps extends CardProps {
 }
 
 export const SubjectCard = (props: SubjectCardProps) => {
-  const length = props.list?.length;
+  const length = props.list?.length ?? 0;
 
   return (
     <Card className={props.className ?? " "}>

@@ -5,7 +5,7 @@ export const CoursesIcon = ({ size = 16, className = 'stroke-black' }: IconProps
     <div className={`${className}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={16}
+        width={size}
         viewBox="0 0 16.541 20.672"
       >
         <g id="ebook" transform="translate(0.15 0.15)">

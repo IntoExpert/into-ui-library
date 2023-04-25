@@ -33,7 +33,7 @@ export const Select = (props: SelectProps) => {
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
             <ReactSelect
                 classNames={{
-                    container: (state) =>
+                    container: () =>
                         `w-full`
                     ,
                     control: (state) =>

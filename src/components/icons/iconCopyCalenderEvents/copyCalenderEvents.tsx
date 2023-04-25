@@ -4,8 +4,8 @@ export interface CopyCalenderEventsProps extends IconProps {
 
 };
 
-export const CopyCalenderEvents = ({ size = 21, className }: CopyCalenderEventsProps) =>
-(<svg id="Component_604_2" data-name="Component 604 – 2" xmlns="http://www.w3.org/2000/svg"
+export const CopyCalenderEvents = ({ size = 21, className = '' }: CopyCalenderEventsProps) =>
+(<svg className={`${className}`} id="Component_604_2" data-name="Component 604 – 2" xmlns="http://www.w3.org/2000/svg"
     width={size} height={size} viewBox="0 0 21 21">
     <g id="Ellipse_1619" data-name="Ellipse 1619" fill="none" stroke="#3f94f3" strokeWidth="1">
         <circle cx="10.5" cy="10.5" r="10.5" stroke="none" />

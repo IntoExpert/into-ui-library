@@ -1,4 +1,3 @@
-import { UiElementProps } from "../..";
 import { IconProps } from "../iconProps";
 export interface RefreshIconProps extends IconProps { }
 

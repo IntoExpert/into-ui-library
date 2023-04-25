@@ -46,12 +46,12 @@ export interface AlertContextState {
  * Alert context, that provide ability to fire an alert in any react component 
  */
 const AlertContext = createContext<AlertContextProps>({
-    fireAlert: (options) => { },
-    fireSuccessAlert: (options) => { },
-    fireErrorAlert(options) {
+    fireAlert: () => { },
+    fireSuccessAlert: () => { },
+    fireErrorAlert() {
     },
-    fireAlertDialog(options) { },
-    fireConfirmAlert: (options) => { }
+    fireAlertDialog() { },
+    fireConfirmAlert: () => { }
 });
 
 export interface AlertProviderProps {
