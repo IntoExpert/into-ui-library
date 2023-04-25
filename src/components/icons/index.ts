@@ -54,6 +54,7 @@ export * from "./iconVerified/verified";
 export * from "./iconVerified/verified";
 export * from "./iconWallet/walletIcon";
 export * from "./icponCamera/cameraIcon";
+export * from "./recordIcon/recordIcon";
 export * from "./iconschedual/scheduleIcon";
 export * from "./iconlayer/layerIcon";
 export * from "./iconCopyCalenderEvents/copyCalenderEvents";
