@@ -90,7 +90,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
 
 
-    const Actions = () => <div className={`flex gap-2`}>
+    const Actions = () => <div className={`flex gap-2 p-2`}>
         {state.media?.src ? <Button
             {...props.uploadButton}
             disabled={props.disabled || props.uploadButton?.disabled}
