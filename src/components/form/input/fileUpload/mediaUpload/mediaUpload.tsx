@@ -96,7 +96,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
             disabled={props.disabled || props.uploadButton?.disabled}
             isLoading={props.isLoading}
             type="button"
-            className={`bg-secondary flex-1 ${props.retakeButton?.className ?? ''}`}
+            className={`bg-secondary flex-1 ${props.uploadButton?.className ?? ''}`}
             onClick={handleMediaUpload}>
             {props.uploadButton?.children}
         </Button> : null}

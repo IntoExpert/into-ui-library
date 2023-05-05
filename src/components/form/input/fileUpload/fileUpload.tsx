@@ -66,7 +66,7 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
     }, [onAdd, onFilesRejected]);
 
     const { getRootProps, getInputProps, isDragActive } =
-        useDropzone({ onDrop, accept: accept, maxFiles: maxFilesCount, maxSize, minSize, multiple });
+        useDropzone({ onDrop, accept, maxFiles: maxFilesCount, maxSize, minSize, multiple });
 
     return (
         <div>
