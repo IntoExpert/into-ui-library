@@ -92,8 +92,6 @@ export const VerificationCodeInput =
                 onChange={(e) => handleInputChange(e.target.value, index)} />
         }, [handleInputChange, handlePastEvent, state]);
 
-        console.log(state.value);
-
         // Check on change event
         useEffect(() => {
             if (state.value.some(value => !value)) {
