@@ -4,15 +4,18 @@ import { EyeIcon } from "../../../icons";
 
 export interface PasswordFieldProps extends InputFieldProps {
     onShowPasswordToggle?: (value: boolean) => void;
+    show?: boolean;
 };
 
-export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(({ onShowPasswordToggle, ...props }: PasswordFieldProps, ref) => {
+export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(({ show, onShowPasswordToggle, ...props }: PasswordFieldProps, ref) => {
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(show);
 
     useEffect(() => {
-        onShowPasswordToggle?.(showPassword)
+        onShowPasswordToggle?.(!showPassword)
     }, [showPassword, onShowPasswordToggle]);
+
+    useEffect(() => setShowPassword(show), [setShowPassword, show]);
 
     const ShowPasswordIcon = useCallback(() => {
         return <div className={`cursor-pointer`} onClick={() => setShowPassword(prev => !prev)}>
