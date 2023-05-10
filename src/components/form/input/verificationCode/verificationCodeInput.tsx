@@ -43,6 +43,12 @@ export const VerificationCodeInput =
         }, [codeLength]);
 
         const handleInputChange = useCallback((value: string, index: number) => {
+            if (value.length) {
+                handleAutoFocus(index + 1);
+            } else {
+                handleAutoFocus(index - 1);
+            }
+
             try {
                 let numberValue: number | undefined = Number(value[value.length - 1]);
                 if (isNaN(numberValue) || numberValue < 0) {
@@ -58,7 +64,7 @@ export const VerificationCodeInput =
                         return value;
                     });
 
-                    return { ...prevState, value: newValues, focusIndex: numberValue ? index + 1 : index }
+                    return { ...prevState, value: newValues }
                 });
             } catch (e) {
                 console.error(e);
