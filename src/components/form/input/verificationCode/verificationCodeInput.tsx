@@ -8,6 +8,7 @@ export interface VerificationCodeInputProps extends InputFieldProps {
 
 interface VerificationCodeInputState {
     value: (number | undefined)[];
+    focusIndex: number;
 }
 
 export const VerificationCodeInput =
@@ -32,12 +33,26 @@ export const VerificationCodeInput =
             return stringArrayToValue(value);
         }, [stringArrayToValue, value]);
 
-        const [state, setState] = useState<VerificationCodeInputState>({ value: valuesArray });
+        const [state, setState] = useState<VerificationCodeInputState>({ value: valuesArray, focusIndex: 0 });
+
+        const handleAutoFocus = useCallback((focusIndex: number) => {
+            if (focusIndex < 0 || focusIndex === codeLength) return
+
+            setState(prevState => ({ ...prevState, focusIndex }));
+
+        }, [codeLength]);
 
         const handleInputChange = useCallback((value: string, index: number) => {
+            if (!value.length) {
+                handleAutoFocus(index - 1);
+                return;
+            }
+
             try {
-                let numberValue: number | undefined = Number(value);
-                if (isNaN(numberValue) || numberValue < 0) numberValue = undefined;
+                let numberValue: number | undefined = Number(value[value.length - 1]);
+                if (isNaN(numberValue) || numberValue < 0) {
+                    numberValue = undefined
+                }
 
                 setState(prevState => {
                     const newValues = prevState.value.map((value, currIndex) => {
@@ -48,7 +63,7 @@ export const VerificationCodeInput =
                         return value;
                     });
 
-                    return { ...prevState, value: newValues }
+                    return { ...prevState, value: newValues, focusIndex: numberValue ? index + 1 : index }
                 });
             } catch (e) {
                 console.error(e);
@@ -67,6 +82,7 @@ export const VerificationCodeInput =
                 className={`w-12`}
                 value={state.value[index]?.toString()}
                 onPast={handlePastEvent}
+                autoFocus={state.focusIndex === index}
                 onChange={(e) => handleInputChange(e.target.value, index)} />
         }, [handleInputChange, handlePastEvent, state.value]);
 
