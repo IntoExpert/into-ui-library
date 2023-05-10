@@ -69,6 +69,7 @@ export interface InputFieldProps {
     featuredPlaceholder?: ReactElement | string;
     min?: number | string;
     max?: number | string;
+    postfix?: ReactElement
 }
 
 interface InputFieldState {
@@ -129,7 +130,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                 <div className={`relative`}>
                     <input
                         {...props}
-                        className={`shadow appearance-none border
+                        className={`shadow appearance-none border w-full
                             rounded h-14 px-3 text-gray-700 leading-tight 
                             focus:outline-none focus:shadow-outline
                         placeholder:text-gray-500 disabled:!bg-gray-100
@@ -140,6 +141,9 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                         value={state.value}
                         ref={ref}
                     />
+                    {props.postfix ? <div className={`absolute top-1/2 -translate-y-1/2 right-4`}>
+                        {props.postfix}
+                    </div> : null}
                     {/* Featured placeholder */}
                     {
                         props.featuredPlaceholder && !state.value
