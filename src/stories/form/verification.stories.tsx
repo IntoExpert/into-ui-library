@@ -15,7 +15,7 @@ DefaultState.args = {
 
 };
 
-export const OnError = Template.bind({});
-OnError.args = {
-
+export const WithdefaultValue = Template.bind({});
+WithdefaultValue.args = {
+    value: '445566'
 };

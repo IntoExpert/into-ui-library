@@ -1,5 +1,5 @@
 
-import { ChangeEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef, useEffect, useState } from "react";
+import { ChangeEvent, ClipboardEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef, useEffect, useState } from "react";
 import { InputLabel } from "../label/label";
 
 export interface InputFieldProps {
@@ -61,6 +61,7 @@ export interface InputFieldProps {
      * On input blur event handler
      */
     onBlur?: (event: FocusEvent<HTMLInputElement, Element>) => void;
+    onPast?: (event: ClipboardEvent) => void;
     /**
      * Featured placeholder, show JSX elements as placeholder
      */
@@ -79,7 +80,7 @@ interface InputFieldState {
  * @param props 
  * @returns Controlled input element
  */
-export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, ...props }, ref) => {
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, onPast, ...props }, ref) => {
 
     const [state, setState] = useState<InputFieldState>({ value: value ?? props.defaultValue });
 
@@ -134,6 +135,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                             ${props.errormessage ? 'border-error' : 'border-secondary'}
                             ${props.className ?? ''}`}
                         onChange={handleOnChange}
+                        onPaste={onPast}
                         value={state.value}
                         ref={ref}
                     />
