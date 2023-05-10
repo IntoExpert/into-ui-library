@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InputField } from '../../components';
-import "../../index.css";
-
 
 export default {
     title: 'Form/Inputs',

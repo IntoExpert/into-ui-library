@@ -21,7 +21,7 @@ defaultState.args = {
   },
   children: <h2 className={`p-5`}>Hi!</h2>,
   badge: {
-    children: "$1,400",
+    children: <div>$1,400</div>,
   },
   dropdown: {
     icon: (
