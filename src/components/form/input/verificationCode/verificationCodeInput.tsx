@@ -43,11 +43,6 @@ export const VerificationCodeInput =
         }, [codeLength]);
 
         const handleInputChange = useCallback((value: string, index: number) => {
-            if (!value.length) {
-                handleAutoFocus(index - 1);
-                return;
-            }
-
             try {
                 let numberValue: number | undefined = Number(value[value.length - 1]);
                 if (isNaN(numberValue) || numberValue < 0) {
@@ -68,7 +63,7 @@ export const VerificationCodeInput =
             } catch (e) {
                 console.error(e);
             }
-        }, []);
+        }, [handleAutoFocus]);
 
         const handlePastEvent = useCallback((event: ClipboardEvent) => {
             const pastValue = event.clipboardData.getData('text');
@@ -84,7 +79,7 @@ export const VerificationCodeInput =
                 onPast={handlePastEvent}
                 autoFocus={state.focusIndex === index}
                 onChange={(e) => handleInputChange(e.target.value, index)} />
-        }, [handleInputChange, handlePastEvent, state.value]);
+        }, [handleInputChange, handlePastEvent, state]);
 
         return (<div className={`flex justify-between gap-2 max-w-xs`}>
             {Array(codeLength).fill(0).map((_, index) => {
