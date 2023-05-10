@@ -1,8 +1,9 @@
 
 import { ChangeEvent, ClipboardEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef, useEffect, useState } from "react";
 import { InputLabel } from "../label/label";
+import { UiElementProps } from "../../../common";
 
-export interface InputFieldProps {
+export interface InputFieldProps extends UiElementProps {
     /**
      * The id of the input element
      */
@@ -135,7 +136,8 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                             focus:outline-none focus:shadow-outline
                         placeholder:text-gray-500 disabled:!bg-gray-100
                             ${props.errormessage ? 'border-error' : 'border-secondary'}
-                            ${props.className ?? ''}`}
+                            ${props.className ?? ''}
+                            ${props.postfix ? props.dir === 'rtl' ? 'pl-12' : 'pr-12' : ''}`}
                         onChange={handleOnChange}
                         onPaste={onPast}
                         value={state.value}
