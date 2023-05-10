@@ -1,9 +1,12 @@
-import { ClipboardEvent, useCallback, useMemo, useState } from "react";
+import { ClipboardEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { InputField } from "../field";
 import { InputFieldProps } from "../field/field";
+import { UiElementProps } from "../../../common";
 
-export interface VerificationCodeInputProps extends InputFieldProps {
+export interface VerificationCodeInputProps extends UiElementProps {
     codeLength?: number;
+    value?: string;
+    onChange?: (value: string) => void;
 };
 
 interface VerificationCodeInputState {
@@ -12,7 +15,7 @@ interface VerificationCodeInputState {
 }
 
 export const VerificationCodeInput =
-    ({ codeLength = 6, value = '', className }: VerificationCodeInputProps) => {
+    ({ codeLength = 6, value = '', onChange, className }: VerificationCodeInputProps) => {
 
         const stringArrayToValue = useCallback((stringValue: string) => {
             const array: (number | undefined)[] = Array(codeLength).fill(undefined);
@@ -72,6 +75,8 @@ export const VerificationCodeInput =
         }, [handleAutoFocus]);
 
         const handlePastEvent = useCallback((event: ClipboardEvent) => {
+            event.preventDefault();
+
             const pastValue = event.clipboardData.getData('text');
 
             setState(prevState => ({ ...prevState, value: stringArrayToValue(pastValue) }))
@@ -86,6 +91,17 @@ export const VerificationCodeInput =
                 autoFocus={state.focusIndex === index}
                 onChange={(e) => handleInputChange(e.target.value, index)} />
         }, [handleInputChange, handlePastEvent, state]);
+
+        console.log(state.value);
+
+        // Check on change event
+        useEffect(() => {
+            if (state.value.some(value => !value)) {
+                onChange?.('');
+            } else {
+                onChange?.(state.value.join(''));
+            }
+        }, [state.value, onChange]);
 
         return (<div className={`flex justify-between gap-2 max-w-xs`}>
             {Array(codeLength).fill(0).map((_, index) => {

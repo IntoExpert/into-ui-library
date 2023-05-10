@@ -17,5 +17,9 @@ DefaultState.args = {
 
 export const WithdefaultValue = Template.bind({});
 WithdefaultValue.args = {
-    value: '445566'
+    value: '445566',
+    onChange: (value) => {
+        if (value.length) console.log(value);
+        else console.log('No code yet')
+    }
 };
