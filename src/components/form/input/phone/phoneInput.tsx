@@ -11,7 +11,7 @@ export const PhoneInput = ({ ...props }: PhoneInputProps) => {
         <PhoneInput2
             excludeCountries={["il", "IL"]}
             {...props}
-            containerClass={`!border-secondary h-14 ${props.containerClass ?? ''}`}
+            containerClass={`!border-secondary h-14 w-full ${props.containerClass ?? ''}`}
             inputClass={`!border-secondary !h-14 ${props.inputClass ?? ''}`}
             buttonClass={`!border-secondary !bg-surface h-14 !border-r-0 ${props.buttonClass ?? ''}`}
         />
