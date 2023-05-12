@@ -25,5 +25,5 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(({
         </div>
     }, [showPassword]);
 
-    return <InputField {...props} ref={ref} type={showPassword ? 'text' : 'password'} postfix={<ShowPasswordIcon />} />
+    return <InputField {...props} ref={ref} type={showPassword ? 'text' : 'password'} inputPostfix={<ShowPasswordIcon />} />
 });

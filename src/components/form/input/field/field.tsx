@@ -70,7 +70,8 @@ export interface InputFieldProps extends UiElementProps {
     featuredPlaceholder?: ReactElement | string;
     min?: number | string;
     max?: number | string;
-    postfix?: ReactElement
+    inputPostfix?: ReactElement
+    inputPrefix?: ReactElement
 }
 
 interface InputFieldState {
@@ -129,6 +130,11 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
             return <div className={`text-start ${props.containerClassName}`}>
                 <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
                 <div className={`relative`}>
+                    {props.inputPrefix
+                        ? <div className={`absolute top-1/2 -translate-y-1/2 ${props.dir === 'rtl' ? 'right-4' : 'left-4'}`}>
+                            {props.inputPrefix}
+                        </div>
+                        : null}
                     <input
                         {...props}
                         className={`shadow appearance-none border w-full
@@ -137,14 +143,16 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                         placeholder:text-gray-500 disabled:!bg-gray-100
                             ${props.errormessage ? 'border-error' : 'border-secondary'}
                             ${props.className ?? ''}
-                            ${props.postfix ? props.dir === 'rtl' ? 'pl-12' : 'pr-12' : ''}`}
+                            ${props.inputPostfix ? props.dir === 'rtl' ? 'pl-12' : 'pr-12' : ''}
+                            ${props.inputPrefix ? props.dir === 'ltr' ? 'pl-12' : 'pr-12' : ''}`
+                        }
                         onChange={handleOnChange}
                         onPaste={onPast}
                         value={state.value}
                         ref={ref}
                     />
-                    {props.postfix ? <div className={`absolute top-1/2 -translate-y-1/2 right-4`}>
-                        {props.postfix}
+                    {props.inputPostfix ? <div className={`absolute top-1/2 -translate-y-1/2 ${props.dir === 'rtl' ? 'left-4' : 'right-4'}`}>
+                        {props.inputPostfix}
                     </div> : null}
                     {/* Featured placeholder */}
                     {
