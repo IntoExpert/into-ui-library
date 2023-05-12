@@ -4,3 +4,6 @@ export * from "./select";
 export * from "./label";
 export * from "./textArea";
 export * from "./date";
+export * from "./verificationCode";
+export * from "./password";
+export * from "./phone";

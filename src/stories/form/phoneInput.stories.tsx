@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { PhoneInput } from '../../components/form/input/phone/phonenumberInput';
+import { PhoneInput } from '../../components';
 
 
 export default {
