@@ -94,7 +94,7 @@ export const VerificationCodeInput =
 
         // Check on change event
         useEffect(() => {
-            if (state.value.some(value => value !== 0 && !value)) {
+            if (state.value.some(value => value === undefined)) {
                 onChange?.('');
             } else {
                 onChange?.(state.value.join(''));
