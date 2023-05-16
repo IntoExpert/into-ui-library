@@ -51,3 +51,5 @@ export const ReviewsIcon = ({ size = 14, className = 'fill-black' }: IconProps) 
     </div>
   );
 };
+
+export default ReviewsIcon;

@@ -29,3 +29,5 @@ export const AvailabiltyIcon = (props: AvailabiltyIconProps) => {
     </div>
   );
 };
+
+export default AvailabiltyIcon;

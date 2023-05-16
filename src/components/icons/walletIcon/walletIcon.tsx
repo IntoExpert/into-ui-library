@@ -9,3 +9,5 @@ export const WalletIcon = ({ size = 14, className = 'stroke-secondary' }: IconPr
             <path id="Path_3317" data-name="Path 3317" d="M55.378,42.066a.961.961,0,1,1,.961-.961A.961.961,0,0,1,55.378,42.066Zm0-1.386a.426.426,0,1,0,.426.425A.426.426,0,0,0,55.378,40.68Z" transform="translate(-40.395 -30.652)" fill="#edbe6f" />
         </g>
     </svg>;
+
+export default WalletIcon;

@@ -26,3 +26,5 @@ export const ClockIcon = ({ size = 12, className = '' }: IconProps) => {
     </div>
   );
 };
+
+export default ClockIcon;

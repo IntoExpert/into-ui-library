@@ -44,3 +44,5 @@ export const ProfileSubjectsIcon = ({ size = 14, className = 'fill-surface' }: I
     </div>
   );
 };
+
+export default ProfileSubjectsIcon;

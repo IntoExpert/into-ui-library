@@ -114,3 +114,5 @@ export const CoursesIcon = ({ size = 16, className = 'stroke-black' }: IconProps
     </div>
   );
 };
+
+export default CoursesIcon;

@@ -39,3 +39,5 @@ export const DashboardIcon = ({ size = 19, className = '' }: IconProps) => {
     </div>
   );
 };
+
+export default DashboardIcon;
