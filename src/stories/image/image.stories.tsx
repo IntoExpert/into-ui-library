@@ -26,3 +26,13 @@ WithLabel.args = {
         name: "Face portrait"
     },
 };
+
+export const WithoutImage = Template.bind({});
+WithoutImage.args = {
+    alt: "Face portrait",
+    firstName: "Motasem",
+    lastName: "Ghozlan",
+    label: {
+        name: "Face portrait"
+    },
+};
