@@ -1,7 +1,7 @@
 import { UiElementProps } from "../../common";
 import ReactPlayer, { ReactPlayerProps } from 'react-player'
 import { PlayIcon } from "../../icons";
-import { MouseEvent, useCallback, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 import { PauseIcon } from "../../icons/pauseIcon/pauseIcon";
 
 export interface VideoPlayerProps extends UiElementProps, ReactPlayerProps {
@@ -16,7 +16,11 @@ export const VideoPlayer = ({ showPlayButton, playButtonPosition = 'center', ...
         e.stopPropagation();
         setPlay(!play)
     }
-        , [play])
+        , [play]);
+
+    useEffect(() => {
+        setPlay(!!props.playing);
+    }, [props.playing]);
     return (
         <div className={`relative`}>
             <ReactPlayer {...props} playing={showPlayButton ? play : props.playing} />
