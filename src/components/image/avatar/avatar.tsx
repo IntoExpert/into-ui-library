@@ -57,7 +57,7 @@ export const Avatar = (props: AvatarProps) => {
                     className={`w-10 h-10 aspect-square bg-gray-200 flex justify-center items-center rounded-full 
                         font-bold text-sm ${props.className ?? ''}`}
                     dir="auto">
-                    {props.firstName?.charAt(0)}.{props.lastName?.charAt(0)}
+                    {props.firstName?.charAt(0)} {props.lastName?.charAt(0)}
                 </h4>}
             {props.label?.name ?
                 <h4 dir="auto" className={`mx-2 my-2 text-sm font-bold text-gray-500 whitespace-nowrap ${props.label?.classname}`}>
