@@ -85,3 +85,15 @@ $border-color: rgb(229, 231, 235);
     border: none;
   }
 }
+
+html[dir="rtl"] {
+  .react-datepicker__navigation {
+    &.react-datepicker__navigation--previous {
+      right: 12rem !important;
+    }
+
+    &.react-datepicker__navigation--next {
+      left: 0 !important;
+    }
+  }
+}
