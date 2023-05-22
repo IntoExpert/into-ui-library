@@ -65,6 +65,7 @@ export interface InputFieldProps {
      * Featured placeholder, show JSX elements as placeholder
      */
     featuredPlaceholder?: ReactElement | string;
+    direction?: 'rtl' | 'ltr' | undefined;
 }
 
 interface InputFieldState {
@@ -138,7 +139,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     {/* Featured placeholder */}
                     {
                         props.featuredPlaceholder && !state.value
-                            ? <div className={`absolute pointer-events-none top-1/2 -translate-y-1/2 left-3 text-gray-500`}>
+                            ? <div className={`absolute pointer-events-none top-1/2 -translate-y-1/2 left-3 text-gray-500 ${props.direction==="rtl" ? "right-0":""}`}>
                                 {props.featuredPlaceholder}
                             </div>
                             : null
