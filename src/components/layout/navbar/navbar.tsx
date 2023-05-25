@@ -11,7 +11,7 @@ export interface IntoNavbarProps extends UiElementProps {
     dropdowns?: NavbarDropdownProps;
 };
 
-export const IntoNavbar = (props: IntoNavbarProps) => {
+export const IntoNavbar = ({ dir, ...props }: IntoNavbarProps) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -25,7 +25,12 @@ export const IntoNavbar = (props: IntoNavbarProps) => {
             </div>
             <span className={`mx-4`}></span>
             <NavbarLinks {...props.links}
-                className={`transition-all overflow-hidden space-y-4 p-5 ${isOpen ? '!block' : 'right-full scale-0'} bg-white absolute top-14 left-0 right-0 shadow-sm rounded-sm md:static md:flex ${props.links?.className}`} />
+                className={`transition-all overflow-hidden 
+                ${dir === 'rtl' ? 'origin-right' : 'origin-left'} 
+                space-y-4 p-5 ${isOpen ? '!block' : 'scale-x-50 opacity-0'}
+                 bg-white absolute top-14 left-0 right-0 shadow-sm rounded-sm md:static 
+                 md:!flex md:p-0 md:!scale-100 md:!opacity-100 md:shadow-none md:space-y-0 md:overflow-visible
+                 ${props.links?.className}`} />
             <span className={`mx-auto`}></span>
             <NavbarDropdowns {...props.dropdowns} />
         </nav>
