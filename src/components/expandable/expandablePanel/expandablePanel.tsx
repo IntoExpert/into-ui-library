@@ -49,7 +49,7 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
                 onClick={togglePanel}>
                 {props.header?.content}
                 {/* Toggle icons */}
-                <span className={`${state.isOpen ? 'transition-transform rotate-180 ' : 'w-5 h-5'}`}>{props.toggle ??
+                <span className={`${state.isOpen ? 'transition-transform rotate-180 ' : 'w-5 '}`}>{props.toggle ??
                     <div className={`align-middle -rotate-90 my-auto `}>&#10094;</div>}
                 </span>
             </button>
