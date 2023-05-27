@@ -21,7 +21,7 @@ export const Experience = (props: ExperienceProps) => {
           {" "}
           <div className="flex justify-between px-3 pb-3 pt-2">
             <div className="w-1/4">
-              <strong className="py-2">{item.title}</strong>
+              <strong className="py-2 text-[13px]">{item.title}</strong>
               <p>{item.companyName}</p>
               <p className="text-gray-600"> {item.duration}</p>
               <p className="text-gray-600">{item.location}</p>
