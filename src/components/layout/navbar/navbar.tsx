@@ -29,7 +29,7 @@ export const IntoNavbar = ({ dir, ...props }: IntoNavbarProps) => {
                 ${dir === 'rtl' ? 'origin-right' : 'origin-left'} 
                 space-y-4 p-5 ${isOpen ? '!block' : 'scale-x-0 opacity-0 pointer-events-none'}
                  bg-white absolute top-14 left-0 right-0 shadow-sm rounded-sm md:static 
-                 md:!flex md:p-0 md:!scale-100 md:!opacity-100 md:shadow-none md:space-y-0 md:overflow-visible
+                 md:!flex md:p-0 md:!scale-100 md:!opacity-100 md:shadow-none md:space-y-0 md:overflow-visible md:pointer-events-auto
                  ${props.links?.className}`} />
             <span className={`mx-auto`}></span>
             <NavbarDropdowns {...props.dropdowns} />
