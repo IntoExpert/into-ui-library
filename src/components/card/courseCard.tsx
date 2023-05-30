@@ -19,18 +19,15 @@ export interface CourseCardProps extends CardProps {
   deadline?: ReactElement;
   rating?: RatingStarsProps;
   numberOfRatings?: ReactElement;
+  courseCardChildren: ReactElement;
 }
 
 export const CourseCard = ({
   mediaCard,
-  title,
   className,
-  avatar,
-  state,
-  description,
-  duration,
-  deadline,
-  dir = "ltr"
+  children,
+  courseCardChildren,
+  dir = "ltr",
 }: CourseCardProps) => {
   return (
     <Card className={`pb-4 ${className ?? ""}`}>
@@ -38,7 +35,8 @@ export const CourseCard = ({
         <div>
           <MediaCard {...mediaCard} className="shadow-none" dir={dir} />
         </div>
-        <div className="flex justify-between px-2 relative">
+        {courseCardChildren}
+        {/* <div className="flex justify-between px-2 relative">
           <div className="sm:truncate md:truncate">
             <Avatar
               {...avatar}
@@ -64,7 +62,7 @@ export const CourseCard = ({
             {duration}
           </div>
           <div className="text-xs font-semibold text-red-400 h=[1em]">{deadline}</div>
-        </div>
+        </div> */}
         {/* Rating */}
         {/* <div className="flex px-2 py-3">
           <div className="py-1">
