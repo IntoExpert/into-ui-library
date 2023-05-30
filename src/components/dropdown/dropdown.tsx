@@ -25,7 +25,7 @@ export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps)
     const handleToggle = (e: React.MouseEvent) => {
         e.stopPropagation();
         setState(prevState => {
-            const newIsOpen = !prevState.isOpen;
+            const newIsOpen = prevState.isOpen;
             if (newIsOpen) {
                 document.addEventListener("mousedown", closeOpenMenus)
             } else {
