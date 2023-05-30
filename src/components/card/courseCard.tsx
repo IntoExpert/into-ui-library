@@ -23,13 +23,8 @@ export interface CourseCardProps extends CardProps {
 
 export const CourseCard = ({
   mediaCard,
-  title,
   className,
-  avatar,
-  state,
-  description,
-  duration,
-  deadline,
+  children,
   dir = "ltr"
 }: CourseCardProps) => {
   return (
@@ -38,7 +33,8 @@ export const CourseCard = ({
         <div>
           <MediaCard {...mediaCard} className="shadow-none" dir={dir} />
         </div>
-        <div className="flex justify-between px-2 relative">
+        {children}
+        {/* <div className="flex justify-between px-2 relative">
           <div className="sm:truncate md:truncate">
             <Avatar
               {...avatar}
@@ -64,7 +60,7 @@ export const CourseCard = ({
             {duration}
           </div>
           <div className="text-xs font-semibold text-red-400 h=[1em]">{deadline}</div>
-        </div>
+        </div> */}
         {/* Rating */}
         {/* <div className="flex px-2 py-3">
           <div className="py-1">
