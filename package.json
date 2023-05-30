@@ -1,11 +1,12 @@
 {
   "name": "@intoexpert/into-ui-library",
-  "version": "0.1.464",
+  "version": "0.1.465",
   "repository": {
     "type": "git",
     "url": "https://github.com/IntoExpert/into-ui-library.git"
   },
   "dependencies": {
+    "@intoexpert/into-ui-library": "^0.1.464",
     "@rollup/plugin-babel": "^6.0.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
