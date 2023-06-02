@@ -71,3 +71,5 @@ export * from "./heartIcon2/heartIcon2";
 export * from "./dashboardHomeIcon/dashboardHomeIcon";
 export * from "./userIcon/userIcon";
 export * from "./childrenIcon/childrenIcon";
+export * from "./walletIcons//incomeIcon";
+export * from "./walletIcons//outgoingIcon";
