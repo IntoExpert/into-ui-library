@@ -1,6 +1,5 @@
 import { ClipboardEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { InputField } from "../field";
-import { InputFieldProps } from "../field/field";
 import { UiElementProps } from "../../../common";
 
 export interface VerificationCodeInputProps extends UiElementProps {
@@ -101,7 +100,7 @@ export const VerificationCodeInput =
             }
         }, [state.value, onChange]);
 
-        return (<div className={`flex justify-between gap-2 max-w-xs`}>
+        return (<div className={`flex justify-between gap-2 max-w-xs ${className}`}>
             {Array(codeLength).fill(0).map((_, index) => {
 
                 return <InputElement index={index} />
