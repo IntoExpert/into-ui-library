@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useEffect, useState } from "react";
 import { InputField, InputFieldProps } from "../field/field";
 import { EyeIcon } from "../../../icons";
+import { KeyIcon } from "@intoexpert/into-ui-library";
 
 export interface PasswordFieldProps extends InputFieldProps {
     onShowPasswordToggle?: (value: boolean) => void;
@@ -30,5 +31,9 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(({
         </div>
     }, [showPassword, handleShowPassword]);
 
-    return <InputField {...props} ref={ref} type={showPassword ? 'text' : 'password'} inputPostfix={<ShowPasswordIcon />} />
+    return <InputField {...props}
+        ref={ref}
+        type={showPassword ? 'text' : 'password'}
+        inputPrefix={<KeyIcon />}
+        inputPostfix={<ShowPasswordIcon />} />
 });
