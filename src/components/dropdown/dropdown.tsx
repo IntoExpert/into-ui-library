@@ -23,43 +23,58 @@ export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps)
     const menuRef = useRef<HTMLUListElement>(null);
 
     const handleToggle = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        setState(prevState => {
-            const newIsOpen = prevState.isOpen;
-            if (newIsOpen) {
-                document.addEventListener("mousedown", closeOpenMenus)
-            } else {
-                document.removeEventListener("mousedown", closeOpenMenus);
-            }
-            return ({ isOpen: !prevState.isOpen })
-        })
-        onClick?.(e);
+      e.stopPropagation();
+      setState((prevState) => {
+        const newIsOpen = prevState.isOpen;
+        if (newIsOpen) {
+          document.addEventListener("mousedown", closeOpenMenus);
+        } else {
+          document.removeEventListener("mousedown", closeOpenMenus);
+        }
+        return { isOpen: !prevState.isOpen };
+      });
+      onClick?.(e);
     };
 
     const closeOpenMenus = (e: MouseEvent) => {
-        if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-            document.removeEventListener("mousedown", closeOpenMenus);
-            setState(prevState => ({ ...prevState, isOpen: false }));
-        };
-    }
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        document.removeEventListener("mousedown", closeOpenMenus);
+        setState((prevState) => ({ ...prevState, isOpen: false }));
+      }
+    };
+    const handleClose = () => {
+      setState({ isOpen: false });
+    };
 
     return (
-        <div className={`relative`} onClick={(e) => { e.preventDefault() }}>
-            <button
-                type="button"
-                className={`w-10 h-10 cursor-pointer rounded transition hover:bg-blue-50 relative ${className ?? ''}`}
-                onClick={handleToggle}
-            >
-                <span className={`flex justify-center`}>
-                    {icon}
-                </span>
-            </button>
-            <ul className={`absolute shadow-md rounded overflow-hidden bg-white z-10
-                ${state.isOpen ? 'max-w-fit px-1 p-2' : 'max-w-0'} 
-                ${menu?.className ?? ''} ${dir === 'rtl' ? 'left-0 right-auto' : ''}`}
-                ref={menuRef}>
-                {menu?.items?.map((item, index) => (<DropdownItem key={item.key ?? index} {...item} />))}
-            </ul>
-        </div>
+      <div
+        className={`relative`}
+        onClick={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <button
+          type="button"
+          className={`w-10 h-10 cursor-pointer rounded transition hover:bg-blue-50 relative ${
+            className ?? ""
+          }`}
+          onClick={handleToggle}
+          onBlur={handleClose}
+        >
+          <span className={`flex justify-center`}>{icon}</span>
+        </button>
+        <ul
+          className={`absolute shadow-md rounded overflow-hidden bg-white z-10
+                ${state.isOpen ? "max-w-fit px-1 p-2" : "max-w-0"} 
+                ${menu?.className ?? ""} ${
+            dir === "rtl" ? "left-0 right-auto" : ""
+          }`}
+          ref={menuRef}
+        >
+          {menu?.items?.map((item, index) => (
+            <DropdownItem key={item.key ?? index} {...item} />
+          ))}
+        </ul>
+      </div>
     );
 }
