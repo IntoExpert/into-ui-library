@@ -9,7 +9,7 @@ export interface VideoPlayerProps extends UiElementProps, ReactPlayerProps {
     playButtonPosition?: 'topLeft' | 'topRight' | 'center';
 };
 
-export const VideoPlayer = ({ showPlayButton, playButtonPosition = 'center', ...props }: VideoPlayerProps) => {
+export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'center', ...props }: VideoPlayerProps) => {
     const [play, setPlay] = useState(false);
 
     const handlePlayButtonToggle = useCallback((e: MouseEvent) => {
@@ -21,9 +21,12 @@ export const VideoPlayer = ({ showPlayButton, playButtonPosition = 'center', ...
     useEffect(() => {
         setPlay(!!props.playing);
     }, [props.playing]);
+
     return (
         <div className={`relative`}>
-            <ReactPlayer {...props} playing={showPlayButton ? play : props.playing} />
+            <ReactPlayer
+                {...props}
+                playing={showPlayButton ? play : props.playing} />
             {showPlayButton
                 ? <span
                     onClick={handlePlayButtonToggle}
@@ -32,7 +35,7 @@ export const VideoPlayer = ({ showPlayButton, playButtonPosition = 'center', ...
                         ${playButtonPosition?.toLowerCase().includes('right') ? 'right-2' : ''}
                         ${playButtonPosition?.toLowerCase().includes('left') ? 'left-2' : ''}
                         ${playButtonPosition === 'center' ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' : ''}
-                        transition-all hover:shadow hover:scale-105 cursor-pointer
+                        transition-all hover:shadow hover:scale-105 cursor-pointer rounded-full
                         `}>
                     {!play ? <PlayIcon className={`fill-surface rounded-full`} /> : <PauseIcon className={`fill-surface`} />}
                 </span>
