@@ -83,12 +83,16 @@ export const VerificationCodeInput =
 
         const InputElement = useCallback(({ index }: { index: number }) => {
 
-            return <InputField
+            return (
+              <InputField
+                key={index}
                 className={`w-12`}
                 value={state.value[index]?.toString()}
                 onPast={handlePastEvent}
                 autoFocus={state.focusIndex === index}
-                onChange={(e) => handleInputChange(e.target.value, index)} />
+                onChange={(e) => handleInputChange(e.target.value, index)}
+              />
+            );
         }, [handleInputChange, handlePastEvent, state]);
 
         // Check on change event
@@ -103,7 +107,7 @@ export const VerificationCodeInput =
         return (<div className={`flex justify-between gap-2 max-w-xs ${className}`}>
             {Array(codeLength).fill(0).map((_, index) => {
 
-                return <InputElement index={index} />
+                return <InputElement key={index} index={index} />;
             })}
         </div>)
     }
