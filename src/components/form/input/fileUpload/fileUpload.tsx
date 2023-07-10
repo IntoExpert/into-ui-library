@@ -66,14 +66,14 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
     }, [onAdd, onFilesRejected]);
 
     const { getRootProps, getInputProps, isDragActive } =
-        useDropzone({ onDrop, accept, maxFiles: maxFilesCount, maxSize, minSize, multiple });
+        useDropzone({ onDrop, accept, maxFiles: maxFilesCount, maxSize, minSize, multiple, disabled });
 
     return (
         <div>
             {label ? <InputLabel content={label} className="inline-block" /> : null}
             <div {...getRootProps({
                 className: `border-2 border-dashed border-gray-200 rounded-md flex justify-center items-center 
-                bg-background bg-opacity-30 overflow-hidden ${className ?? ''}`
+                bg-background bg-opacity-30 overflow-hidden ${className ?? ''}`,
             })}>
                 <input {...getInputProps({ disabled })} />
                 {
