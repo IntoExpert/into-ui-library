@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, ReactElement, useCallback, useState } from "react";
+import { MouseEvent, MouseEventHandler, ReactElement, useCallback, useEffect, useState } from "react";
 import { UiElementProps } from "../../../../common";
 import { FileUpload, FileUploadProps } from "../fileUpload";
 import { Button, ButtonProps } from "../../../../button";
@@ -50,7 +50,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
 
     const onCapture = async (data: string) => {
         // TODO make a better file name
-        const file = dataURLtoFile(data, `promo-image-${Date.now()}.jpeg`);
+        const file = dataURLtoFile(data, `captured-image-${Date.now()}.jpeg`);
         setState(prevState => ({
             ...prevState, media: {
                 src: data,
@@ -128,8 +128,7 @@ export const MediaUpload = (props: MediaUploadProps) => {
             <>
                 {props.mediaBody
                     ? props.mediaBody
-                    :
-                    <div className={`w-full h-full relative`}>
+                    : <div className={`w-full h-full relative`}>
                         {!props.mode || props.mode === "photo"
                             ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
                             : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} showPlayButton playButtonPosition="topLeft" />}
@@ -140,6 +139,15 @@ export const MediaUpload = (props: MediaUploadProps) => {
             </>
         )
     }, [Actions, props.mode, props.mediaBody, state.media?.src]);
+
+    useEffect(() => {
+        setState(prevState => ({
+            ...prevState, media: {
+                ...prevState,
+                src: props.mediaSrc,
+            }
+        }))
+    }, [props.mediaSrc]);
 
     return (
         <div className="row">

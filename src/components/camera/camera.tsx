@@ -23,7 +23,7 @@ export const Camera = (props: CameraProps) => {
         if (capturing || !startedCapturing) return;
 
         props.onVideoRecorded?.(new Blob(recordedChunks, { type: 'video/webm' }));
-    }, [recordedChunks]);
+    }, [recordedChunks, capturing, props, startedCapturing]);
 
     /** 
      * Take user photo 
