@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, useCallback, useState } from "react";
+import { MouseEvent, MouseEventHandler, ReactElement, useCallback, useState } from "react";
 import { UiElementProps } from "../../../../common";
 import { FileUpload, FileUploadProps } from "../fileUpload";
 import { Button, ButtonProps } from "../../../../button";
@@ -12,6 +12,7 @@ export interface MediaUploadProps extends UiElementProps {
     disabled?: boolean;
     uploadOptions?: FileUploadProps;
     mediaSrc?: string;
+    mediaBody?: ReactElement | string
     uploadButton?: ButtonProps;
     retakeButton?: ButtonProps;
     mode?: "photo" | "video";
@@ -121,21 +122,24 @@ export const MediaUpload = (props: MediaUploadProps) => {
         );
     };
 
-    const MediaDropzoneBody = () => {
+    const MediaDropzoneBody = useCallback(() => {
 
         return (
             <>
-                <div className={`w-full h-full relative`}>
-                    {!props.mode || props.mode === "photo"
-                        ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
-                        : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} showPlayButton playButtonPosition="topLeft" />}
-                    <div className={`absolute bottom-10 left-1/2 -translate-x-1/2`}>
-                        <Actions />
-                    </div>
-                </div>
+                {props.mediaBody
+                    ? props.mediaBody
+                    :
+                    <div className={`w-full h-full relative`}>
+                        {!props.mode || props.mode === "photo"
+                            ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
+                            : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} showPlayButton playButtonPosition="topLeft" />}
+                        <div className={`absolute bottom-10 left-1/2 -translate-x-1/2`}>
+                            <Actions />
+                        </div>
+                    </div>}
             </>
         )
-    };
+    }, [Actions, props.mode, props.mediaBody, state.media?.src]);
 
     return (
         <div className="row">
