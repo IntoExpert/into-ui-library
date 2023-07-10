@@ -4,27 +4,17 @@ export interface UserSolidIconProps extends IconProps { }
 export const UserSolidIcon = ({ className = '', size = 20 }: UserSolidIconProps) => {
   return (
     <div className={`${className}`}>
-      <svg
-        id="Component_686_3"
-        data-name="Component 686 – 3"
-        xmlns="http://www.w3.org/2000/svg"
-        width={size}
-        viewBox="0 0 20.002 20.573"
-      >
-        <path
-          id="Path_2544"
-          data-name="Path 2544"
-          d="M17.053,12.912a9.952,9.952,0,0,0-3.8-2.38,5.775,5.775,0,1,0-6.535,0A10,10,0,0,0,0,19.974H1.561a8.429,8.429,0,0,1,16.858,0h1.561A9.921,9.921,0,0,0,17.053,12.912ZM9.99,9.987A4.213,4.213,0,1,1,14.2,5.774,4.219,4.219,0,0,1,9.99,9.987Z"
-        />
-        <path
-          id="Path_2545"
-          data-name="Path 2545"
-          d="M1357.722,3561.739h20"
-          transform="translate(-1357.722 -3541.766)"
-          fill="none"
-          strokeWidth="1.2"
-        />
+      <svg xmlns="http://www.w3.org/2000/svg" width="104" height="118.329" viewBox="0 0 104 118.329">
+        <g id="Layer_2_00000112603577667411075930000017146216991371991182_" transform="translate(-31)">
+          <g id="Layer_1-2" transform="translate(31 0)">
+            <g id="_03.User">
+              <path id="Path_72323" data-name="Path 72323" d="M83,266a51.989,51.989,0,0,1,52,52,4.853,4.853,0,0,1-4.853,4.853H35.853A4.853,4.853,0,0,1,31,318,51.989,51.989,0,0,1,83,266Z" transform="translate(-31 -204.524)" fill="#3f94f3" />
+              <circle id="Ellipse_1621" data-name="Ellipse 1621" cx="29.582" cy="29.582" r="29.582" transform="translate(21.573)" fill="#3f94f3" />
+            </g>
+          </g>
+        </g>
       </svg>
+
     </div>
   );
 };
