@@ -1,7 +1,8 @@
 
 import { ChangeEvent, ClipboardEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef, useEffect, useState } from "react";
 import { InputLabel } from "../label/label";
-import { UiElementProps } from "../../../common";
+import { UiElementProps, UiElementSize } from "../../../common";
+import { inputHeightClassDurToSize } from "../shared";
 
 export interface InputFieldProps extends UiElementProps {
     /**
@@ -73,6 +74,10 @@ export interface InputFieldProps extends UiElementProps {
     max?: number | string;
     inputPostfix?: ReactElement
     inputPrefix?: ReactElement
+    /**
+     * Input element height
+     */
+    size?: UiElementSize;
 }
 
 interface InputFieldState {
@@ -139,7 +144,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     <input
                         {...props}
                         className={`shadow appearance-none border w-full
-                            rounded h-14 px-3 text-gray-700 leading-tight 
+                            rounded ${inputHeightClassDurToSize(size)} px-3 text-gray-700 leading-tight 
                             focus:outline-none focus:shadow-outline
                         placeholder:text-gray-500 disabled:!bg-gray-100
                             ${props.errormessage ? 'border-error' : 'border-secondary'}
@@ -158,7 +163,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                     {/* Featured placeholder */}
                     {
                         props.featuredPlaceholder && !state.value
-                            ? <div className={`absolute pointer-events-none top-1/2 -translate-y-1/2 left-3 text-gray-500 ${props.direction === 'rtl'?"right-0":""}`}>
+                            ? <div className={`absolute pointer-events-none top-1/2 -translate-y-1/2 left-3 text-gray-500 ${props.direction === 'rtl' ? "right-0" : ""}`}>
                                 {props.featuredPlaceholder}
                             </div>
                             : null

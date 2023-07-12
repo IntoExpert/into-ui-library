@@ -7,4 +7,6 @@ export interface UiElementProps {
      */
     className?: string;
     dir?: string;
-}
+};
+
+export type UiElementSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
