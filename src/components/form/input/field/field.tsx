@@ -90,7 +90,7 @@ interface InputFieldState {
  * @param props 
  * @returns Controlled input element
  */
-export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, onPast, ...props }, ref) => {
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, onPast, size, ...props }, ref) => {
 
     const [state, setState] = useState<InputFieldState>({ value: value ?? props.defaultValue });
 
