@@ -4,7 +4,7 @@ export const CalenderWeeklyScheduleIcon = ({ size = 11.5, className }: IconProps
 
     return (<svg xmlns="http://www.w3.org/2000/svg"
         className={`${className ?? ''}`}
-        width={size * 1.429} height={size}
+        width={size}
         viewBox="0 0 16.426 11.496">
         <g id="Group_13087" data-name="Group 13087" transform="translate(0 0)">
             <path id="Path_72334" data-name="Path 72334" d="M799.982,430.409c0-.526,0-1.052,0-1.578a.809.809,0,0,1,.871-.879q1.587,0,3.175,0a.817.817,0,0,1,.88.876q.006,1.588,0,3.175a.827.827,0,0,1-.886.876q-1.578.005-3.155,0a.821.821,0,0,1-.884-.891C799.98,431.461,799.982,430.935,799.982,430.409Zm1.645.81h1.622V429.6h-1.622Z" transform="translate(-799.98 -427.949)" fill="#fff" />

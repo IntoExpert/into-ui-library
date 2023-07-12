@@ -7,8 +7,7 @@ export const DropdownArrowIcon = ({ className, size = 7.5 }: DropdownArrowIconPr
       <svg
         id="Shape"
         xmlns="http://www.w3.org/2000/svg"
-        width={size * 1.72}
-        height={size}
+        width={size}
         viewBox="0 0 12.916 7.5"
       >
         <path
