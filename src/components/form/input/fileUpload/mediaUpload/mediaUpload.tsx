@@ -29,7 +29,7 @@ export interface MediaUploadState {
     isRetake?: boolean;
 };
 
-export const MediaUpload = (props: MediaUploadProps) => {
+export const MediaUpload = ({ className, ...props }: MediaUploadProps) => {
 
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
@@ -150,14 +150,15 @@ export const MediaUpload = (props: MediaUploadProps) => {
     }, [props.mediaSrc]);
 
     return (
-        <div className="row">
+        <div className={`row ${className}`}>
             {
                 <FileUpload
                     {...DEFAULT_FILE_UPLOAD_OPTIONS}
                     {...props.uploadOptions}
                     disabled={props.disabled || props.uploadOptions?.disabled}
                     onAdd={onAdd}
-                    className={`${state.media?.src || state.isRetake ? '!border-none' : ''} ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
+                    className={`${state.media?.src || state.isRetake ? '!border-none' : ''} 
+                        ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
                     body={state.isRetake
                         ? <Camera mode={props.mode}
                             onCapture={onCapture}
