@@ -1,6 +1,6 @@
-import { MouseEvent, MouseEventHandler, ReactElement, useCallback, useEffect, useState } from "react";
+import { MouseEvent, MouseEventHandler, ReactElement, forwardRef, useCallback, useEffect, useState } from "react";
 import { UiElementProps } from "../../../../common";
-import { FileUpload, FileUploadProps } from "../fileUpload";
+import { FileInputRefType, FileUpload, FileUploadProps } from "../fileUpload";
 import { Button, ButtonProps } from "../../../../button";
 import { RetakeButton } from "../retakeButton/retakeButton";
 import { readFileThenGenerateUrl } from "../helpers";
@@ -29,7 +29,7 @@ export interface MediaUploadState {
     isRetake?: boolean;
 };
 
-export const MediaUpload = ({ className, ...props }: MediaUploadProps) => {
+export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ className, ...props }: MediaUploadProps, ref) => {
 
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
@@ -155,6 +155,7 @@ export const MediaUpload = ({ className, ...props }: MediaUploadProps) => {
                 <FileUpload
                     {...DEFAULT_FILE_UPLOAD_OPTIONS}
                     {...props.uploadOptions}
+                    ref={ref}
                     disabled={props.disabled || props.uploadOptions?.disabled}
                     onAdd={onAdd}
                     className={`${state.media?.src || state.isRetake ? '!border-none' : ''} 
@@ -169,7 +170,7 @@ export const MediaUpload = ({ className, ...props }: MediaUploadProps) => {
             }
         </div>
     );
-};
+});
 
 const DEFAULT_FILE_UPLOAD_OPTIONS: FileUploadProps = {
     accept: {

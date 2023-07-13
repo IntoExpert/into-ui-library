@@ -1,7 +1,11 @@
-import { ReactElement, useCallback, useEffect } from "react";
+import { ReactElement, forwardRef, useCallback, useEffect, useImperativeHandle } from "react";
 import { useDropzone, FileRejection } from 'react-dropzone';
 import { UiElementProps } from "../../../common/uiElement/uiElement";
 import { InputLabel } from "../label";
+
+export interface FileInputRefType {
+    openFileDialog: () => void
+}
 
 export interface FileUploadProps extends UiElementProps {
     /**
@@ -52,14 +56,14 @@ export interface FileUploadProps extends UiElementProps {
      * Is file input disabled
      */
     disabled?: boolean;
-    /**
-     * Is file dialog open
-     */
-    isOpen?: boolean;
 };
 
-export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFilesRejected,
-    maxFilesCount, maxSize, minSize, multiple, label, disabled, isOpen, className }: FileUploadProps) => {
+export const FileUpload = forwardRef<FileInputRefType, FileUploadProps>(({ accept, body, onAdd, onDropAvailableContent, onFilesRejected,
+    maxFilesCount, maxSize, minSize, multiple, label, disabled, className }: FileUploadProps, ref) => {
+
+    useImperativeHandle(ref, () => ({
+        openFileDialog() { open() }
+    }))
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
         if (acceptedFiles?.length) {
@@ -73,10 +77,6 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
 
     const { getRootProps, getInputProps, isDragActive, open } =
         useDropzone({ onDrop, accept, maxFiles: maxFilesCount, maxSize, minSize, multiple, disabled });
-
-    useEffect(() => {
-        if (isOpen) { open() }
-    }, [isOpen, open]);
 
     return (
         <div>
@@ -94,4 +94,4 @@ export const FileUpload = ({ accept, body, onAdd, onDropAvailableContent, onFile
             </div>
         </div>
     )
-};
+});
