@@ -58,8 +58,8 @@ export interface FileUploadProps extends UiElementProps {
     disabled?: boolean;
 };
 
-export const FileUpload = forwardRef<FileInputRefType, FileUploadProps>(({ accept, body, onAdd, onDropAvailableContent, onFilesRejected,
-    maxFilesCount, maxSize, minSize, multiple, label, disabled, className }: FileUploadProps, ref) => {
+export const FileUpload = forwardRef<FileInputRefType, FileUploadProps>(({ accept, body, onAdd, onDropAvailableContent,
+    onFilesRejected, maxFilesCount, maxSize, minSize, multiple, label, disabled, className }: FileUploadProps, ref) => {
 
     useImperativeHandle(ref, () => ({
         openFileDialog() { open() }
@@ -95,3 +95,5 @@ export const FileUpload = forwardRef<FileInputRefType, FileUploadProps>(({ accep
         </div>
     )
 });
+
+FileUpload.displayName = "File Upload";

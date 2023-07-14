@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, ReactElement, forwardRef, useCallback, useEffect, useState } from "react";
+import { MouseEvent, MouseEventHandler, ReactElement, forwardRef, useCallback, useEffect, useMemo, useState } from "react";
 import { UiElementProps } from "../../../../common";
 import { FileInputRefType, FileUpload, FileUploadProps } from "../fileUpload";
 import { Button, ButtonProps } from "../../../../button";
@@ -29,7 +29,8 @@ export interface MediaUploadState {
     isRetake?: boolean;
 };
 
-export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onUpload, onChange, disabled, isLoading, className, uploadButton, retakeButton, ...props }: MediaUploadProps, ref) => {
+export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onUpload, onChange, disabled, isLoading,
+    className, uploadButton, retakeButton, ...props }: MediaUploadProps, ref) => {
 
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
@@ -140,6 +141,15 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
         )
     }, [Actions, props.mode, props.mediaBody, state.media?.src]);
 
+    const body = useMemo(() => state.isRetake
+        ? <Camera mode={props.mode}
+            onCapture={onCapture}
+            onVideoRecorded={onVideoRecorded} />
+        : !state.media?.src
+            ? <NoImageDropzoneBody />
+            : <MediaDropzoneBody />,
+        [MediaDropzoneBody, NoImageDropzoneBody, onCapture, onVideoRecorded, props.mode, state.isRetake, state.media?.src]);
+
     useEffect(() => {
         setState(prevState => ({
             ...prevState, media: {
@@ -151,23 +161,17 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
 
     return (
         <div className={`row ${className}`}>
-            {
-                <FileUpload
-                    {...DEFAULT_FILE_UPLOAD_OPTIONS}
-                    {...props.uploadOptions}
-                    ref={ref}
-                    disabled={disabled || props.uploadOptions?.disabled}
-                    onAdd={onAdd}
-                    className={`${state.media?.src || state.isRetake ? '!border-none' : ''} 
+
+            <FileUpload
+                {...DEFAULT_FILE_UPLOAD_OPTIONS}
+                {...props.uploadOptions}
+                ref={ref}
+                disabled={disabled || props.uploadOptions?.disabled}
+                onAdd={onAdd}
+                className={`${state.media?.src || state.isRetake ? '!border-none' : ''} 
                         ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
-                    body={state.isRetake
-                        ? <Camera mode={props.mode}
-                            onCapture={onCapture}
-                            onVideoRecorded={onVideoRecorded} />
-                        : !state.media?.src
-                            ? <NoImageDropzoneBody />
-                            : <MediaDropzoneBody />} />
-            }
+                body={body} />
+
         </div>
     );
 });
@@ -180,4 +184,6 @@ const DEFAULT_FILE_UPLOAD_OPTIONS: FileUploadProps = {
     maxFilesCount: 1,
     multiple: false,
     className: 'aspect-video'
-}; 
+};
+
+MediaUpload.displayName = "Media Upload";
