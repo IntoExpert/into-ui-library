@@ -85,7 +85,7 @@ export const FileUpload = forwardRef<FileInputRefType, FileUploadProps>(({ accep
                 className: `border-2 border-dashed border-gray-200 rounded-md flex justify-center items-center 
                 bg-background bg-opacity-30 overflow-hidden ${className ?? ''}`,
             })}>
-                <input {...getInputProps({ disabled })} />
+                <input {...getInputProps()} />
                 {
                     isDragActive ?
                         (onDropAvailableContent || <p>Drop the files here ...</p>) :
