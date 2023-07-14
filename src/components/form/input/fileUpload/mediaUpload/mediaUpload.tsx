@@ -29,11 +29,28 @@ export interface MediaUploadState {
     isRetake?: boolean;
 };
 
-export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ className, ...props }: MediaUploadProps, ref) => {
+export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onChange, className, ...props }: MediaUploadProps, ref) => {
 
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
-    const onAdd = (files: File[]) => {
+    const onObjectUrlCreated = useCallback((url: string) => {
+        onChange?.(url);
+        setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
+    }, [onChange]);
+
+    const onCapture = useCallback((data: string) => {
+        // TODO make a better file name
+        const file = dataURLtoFile(data, `captured-image-${Date.now()}.jpeg`);
+        setState(prevState => ({
+            ...prevState, media: {
+                src: data,
+                file,
+            }
+        }))
+        onObjectUrlCreated(URL.createObjectURL(file))
+    }, [onObjectUrlCreated]);
+
+    const onAdd = useCallback((files: File[]) => {
         if (!files.length) return;
         const file = files[0];
 
@@ -46,26 +63,9 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ cla
         }))
 
         readFileThenGenerateUrl(file, onObjectUrlCreated);
-    };
+    }, [props.uploadOptions, onObjectUrlCreated]);
 
-    const onCapture = async (data: string) => {
-        // TODO make a better file name
-        const file = dataURLtoFile(data, `captured-image-${Date.now()}.jpeg`);
-        setState(prevState => ({
-            ...prevState, media: {
-                src: data,
-                file,
-            }
-        }))
-        onObjectUrlCreated(URL.createObjectURL(file))
-    };
-
-    const onObjectUrlCreated = (url: string) => {
-        props.onChange?.(url);
-        setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
-    };
-
-    const onVideoRecorded = (videoBlobs: Blob) => {
+    const onVideoRecorded = useCallback((videoBlobs: Blob) => {
         setState(prevState => ({
             ...prevState, media: {
                 ...prevState.media,
@@ -75,12 +75,12 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ cla
             }
         }))
         onObjectUrlCreated(URL.createObjectURL(videoBlobs));
-    };
+    }, [onObjectUrlCreated]);
 
-    const handleRetakeRequest = (event: MouseEvent) => {
+    const handleRetakeRequest = useCallback((event: MouseEvent) => {
         event.stopPropagation();
         setState(prevState => ({ ...prevState, isRetake: true }));
-    }
+    }, []);
 
     const handleMediaUpload: MouseEventHandler = useCallback((event) => {
         event.stopPropagation();
@@ -107,9 +107,9 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ cla
             onClick={handleRetakeRequest}>
             {props.retakeButton?.children}
         </RetakeButton>
-    </div>, [props, handleMediaUpload, state.media?.src]);
+    </div>, [props, handleMediaUpload, state.media?.src, handleRetakeRequest]);
 
-    const NoImageDropzoneBody = () => {
+    const NoImageDropzoneBody = useCallback(() => {
         return (
             <article>
                 <div>
@@ -120,7 +120,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ cla
                 </div>
             </article>
         );
-    };
+    }, [Actions, props.uploadOptions?.body]);
 
     const MediaDropzoneBody = useCallback(() => {
 
