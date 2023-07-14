@@ -29,7 +29,7 @@ export interface MediaUploadState {
     isRetake?: boolean;
 };
 
-export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onChange, className, ...props }: MediaUploadProps, ref) => {
+export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onUpload, onChange, disabled, isLoading, className, uploadButton, retakeButton, ...props }: MediaUploadProps, ref) => {
 
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
@@ -86,28 +86,28 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onC
         event.stopPropagation();
         if (!state.media?.file) return;
 
-        props.onUpload?.(state.media?.file)
-    }, [props, state.media?.file])
+        onUpload?.(state.media?.file)
+    }, [onUpload, state.media?.file])
 
 
 
     const Actions = useCallback(() => <div className={`flex gap-2 p-2`}>
         {state.media?.src ? <Button
-            {...props.uploadButton}
-            disabled={props.disabled || props.uploadButton?.disabled}
-            isLoading={props.isLoading}
+            {...uploadButton}
+            disabled={disabled || uploadButton?.disabled}
+            isLoading={isLoading}
             type="button"
-            className={`bg-secondary flex-1 ${props.uploadButton?.className ?? ''}`}
+            className={`bg-secondary flex-1 ${uploadButton?.className ?? ''}`}
             onClick={handleMediaUpload}>
-            {props.uploadButton?.children}
+            {uploadButton?.children}
         </Button> : null}
-        <RetakeButton {...props.retakeButton} type="button"
-            disabled={props.disabled || props.retakeButton?.disabled}
-            className={`flex-1 ${props.retakeButton?.className ?? ''}`}
+        <RetakeButton {...retakeButton} type="button"
+            disabled={disabled || retakeButton?.disabled}
+            className={`flex-1 ${retakeButton?.className ?? ''}`}
             onClick={handleRetakeRequest}>
-            {props.retakeButton?.children}
+            {retakeButton?.children}
         </RetakeButton>
-    </div>, [props, handleMediaUpload, state.media?.src, handleRetakeRequest]);
+    </div>, [uploadButton, retakeButton, isLoading, disabled, handleMediaUpload, state.media?.src, handleRetakeRequest]);
 
     const NoImageDropzoneBody = useCallback(() => {
         return (
@@ -156,7 +156,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onC
                     {...DEFAULT_FILE_UPLOAD_OPTIONS}
                     {...props.uploadOptions}
                     ref={ref}
-                    disabled={props.disabled || props.uploadOptions?.disabled}
+                    disabled={disabled || props.uploadOptions?.disabled}
                     onAdd={onAdd}
                     className={`${state.media?.src || state.isRetake ? '!border-none' : ''} 
                         ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
