@@ -186,4 +186,4 @@ const DEFAULT_FILE_UPLOAD_OPTIONS: FileUploadProps = {
     className: 'aspect-video'
 };
 
-MediaUpload.displayName = "Media Upload";
+MediaUpload.displayName = "MediaUpload";

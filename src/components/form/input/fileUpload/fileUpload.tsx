@@ -96,4 +96,4 @@ export const FileUpload = forwardRef<FileInputRefType, FileUploadProps>(({ accep
     )
 });
 
-FileUpload.displayName = "File Upload";
+FileUpload.displayName = "FileUpload";

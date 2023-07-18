@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof MediaUpload> = (args) => <MediaUpload {...
 export const UploadImageComponent = Template.bind({});
 UploadImageComponent.args = {
     uploadButton: {
-        children: "Upload"
+        children: <div>Upload</div>
     },
     retakeButton: {
         children: "Retake"

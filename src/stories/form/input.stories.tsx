@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof InputField> = (args) => <InputField {...ar
 
 export const DefaultState = Template.bind({});
 DefaultState.args = {
-    defaultValue: "Hi",
+    placeholder: "Hi",
     label: "Type there"
 };
 
