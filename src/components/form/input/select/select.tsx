@@ -49,7 +49,7 @@ export const Select = (props: SelectProps) => {
                         ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: () => `!bg-transparent`,
                     dropdownIndicator: () => `!text-black`,
-                    placeholder: () => `!placeholder:text-gray-500 ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
+                    placeholder: () => `placeholder:!text-gray-500 placeholder:font-light ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
                 }}
                 components={{
                     DropdownIndicator: props.isSearchable ? DropdownSearchIcon : DropdownIcon,
