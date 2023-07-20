@@ -7,6 +7,7 @@ import { readFileThenGenerateUrl } from "../helpers";
 import { Camera } from "../../../../camera/camera";
 import { VideoPlayer } from "../../../../video";
 import { dataURLtoFile } from "../../../../lib/files";
+import { PDFIcon } from "../../../../icons";
 
 export interface MediaUploadProps extends UiElementProps {
     disabled?: boolean;
@@ -37,7 +38,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
     const onObjectUrlCreated = useCallback((url: string, file: File) => {
         onChange?.(url, file);
         setState(prevState => ({ ...prevState, media: { file, src: url }, isRetake: false }));
-    }, []);
+    }, [onChange]);
 
     const onCapture = useCallback((data: string) => {
         const file = dataURLtoFile(data, `captured-image-${Date.now()}.jpeg`);
@@ -107,23 +108,29 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
         );
     }, [Actions, props.uploadOptions?.body]);
 
+    const fileExtension = useMemo(() => state.media?.file?.name.split('.')[state.media?.file?.name.length - 1],
+        [state.media?.file?.name]);
+
     const MediaDropzoneBody = useCallback(() => {
 
         return (
             <>
                 {props.mediaBody
                     ? props.mediaBody
-                    : <div className={`w-full h-full relative`}>
+                    : <div className={`w-full h-full relative relative `}>
                         {!props.mode || props.mode === "photo"
-                            ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
-                            : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} showPlayButton playButtonPosition="topLeft" />}
+                            ? fileExtension === "pdf"
+                                ? <div className={`flex justify-center items-center`}><PDFIcon /></div>
+                                : <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
+                            : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`}
+                                showPlayButton playButtonPosition="topLeft" />}
                         <div className={`absolute bottom-[5%] left-1/2 -translate-x-1/2`}>
                             <Actions />
                         </div>
                     </div>}
             </>
         )
-    }, [Actions, props.mode, props.mediaBody, state.media?.src]);
+    }, [Actions, props.mode, props.mediaBody, fileExtension, state.media?.src]);
 
     const body = useMemo(() => state.isRetake
         ? <Camera mode={props.mode}
