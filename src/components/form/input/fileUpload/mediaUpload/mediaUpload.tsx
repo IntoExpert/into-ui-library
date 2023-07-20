@@ -17,7 +17,7 @@ export interface MediaUploadProps extends UiElementProps {
     retakeButton?: ButtonProps;
     mode?: "photo" | "video";
     onUpload?: (file: File) => void;
-    onChange?: (url: string) => void;
+    onChange?: (url: string, file: File) => void;
     isLoading?: boolean;
 };
 
@@ -35,9 +35,8 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
     const onObjectUrlCreated = useCallback((url: string) => {
-        onChange?.(url);
         setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
-    }, [onChange]);
+    }, []);
 
     const onCapture = useCallback((data: string) => {
         // TODO make a better file name
@@ -90,7 +89,12 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
         onUpload?.(state.media?.file)
     }, [onUpload, state.media?.file])
 
+    useEffect(() => {
+        if (state.media) {
+            onChange?.(state.media!.src!, state.media!.file!);
+        }
 
+    }, [state.media, onChange]);
 
     const Actions = useCallback(() => <div className={`flex gap-2 p-2`}>
         {state.media?.src ? <Button
@@ -133,7 +137,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
                         {!props.mode || props.mode === "photo"
                             ? <img className={`w-full h-full`} src={state.media?.src} alt="Uploaded" />
                             : <VideoPlayer url={state.media?.src} width={`100%`} height={`100%`} showPlayButton playButtonPosition="topLeft" />}
-                        <div className={`absolute bottom-10 left-1/2 -translate-x-1/2`}>
+                        <div className={`absolute bottom-[5%] left-1/2 -translate-x-1/2`}>
                             <Actions />
                         </div>
                     </div>}
