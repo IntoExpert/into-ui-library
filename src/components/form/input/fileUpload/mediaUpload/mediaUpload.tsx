@@ -34,20 +34,15 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
 
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
-    const onObjectUrlCreated = useCallback((url: string) => {
-        setState(prevState => ({ ...prevState, media: { ...prevState.media, src: url }, isRetake: false }));
+    const onObjectUrlCreated = useCallback((url: string, file: File) => {
+        onChange?.(url, file);
+        setState(prevState => ({ ...prevState, media: { file, src: url }, isRetake: false }));
     }, []);
 
     const onCapture = useCallback((data: string) => {
-        // TODO make a better file name
         const file = dataURLtoFile(data, `captured-image-${Date.now()}.jpeg`);
-        setState(prevState => ({
-            ...prevState, media: {
-                src: data,
-                file,
-            }
-        }))
-        onObjectUrlCreated(URL.createObjectURL(file))
+
+        onObjectUrlCreated(URL.createObjectURL(file), file)
     }, [onObjectUrlCreated]);
 
     const onAdd = useCallback((files: File[]) => {
@@ -55,26 +50,18 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
         const file = files[0];
 
         props.uploadOptions?.onAdd?.([file]);
-        setState(prevState => ({
-            ...prevState, media: {
-                ...prevState.media,
-                file: file
-            }
-        }))
 
-        readFileThenGenerateUrl(file, onObjectUrlCreated);
+        readFileThenGenerateUrl(file, (url) => onObjectUrlCreated(url, file));
     }, [props.uploadOptions, onObjectUrlCreated]);
 
     const onVideoRecorded = useCallback((videoBlobs: Blob) => {
-        setState(prevState => ({
-            ...prevState, media: {
-                ...prevState.media,
-                file: new File([videoBlobs], `recorded-promoVideo.${new Date().getTime()}`, {
-                    type: 'video/webm'
-                }),
-            }
-        }))
-        onObjectUrlCreated(URL.createObjectURL(videoBlobs));
+
+        const file = new File([videoBlobs], `recorded-promoVideo.${new Date().getTime()}`, {
+            type: 'video/webm'
+        });
+
+        onObjectUrlCreated(URL.createObjectURL(videoBlobs), file);
+
     }, [onObjectUrlCreated]);
 
     const handleRetakeRequest = useCallback((event: MouseEvent) => {
@@ -88,13 +75,6 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
 
         onUpload?.(state.media?.file)
     }, [onUpload, state.media?.file])
-
-    useEffect(() => {
-        if (state.media) {
-            onChange?.(state.media!.src!, state.media!.file!);
-        }
-
-    }, [state.media, onChange]);
 
     const Actions = useCallback(() => <div className={`flex gap-2 p-2`}>
         {state.media?.src ? <Button
