@@ -37,3 +37,5 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(({
         inputPrefix={<KeyIcon />}
         inputPostfix={<ShowPasswordIcon />} />
 });
+
+PasswordField.displayName = "PasswordField";
