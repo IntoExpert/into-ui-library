@@ -117,7 +117,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
             <>
                 {props.mediaBody
                     ? props.mediaBody
-                    : <div className={`w-full h-full relative relative `}>
+                    : <div className={`w-full h-full relative`}>
                         {!props.mode || props.mode === "photo"
                             ? fileExtension === "pdf"
                                 ? <div className={`flex justify-center items-center`}><PDFIcon /></div>
