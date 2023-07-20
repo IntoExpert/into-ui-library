@@ -49,7 +49,7 @@ export const Select = (props: SelectProps) => {
                         ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: () => `!bg-transparent`,
                     dropdownIndicator: () => `!text-black`,
-                    valueContainer: () => `overflow-auto max-h-full`,
+                    valueContainer: () => `!overflow-auto max-h-full`,
                     placeholder: () => `placeholder:!text-gray-500 placeholder:font-light ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
                 }}
                 components={{
