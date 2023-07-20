@@ -122,7 +122,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
                         {...props}
                         className={`relative h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
                          ${props.className ?? ''}`}
-                        checked={state.value && (state.value === props.name || state.value === '1') ? true : false}
                         value={props.name}
                         onClick={e => {
                             const newValue = state.value ? '' : e.currentTarget.value;
