@@ -3,78 +3,73 @@ import { UiElementProps } from "../common";
 import { DropdownItem, DropdownItemProps } from "./item/item";
 
 export interface DropdownMenuProps extends UiElementProps {
-    items: DropdownItemProps[];
+  items: DropdownItemProps[];
 }
 
 export interface DropdownProps extends UiElementProps {
-    icon: JSX.Element;
-    onClick?: (event: React.MouseEvent) => void;
-    menu?: DropdownMenuProps
+  icon: JSX.Element;
+  onClick?: (event: React.MouseEvent) => void;
+  menu?: DropdownMenuProps
 };
 
 export interface DropdownState {
-    isOpen?: boolean;
+  isOpen?: boolean;
 }
 
 export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps) => {
 
-    const [state, setState] = useState<DropdownState>({ isOpen: false });
+  const [state, setState] = useState<DropdownState>({ isOpen: false });
 
-    const menuRef = useRef<HTMLUListElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const handleToggle = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setState((prevState) => {
-        const newIsOpen = prevState.isOpen;
-        if (newIsOpen) {
-          document.addEventListener("mousedown", closeOpenMenus);
-        } else {
-          document.removeEventListener("mousedown", closeOpenMenus);
-        }
-        return { isOpen: !prevState.isOpen };
-      });
-      onClick?.(e);
-    };
+  const handleToggle = (e: React.MouseEvent) => {
 
-    const closeOpenMenus = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        document.removeEventListener("mousedown", closeOpenMenus);
-        setState((prevState) => ({ ...prevState, isOpen: false }));
-      }
-    };
-    const handleClose = () => {
-      setState({ isOpen: false });
-    };
+    e.stopPropagation();
 
-    return (
-      <div
-        className={`relative`}
-        onClick={(e) => {
-          e.preventDefault();
-        }}
+    const newIsOpen = !state.isOpen;
+    if (newIsOpen) {
+      document.addEventListener("mouseup", closeOpenMenus);
+    } else {
+      document.removeEventListener("mouseup", closeOpenMenus);
+    }
+
+    console.log({ newIsOpen })
+    setState({ isOpen: newIsOpen })
+
+    onClick?.(e);
+  };
+
+  const closeOpenMenus = (e: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      document.removeEventListener("mouseup", closeOpenMenus);
+      console.log({ close: 'ccc' })
+      setState((prevState) => ({ ...prevState, isOpen: false }));
+    }
+  };
+
+  return (
+    <div
+      className={`relative`}
+      ref={dropdownRef}
+    >
+      <button
+        type="button"
+        className={`w-10 h-10 cursor-pointer rounded transition hover:bg-blue-50 relative ${className ?? ""
+          }`}
+        onClick={handleToggle}
       >
-        <button
-          type="button"
-          className={`w-10 h-10 cursor-pointer rounded transition hover:bg-blue-50 relative ${
-            className ?? ""
-          }`}
-          onClick={handleToggle}
-          onBlur={handleClose}
-        >
-          <span className={`flex justify-center`}>{icon}</span>
-        </button>
-        <ul
-          className={`absolute shadow-md rounded overflow-hidden bg-white z-10
+        <span className={`flex justify-center`}>{icon}</span>
+      </button>
+      <ul
+        className={`absolute shadow-md rounded overflow-hidden bg-white z-10
                 ${state.isOpen ? "max-w-fit px-1 p-2" : "max-w-0"} 
-                ${menu?.className ?? ""} ${
-            dir === "rtl" ? "left-0 right-auto" : ""
+                ${menu?.className ?? ""} ${dir === "rtl" ? "left-0 right-auto" : ""
           }`}
-          ref={menuRef}
-        >
-          {menu?.items?.map((item, index) => (
-            <DropdownItem key={item.key ?? index} {...item} />
-          ))}
-        </ul>
-      </div>
-    );
+      >
+        {menu?.items?.map((item, index) => (
+          <DropdownItem key={item.key ?? index} {...item} />
+        ))}
+      </ul>
+    </div>
+  );
 }

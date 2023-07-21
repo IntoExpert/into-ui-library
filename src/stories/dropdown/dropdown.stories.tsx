@@ -29,6 +29,7 @@ NavbarWithAuth.args = {
                 icon: <span>&uarr;</span>,
                 button: {
                     children: "Home",
+                    onClick: (e) => alert('Hi')
                 }
             },
             {
