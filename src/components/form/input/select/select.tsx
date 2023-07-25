@@ -50,7 +50,7 @@ export const Select = (props: SelectProps) => {
                     indicatorSeparator: () => `!bg-transparent`,
                     dropdownIndicator: () => `!text-black`,
                     valueContainer: () => `!coverflow-auto max-h-full`,
-                    placeholder: () => `placeholder:!text-gray-500 placeholder:font-light ${props.size === "sm" ? 'text-sm font-light !text-gray-700' : '!text-gray-500'}`,
+                    placeholder: () => `placeholder:text-gray-500 placeholder:font-light`,
                 }}
                 components={{
                     DropdownIndicator: props.isSearchable ? DropdownSearchIcon : DropdownIcon,

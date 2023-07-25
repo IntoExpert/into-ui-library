@@ -9,7 +9,7 @@ export interface VideoPlayerProps extends UiElementProps, ReactPlayerProps {
     playButtonPosition?: 'topLeft' | 'topRight' | 'center';
 };
 
-export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'center', ...props }: VideoPlayerProps) => {
+export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'center', className, ...props }: VideoPlayerProps) => {
     const [play, setPlay] = useState(false);
 
     const handlePlayButtonToggle = useCallback((e: MouseEvent) => {
@@ -35,8 +35,7 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
                         ${playButtonPosition?.toLowerCase().includes('right') ? 'right-2' : ''}
                         ${playButtonPosition?.toLowerCase().includes('left') ? 'left-2' : ''}
                         ${playButtonPosition === 'center' ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' : ''}
-                        transition-all hover:shadow hover:scale-105 cursor-pointer rounded-full
-                        `}>
+                        transition-all hover:shadow hover:scale-105 cursor-pointer rounded-full ${className}`}>
                     {!play ? <PlayIcon className={`fill-surface rounded-full`} /> : <PauseIcon className={`fill-surface`} />}
                 </span>
                 : null}
