@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from '../../components';
 
@@ -9,7 +8,7 @@ export default {
 
 } as ComponentMeta<typeof Select>;
 
-export const colourOptions = [
+const colourOptions = [
     { value: "ocean1", label: "Ocean" },
     { value: "blue", label: "Blue" },
     { value: "purple", label: "Purple" },
@@ -19,7 +18,7 @@ export const colourOptions = [
     { value: "green", label: "Green" },
     { value: "forest", label: "Forest" },
     { value: "slate", label: "Slate" },
-    { value: "silver", label: "Silver" }
+    { value: "silver", label: "Silver" },
 ];
 
 const Template: ComponentStory<typeof Select> = (args) => <Select {...args} options={colourOptions} />;
@@ -43,5 +42,6 @@ Searchable.args = {
 
 export const MultiSelect = Template.bind({});
 MultiSelect.args = {
-    isMulti: true
+    isMulti: true,
+
 }
