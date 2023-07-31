@@ -4,7 +4,7 @@ import { StateManagerProps } from 'react-select/dist/declarations/src/useStateMa
 import { InputLabel } from '../label';
 import { DropdownArrowIcon, SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
-import { ReactElement } from 'react';
+import { ReactElement, useCallback } from 'react';
 
 export interface SelectProps extends UiElementProps, StateManagerProps {
     errormessage?: string;
@@ -36,6 +36,23 @@ export const Select = (props: SelectProps) => {
         );
     }
 
+    const MultiSelectOption = useCallback((props: any) => {
+        return (
+            <div>
+                <components.Option {...props}>
+                    <label>
+                        <input
+                            title="is selected"
+                            type="checkbox"
+                            checked={props.isSelected}
+                            onChange={() => null}
+                        />{" "}
+                        {props.label}</label>
+                </components.Option>
+            </div>
+        );
+    }, []);
+
     return (
         <div className={`${props.className}`}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
@@ -52,8 +69,11 @@ export const Select = (props: SelectProps) => {
                     valueContainer: () => `!coverflow-auto max-h-full`,
                     placeholder: () => `placeholder:text-gray-500 placeholder:font-light`,
                 }}
+                hideSelectedOptions={!props.isMulti}
+                closeMenuOnSelect={!props.isMulti}
                 components={{
                     DropdownIndicator: props.isSearchable ? DropdownSearchIcon : DropdownIcon,
+                    Option: props.isMulti ? MultiSelectOption : components.Option
                 }}
                 {...props}
             />
