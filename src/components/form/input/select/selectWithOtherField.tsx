@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { InputField } from "../field";
 import { Select, SelectProps } from "./select";
 import { SelectOption } from "./option";
@@ -39,6 +39,25 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
         return false;
     }, [otherFieldId]);
 
+    const handleValuesChange = useCallback((selectValues = selectedValues, otherValue = othersValue) => {
+        let value = Array.isArray(selectValues)
+            ? [...selectValues]
+            : typeof selectValues === 'string' ? selectValues : { ...selectValues };
+
+        if (checkIfHasOtherValues(value)) {
+            if (props.isMulti) {
+                (value as SelectOption[]).push({ label: OTHER_VALUE_KEY, value: otherValue })
+            } else {
+                value = {
+                    label: OTHER_VALUE_KEY,
+                    value: otherValue
+                }
+            }
+        }
+
+        onAllValuesChange?.(value);
+    }, [checkIfHasOtherValues, onAllValuesChange, othersValue, props.isMulti, selectedValues]);
+
     const handleOnChange = useCallback((e: any | any[], actionMeta: ActionMeta<unknown>) => {
         setSelectedValues(e);
         if (checkIfHasOtherValues(e)) {
@@ -49,27 +68,8 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
         }
 
         onChange?.(e, actionMeta);
-    }, [onChange, checkIfHasOtherValues]);
-
-    useEffect(() => {
-        let value = Array.isArray(selectedValues)
-            ? [...selectedValues]
-            : typeof selectedValues === 'string' ? selectedValues : { ...selectedValues };
-
-        if (checkIfHasOtherValues(value)) {
-            if (props.isMulti) {
-                (value as SelectOption[]).push({ label: OTHER_VALUE_KEY, value: othersValue })
-            } else {
-                value = {
-                    label: OTHER_VALUE_KEY,
-                    value: othersValue
-                }
-            }
-        }
-
-        onAllValuesChange?.(value);
-
-    }, [checkIfHasOtherValues, othersValue, props.isMulti, selectedValues, onAllValuesChange]);
+        handleValuesChange?.(e);
+    }, [onChange, checkIfHasOtherValues, handleValuesChange]);
 
     useEffect(() => {
         const parentValue = props.value as any;
@@ -90,6 +90,11 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
         }
     }, [otherOption, props.isMulti, props.value, otherFieldId]);
 
+    const handleOthersInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        setOthersValue(e.target.value);
+        handleValuesChange(selectedValues, e.target.value);
+    }, [handleValuesChange, selectedValues]);
+
     return <>
         <Select {...props} value={selectedValues} onChange={handleOnChange} />
         {isOthersChecked && <InputField
@@ -98,6 +103,6 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
             placeholder="Other"
             {...otherFieldProps}
             value={othersValue}
-            onChange={e => setOthersValue(e.target.value)} />}
+            onChange={handleOthersInputChange} />}
     </>;
 } 
