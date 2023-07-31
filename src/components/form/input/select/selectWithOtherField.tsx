@@ -78,13 +78,15 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
         if (!parentValue) return;
 
         const values = props.options?.filter((v: any) => parentValue.includes(v.value)) as SelectOption[];
+        const hasOtherValue = checkIfHasOtherValues(values);
 
-        const otherValue = parentValue.find(v => props.options?.every((o: any) => o.value !== v)) ?? '';
+        const otherValue = hasOtherValue ? parentValue.find(v => props.options?.every((o: any) => o.value !== v)) ?? '' : '';
+
         setSelectedValues(values);
-        setIsOthersChecked(!!otherValue.length);
+        setIsOthersChecked(hasOtherValue);
         setOthersValue(otherValue)
 
-    }, [otherOption, props.value, otherFieldId, props.options]);
+    }, [otherOption, props.value, otherFieldId, props.options, checkIfHasOtherValues]);
 
     const handleOthersInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setOthersValue(e.target.value);

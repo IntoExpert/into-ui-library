@@ -34,10 +34,7 @@ Default.args = {
 export const WithPresetValues = Template.bind({});
 
 WithPresetValues.args = {
-    value: {
-        "label": "otherValue",
-        "value": "The other field value"
-    },
+    value: ['The other field value'],
     options: colourOptions,
     onAllValuesChange: (v) => console.log(v)
 }
@@ -46,12 +43,12 @@ export const MultiSelectWithPresetValues = Template.bind({});
 
 MultiSelectWithPresetValues.args = {
     value: [
-        { label: "otherValue", value: "The other field value" },
-        { value: "orange", label: "Orange" },
-        { value: "yellow", label: "Yellow" },
-        { value: "Other", label: "Other" },
-        { value: "green", label: "Green" },],
+        "The other field value",
+        "orange",
+        "yellow",
+        "Other",
+        "green",],
     isMulti: true,
     options: colourOptions,
-    onAllValuesChange: (v) => console.log(v)
+    onAllValuesChange: (v) => console.log(v),
 }
