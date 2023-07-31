@@ -81,7 +81,7 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
 
         const otherValue = parentValue.find(v => props.options?.every((o: any) => o.value !== v)) ?? '';
         setSelectedValues(values);
-        setIsOthersChecked(true);
+        setIsOthersChecked(!!otherValue.length);
         setOthersValue(otherValue)
 
     }, [otherOption, props.value, otherFieldId, props.options]);
