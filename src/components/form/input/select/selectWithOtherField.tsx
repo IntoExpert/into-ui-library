@@ -80,7 +80,7 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
             setSelectedValues(parentValue.filter((v: SelectOption) => v.label !== OTHER_VALUE_KEY));
             const otherValue = parentValue.find((v: SelectOption) => v.label === OTHER_VALUE_KEY);
             setIsOthersChecked(true);
-            setOthersValue(otherValue.value)
+            setOthersValue(otherValue?.value)
         } else if (!props.isMulti && (parentValue?.label === OTHER_VALUE_KEY || parentValue.value === otherFieldId)) {
             setSelectedValues([otherOption])
             setIsOthersChecked(true);
