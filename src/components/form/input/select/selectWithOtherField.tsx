@@ -13,7 +13,7 @@ export interface SelectWithOthersProps extends SelectProps {
     /**
      * The onchange event that handle both the other field state, and the select state
      */
-    onAllValuesChange?: (value: SelectOption | SelectOption[] | '') => void;
+    onAllValuesChange?: (value: string[]) => void;
 };
 
 export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllValuesChange, otherFieldProps, ...props }: SelectWithOthersProps) => {
@@ -42,21 +42,22 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
     const handleValuesChange = useCallback((selectValues = selectedValues, otherValue = othersValue) => {
         let value = Array.isArray(selectValues)
             ? [...selectValues]
-            : typeof selectValues === 'string' ? selectValues : { ...selectValues };
+            : typeof selectValues === 'string' ? [] : [{ ...selectValues }];
 
         if (checkIfHasOtherValues(value)) {
             if (props.isMulti) {
                 (value as SelectOption[]).push({ label: OTHER_VALUE_KEY, value: otherValue })
             } else {
-                value = {
+                value = [{
                     label: OTHER_VALUE_KEY,
                     value: otherValue
-                }
+                },
+                    otherOption]
             }
         }
 
-        onAllValuesChange?.(value);
-    }, [checkIfHasOtherValues, onAllValuesChange, othersValue, props.isMulti, selectedValues]);
+        onAllValuesChange?.(value.map(v => v.value));
+    }, [checkIfHasOtherValues, onAllValuesChange, othersValue, props.isMulti, selectedValues, otherOption]);
 
     const handleOnChange = useCallback((e: any | any[], actionMeta: ActionMeta<unknown>) => {
         setSelectedValues(e);
@@ -72,23 +73,18 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
     }, [onChange, checkIfHasOtherValues, handleValuesChange]);
 
     useEffect(() => {
-        const parentValue = props.value as any;
+        const parentValue: string[] = props.value as any;
 
         if (!parentValue) return;
 
-        if (props.isMulti && parentValue.some((v: SelectOption) => v.value === otherFieldId)) {
-            setSelectedValues(parentValue.filter((v: SelectOption) => v.label !== OTHER_VALUE_KEY));
-            const otherValue = parentValue.find((v: SelectOption) => v.label === OTHER_VALUE_KEY);
-            setIsOthersChecked(true);
-            setOthersValue(otherValue?.value)
-        } else if (!props.isMulti && (parentValue?.label === OTHER_VALUE_KEY || parentValue.value === otherFieldId)) {
-            setSelectedValues([otherOption])
-            setIsOthersChecked(true);
-            setOthersValue(parentValue.value);
-        } else {
-            setSelectedValues(parentValue);
-        }
-    }, [otherOption, props.isMulti, props.value, otherFieldId]);
+        const values = props.options?.filter((v: any) => parentValue.includes(v.value)) as SelectOption[];
+
+        const otherValue = parentValue.find(v => props.options?.every((o: any) => o.value !== v)) ?? '';
+        setSelectedValues(values);
+        setIsOthersChecked(true);
+        setOthersValue(otherValue)
+
+    }, [otherOption, props.value, otherFieldId, props.options]);
 
     const handleOthersInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setOthersValue(e.target.value);
