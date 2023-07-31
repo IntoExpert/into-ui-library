@@ -52,7 +52,9 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
     }, [onChange, checkIfHasOtherValues]);
 
     useEffect(() => {
-        let value = Array.isArray(selectedValues) ? [...selectedValues] : { ...selectedValues };
+        let value = Array.isArray(selectedValues)
+            ? [...selectedValues]
+            : typeof selectedValues === 'string' ? selectedValues : { ...selectedValues };
 
         if (checkIfHasOtherValues(value)) {
             if (props.isMulti) {
