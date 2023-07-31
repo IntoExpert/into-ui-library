@@ -5,79 +5,80 @@ import { UiElementProps, UiElementSize } from "../../../common";
 import { inputHeightClassDurToSize } from "../shared";
 
 export interface InputFieldProps extends UiElementProps {
-    /**
-     * The id of the input element
-     */
-    id?: string;
-    /**
-     * Input label, if you leave it empty no label will show
-     */
-    label?: ReactElement | string;
-    /**
-     * Input placeholder
-     */
-    placeholder?: string;
-    /**
-     * Input current value, it will be sync to the input element
-     */
-    value?: string;
-    /**
-     * Input initial value
-     */
-    defaultValue?: string;
-    /**
-     * Input error message, when it is null or undefined, no error considered
-     */
-    errormessage?: string;
-    /**
-     * Field type
-     */
-    type?: HTMLInputTypeAttribute | undefined
-    /**
-     * Field input name, it is better to set a name for your input field
-     */
-    name?: string;
-    /**
-     * Check if input is disabled
-     */
-    disabled?: boolean;
-    /**
-     * Field ref, reference to the input Field
-     */
-    ref?: Ref<any>
-    /**
-     * Css class name for the input element
-     */
-    className?: string;
-    /**
-     * Css classses for input label container
-     */
-    containerClassName?: string;
+  /**
+   * The id of the input element
+   */
+  id?: string;
+  /**
+   * Input label, if you leave it empty no label will show
+   */
+  label?: ReactElement | string;
+  /**
+   * Input placeholder
+   */
+  placeholder?: string;
+  /**
+   * Input current value, it will be sync to the input element
+   */
+  value?: string;
+  /**
+   * Input initial value
+   */
+  defaultValue?: string;
+  /**
+   * Input error message, when it is null or undefined, no error considered
+   */
+  errormessage?: string;
+  /**
+   * Field type
+   */
+  type?: HTMLInputTypeAttribute | undefined;
+  /**
+   * Field input name, it is better to set a name for your input field
+   */
+  name?: string;
+  /**
+   * Check if input is disabled
+   */
+  disabled?: boolean;
+  /**
+   * Field ref, reference to the input Field
+   */
+  ref?: Ref<any>;
+  /**
+   * Css class name for the input element
+   */
+  className?: string;
+  /**
+   * Css classses for input label container
+   */
+  containerClassName?: string;
 
-    // Events
-    /**
-     * On input value change callback
-     */
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-    /**
-     * On input blur event handler
-     */
-    onBlur?: (event: FocusEvent<HTMLInputElement, Element>) => void;
-    onPast?: (event: ClipboardEvent) => void;
-    /**
-     * Featured placeholder, show JSX elements as placeholder
-     */
-    autoFocus?: boolean;
-    featuredPlaceholder?: ReactElement | string;
-    direction?: 'rtl' | 'ltr' | undefined;
-    min?: number | string;
-    max?: number | string;
-    inputPostfix?: ReactElement
-    inputPrefix?: ReactElement
-    /**
-     * Input element height
-     */
-    size?: UiElementSize;
+  // Events
+  /**
+   * On input value change callback
+   */
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  /**
+   * On input blur event handler
+   */
+  onBlur?: (event: FocusEvent<HTMLInputElement, Element>) => void;
+  onPast?: (event: ClipboardEvent) => void;
+  /**
+   * Featured placeholder, show JSX elements as placeholder
+   */
+  autoFocus?: boolean;
+  featuredPlaceholder?: ReactElement | string;
+  direction?: "rtl" | "ltr" | undefined;
+  min?: number | string;
+  max?: number | string;
+  inputPostfix?: ReactElement;
+  inputPrefix?: ReactElement;
+  checked?: boolean;
+  /**
+   * Input element height
+   */
+  size?: UiElementSize;
 }
 
 interface InputFieldState {
@@ -117,19 +118,32 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
             after:items-center after:text-xs appearance-none focus:outline-secondary after:pointer-events-none`;
 
             return (
-                <div className={`flex justify-start align-baseline ${props.containerClassName}`}>
-                    <input
-                        {...props}
-                        className={`relative h-4 w-4 ${isRadio ? radioClasses : checkBoxClasses}
-                         ${props.className ?? ''}`}
-                        value={props.name}
-                        onClick={e => {
-                            const newValue = state.value ? '' : e.currentTarget.value;
-                            setState(prevState => ({ ...prevState, value: newValue }));
-                        }}
-                        ref={ref} />
-                    <InputLabel inputId={props.id} content={props.label} className="mx-2 inline-block" />
-                </div>
+              <div
+                className={`flex justify-start align-baseline ${props.containerClassName}`}
+              >
+                <input
+                  {...props}
+                  className={`relative h-4 w-4 ${
+                    isRadio ? radioClasses : checkBoxClasses
+                  }
+                         ${props.className ?? ""}`}
+                  value={props.name}
+                  onClick={(e) => {
+                    const newValue = state.value ? "" : e.currentTarget.value;
+                    setState((prevState) => ({
+                      ...prevState,
+                      value: newValue,
+                    }));
+                  }}
+                  ref={ref}
+                  checked={props.checked}
+                />
+                <InputLabel
+                  inputId={props.id}
+                  content={props.label}
+                  className="mx-2 inline-block"
+                />
+              </div>
             );
         default:
             return <div className={`text-start ${props.containerClassName}`}>
