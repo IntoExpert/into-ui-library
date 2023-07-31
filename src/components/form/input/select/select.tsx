@@ -68,6 +68,7 @@ export const Select = (props: SelectProps) => {
                     dropdownIndicator: () => `!text-black`,
                     valueContainer: () => `!coverflow-auto max-h-full`,
                     placeholder: () => `placeholder:text-gray-500 placeholder:font-light`,
+                    option: (props) => `${props.isSelected ? `!bg-gray-50 !text-black` : ``}`,
                 }}
                 hideSelectedOptions={!props.isMulti}
                 closeMenuOnSelect={!props.isMulti}
