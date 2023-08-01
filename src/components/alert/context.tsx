@@ -114,8 +114,7 @@ export const AlertProvider = ({ rootElementId, children, classname }: AlertProvi
         cancelTitle: string;
         onConfirm: () => void;
     }) => {
-        const body = <div className={`text-md font-bold`}>
-            {message}
+        const body = <div className={`text-md font-bold`} dangerouslySetInnerHTML={{ __html: message }}>
         </div>;
 
         fireAlertDialog({
