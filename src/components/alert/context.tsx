@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useState } from "react";
+import { ReactElement, createContext, useCallback, useContext, useState } from "react";
 import { UiElementProps } from "../common/uiElement";
 import { OnTopOfElementNavbar as SnackBarAlert } from "./snackBar/snackBar";
 import { DialogAlert, DialogAlertOptions } from "./dialog/dialog";
@@ -30,7 +30,7 @@ export interface AlertContextProps {
      */
     fireAlertDialog: (options: AlertOptions) => void;
     fireConfirmAlert: ({ message, cancelTitle, confirmTitle, onConfirm }: {
-        message: string;
+        message: string | ReactElement;
         confirmTitle: string;
         cancelTitle: string;
         onConfirm: () => void;
@@ -109,13 +109,13 @@ export const AlertProvider = ({ rootElementId, children, classname }: AlertProvi
         setState(prevState => ({ ...prevState, dialogAlert: { ...options, show: true } })), []);
 
     const fireConfirmAlert = useCallback(({ message, cancelTitle, confirmTitle, onConfirm }: {
-        message: string;
+        message: string | ReactElement;
         confirmTitle: string;
         cancelTitle: string;
         onConfirm: () => void;
     }) => {
-        const body = <div className={`text-md font-bold`} dangerouslySetInnerHTML={{ __html: message }}>
-        </div>;
+
+        const body = <div className={`text-md font-bold`}>{message}</div>;
 
         fireAlertDialog({
             body, cancelButton: {
