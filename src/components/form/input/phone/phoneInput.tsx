@@ -8,10 +8,36 @@ export interface PhoneInputProps extends PhoneInput2Props {
     size?: UiElementSize;
 }
 
+export const masks = {
+    lb: ".. ... ...",
+    sa: ".. ... ....",
+    ae: ".. ... ....",
+    bh: ".... ....",
+    kw: ".... ....",
+    qa: ".... ....",
+    om: ".... ....",
+    dz: ".. ... ....",
+    km: ".. .....",
+    dj: ".. .. .. ..",
+    eg: "(...)... ....",
+    iq: "(...)... ....",
+    ly: ".. ... ...",
+    mr: ".. .. ....",
+    ma: ".. .... ...",
+    ps: ".. ... ....",
+    so: ".. ... ...",
+    sd: ".. ... ....",
+    sy: "... ... ...",
+    tn: ".. ... ...",
+    ye: "... ... ...",
+    jo: ". .... ....",
+};
+
 
 export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
     return <div>
         <PhoneInput2
+            masks={masks}
             excludeCountries={["il", "IL"]}
             {...props}
             containerClass={`!border-secondary ${inputHeightClassDurToSize(size)} w-full ${props.containerClass ?? ''}`}
