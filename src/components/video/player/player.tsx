@@ -9,7 +9,7 @@ export interface VideoPlayerProps extends UiElementProps, ReactPlayerProps {
     playButtonPosition?: 'topLeft' | 'topRight' | 'center';
 };
 
-export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'center', className, ...props }: VideoPlayerProps) => {
+export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'center', className = '', ...props }: VideoPlayerProps) => {
     const [play, setPlay] = useState(false);
 
     const handlePlayButtonToggle = useCallback((e: MouseEvent) => {
@@ -23,7 +23,7 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
     }, [props.playing]);
 
     return (
-        <div className={`relative`}>
+        <div className={`relative ${className}`}>
             <ReactPlayer
                 {...props}
                 playing={showPlayButton ? play : props.playing} />
