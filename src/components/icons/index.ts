@@ -75,3 +75,5 @@ export * from "./walletIcons/incomeIcon";
 export * from "./walletIcons/outgoingIcon";
 export * from "./certificateIcon/certificateIcon";
 export * from "./nationalIdIcon/nationalIdIcon";
+export * from "./sadFaceIcon/sadFaceIcon";
+export * from "./iconProps";
