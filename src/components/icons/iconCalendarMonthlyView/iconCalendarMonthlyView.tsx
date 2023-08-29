@@ -1,6 +1,6 @@
 import { IconProps } from "../iconProps";
 
-export const CalenderMonthlyViewIcon = ({ size = 11.5, className }: IconProps) => {
+export const CalendarMonthlyViewIcon = ({ size = 11.5, className }: IconProps) => {
 
     return (<svg
         className={`${className ?? ''}`}

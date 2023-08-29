@@ -1,8 +1,8 @@
 import { UiElementProps } from "../..";
 
-export interface calenderDaySelectedProps extends UiElementProps { }
+export interface calendarDaySelectedProps extends UiElementProps { }
 
-export const CalenderDaySelectedIcon = (props: calenderDaySelectedProps) => {
+export const CalendarDaySelectedIcon = (props: calendarDaySelectedProps) => {
   return (
     <div className={props.className ?? " "}>
       <svg

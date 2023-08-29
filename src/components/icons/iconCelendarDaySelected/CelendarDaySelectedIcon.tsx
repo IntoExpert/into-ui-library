@@ -1,9 +1,9 @@
 import { IconProps } from "../iconProps";
 
-export interface CalenderIconDaySelectedProps extends IconProps { }
+export interface CalendarIconDaySelectedProps extends IconProps { }
 
-export const CalenderIconDaySelected = (
-  { size = 13, className }: CalenderIconDaySelectedProps
+export const CalendarIconDaySelected = (
+  { size = 13, className }: CalendarIconDaySelectedProps
 ) => {
   return (
     <div className={className ?? " "}>

@@ -1,6 +1,6 @@
 import { IconProps } from "../iconProps";
 
-export const CalenderWeeklyScheduleIcon = ({ size = 11.5, className }: IconProps) => {
+export const CalendarWeeklyScheduleIcon = ({ size = 11.5, className }: IconProps) => {
 
     return (<svg xmlns="http://www.w3.org/2000/svg"
         className={`${className ?? ''}`}

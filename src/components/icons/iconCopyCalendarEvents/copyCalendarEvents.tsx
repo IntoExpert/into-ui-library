@@ -1,10 +1,10 @@
 import { IconProps } from "../iconProps";
 
-export interface CopyCalenderEventsProps extends IconProps {
+export interface CopyCalendarEventsProps extends IconProps {
 
 };
 
-export const CopyCalenderEvents = ({ size = 21, className = '' }: CopyCalenderEventsProps) =>
+export const CopyCalendarEvents = ({ size = 21, className = '' }: CopyCalendarEventsProps) =>
 (<svg className={`${className}`} id="Component_604_2" data-name="Component 604 – 2" xmlns="http://www.w3.org/2000/svg"
     width={size} height={size} viewBox="0 0 21 21">
     <g id="Ellipse_1619" data-name="Ellipse 1619" fill="none" stroke="#3f94f3" strokeWidth="1">
