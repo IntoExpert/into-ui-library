@@ -12,7 +12,8 @@ module.exports = [
         input: "src/components/index.ts",
         external: [
             'react',
-            'react-dom'
+            'react-dom',
+            '@emotion/react'
         ],
         output: [
             {
