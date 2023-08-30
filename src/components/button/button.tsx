@@ -37,12 +37,12 @@ export const Button = ({ title, disabled, onClick, children, type, size, classNa
             case 'xs': return 'p-1 text-xs';
             case 'sm': return 'px-2 py-1';
             case 'md': return 'px-3 py-2';
-            case 'lg': return 'px-4 py-3';
-            case 'xl': return 'px-5 py-3';
-            case '2xl': return 'px-6 py-3';
-            case '3xl': return 'px-7 py-3';
-            case '4xl': return 'px-8 py-4';
-            case '5xl': return 'px-8 py-4';
+            case 'lg': return 'px-6 py-3';
+            case 'xl': return 'px-8 py-3';
+            case '2xl': return 'px-10 py-3';
+            case '3xl': return 'px-12 py-3';
+            case '4xl': return 'px-14 py-4';
+            case '5xl': return 'px-16 py-4';
             case 'full': return 'w-full py-3';
             default: return 'px-3 py-2';
         }
