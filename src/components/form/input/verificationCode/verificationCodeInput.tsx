@@ -84,14 +84,14 @@ export const VerificationCodeInput =
         const InputElement = useCallback(({ index }: { index: number }) => {
 
             return (
-              <InputField
-                key={index}
-                className={`w-12`}
-                value={state.value[index]?.toString()}
-                onPast={handlePastEvent}
-                autoFocus={state.focusIndex === index}
-                onChange={(e) => handleInputChange(e.target.value, index)}
-              />
+                <InputField
+                    key={index}
+                    className={`w-12 text-center`}
+                    value={state.value[index]?.toString()}
+                    onPast={handlePastEvent}
+                    autoFocus={state.focusIndex === index}
+                    onChange={(e) => handleInputChange(e.target.value, index)}
+                />
             );
         }, [handleInputChange, handlePastEvent, state]);
 
