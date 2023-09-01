@@ -2,10 +2,13 @@ import PhoneInput2, { PhoneInputProps as PhoneInput2Props } from 'react-phone-in
 import 'react-phone-input-2/lib/style.css'
 import { UiElementSize } from '../../../common';
 import { inputHeightClassDurToSize } from '../shared';
+import { InputLabel } from '../label';
+import { ReactElement } from 'react';
 
 export interface PhoneInputProps extends PhoneInput2Props {
     errormessage?: string;
     size?: UiElementSize;
+    label?: ReactElement | string;
 }
 
 export const masks = {
@@ -36,6 +39,7 @@ export const masks = {
 
 export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
     return <div>
+        <InputLabel content={props.label} className="block mb-2" />
         <PhoneInput2
             masks={masks}
             excludeCountries={["il", "IL"]}
