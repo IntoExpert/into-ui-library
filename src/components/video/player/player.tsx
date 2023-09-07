@@ -25,6 +25,7 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
     return (
         <div className={`relative ${className}`}>
             <ReactPlayer
+                onEnded={() => setPlay(false)}
                 {...props}
                 playing={showPlayButton ? play : props.playing} />
             {showPlayButton

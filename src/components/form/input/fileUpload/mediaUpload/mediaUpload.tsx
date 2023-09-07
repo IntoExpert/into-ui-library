@@ -56,7 +56,6 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
     }, [props.uploadOptions, onObjectUrlCreated]);
 
     const onVideoRecorded = useCallback((videoBlobs: Blob) => {
-
         const file = new File([videoBlobs], `recorded-promoVideo.${new Date().getTime()}`, {
             type: 'video/webm'
         });

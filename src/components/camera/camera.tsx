@@ -20,7 +20,7 @@ export const Camera = (props: CameraProps) => {
     const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
 
     useEffect(() => {
-        if (capturing || !startedCapturing) return;
+        if (capturing || !startedCapturing || !recordedChunks.length) return;
 
         props.onVideoRecorded?.(new Blob(recordedChunks, { type: 'video/webm' }));
     }, [recordedChunks, capturing, props, startedCapturing]);
@@ -43,11 +43,10 @@ export const Camera = (props: CameraProps) => {
     const handleDataAvailable = useCallback(
         ({ data }: any) => {
             if (data.size > 0) {
-                console.log(data.size);
-                setRecordedChunks((prev) => prev.concat(data));
+                console.info(`Recorded chunk size ${data.size}`);
+                setRecordedChunks(prev => prev.concat(data));
             }
-        },
-        [setRecordedChunks]
+        }, []
     );
 
     /**
@@ -57,6 +56,7 @@ export const Camera = (props: CameraProps) => {
         setStartedCapturing(true);
         event.stopPropagation();
         setCapturing(true);
+
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current?.stream!, {
             mimeType: "video/webm"
         });
@@ -64,6 +64,7 @@ export const Camera = (props: CameraProps) => {
             "dataavailable",
             handleDataAvailable
         );
+
         mediaRecorderRef.current.start();
     }, [webcamRef, setCapturing, mediaRecorderRef, handleDataAvailable]);
 
