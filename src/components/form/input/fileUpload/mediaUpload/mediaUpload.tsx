@@ -20,6 +20,7 @@ export interface MediaUploadProps extends UiElementProps {
     onUpload?: (file: File) => void;
     onChange?: (url: string, file: File) => void;
     isLoading?: boolean;
+    cameraClassName?: string;
 };
 
 export interface MediaUploadState {
@@ -132,7 +133,9 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
     }, [Actions, props.mode, props.mediaBody, fileExtension, state.media?.src]);
 
     const body = useMemo(() => state.isRetake
-        ? <Camera mode={props.mode}
+        ? <Camera
+            className={``}
+            mode={props.mode}
             onCapture={onCapture}
             onVideoRecorded={onVideoRecorded} />
         : !state.media?.src
