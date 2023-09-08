@@ -6,16 +6,17 @@ import { UiElementProps } from "../../common";
 export interface DialogAlertOptions extends UiElementProps {
     cancelButton?: ButtonProps;
     confirmButton?: ButtonProps;
+    hasCloseButton?: boolean;
     body?: ReactElement;
     show?: boolean;
     onClose?: () => void;
 };
 
-export const DialogAlert = ({ confirmButton, cancelButton, body, show, onClose, className }: DialogAlertOptions) => {
+export const DialogAlert = ({ confirmButton, hasCloseButton, cancelButton, body, show, onClose, className }: DialogAlertOptions) => {
     return <Modal
         show={show}
         size="sm"
-        hasCloseButton
+        hasCloseButton={hasCloseButton}
         onClose={onClose}
         className={`p-4 w-md max-w-sm bg-surface shadow-lg rounded ${className ?? ''}`}>
         <div className={``}>
