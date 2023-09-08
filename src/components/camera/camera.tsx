@@ -1,6 +1,6 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import { UiElementProps } from "../common";
-import Webcam, { WebcamProps } from "react-webcam";
+import Webcam from "react-webcam";
 
 
 export interface CameraProps extends UiElementProps {
@@ -8,6 +8,22 @@ export interface CameraProps extends UiElementProps {
     onVideoRecorded?: (blob: Blob) => void;
     mode?: 'video' | 'photo';
     webcamProps?: WebcamProps
+    cameraCaptureButtonClassName?: string;
+}
+
+export interface WebcamProps {
+    audio?: boolean;
+    audioConstraints?: MediaStreamConstraints["audio"];
+    forceScreenshotSourceSize?: boolean;
+    imageSmoothing?: boolean;
+    mirrored?: boolean;
+    minScreenshotHeight?: number;
+    minScreenshotWidth?: number;
+    onUserMedia?: (stream: MediaStream) => void;
+    onUserMediaError?: (error: string | DOMException) => void;
+    screenshotFormat?: "image/webp" | "image/png" | "image/jpeg";
+    screenshotQuality?: number;
+    videoConstraints?: MediaStreamConstraints["video"];
 }
 
 export const Camera = (props: CameraProps) => {
@@ -82,7 +98,8 @@ export const Camera = (props: CameraProps) => {
     const CaptureClick = () => {
         return props.mode === "video"
             ? (
-                <div className={`w-[2rem] h-[2rem] border-4 border-white border-opacity-80 bg-opacity-80 transition rounded-full 
+                <div className={`${props.cameraCaptureButtonClassName} w-[2rem] h-[2rem] border-4 
+                border-white border-opacity-80 bg-opacity-80 transition rounded-full 
                     flex justify-center items-center group hover:bg-opacity-70 
                     hover:border-opacity-60 hover:scale-95`}>
                     <div className={` bg-red-500 transition 
@@ -91,7 +108,7 @@ export const Camera = (props: CameraProps) => {
                 </div>
             )
             : (
-                <div className={`w-[2rem] h-[2rem] border-2 border-white border-opacity-80 bg-white bg-opacity-80 transition rounded-full flex justify-center items-center
+                <div className={`${props.cameraCaptureButtonClassName} w-[2rem] h-[2rem] border-2 border-white border-opacity-80 bg-white bg-opacity-80 transition rounded-full flex justify-center items-center
                          group hover:bg-opacity-70 hover:border-opacity-60 hover:border-b-transparent hover:border-t-transparent hover:rotate-180 `}>
                     <div className={`min-w-[1.5rem] min-h-[1.5rem] bg-white rounded-full transition group-hover:min-w-[1.2rem] 
             group-hover:min-h-[1.2rem] hover:hue-rotate-180`}>
