@@ -1,12 +1,13 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import { UiElementProps } from "../common";
-import Webcam from "react-webcam";
+import Webcam, { WebcamProps } from "react-webcam";
 
 
 export interface CameraProps extends UiElementProps {
     onCapture?: (src: string) => void;
     onVideoRecorded?: (blob: Blob) => void;
     mode?: 'video' | 'photo';
+    webcamProps?: WebcamProps
 }
 
 export const Camera = (props: CameraProps) => {
@@ -115,6 +116,7 @@ export const Camera = (props: CameraProps) => {
                 }}
                 audio={props.mode === "video"}
                 muted={true}
+                {...props.webcamProps}
             />
             {showCapture ? <button
                 type="button"
