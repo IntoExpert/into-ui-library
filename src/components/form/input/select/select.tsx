@@ -57,6 +57,13 @@ export const Select = (props: SelectProps) => {
         <div className={`${props.className}`}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
             <ReactSelect
+                hideSelectedOptions={!props.isMulti}
+                closeMenuOnSelect={!props.isMulti}
+                components={{
+                    DropdownIndicator: props.isSearchable ? DropdownSearchIcon : DropdownIcon,
+                    Option: props.isMulti ? MultiSelectOption : components.Option
+                }}
+                {...props}
                 classNames={{
                     container: () =>
                         `w-full`
@@ -67,16 +74,10 @@ export const Select = (props: SelectProps) => {
                     indicatorSeparator: () => `!bg-transparent`,
                     dropdownIndicator: () => `!text-black`,
                     valueContainer: () => `!overflow-auto max-h-full`,
-                    placeholder: () => `placeholder:text-gray-500 placeholder:font-light`,
+                    placeholder: () => `placeholder:text-gray-500 placeholder:font-light ${props.size === 'sm' ? 'text-xs' : ''}`,
                     option: (props) => `${props.isSelected ? `!bg-gray-50 !text-black` : ``}`,
+                    ...props.classNames
                 }}
-                hideSelectedOptions={!props.isMulti}
-                closeMenuOnSelect={!props.isMulti}
-                components={{
-                    DropdownIndicator: props.isSearchable ? DropdownSearchIcon : DropdownIcon,
-                    Option: props.isMulti ? MultiSelectOption : components.Option
-                }}
-                {...props}
             />
             {props.errormessage && <p className="text-error text-xs italic mt-1">{props.errormessage}</p>}
         </div>
