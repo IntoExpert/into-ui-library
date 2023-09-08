@@ -4,7 +4,7 @@ import { FileInputRefType, FileUpload, FileUploadProps } from "../fileUpload";
 import { Button, ButtonProps } from "../../../../button";
 import { RetakeButton } from "../retakeButton/retakeButton";
 import { readFileThenGenerateUrl } from "../helpers";
-import { Camera } from "../../../../camera/camera";
+import { Camera, CameraProps } from "../../../../camera/camera";
 import { VideoPlayer } from "../../../../video";
 import { dataURLtoFile } from "../../../../lib/files";
 import { PDFIcon } from "../../../../icons";
@@ -20,7 +20,7 @@ export interface MediaUploadProps extends UiElementProps {
     onUpload?: (file: File) => void;
     onChange?: (url: string, file: File) => void;
     isLoading?: boolean;
-    cameraClassName?: string;
+    camera?: CameraProps;
 };
 
 export interface MediaUploadState {
@@ -136,14 +136,14 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
 
     const body = useMemo(() => state.isRetake
         ? <Camera
-            className={``}
             mode={props.mode}
             onCapture={onCapture}
-            onVideoRecorded={onVideoRecorded} />
+            onVideoRecorded={onVideoRecorded}
+            {...props.camera} />
         : !state.media?.src
             ? <NoImageDropzoneBody />
             : <MediaDropzoneBody />,
-        [MediaDropzoneBody, NoImageDropzoneBody, onCapture, onVideoRecorded, props.mode, state.isRetake, state.media?.src]);
+        [MediaDropzoneBody, NoImageDropzoneBody, onCapture, onVideoRecorded, props.mode, props.camera, state.isRetake, state.media?.src]);
 
     useEffect(() => {
         setState(prevState => ({
