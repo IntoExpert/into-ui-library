@@ -70,7 +70,7 @@ export const Select = (props: SelectProps) => {
                     ,
                     control: (state) =>
                         `!rounded ${props.size === 'sm' ? 'h-10' : 'h-14'} 
-                        ${state.isFocused ? 'border-primary' : '!border-secondary'}`,
+                        ${props.errormessage ? '!border-error' : state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: () => `!bg-transparent`,
                     dropdownIndicator: () => `!text-black`,
                     valueContainer: () => `!overflow-auto max-h-full`,
