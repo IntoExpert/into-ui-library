@@ -44,7 +44,7 @@ export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
             masks={masks}
             excludeCountries={["il", "IL"]}
             {...props}
-            containerClass={`!border-secondary ${inputHeightClassDurToSize(size)} w-full ${props.containerClass ?? ''}`}
+            containerClass={`${props.errormessage ? '!border-error' : '!border-secondary'} ${inputHeightClassDurToSize(size)} w-full ${props.containerClass ?? ''}`}
             inputClass={`!border-secondary !${inputHeightClassDurToSize(size)} disabled:!bg-gray-100 ${props.inputClass ?? ''}`}
             buttonClass={`!border-secondary !bg-surface ${inputHeightClassDurToSize(size)} !border-r-0 
                 ${props.disabled ? '!bg-gray-100' : ''} 
