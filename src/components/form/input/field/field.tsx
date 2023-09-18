@@ -158,7 +158,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
             className={`shadow appearance-none border w-full
                             rounded ${inputHeightClassDurToSize(size)} px-3 text-gray-700 leading-tight 
                             focus:outline-none focus:shadow-outline
-                            placeholder:!text-gray-500 placeholder:font-light ${size === 'sm' ? 'text-xs' : ''}
+                            placeholder:!text-gray-500 ${size === 'sm' ? 'placeholder:text-xs' : ''}
           disabled:!bg-gray-100
           ${props.errormessage ? 'border-error' : 'border-secondary'}
           ${props.className ?? ''}
