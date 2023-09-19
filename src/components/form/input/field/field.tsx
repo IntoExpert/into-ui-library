@@ -1,10 +1,10 @@
 
 import { ChangeEvent, ClipboardEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef, useEffect, useState } from "react";
 import { InputLabel } from "../label/label";
-import { UiElementProps, UiElementSize } from "../../../common";
+import { UiElementSize } from "../../../common";
 import { inputHeightClassDurToSize } from "../shared";
 
-export interface InputFieldProps extends UiElementProps {
+export interface InputFieldProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   /**
    * The id of the input element
    */
@@ -78,7 +78,7 @@ export interface InputFieldProps extends UiElementProps {
   /**
    * Input element height
    */
-  size?: UiElementSize;
+  inputSize?: UiElementSize;
 }
 
 interface InputFieldState {
@@ -91,7 +91,7 @@ interface InputFieldState {
  * @param props 
  * @returns Controlled input element
  */
-export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, onPast, size, ...props }, ref) => {
+export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value, onPast, inputSize: size, ...props }, ref) => {
 
   const [state, setState] = useState<InputFieldState>({ value: value ?? props.defaultValue });
 

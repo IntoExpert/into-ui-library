@@ -97,7 +97,7 @@ export const SelectWithOtherField = ({ otherFieldId = 'Other', onChange, onAllVa
         <Select {...props} value={selectedValues} onChange={handleOnChange} />
         {isOthersChecked && <InputField
             className={`mt-1`}
-            size="xs"
+            inputSize="xs"
             placeholder="Other"
             {...otherFieldProps}
             value={othersValue}
