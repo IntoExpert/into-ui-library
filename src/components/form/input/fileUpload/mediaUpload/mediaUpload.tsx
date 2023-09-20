@@ -21,6 +21,7 @@ export interface MediaUploadProps extends UiElementProps {
     onChange?: (url: string, file: File) => void;
     isLoading?: boolean;
     camera?: CameraProps;
+    mediaDropzoneClassname?: string;
 };
 
 export interface MediaUploadState {
@@ -32,7 +33,7 @@ export interface MediaUploadState {
 };
 
 export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onUpload, onChange, disabled, isLoading,
-    className, uploadButton, retakeButton, ...props }: MediaUploadProps, ref) => {
+    className, uploadButton, retakeButton, mediaDropzoneClassname, ...props }: MediaUploadProps, ref) => {
 
     const [state, setState] = useState<MediaUploadState>({ media: { src: props.mediaSrc } });
 
@@ -119,7 +120,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
             <>
                 {props.mediaBody
                     ? props.mediaBody
-                    : <div className={`w-full h-full relative`}>
+                    : <div className={`w-full h-full relative ${mediaDropzoneClassname}`}>
                         {!props.mode || props.mode === "photo"
                             ? fileExtension === "pdf"
                                 ? <div className={`flex justify-center items-center`}><PDFIcon /></div>
@@ -132,7 +133,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
                     </div>}
             </>
         )
-    }, [Actions, props.mode, props.mediaBody, fileExtension, state.media?.src]);
+    }, [Actions, props.mode, props.mediaBody, fileExtension, mediaDropzoneClassname, state.media?.src]);
 
     const body = useMemo(() => state.isRetake
         ? <Camera
