@@ -1,9 +1,13 @@
-import { useRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import { UiElementProps } from "../common";
 import { DropdownItem, DropdownItemProps } from "./item/item";
 
 export interface DropdownMenuProps extends UiElementProps {
   items: DropdownItemProps[];
+}
+
+export interface DropdownRefType {
+  close: () => void;
 }
 
 export interface DropdownProps extends UiElementProps {
@@ -16,7 +20,7 @@ export interface DropdownState {
   isOpen?: boolean;
 }
 
-export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps) => {
+export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu, dir, onClick, className }, ref) => {
 
   const [state, setState] = useState<DropdownState>({ isOpen: false });
 
@@ -33,7 +37,6 @@ export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps)
       document.removeEventListener("mouseup", closeOpenMenus);
     }
 
-    console.log({ newIsOpen })
     setState({ isOpen: newIsOpen })
 
     onClick?.(e);
@@ -46,6 +49,12 @@ export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps)
       setState((prevState) => ({ ...prevState, isOpen: false }));
     }
   };
+
+  useImperativeHandle(ref, () => ({
+    close() {
+      setState({ isOpen: false })
+    }
+  }), [])
 
   return (
     <div
@@ -72,4 +81,4 @@ export const Dropdown = ({ icon, menu, dir, onClick, className }: DropdownProps)
       </ul>
     </div>
   );
-}
+});
