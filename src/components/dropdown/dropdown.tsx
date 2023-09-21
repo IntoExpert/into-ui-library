@@ -45,7 +45,7 @@ export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu
   const closeOpenMenus = (e: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
       document.removeEventListener("mouseup", closeOpenMenus);
-      console.log({ close: 'ccc' })
+
       setState((prevState) => ({ ...prevState, isOpen: false }));
     }
   };
