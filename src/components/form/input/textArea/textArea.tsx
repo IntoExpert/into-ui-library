@@ -1,4 +1,4 @@
-import { ChangeEvent, DetailedHTMLProps, ReactElement, TextareaHTMLAttributes, UIEvent, useEffect, useState } from "react";
+import { ChangeEvent, DetailedHTMLProps, ReactElement, TextareaHTMLAttributes, UIEvent, useCallback, useEffect, useRef, useState } from "react";
 import { UiElementProps } from "../../../common";
 import { InputLabel } from "../label";
 
@@ -28,6 +28,8 @@ export const TextArea = (props: TextAreaProps) => {
 
     const [state, setState] = useState<TextAreaState>({ value: props.value, charsLeftCount: props.maxLength });
 
+    const ref = useRef<HTMLTextAreaElement>(null);
+
     const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         props.onChange?.(event);
     };
@@ -40,10 +42,21 @@ export const TextArea = (props: TextAreaProps) => {
         setState(prevState => ({ ...prevState, isHideCharCount }))
     }
 
+    const init = useCallback(() => {
+        const target = ref.current;
+        if (!target) return;
+
+        const scrollOffset = 0;
+        const isHideCharCount = target.clientHeight + scrollOffset < target.scrollHeight;
+        setState(prevState => ({ ...prevState, isHideCharCount }))
+    }, []);
+
     useEffect(() => {
         setState(prevState =>
             ({ ...prevState, value: props.value, charsLeftCount: (props.maxLength ?? 0) - (props.value?.toString()?.length ?? 0) }));
     }, [props.maxLength, props.value])
+
+    useEffect(() => { init() }, [init])
 
     return (
         <div className={`w-full h-full flex flex-col`}>
@@ -51,6 +64,7 @@ export const TextArea = (props: TextAreaProps) => {
             <div className={`relative ${props.className ?? ''}`}>
                 <textarea
                     {...props}
+                    ref={ref}
                     className={`border border-secondary text-gray-700 placeholder:text-gray-500 p-2 pb-6 rounded w-full 
                     h-full ${props.errormessage ? '!border-error' : ''}`}
                     title={props.title ?? props.placeholder}
