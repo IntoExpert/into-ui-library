@@ -79,7 +79,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
     }, [onUpload, state.media?.file])
 
     const Actions = useCallback(() => <div className={`flex gap-2 p-2`}>
-        {state.media?.src ? props.uploadOptions
+        {state.media?.src ? uploadButton
             ? <Button
                 {...uploadButton}
                 disabled={disabled || uploadButton?.disabled}
@@ -96,7 +96,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
             onClick={handleRetakeRequest}>
             {retakeButton?.children}
         </RetakeButton> : null}
-    </div>, [uploadButton, retakeButton, isLoading, disabled, handleMediaUpload, state.media?.src, props.uploadOptions, handleRetakeRequest]);
+    </div>, [uploadButton, retakeButton, isLoading, disabled, handleMediaUpload, state.media?.src, handleRetakeRequest]);
 
     const NoImageDropzoneBody = useCallback(() => {
         return (
