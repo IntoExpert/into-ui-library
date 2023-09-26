@@ -30,10 +30,6 @@ export const TextArea = (props: TextAreaProps) => {
 
     const ref = useRef<HTMLTextAreaElement>(null);
 
-    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onChange?.(event);
-    };
-
     const handleOnScroll = (event: UIEvent<HTMLTextAreaElement>) => {
         // console.log(event);
         const target = event.currentTarget;
@@ -41,6 +37,19 @@ export const TextArea = (props: TextAreaProps) => {
         const isHideCharCount = target.clientHeight + scrollOffset < target.scrollHeight;
         setState(prevState => ({ ...prevState, isHideCharCount }))
     }
+
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChange?.(event);
+    };
+
+    const handleCountOfCharactersHideAndShow = useCallback(() => {
+        setState(prevState =>
+        ({
+            ...prevState, value: props.value,
+            charsLeftCount: (props.maxLength ?? 0) - (props.value?.toString()?.length ?? 0)
+        }));
+    }, [props.maxLength, props.value]);
+
 
     const init = useCallback(() => {
         const target = ref.current;
@@ -52,9 +61,8 @@ export const TextArea = (props: TextAreaProps) => {
     }, []);
 
     useEffect(() => {
-        setState(prevState =>
-            ({ ...prevState, value: props.value, charsLeftCount: (props.maxLength ?? 0) - (props.value?.toString()?.length ?? 0) }));
-    }, [props.maxLength, props.value])
+        handleCountOfCharactersHideAndShow();
+    }, [handleCountOfCharactersHideAndShow])
 
     useEffect(() => { init() }, [init])
 
