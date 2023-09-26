@@ -42,7 +42,7 @@ export const TextArea = (props: TextAreaProps) => {
         const target = ref.current;
         if (!target) return;
 
-        const scrollOffset = 0;
+        const scrollOffset = target.scrollTop;
         const isHideCharCount = target.clientHeight + scrollOffset < target.scrollHeight;
         setState(prevState => ({ ...prevState, isHideCharCount }))
     }, []);
