@@ -38,20 +38,7 @@ export const TextArea = (props: TextAreaProps) => {
         setState(prevState => ({ ...prevState, isHideCharCount }))
     }
 
-    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onChange?.(event);
-    };
-
     const handleCountOfCharactersHideAndShow = useCallback(() => {
-        setState(prevState =>
-        ({
-            ...prevState, value: props.value,
-            charsLeftCount: (props.maxLength ?? 0) - (props.value?.toString()?.length ?? 0)
-        }));
-    }, [props.maxLength, props.value]);
-
-
-    const init = useCallback(() => {
         const target = ref.current;
         if (!target) return;
 
@@ -60,9 +47,23 @@ export const TextArea = (props: TextAreaProps) => {
         setState(prevState => ({ ...prevState, isHideCharCount }))
     }, []);
 
-    useEffect(() => {
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChange?.(event);
         handleCountOfCharactersHideAndShow();
-    }, [handleCountOfCharactersHideAndShow])
+    };
+
+
+    const init = useCallback(() => {
+        handleCountOfCharactersHideAndShow();
+    }, [handleCountOfCharactersHideAndShow]);
+
+    useEffect(() => {
+        setState(prevState =>
+        ({
+            ...prevState, value: props.value,
+            charsLeftCount: (props.maxLength ?? 0) - (props.value?.toString()?.length ?? 0)
+        }));
+    }, [props.maxLength, props.value])
 
     useEffect(() => { init() }, [init])
 
