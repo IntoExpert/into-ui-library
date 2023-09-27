@@ -27,7 +27,6 @@ export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = (e: React.MouseEvent) => {
-    debugger;
     e.stopPropagation();
 
     const newIsOpen = !state.isOpen;
@@ -43,7 +42,6 @@ export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu
   };
 
   const closeOpenMenus = (e: MouseEvent) => {
-    debugger;
     if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
       document.removeEventListener("mouseup", closeOpenMenus);
 
@@ -72,7 +70,7 @@ export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu
       </button>
       <ul
         className={`absolute shadow-md rounded overflow-hidden bg-white z-10
-                ${state.isOpen ? "max-w-fit px-1 p-2" : "max-w-0"} 
+                ${state.isOpen ? "max-w-fit px-1 p-2" : "max-w-0"}
                 ${menu?.className ?? ""} ${dir === "rtl" ? "left-0 right-auto" : ""
           }`}
       >
