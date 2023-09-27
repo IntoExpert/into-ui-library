@@ -12,7 +12,9 @@ export const NavbarLinks = (props: NavbarLinkProps) => {
             {props.links?.map((link, index) => (
                 <li key={index} className={``}>
                     {index > 0 ? <span className={``}></span> : null}
-                    <Link {...link} className={`rounded-full p-2 transition-colors text-sm hover:bg-primary hover:text-white`} />
+                    <Link {...link}
+                        className={`rounded-full p-2 transition-colors text-sm 
+                        hover:bg-primary hover:text-white ${link.className}`} />
                 </li>
             ))}
         </ul>
