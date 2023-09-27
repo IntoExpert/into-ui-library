@@ -27,7 +27,7 @@ export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = (e: React.MouseEvent) => {
-
+    debugger;
     e.stopPropagation();
 
     const newIsOpen = !state.isOpen;
@@ -43,6 +43,7 @@ export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu
   };
 
   const closeOpenMenus = (e: MouseEvent) => {
+    debugger;
     if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
       document.removeEventListener("mouseup", closeOpenMenus);
 
