@@ -1,20 +1,17 @@
 import { HTMLProps, ReactElement } from "react";
 
-export interface ToggleButtonProps extends HTMLProps<HTMLInputElement> {
+export interface ToggleButtonProps
+  extends Omit<HTMLProps<HTMLInputElement>, "label"> {
   className?: string;
-  prefixCompenent?: string | ReactElement;
+  label?: string | ReactElement;
 }
 
-export const ToggleButton = ({
-  className,
-  prefixCompenent,
-  ...props
-}: ToggleButtonProps) => {
+export const ToggleButton = ({ className, label, ...props }: ToggleButtonProps) => {
   return (
     <div className={`${className ?? ""}`}>
       <div className="flex items-center mb-4">
         <span className="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300 w-32">
-          {`${prefixCompenent}`}
+          {`${label}`}
         </span>
         <label className="relative inline-flex items-center cursor-pointer">
           <input {...props} type="checkbox" value="" className="sr-only peer" />
