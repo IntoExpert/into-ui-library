@@ -1,15 +1,15 @@
 import { HTMLProps, ReactElement } from "react";
 
-export interface ToggleProps extends HTMLProps<HTMLInputElement> {
+export interface ToggleButtonProps extends HTMLProps<HTMLInputElement> {
   className?: string;
   prefixCompenent?: string | ReactElement;
 }
 
-export const Toggle = ({
+export const ToggleButton = ({
   className,
   prefixCompenent,
   ...props
-}: ToggleProps) => {
+}: ToggleButtonProps) => {
   return (
     <div className={`${className ?? ""}`}>
       <div className="flex items-center mb-4">
