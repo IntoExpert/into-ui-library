@@ -25,8 +25,8 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
     return (
         <div className={`relative ${className} ${play ? '[&>button]:opacity-0 [&>button]:hover:opacity-100' : ''}`}>
             <ReactPlayer
-                {...props}
                 wrapper={({ children }: { children: ReactNode }) => <div className={`w-full`}>{children}</div>}
+                {...props}
                 onEnded={() => {
                     setPlay(false)
                     props.onEnded?.();
