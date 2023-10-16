@@ -1,4 +1,4 @@
-import { ClipboardEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { ClipboardEvent, KeyboardEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { InputField } from "../field";
 import { UiElementProps } from "../../../common";
 
@@ -46,7 +46,9 @@ export const VerificationCodeInput =
 
         const handleInputChange = useCallback((value: string, index: number) => {
             if (value.length) {
-                handleAutoFocus(index + 1);
+                if (value.match(/\d/)) {
+                    handleAutoFocus(index + 1);
+                }
             } else {
                 handleAutoFocus(index - 1);
             }
@@ -73,6 +75,11 @@ export const VerificationCodeInput =
             }
         }, [handleAutoFocus]);
 
+        const handleBackspace = useCallback((e: KeyboardEvent<HTMLInputElement>, index: number) => {
+            if (!["Backspace", "Delete"].includes(e.key) || e.currentTarget.value) return;
+            handleAutoFocus(index - 1);
+        }, [handleAutoFocus]);
+
         const handlePastEvent = useCallback((event: ClipboardEvent) => {
             event.preventDefault();
 
@@ -91,9 +98,10 @@ export const VerificationCodeInput =
                     onPast={handlePastEvent}
                     autoFocus={state.focusIndex === index}
                     onChange={(e) => handleInputChange(e.target.value, index)}
+                    onKeyDown={(e) => handleBackspace(e, index)}
                 />
             );
-        }, [handleInputChange, handlePastEvent, state]);
+        }, [handleInputChange, handleBackspace, handlePastEvent, state]);
 
         // Check on change event
         useEffect(() => {
