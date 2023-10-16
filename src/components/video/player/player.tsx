@@ -34,6 +34,7 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
                 playing={showPlayButton ? play : props.playing} />
             {showPlayButton
                 ? <button
+                    type="button"
                     onClick={handlePlayButtonToggle}
                     className={`absolute 
                         ${playButtonPosition?.startsWith('top') ? 'top-2' : ''}
