@@ -9,6 +9,7 @@ export interface CameraProps extends UiElementProps {
     mode?: 'video' | 'photo';
     webcamProps?: WebcamProps
     cameraCaptureButtonClassName?: string;
+    onMediaError?: (error: string | DOMException) => void
 }
 
 export interface WebcamProps {

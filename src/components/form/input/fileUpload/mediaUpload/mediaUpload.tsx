@@ -140,6 +140,10 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
             mode={props.mode}
             onCapture={onCapture}
             onVideoRecorded={onVideoRecorded}
+            onMediaError={(e) => {
+                setState(prev => ({ ...prev, isRetake: false }))
+                props.camera?.onMediaError?.(e);
+            }}
             {...props.camera} />
         : !state.media?.src
             ? <NoImageDropzoneBody />
