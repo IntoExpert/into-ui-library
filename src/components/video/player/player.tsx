@@ -36,12 +36,12 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
                 ? <button
                     type="button"
                     onClick={handlePlayButtonToggle}
-                    className={`absolute 
+                    className={`absolute
                         ${playButtonPosition?.startsWith('top') ? 'top-2' : ''}
                         ${playButtonPosition?.toLowerCase().includes('right') ? 'right-2' : ''}
                         ${playButtonPosition?.toLowerCase().includes('left') ? 'left-2' : ''}
                         ${playButtonPosition === 'center' ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' : ''}
-                        transition-all hover:shadow hover:scale-110 cursor-pointer rounded-full ${className}`}>
+                        transition-all hover:shadow hover:scale-110 cursor-pointer rounded-full`}>
                     {!play ? <PlayIcon className={`fill-surface rounded-full`} /> : <PauseIcon className={`fill-surface`} />}
                 </button>
                 : null}
