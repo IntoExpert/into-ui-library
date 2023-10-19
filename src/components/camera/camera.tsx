@@ -134,6 +134,7 @@ export const Camera = (props: CameraProps) => {
                 }}
                 audio={props.mode === "video"}
                 muted={true}
+                onUserMediaError={props.onMediaError}
                 {...props.webcamProps}
             />
             {showCapture ? <button
