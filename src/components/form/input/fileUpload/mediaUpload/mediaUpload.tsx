@@ -29,7 +29,7 @@ export interface MediaUploadState {
         src?: string;
         file?: File;
     };
-    isRetake?: boolean;
+    isCameraOpen?: boolean;
 };
 
 export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onUpload, onChange, disabled, isLoading,
@@ -39,7 +39,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
 
     const onObjectUrlCreated = useCallback((url: string, file: File) => {
         onChange?.(url, file);
-        setState(prevState => ({ ...prevState, media: { file, src: url }, isRetake: false }));
+        setState(prevState => ({ ...prevState, media: { file, src: url }, isCameraOpen: false }));
     }, [onChange]);
 
     const onCapture = useCallback((data: string) => {
@@ -68,7 +68,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
 
     const handleRetakeRequest = useCallback((event: MouseEvent) => {
         event.stopPropagation();
-        setState(prevState => ({ ...prevState, isRetake: true }));
+        setState(prevState => ({ ...prevState, isCameraOpen: true }));
     }, []);
 
     const handleMediaUpload: MouseEventHandler = useCallback((event) => {
@@ -135,20 +135,20 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
         )
     }, [Actions, props.mode, props.mediaBody, fileExtension, mediaDropzoneClassname, state.media?.src]);
 
-    const body = useMemo(() => state.isRetake
+    const body = useMemo(() => state.isCameraOpen
         ? <Camera
             mode={props.mode}
             onCapture={onCapture}
             onVideoRecorded={onVideoRecorded}
+            {...props.camera}
             onMediaError={(e) => {
-                setState(prev => ({ ...prev, isRetake: false }))
+                setState(prev => ({ ...prev, isCameraOpen: false }))
                 props.camera?.onMediaError?.(e);
-            }}
-            {...props.camera} />
+            }} />
         : !state.media?.src
             ? <NoImageDropzoneBody />
             : <MediaDropzoneBody />,
-        [MediaDropzoneBody, NoImageDropzoneBody, onCapture, onVideoRecorded, props.mode, props.camera, state.isRetake, state.media?.src]);
+        [MediaDropzoneBody, NoImageDropzoneBody, onCapture, onVideoRecorded, props.mode, props.camera, state.isCameraOpen, state.media?.src]);
 
     useEffect(() => {
         setState(prevState => ({
@@ -168,7 +168,7 @@ export const MediaUpload = forwardRef<FileInputRefType, MediaUploadProps>(({ onU
                 ref={ref}
                 disabled={disabled || props.uploadOptions?.disabled}
                 onAdd={onAdd}
-                className={`${state.media?.src || state.isRetake ? '!border-none' : ''} 
+                className={`${state.media?.src || state.isCameraOpen ? '!border-none' : ''} 
                         ${props.uploadOptions?.className ?? DEFAULT_FILE_UPLOAD_OPTIONS.className ?? ''}`}
                 body={body} />
 
