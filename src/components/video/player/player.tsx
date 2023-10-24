@@ -30,7 +30,7 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
                     setPlay(false)
                     props.onEnded?.();
                 }}
-                playing={showPlayButton ? play : props.playing} />
+                playing={play} />
             {showPlayButton
                 ? <button
                     type="button"
