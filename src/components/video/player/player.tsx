@@ -14,9 +14,8 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
 
     const handlePlayButtonToggle = useCallback((e: MouseEvent) => {
         e.stopPropagation();
-        setPlay(!play)
-    }
-        , [play]);
+        setPlay(play => !play)
+    }, []);
 
     useEffect(() => {
         setPlay(!!props.playing);
