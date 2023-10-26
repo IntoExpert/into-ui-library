@@ -30,7 +30,11 @@ export const VideoPlayer = ({ showPlayButton = false, playButtonPosition = 'cent
                     setPlay(false)
                     props.onEnded?.();
                 }}
-                playing={play} />
+                playing={play}
+                onClickPreview={(e) => {
+                    handlePlayButtonToggle(e);
+                    props.onClickPreview?.(e);
+                }} />
             {showPlayButton
                 ? <button
                     type="button"
