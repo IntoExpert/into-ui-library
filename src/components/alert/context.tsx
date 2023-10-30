@@ -7,7 +7,7 @@ export interface AlertOptions extends UiElementProps {
     /**
      * Alert message
      */
-    message: string | JSX.Element;
+    message?: string | JSX.Element;
 };
 
 export interface AlertContextProps {
@@ -66,7 +66,7 @@ export interface AlertProviderProps {
 export const AlertProvider = ({ rootElementId, children, classname }: AlertProviderProps) => {
 
     const [state, setState] = useState<AlertContextState>({
-        snackBarAlert: { message: "", className: ' ' },
+        snackBarAlert: { message: undefined, className: '' },
         dialogAlert: {}
     });
 
@@ -98,7 +98,7 @@ export const AlertProvider = ({ rootElementId, children, classname }: AlertProvi
     }
 
     const onSnackBarClose = useCallback(() => {
-        setState(prevState => ({ ...prevState, snackBarAlert: { message: "", className: '' } }));
+        setState(prevState => ({ ...prevState, snackBarAlert: { message: undefined, className: '' } }));
     }, []);
 
     const onAlertDialogClose = useCallback(() => {

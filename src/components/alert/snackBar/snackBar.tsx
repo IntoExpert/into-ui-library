@@ -9,7 +9,7 @@ export interface BelowNavBarAlertProps extends UiElementProps {
     /**
      * Alert message to show
      */
-    message: string | JSX.Element;
+    message?: string | JSX.Element;
     /**
      * Element id to show the alert message on top of it
      */
@@ -74,6 +74,8 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
     }, [handleClickOutside, message]);
 
     useEffect(() => setIsHide(false), [message])
+
+    if (!message) return null;
 
     if (typeof window === "object") {
         return createPortal(<MessageComponent />, document.getElementById(elementId ?? 'root') ?? document.body);
