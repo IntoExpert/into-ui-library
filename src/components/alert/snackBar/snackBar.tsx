@@ -40,8 +40,8 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
         <div
             className={`py-3 px-7 shadow-lg absolute left-0 right-0 top-0 transition-all  
             ${className ?? ''}
-            ${isHide ? 'animated-hide-snack-bar' : 'animated-show-snack-bar'}
-            ${message ? 'opacity-100' : 'opacity-0'}`}
+            ${isHide ? 'animated-hide-snack-bar' : ''}
+            ${message ? 'animated-show-snack-bar' : 'opacity-0'}`}
             ref={ref}>
             <IconButton
                 className={`absolute top-1/2 right-3 -translate-y-1/2 !bg-transparent 
@@ -80,6 +80,6 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
     }
 
     return (
-        null
+        <MessageComponent />
     );
 }
