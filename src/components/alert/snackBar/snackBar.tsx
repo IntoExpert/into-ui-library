@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { UiElementProps } from "../../common/uiElement"
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { IconButton } from "../../button";
 
 import "./styles.css";
@@ -28,13 +28,19 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
 
     const ref = useRef<HTMLDivElement>(null);
 
+    const [isHide, setIsHide] = useState(false);
+
     const handleClose = useCallback(() => {
-        onClose?.();
+        setIsHide(true);
+
+        setTimeout(() => onClose?.(), 500)
     }, [onClose]);
 
     const MessageComponent = () => (
         <div
-            className={`py-3 px-7 shadow-lg absolute left-0 right-0 top-0 transition-all animated-show-snack-bar  ${className ?? ''} 
+            className={`py-3 px-7 shadow-lg absolute left-0 right-0 top-0 transition-all  
+            ${className ?? ''}
+            ${isHide ? 'animated-hide-snack-bar' : 'animated-show-snack-bar'}
             ${message ? 'opacity-100' : 'opacity-0'}`}
             ref={ref}>
             <IconButton
@@ -50,10 +56,10 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
     const handleClickOutside = useCallback((e: MouseEvent) => {
         if (!message) return;
 
-        if (!ref?.current?.contains(e.target as Node)) {
-            onClose?.();
+        if (!ref?.current?.contains(e.target as Node) && !isHide) {
+            handleClose();
         }
-    }, [onClose, message])
+    }, [handleClose, isHide, message])
 
     useEffect(() => {
         if (!message) {
@@ -66,6 +72,8 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
             document.removeEventListener('click', handleClickOutside, true);
         }
     }, [handleClickOutside, message]);
+
+    useEffect(() => setIsHide(false), [message])
 
     if (typeof window === "object") {
         return createPortal(<MessageComponent />, document.getElementById(elementId ?? 'root') ?? document.body);

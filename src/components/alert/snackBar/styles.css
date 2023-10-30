@@ -58,3 +58,10 @@
   -moz-animation: 500ms forwards ease-out showSnackBar;
   animation: 500ms forwards ease-out showSnackBar;
 }
+
+.animated-hide-snack-bar {
+  will-change: opacity, transform;
+  -webkit-animation: 500ms reverse ease-out showSnackBar;
+  -moz-animation: 500ms reverse ease-out showSnackBar;
+  animation: 500ms reverse ease-out showSnackBar;
+}
