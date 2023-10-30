@@ -34,7 +34,7 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
 
     const MessageComponent = () => (
         <div
-            className={`p-3 shadow-lg absolute left-0 right-0 top-0 transition-all animated-show-snack-bar  ${className ?? ''} 
+            className={`py-3 px-7 shadow-lg absolute left-0 right-0 top-0 transition-all animated-show-snack-bar  ${className ?? ''} 
             ${message ? 'opacity-100' : 'opacity-0'}`}
             ref={ref}>
             <IconButton
