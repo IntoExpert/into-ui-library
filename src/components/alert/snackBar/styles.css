@@ -1,0 +1,60 @@
+@-webkit-keyframes showSnackBar {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  80% {
+    transform: translateY(5%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-moz-keyframes showSnackBar {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  80% {
+    transform: translateY(5%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes showSnackBar {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  60% {
+    transform: translateY(5%);
+  }
+
+  80% {
+    transform: translateY(-5%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated-show-snack-bar {
+  opacity: 0;
+  transform: translateY(-100%);
+  will-change: opacity, transform;
+  -webkit-animation: 500ms forwards ease-out showSnackBar;
+  -moz-animation: 500ms forwards ease-out showSnackBar;
+  animation: 500ms forwards ease-out showSnackBar;
+}

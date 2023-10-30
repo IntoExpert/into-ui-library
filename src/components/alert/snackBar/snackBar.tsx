@@ -3,6 +3,8 @@ import { UiElementProps } from "../../common/uiElement"
 import { useCallback, useEffect, useRef } from "react";
 import { IconButton } from "../../button";
 
+import "./styles.css";
+
 export interface BelowNavBarAlertProps extends UiElementProps {
     /**
      * Alert message to show
@@ -32,11 +34,12 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
 
     const MessageComponent = () => (
         <div
-            className={`p-3 shadow-lg absolute left-0 right-0 top-0 transition-all  ${className ?? ''} 
+            className={`p-3 shadow-lg absolute left-0 right-0 top-0 transition-all animated-show-snack-bar  ${className ?? ''} 
             ${message ? 'opacity-100' : 'opacity-0'}`}
             ref={ref}>
             <IconButton
-                className={`!px-2 !py-1 absolute top-1/2 right-3 -translate-y-1/2 !bg-primary hover:!bg-primaryVariant hover:text-primary`}
+                className={`absolute top-1/2 right-3 -translate-y-1/2 !bg-transparent 
+                hover:!bg-primaryVariant hover:text-primary`}
                 onClick={handleClose}
                 icon={<span>&times;</span>}
             />
