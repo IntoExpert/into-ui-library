@@ -80,6 +80,6 @@ export const OnTopOfElementNavbar = ({ message, elementId, onClose, className }:
     }
 
     return (
-        <MessageComponent />
+        null
     );
 }
