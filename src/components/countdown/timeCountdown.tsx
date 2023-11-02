@@ -1,8 +1,9 @@
-import { DateInterval, durationBetweenTowDates } from "@/libs/dateTime/time";
-import { UiElementProps } from "@intoexpert/into-ui-library";
+
 import { ReactElement, useEffect, useMemo, useState } from "react";
 
 import 'react-circular-progressbar/dist/styles.css';
+import { UiElementProps } from "../common";
+import { DateInterval, durationBetweenTowDates } from "./dateTime/time";
 
 
 export interface TimeCountdownProps extends UiElementProps {
