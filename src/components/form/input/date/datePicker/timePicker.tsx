@@ -1,4 +1,3 @@
-import "react-datepicker/dist/react-datepicker.css";
 import "./style.scss";
 import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
 import { UiElementProps } from "../../../../common";

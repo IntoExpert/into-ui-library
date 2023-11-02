@@ -1,5 +1,5 @@
 import PhoneInput2, { PhoneInputProps as PhoneInput2Props } from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css'
+import './styles.scss'
 import { UiElementSize } from '../../../common';
 import { inputHeightClassDurToSize } from '../shared';
 import { InputLabel } from '../label';

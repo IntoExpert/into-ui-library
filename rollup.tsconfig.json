@@ -1,31 +1,20 @@
 {
-  "include": ["src/components"],
-  "exclude": [
-    "dist",
-    "node_modules",
-    "src/stories",
-    "src/App.*",
-    "src/reportWebVitals.ts",
-    "src/setupTests.ts",
-    "src/index.*"
-  ],
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "lib": ["dom", "dom.iterable", "es2018"],
-    "declaration": true,
-    "sourceMap": true,
-    "rootDir": "./src/components",
-    "outDir": "./dist",
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "moduleResolution": "node",
-    "jsx": "react-jsx",
+    "target": "es2016",
+    "typeRoots": ["node_modules/@types", "src/types"],
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "declaration": true,
+    "declarationDir": "types",
+    "sourceMap": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "emitDeclarationOnly": true,
+    "jsxImportSource": "@emotion/react"
   }
 }
