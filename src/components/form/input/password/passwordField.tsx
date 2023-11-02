@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useEffect, useState } from "react";
 import { InputField, InputFieldProps } from "../field/field";
-import { EyeIcon } from "../../../icons";
-import { KeyIcon } from "@intoexpert/into-ui-library";
+import { EyeIcon, KeyIcon } from "../../../icons";
+
 
 export interface PasswordFieldProps extends InputFieldProps {
     onShowPasswordToggle?: (value: boolean) => void;
