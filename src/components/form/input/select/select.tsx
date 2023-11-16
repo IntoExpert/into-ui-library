@@ -6,7 +6,7 @@ import { DropdownArrowIcon, SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import { ReactElement, useCallback } from 'react';
 
-export interface SelectProps<Option = unknown, IsMulti extends boolean = false> extends UiElementProps, StateManagerProps<Option, IsMulti> {
+export interface SelectProps<Option = unknown, IsMulti extends boolean = boolean> extends UiElementProps, StateManagerProps<Option, IsMulti> {
     errormessage?: string;
     /**
      * Select label, if you leave it empty no label will show
