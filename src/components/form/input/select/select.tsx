@@ -6,7 +6,7 @@ import { DropdownArrowIcon, SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import { ReactElement, useCallback } from 'react';
 
-export interface SelectProps extends UiElementProps, StateManagerProps {
+export interface SelectProps<Option = unknown> extends UiElementProps, StateManagerProps<Option> {
     errormessage?: string;
     /**
      * Select label, if you leave it empty no label will show
@@ -18,9 +18,9 @@ export interface SelectProps extends UiElementProps, StateManagerProps {
     size?: 'sm' | 'md'
 };
 
-export const Select = (props: SelectProps) => {
+export const Select = <Option = unknown>(props: SelectProps<Option>) => {
 
-    const DropdownSearchIcon = (props: DropdownIndicatorProps) => {
+    const DropdownSearchIcon = (props: DropdownIndicatorProps<Option>) => {
         return (
             <components.DropdownIndicator {...props}>
                 <SearchIcon className={`fill-secondary`} />
@@ -28,7 +28,7 @@ export const Select = (props: SelectProps) => {
         );
     }
 
-    const DropdownIcon = (props: DropdownIndicatorProps) => {
+    const DropdownIcon = (props: DropdownIndicatorProps<Option>) => {
         return (
             <components.DropdownIndicator {...props}>
                 <DropdownArrowIcon className={`fill-secondary`} />
@@ -56,7 +56,7 @@ export const Select = (props: SelectProps) => {
     return (
         <div className={`${props.className}`}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
-            <ReactSelect
+            <ReactSelect<Option, boolean>
                 hideSelectedOptions={!props.isMulti}
                 closeMenuOnSelect={!props.isMulti}
                 components={{
