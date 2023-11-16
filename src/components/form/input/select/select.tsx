@@ -6,7 +6,7 @@ import { DropdownArrowIcon, SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import { ReactElement, useCallback } from 'react';
 
-export interface SelectProps<Option = unknown> extends UiElementProps, StateManagerProps<Option> {
+export interface SelectProps<Option = unknown, IsMulti extends boolean = false> extends UiElementProps, StateManagerProps<Option, IsMulti> {
     errormessage?: string;
     /**
      * Select label, if you leave it empty no label will show
@@ -18,7 +18,7 @@ export interface SelectProps<Option = unknown> extends UiElementProps, StateMana
     size?: 'sm' | 'md'
 };
 
-export const Select = <Option = unknown>(props: SelectProps<Option>) => {
+export const Select = <Option = unknown, IsMulti extends boolean = false>(props: SelectProps<Option, IsMulti>) => {
 
     const DropdownSearchIcon = (props: DropdownIndicatorProps<Option>) => {
         return (
@@ -56,7 +56,7 @@ export const Select = <Option = unknown>(props: SelectProps<Option>) => {
     return (
         <div className={`${props.className}`}>
             <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
-            <ReactSelect<Option, boolean>
+            <ReactSelect<Option, IsMulti>
                 hideSelectedOptions={!props.isMulti}
                 closeMenuOnSelect={!props.isMulti}
                 components={{
