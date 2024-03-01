@@ -57,7 +57,7 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
                 className={`
                 ${!state.isOverflowVisible || !state.isOpen ? 'overflow-hidden' : ''}
                  transition-all 
-                 ${state.isOpen ? 'max-h-screen' : 'max-h-0'}`}>
+                 ${state.isOpen ? 'max-h-[999999]' : 'max-h-0'}`}>
                 {props.children}
             </div>
         </article>
