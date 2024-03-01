@@ -60,6 +60,7 @@ export const Avatar = (props: AvatarProps) => {
             props.className ?? ""
           }`}
           loading={props.loadingMethod ?? "lazy"}
+          crossOrigin="anonymous"
         />
       ) : (
         <div
