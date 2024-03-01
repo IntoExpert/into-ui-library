@@ -5,10 +5,8 @@ export interface AvatarProps extends Omit<ImageProps, "src"> {
   /**
    * User label
    */
-  firstName?: string;
-  lastName?: string;
-  label?: {
-    /**
+
+  /**
 export interface AvatarProps extends Omit<ImageProps, "src"> {
   /**
    * User label
