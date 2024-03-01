@@ -21,10 +21,10 @@ export const Badge = ({ className, children }: BadgeProps) => {
         />{" "}
       </svg>
       <div className={`absolute w-full top-1/2 -translate-y-1/2`}>
-        <h1 className="text-white flex justify-center">
+        <div className="text-white flex justify-center">
           {" "}
           {children}
-        </h1>
+        </div>
       </div>
     </div>
   );

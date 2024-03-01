@@ -42,7 +42,7 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
 
     return (
         <article className={`rounded-none border-t border-t-gray-100 p-2 ${props.className ?? ''}`} >
-            <button
+            <div role="button"
                 className={`flex justify-between py-3 px-2  w-full
                 ${state.isOpen ? 'text-blue-600' : 'text-black'}
                 ${props.header?.className ?? ''}`}
@@ -52,12 +52,12 @@ export const ExpandablePanel = (props: ExpandablePanelProps) => {
                 <span className={`${state.isOpen ? 'transition-transform rotate-180 ' : 'w-5 '}`}>{props.toggle ??
                     <div className={`align-middle -rotate-90 my-auto `}>&#10094;</div>}
                 </span>
-            </button>
+            </div>
             <div
                 className={`
                 ${!state.isOverflowVisible || !state.isOpen ? 'overflow-hidden' : ''}
                  transition-all 
-                 ${state.isOpen ? 'max-h-screen' : 'max-h-0'}`}>
+                 ${state.isOpen ? 'max-h-[999999]' : 'max-h-0'}`}>
                 {props.children}
             </div>
         </article>

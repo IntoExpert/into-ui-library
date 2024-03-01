@@ -9,6 +9,14 @@ export interface AvatarProps extends Omit<ImageProps, "src"> {
   lastName?: string;
   label?: {
     /**
+export interface AvatarProps extends Omit<ImageProps, "src"> {
+  /**
+   * User label
+   */
+  firstName?: string;
+  lastName?: string;
+  label?: {
+    /**
      * Show user name
      */
     name?: string;
@@ -60,7 +68,6 @@ export const Avatar = (props: AvatarProps) => {
             props.className ?? ""
           }`}
           loading={props.loadingMethod ?? "lazy"}
-          crossOrigin="anonymous"
         />
       ) : (
         <div
