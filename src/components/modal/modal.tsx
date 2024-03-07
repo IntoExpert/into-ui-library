@@ -21,7 +21,7 @@ export interface ModalProps extends UiElementProps {
     | "full";
   bgClassname?: string;
   containerElementId?: string;
-  outSideClose?: boolean;
+  disableCloseOnOutsideCLick?: boolean;
 }
 
 export const Modal = ({
@@ -33,7 +33,7 @@ export const Modal = ({
   containerElementId,
   className,
   bgClassname,
-  outSideClose,
+  disableCloseOnOutsideCLick,
 }: ModalProps) => {
   const [element, setElement] = useState<HTMLElement | null>(null);
 
@@ -41,11 +41,14 @@ export const Modal = ({
 
   const handleClose = useCallback(
     (event: React.MouseEvent) => {
-      if (ref.current?.isEqualNode(event.currentTarget) && !outSideClose) {
+      if (
+        ref.current?.isEqualNode(event.currentTarget) &&
+        !disableCloseOnOutsideCLick
+      ) {
         onClose?.();
       }
     },
-    [ref, onClose, outSideClose]
+    [ref, onClose, disableCloseOnOutsideCLick]
   );
 
   useEffect(() => {
