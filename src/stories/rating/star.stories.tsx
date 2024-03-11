@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof RatingStar> = (args) => <RatingStar {...ar
 
 export const RatingStar1 = Template.bind({});
 RatingStar1.args = {
-  value: 3,
+  value: 3.6,
 };
 
 export const RatingStar2 = Template.bind({});

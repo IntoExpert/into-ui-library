@@ -38,34 +38,35 @@ export const RatingStar = (props: RatingStarsProps) => {
         setState({ value: value ?? 0 });
     };
 
-    return (<span className={`${props.className ?? ''}`}>
+    return (
+      <span className={`${props.className ?? ""}`}>
         <StarsRating
-            count={props.starsCount ?? STARS_COUNT}
-            value={state.value}
-            onChange={handleRating}
-            direction={props.direction ?? 'ltr'}
-            disabled={props.disabled}
-            style={{
-                style: {
-                    fontSize: props.fontSize ?? '18px'
-                },
-                full: {
-                    star: {
-                        color: '#FDB901'
-                    }
-                },
-                half: {
-                    star: {
-                        color: '#FDB901'
-                    }
-                },
-                zero: {
-                    star: {
-                        color: props.emptyStarColor
-                    }
-                }
-
-            }}
+          count={props.starsCount ?? STARS_COUNT}
+          value={state.value}
+          onChange={handleRating}
+          direction={props.direction ?? "ltr"}
+          disabled={props.disabled}
+          style={{
+            style: {
+              fontSize: props.fontSize ?? "18px",
+            },
+            full: {
+              star: {
+                color: "#D3D3D3",
+              },
+            },
+            half: {
+              star: {
+                color: "#D3D3D3",
+              },
+            },
+            zero: {
+              star: {
+                color: props.emptyStarColor,
+              },
+            },
+          }}
         />
-    </span>)
+      </span>
+    );
 }
