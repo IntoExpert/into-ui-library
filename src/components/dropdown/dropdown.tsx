@@ -69,7 +69,7 @@ export const Dropdown = forwardRef<DropdownRefType, DropdownProps>(({ icon, menu
         <span className={`flex justify-center`}>{icon}</span>
       </button>
       <ul
-        className={`absolute shadow-md rounded overflow-hidden bg-white z-10
+        className={`absolute drop-shadow rounded overflow-hidden bg-white z-10
                 ${state.isOpen ? "max-w-fit px-1 p-2" : "max-w-0"}
                 ${menu?.className ?? ""} ${dir === "rtl" ? "left-0 right-auto" : ""
           }`}
