@@ -7,7 +7,7 @@ export interface BadgeProps extends UiElementProps {
 
 export const Badge = ({ className, children }: BadgeProps) => {
   return (
-    <div className={`relative ${className ?? "fill-secondary"}`}>
+    <div className={`relative drop-shadow ${className ?? "fill-secondary"}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
