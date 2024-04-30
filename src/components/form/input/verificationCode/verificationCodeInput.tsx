@@ -23,34 +23,22 @@ export const VerificationCodeInput = ({
 }: VerificationCodeInputProps) => {
   const stringArrayToValue = useCallback(
     (stringValue: string) => {
-      if (acceptLetters) {
-        const array: (number | string)[] = Array(codeLength).fill(undefined);
+      const array: (number | undefined)[] = Array(codeLength).fill(undefined);
 
-        return array.map((currValue, index) => {
-          if (index < stringValue.length) {
-            let indexValue: number | string = stringValue[index];
-
-            return indexValue;
-          }
-
-          return currValue;
-        });
-      } else {
-        const array: (number | undefined)[] = Array(codeLength).fill(undefined);
-
-        return array.map((currValue, index) => {
-          if (index < stringValue.length) {
-            let indexValue: number | undefined = Number(stringValue[index]);
+      return array.map((currValue, index) => {
+        if (index < stringValue.length) {
+          let indexValue: number | string | undefined = stringValue[index];
+          if (!acceptLetters) {
+            indexValue = Number(stringValue[index]);
             if (isNaN(indexValue) || indexValue < 0) indexValue = undefined;
-
-            return indexValue;
           }
 
-          return currValue;
-        });
-      }
-    },
+          return indexValue;
+        }
 
+        return currValue;
+      });
+    },
     [codeLength, acceptLetters]
   );
 
@@ -75,9 +63,7 @@ export const VerificationCodeInput = ({
   const handleInputChange = useCallback(
     (value: string, index: number) => {
       if (value.length) {
-        if (value.match(/\d/)) {
-          handleAutoFocus(index + 1);
-        } else if (acceptLetters) {
+        if (value.match(/\d/) || acceptLetters) {
           handleAutoFocus(index + 1);
         }
       } else {
@@ -85,38 +71,26 @@ export const VerificationCodeInput = ({
       }
 
       try {
-        if (acceptLetters) {
-          let numberValue: number | string = value[value.length - 1];
+        let numberValue: number | string | undefined = value[value.length - 1];
 
-          setState((prevState) => {
-            const newValues = prevState.value.map((value, currIndex) => {
-              if (index === currIndex) {
-                return numberValue;
-              }
-
-              return value;
-            });
-
-            return { ...prevState, value: newValues };
-          });
-        } else {
-          let numberValue: number | undefined = Number(value[value.length - 1]);
+        if (!acceptLetters) {
+          numberValue = Number(value[value.length - 1]);
           if (isNaN(numberValue) || numberValue < 0) {
             numberValue = undefined;
           }
-
-          setState((prevState) => {
-            const newValues = prevState.value.map((value, currIndex) => {
-              if (index === currIndex) {
-                return numberValue;
-              }
-
-              return value;
-            });
-
-            return { ...prevState, value: newValues };
-          });
         }
+
+        setState((prevState) => {
+          const newValues = prevState.value.map((value, currIndex) => {
+            if (index === currIndex) {
+              return numberValue;
+            }
+
+            return value;
+          });
+
+          return { ...prevState, value: newValues };
+        });
       } catch (e) {
         console.error(e);
       }
