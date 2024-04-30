@@ -3,119 +3,183 @@ import { InputField } from "../field";
 import { UiElementProps } from "../../../common";
 
 export interface VerificationCodeInputProps extends UiElementProps {
-    codeLength?: number;
-    value?: string;
-    onChange?: (value: string) => void;
-};
-
-interface VerificationCodeInputState {
-    value: (number | undefined)[];
-    focusIndex: number;
+  codeLength?: number;
+  value?: string;
+  onChange?: (value: string) => void;
+  acceptLetters?: boolean;
 }
 
-export const VerificationCodeInput =
-    ({ codeLength = 6, value = '', onChange, className }: VerificationCodeInputProps) => {
+interface VerificationCodeInputState {
+  value: (number | string | undefined)[];
+  focusIndex: number;
+}
 
-        const stringArrayToValue = useCallback((stringValue: string) => {
-            const array: (number | undefined)[] = Array(codeLength).fill(undefined);
+export const VerificationCodeInput = ({
+  codeLength = 6,
+  value = "",
+  onChange,
+  className,
+  acceptLetters,
+}: VerificationCodeInputProps) => {
+  const stringArrayToValue = useCallback(
+    (stringValue: string) => {
+      if (acceptLetters) {
+        const array: (number | string)[] = Array(codeLength).fill(undefined);
 
-            return array.map((currValue, index) => {
-                if (index < stringValue.length) {
-                    let indexValue: number | undefined = Number(stringValue[index]);
-                    if (isNaN(indexValue) || indexValue < 0) indexValue = undefined;
+        return array.map((currValue, index) => {
+          if (index < stringValue.length) {
+            let indexValue: number | string = stringValue[index];
 
-                    return indexValue;
-                }
+            return indexValue;
+          }
 
-                return currValue;
-            })
-        }, [codeLength])
+          return currValue;
+        });
+      } else {
+        const array: (number | undefined)[] = Array(codeLength).fill(undefined);
 
-        const valuesArray = useMemo(() => {
-            return stringArrayToValue(value);
-        }, [stringArrayToValue, value]);
+        return array.map((currValue, index) => {
+          if (index < stringValue.length) {
+            let indexValue: number | undefined = Number(stringValue[index]);
+            if (isNaN(indexValue) || indexValue < 0) indexValue = undefined;
 
-        const [state, setState] = useState<VerificationCodeInputState>({ value: valuesArray, focusIndex: 0 });
+            return indexValue;
+          }
 
-        const handleAutoFocus = useCallback((focusIndex: number) => {
-            if (focusIndex < 0 || focusIndex === codeLength) return
+          return currValue;
+        });
+      }
+    },
 
-            setState(prevState => ({ ...prevState, focusIndex }));
+    [codeLength, acceptLetters]
+  );
 
-        }, [codeLength]);
+  const valuesArray = useMemo(() => {
+    return stringArrayToValue(value);
+  }, [stringArrayToValue, value]);
 
-        const handleInputChange = useCallback((value: string, index: number) => {
-            if (value.length) {
-                if (value.match(/\d/)) {
-                    handleAutoFocus(index + 1);
-                }
-            } else {
-                handleAutoFocus(index - 1);
-            }
+  const [state, setState] = useState<VerificationCodeInputState>({
+    value: valuesArray,
+    focusIndex: 0,
+  });
 
-            try {
-                let numberValue: number | undefined = Number(value[value.length - 1]);
-                if (isNaN(numberValue) || numberValue < 0) {
-                    numberValue = undefined
-                }
+  const handleAutoFocus = useCallback(
+    (focusIndex: number) => {
+      if (focusIndex < 0 || focusIndex === codeLength) return;
 
-                setState(prevState => {
-                    const newValues = prevState.value.map((value, currIndex) => {
-                        if (index === currIndex) {
-                            return numberValue;
-                        }
+      setState((prevState) => ({ ...prevState, focusIndex }));
+    },
+    [codeLength]
+  );
 
-                        return value;
-                    });
+  const handleInputChange = useCallback(
+    (value: string, index: number) => {
+      if (value.length) {
+        if (value.match(/\d/)) {
+          handleAutoFocus(index + 1);
+        } else if (acceptLetters) {
+          handleAutoFocus(index + 1);
+        }
+      } else {
+        handleAutoFocus(index - 1);
+      }
 
-                    return { ...prevState, value: newValues }
-                });
-            } catch (e) {
-                console.error(e);
-            }
-        }, [handleAutoFocus]);
+      try {
+        if (acceptLetters) {
+          let numberValue: number | string = value[value.length - 1];
 
-        const handleBackspace = useCallback((e: KeyboardEvent<HTMLInputElement>, index: number) => {
-            if (!["Backspace", "Delete"].includes(e.key) || e.currentTarget.value) return;
-            handleAutoFocus(index - 1);
-        }, [handleAutoFocus]);
+          setState((prevState) => {
+            const newValues = prevState.value.map((value, currIndex) => {
+              if (index === currIndex) {
+                return numberValue;
+              }
 
-        const handlePastEvent = useCallback((event: ClipboardEvent) => {
-            event.preventDefault();
+              return value;
+            });
 
-            const pastValue = event.clipboardData.getData('text');
+            return { ...prevState, value: newValues };
+          });
+        } else {
+          let numberValue: number | undefined = Number(value[value.length - 1]);
+          if (isNaN(numberValue) || numberValue < 0) {
+            numberValue = undefined;
+          }
 
-            setState(prevState => ({ ...prevState, value: stringArrayToValue(pastValue) }))
-        }, [stringArrayToValue]);
+          setState((prevState) => {
+            const newValues = prevState.value.map((value, currIndex) => {
+              if (index === currIndex) {
+                return numberValue;
+              }
 
-        const InputElement = useCallback(({ index }: { index: number }) => {
+              return value;
+            });
 
-            return (
-                <InputField
-                    key={index}
-                    className={`w-12 text-center`}
-                    value={state.value[index]?.toString()}
-                    onPast={handlePastEvent}
-                    autoFocus={state.focusIndex === index}
-                    onChange={(e) => handleInputChange(e.target.value, index)}
-                    onKeyDown={(e) => handleBackspace(e, index)}
-                />
-            );
-        }, [handleInputChange, handleBackspace, handlePastEvent, state]);
+            return { ...prevState, value: newValues };
+          });
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    [handleAutoFocus, acceptLetters]
+  );
 
-        // Check on change event
-        useEffect(() => {
-            if (state.value.some(value => value === undefined)) {
-                onChange?.('');
-            } else {
-                onChange?.(state.value.join(''));
-            }
-        }, [state.value, onChange]);
+  const handleBackspace = useCallback(
+    (e: KeyboardEvent<HTMLInputElement>, index: number) => {
+      if (!["Backspace", "Delete"].includes(e.key) || e.currentTarget.value)
+        return;
+      handleAutoFocus(index - 1);
+    },
+    [handleAutoFocus]
+  );
 
-        return (<div className={`flex justify-between gap-2 max-w-xs ${className}`}>
-            {Array(codeLength).fill(0).map((_, index) => {
+  const handlePastEvent = useCallback(
+    (event: ClipboardEvent) => {
+      event.preventDefault();
 
-                return <InputElement key={index} index={index} />;
-            })}
-        </div>)
+      const pastValue = event.clipboardData.getData("text");
+
+      setState((prevState) => ({
+        ...prevState,
+        value: stringArrayToValue(pastValue),
+      }));
+    },
+    [stringArrayToValue]
+  );
+
+  const InputElement = useCallback(
+    ({ index }: { index: number }) => {
+      return (
+        <InputField
+          key={index}
+          className={`w-12 text-center`}
+          value={state.value[index]?.toString()}
+          onPast={handlePastEvent}
+          autoFocus={state.focusIndex === index}
+          onChange={(e) => handleInputChange(e.target.value, index)}
+          onKeyDown={(e) => handleBackspace(e, index)}
+        />
+      );
+    },
+    [handleInputChange, handleBackspace, handlePastEvent, state]
+  );
+
+  // Check on change event
+  useEffect(() => {
+    if (state.value.some((value) => value === undefined)) {
+      onChange?.("");
+    } else {
+      onChange?.(state.value.join(""));
     }
+  }, [state.value, onChange]);
+
+  return (
+    <div className={`flex justify-between gap-2 max-w-xs ${className}`}>
+      {Array(codeLength)
+        .fill(0)
+        .map((_, index) => {
+          return <InputElement key={index} index={index} />;
+        })}
+    </div>
+  );
+};
