@@ -1,6 +1,6 @@
 {
   "name": "@intoexpert/into-ui-library",
-  "version": "0.1.708",
+  "version": "0.1.709",
   "repository": {
     "type": "git",
     "url": "https://github.com/IntoExpert/into-ui-library.git"
@@ -25,7 +25,6 @@
     "react-webcam": "^7.1.1"
   },
   "dependencies": {
-    "@intoexpert/into-ui-library": "^0.1.700",
     "@types/node": "^16.18.60"
   },
   "scripts": {
