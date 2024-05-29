@@ -6,6 +6,7 @@ import { LeftArrowIcon } from "../icons";
 
 export interface AvailabilityCalendarProps extends UiElementProps {
   availability: any;
+  tutorAvailability: any;
   tabs: TabProps[];
   AvailabilityIconButton: ({
     icon,
@@ -26,20 +27,8 @@ export const AvailabilityCalendar = ({
   handlePrevWeek,
   backToThisWeek,
   backToThisWeekLocal,
+  tutorAvailability,
 }: AvailabilityCalendarProps) => {
-  const [tutorAvailability, setTutorAvailability] = useState(availability);
-
-  const nowDate = useMemo(() => {
-    return new Date();
-  }, []);
-
-  const tomorrowDate = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-
-    return date;
-  }, []);
-
   return (
     <article
       className={`flex flex-col md:flex-row items-start justify-between h-80 md:h-72`}
