@@ -1,4 +1,3 @@
-import { useMemo, useState } from "react";
 import { TabProps, Tabs } from "../tabs";
 import { Button, IconButtonProps } from "../button";
 import { UiElementProps } from "../common";
