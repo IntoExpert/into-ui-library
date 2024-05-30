@@ -4,7 +4,6 @@ import { UiElementProps } from "../common";
 import { LeftArrowIcon } from "../icons";
 
 export interface AvailabilityCalendarProps extends UiElementProps {
-  availability: any;
   tutorAvailability: any;
   tabs: TabProps[];
   AvailabilityIconButton: ({
@@ -12,14 +11,13 @@ export interface AvailabilityCalendarProps extends UiElementProps {
     className,
     ...props
   }: IconButtonProps) => JSX.Element;
-  handleNextWeek: () => void;
-  handlePrevWeek: () => void;
-  backToThisWeek: () => void;
-  backToThisWeekLocal: string;
+  handleNextWeek?: () => void;
+  handlePrevWeek?: () => void;
+  backToThisWeek?: () => void;
+  backToThisWeekLocal?: string;
 }
 
 export const AvailabilityCalendar = ({
-  availability,
   tabs,
   AvailabilityIconButton,
   handleNextWeek,
