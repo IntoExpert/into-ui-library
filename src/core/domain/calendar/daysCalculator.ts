@@ -1,9 +1,9 @@
+import { setDateAtMidnight } from "../../../components/countdown/dateTime";
 import {
   CalculatedDay,
   CalculatedDayType,
 } from "./calculatedDay/calculatedDay";
-import { Calendar } from "@/core/domain/calendar";
-import { setDateAtMidnight } from "@/libs";
+import { Calendar } from "./calendar";
 
 export interface DaysCalculatorType {
   startDate: Date;

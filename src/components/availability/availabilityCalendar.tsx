@@ -1,31 +1,101 @@
-import { TabProps, Tabs } from "../tabs";
-import { Button, IconButtonProps } from "../button";
+import { TabProps, Tabs, TabsProps } from "../tabs";
+import { Button, IconButton, IconButtonProps } from "../button";
 import { UiElementProps } from "../common";
 import { LeftArrowIcon } from "../icons";
+import { useCallback, useMemo, useState } from "react";
+import { DaysAvailability } from "./daysAvailability";
+import {
+  TutorAvailability,
+  TutorsWeeklyAvailability,
+} from "../../core/domain/availability/tutorsAvailability";
 
 export interface AvailabilityCalendarProps extends UiElementProps {
-  tutorAvailability: any;
-  tabs: TabProps[];
-  AvailabilityIconButton: ({
-    icon,
-    className,
-    ...props
-  }: IconButtonProps) => JSX.Element;
-  handleNextWeek?: () => void;
-  handlePrevWeek?: () => void;
-  backToThisWeek?: () => void;
+  availability: TutorsWeeklyAvailability;
+  tabs?: TabProps[];
+
   backToThisWeekLocal?: string;
 }
 
 export const AvailabilityCalendar = ({
-  tabs,
-  AvailabilityIconButton,
-  handleNextWeek,
-  handlePrevWeek,
-  backToThisWeek,
   backToThisWeekLocal,
-  tutorAvailability,
+  availability,
 }: AvailabilityCalendarProps) => {
+  const [tutorAvailability, setTutorAvailability] = useState(availability);
+
+  const nowDate = useMemo(() => {
+    return new Date();
+  }, []);
+
+  const tomorrowDate = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+
+    return date;
+  }, []);
+
+  const tabs: TabProps[] = useMemo(
+    () =>
+      tutorAvailability.daysAvailability.map<TabProps>((a) => ({
+        className: "text-[0.5rem] sm:text-xs",
+        title:
+          a.date.getDate() === nowDate.getDate() &&
+          tutorAvailability.isInFirstWeek
+            ? "today"
+            : a.date.getDate() === tomorrowDate.getDate() &&
+              tutorAvailability.isInFirstWeek
+            ? "tomorrow"
+            : a.date.toLocaleDateString("en", {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+              }),
+        element: (
+          <DaysAvailability
+            availabilities={a.availabilities}
+            bookedTimes={tutorAvailability.bookedTimes}
+            noSlots="no slot"
+            noSwipe=" no swipe"
+          />
+        ),
+      })),
+    [tutorAvailability, nowDate, tomorrowDate]
+  );
+
+  const AvailabilityIconButton = useCallback(
+    ({ icon, className = "", ...props }: IconButtonProps) => (
+      <IconButton
+        className={`${className} w-5 h-5 !bg-gray-100 !rounded disabled:opacity-50`}
+        icon={icon}
+        {...props}
+      />
+    ),
+    []
+  );
+
+  const handleNextWeek = useCallback(() => {
+    tutorAvailability.nextWeek();
+    const tutorAvailabilityCopy =
+      TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
+
+    setTutorAvailability(tutorAvailabilityCopy);
+  }, [tutorAvailability]);
+
+  const handlePrevWeek = useCallback(() => {
+    tutorAvailability.prevWeek();
+    const tutorAvailabilityCopy =
+      TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
+
+    setTutorAvailability(tutorAvailabilityCopy);
+  }, [tutorAvailability]);
+
+  const backToThisWeek = useCallback(() => {
+    tutorAvailability.resetWeek();
+    const tutorAvailabilityCopy =
+      TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
+
+    setTutorAvailability(tutorAvailabilityCopy);
+  }, [tutorAvailability]);
+
   return (
     <article
       className={`flex flex-col md:flex-row items-start justify-between h-80 md:h-72`}
@@ -33,7 +103,7 @@ export const AvailabilityCalendar = ({
       <Tabs
         className={`order-1 md:order-0 mx-auto flex-1`}
         tabsContainerClassName={`justify-center md:justify-start`}
-        tabs={tabs}
+        tabs={tabs!}
         activeTabIndex={0}
       />
 
@@ -43,13 +113,11 @@ export const AvailabilityCalendar = ({
         <div className={`inline-flex gap-2`}>
           <AvailabilityIconButton
             onClick={handlePrevWeek}
-            disabled={!tutorAvailability.canGoPrev}
             icon={<LeftArrowIcon className={`fill-primary`} />}
           />
           <AvailabilityIconButton
             className={`rotate-180`}
             onClick={handleNextWeek}
-            disabled={!tutorAvailability.canGoNext}
             icon={<LeftArrowIcon className={`fill-primary`} />}
           />
         </div>

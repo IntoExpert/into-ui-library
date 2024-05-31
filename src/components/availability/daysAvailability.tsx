@@ -1,9 +1,10 @@
 import { useMemo } from "react";
 import { UiElementProps } from "../common";
 import { SadFaceIcon } from "../icons";
+import { CalculatedDay } from "../../core/domain/calendar/calculatedDay";
 
 export interface DaysAvailabilityProps extends UiElementProps {
-  availabilities: any;
+  availabilities: CalculatedDay;
   bookedTimes: { startTime: Date; endTime: Date }[];
   noSwipe: string;
   noSlots: string;
@@ -25,7 +26,7 @@ export const DaysAvailability = ({
     <div className={`h-52 overflow-auto ${className}`}>
       {slots.length ? (
         <div className={`flex gap-2 flex-wrap`}>
-          {slots.map((a: any) => (
+          {slots.map((a) => (
             <div
               key={a.startTime}
               className={`rounded-xl px-1 py-2 cursor-default text-[0.7rem] flex justify-center

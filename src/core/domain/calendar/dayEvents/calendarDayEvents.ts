@@ -1,4 +1,3 @@
-import { ValidationException } from "../../../shared/exceptions/validationException";
 import {
   CalendarEventOptions,
   CalendarEventType as CalendarEventType,
@@ -7,8 +6,11 @@ import {
   CALENDAR_EVENT_DEFAULT_OPTIONS,
   CalendarEvent as CalendarEvent,
 } from "./event";
-import { DayName, getFirstDayOfWeek } from "@/libs";
 import { DateTime } from "luxon";
+import {
+  DayName,
+  getFirstDayOfWeek,
+} from "../../../../components/countdown/dateTime";
 
 export interface CalendarDayEventsType {
   name: DayName;
@@ -26,7 +28,7 @@ export class CalendarDayEvents {
     data: CalendarDayEventsType,
     options: CalendarDayEventsOption
   ): CalendarDayEvents => {
-    if (!data.date) throw new ValidationException("override.date.required");
+    if (!data.date) throw "override.date.required";
 
     return new CalendarDayEvents(
       {
@@ -210,7 +212,7 @@ export class CalendarDayEvents {
     const eventIndex = this.getEventIndexById(event.id);
 
     if (eventIndex == undefined || eventIndex < 0) {
-      throw new ValidationException("event.notExist");
+      throw "event.notExist";
     }
     this._isAvailable = true;
     this._events![eventIndex] = event;

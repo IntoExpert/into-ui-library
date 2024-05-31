@@ -1,4 +1,4 @@
-import { CalendarOptions } from "@/core/domain/calendar";
+import { CalendarOptions } from "../calendar";
 
 export const TUTOR_AVAILABILITY_MAX_PERIOD_IN_WEEKS = 12;
 export const TUTOR_AVAILABILITY_CALENDAR_OPTIONS: CalendarOptions = {
