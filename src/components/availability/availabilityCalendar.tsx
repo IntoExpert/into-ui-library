@@ -1,24 +1,28 @@
-import { TabProps, Tabs, TabsProps } from "../tabs";
+import { TabProps, Tabs } from "../tabs";
 import { Button, IconButton, IconButtonProps } from "../button";
 import { UiElementProps } from "../common";
 import { LeftArrowIcon } from "../icons";
 import { useCallback, useMemo, useState } from "react";
 import { DaysAvailability } from "./daysAvailability";
-import {
-  TutorAvailability,
-  TutorsWeeklyAvailability,
-} from "../../core/domain/availability/tutorsAvailability";
+import { TutorsWeeklyAvailability } from "../../core/domain/availability/tutorsAvailability";
 
 export interface AvailabilityCalendarProps extends UiElementProps {
   availability: TutorsWeeklyAvailability;
   tabs?: TabProps[];
-
+  noSwipe?: string;
+  noSlots?: string;
+  today?: string;
+  tomorrow?: string;
   backToThisWeekLocal?: string;
 }
 
 export const AvailabilityCalendar = ({
   backToThisWeekLocal,
   availability,
+  noSwipe = "",
+  noSlots = "",
+  today = "",
+  tomorrow = "",
 }: AvailabilityCalendarProps) => {
   const [tutorAvailability, setTutorAvailability] = useState(availability);
 
@@ -40,10 +44,10 @@ export const AvailabilityCalendar = ({
         title:
           a.date.getDate() === nowDate.getDate() &&
           tutorAvailability.isInFirstWeek
-            ? "today"
+            ? today
             : a.date.getDate() === tomorrowDate.getDate() &&
               tutorAvailability.isInFirstWeek
-            ? "tomorrow"
+            ? tomorrow
             : a.date.toLocaleDateString("en", {
                 weekday: "short",
                 month: "short",
@@ -53,12 +57,20 @@ export const AvailabilityCalendar = ({
           <DaysAvailability
             availabilities={a.availabilities}
             bookedTimes={tutorAvailability.bookedTimes}
-            noSlots="no slot"
-            noSwipe=" no swipe"
+            noSlots={noSlots}
+            noSwipe={noSwipe}
           />
         ),
       })),
-    [tutorAvailability, nowDate, tomorrowDate]
+    [
+      tutorAvailability,
+      nowDate,
+      tomorrowDate,
+      noSlots,
+      noSwipe,
+      today,
+      tomorrow,
+    ]
   );
 
   const AvailabilityIconButton = useCallback(
