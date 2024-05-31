@@ -19,10 +19,10 @@ export interface AvailabilityCalendarProps extends UiElementProps {
 export const AvailabilityCalendar = ({
   backToThisWeekLocal,
   availability,
-  noSwipe = "",
-  noSlots = "",
-  today = "",
-  tomorrow = "",
+  noSwipe = "no Swipe",
+  noSlots = "no Slots",
+  today = "today",
+  tomorrow = "tomorrow",
 }: AvailabilityCalendarProps) => {
   const [tutorAvailability, setTutorAvailability] = useState(availability);
 
