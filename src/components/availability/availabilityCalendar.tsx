@@ -2,30 +2,40 @@ import { TabProps, Tabs } from "../tabs";
 import { Button, IconButton, IconButtonProps } from "../button";
 import { UiElementProps } from "../common";
 import { LeftArrowIcon } from "../icons";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { DaysAvailability } from "./daysAvailability";
-import { TutorsWeeklyAvailability } from "../../core/domain/availability/tutorsAvailability";
+import { TutorDaysAvailability } from "../../core/domain/availability/tutorsAvailability";
 
 export interface AvailabilityCalendarProps extends UiElementProps {
-  availability: TutorsWeeklyAvailability;
-  tabs?: TabProps[];
+  dayAvailability: TutorDaysAvailability[];
+
   noSwipe?: string;
   noSlots?: string;
   today?: string;
   tomorrow?: string;
   backToThisWeekLocal?: string;
+  isInFirstWeek?: boolean;
+  bookedTimes: { startTime: Date; endTime: Date }[];
+  handleNextWeek: () => void;
+  handlePrevWeek: () => void;
+
+  backToThisWeek: () => void;
 }
 
 export const AvailabilityCalendar = ({
   backToThisWeekLocal,
-  availability,
+
   noSwipe = "no Swipe",
   noSlots = "no Slots",
   today = "today",
   tomorrow = "tomorrow",
+  dayAvailability,
+  isInFirstWeek,
+  bookedTimes,
+  handleNextWeek,
+  handlePrevWeek,
+  backToThisWeek,
 }: AvailabilityCalendarProps) => {
-  const [tutorAvailability, setTutorAvailability] = useState(availability);
-
   const nowDate = useMemo(() => {
     return new Date();
   }, []);
@@ -39,14 +49,12 @@ export const AvailabilityCalendar = ({
 
   const tabs: TabProps[] = useMemo(
     () =>
-      tutorAvailability.daysAvailability.map<TabProps>((a) => ({
+      dayAvailability.map<TabProps>((a) => ({
         className: "text-[0.5rem] sm:text-xs",
         title:
-          a.date.getDate() === nowDate.getDate() &&
-          tutorAvailability.isInFirstWeek
+          a.date.getDate() === nowDate.getDate() && isInFirstWeek
             ? today
-            : a.date.getDate() === tomorrowDate.getDate() &&
-              tutorAvailability.isInFirstWeek
+            : a.date.getDate() === tomorrowDate.getDate() && isInFirstWeek
             ? tomorrow
             : a.date.toLocaleDateString("en", {
                 weekday: "short",
@@ -56,18 +64,20 @@ export const AvailabilityCalendar = ({
         element: (
           <DaysAvailability
             availabilities={a.availabilities}
-            bookedTimes={tutorAvailability.bookedTimes}
+            bookedTimes={bookedTimes}
             noSlots={noSlots}
             noSwipe={noSwipe}
           />
         ),
       })),
     [
-      tutorAvailability,
+      isInFirstWeek,
+      dayAvailability,
       nowDate,
       tomorrowDate,
       noSlots,
       noSwipe,
+      bookedTimes,
       today,
       tomorrow,
     ]
@@ -83,30 +93,6 @@ export const AvailabilityCalendar = ({
     ),
     []
   );
-
-  const handleNextWeek = useCallback(() => {
-    tutorAvailability.nextWeek();
-    const tutorAvailabilityCopy =
-      TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
-
-    setTutorAvailability(tutorAvailabilityCopy);
-  }, [tutorAvailability]);
-
-  const handlePrevWeek = useCallback(() => {
-    tutorAvailability.prevWeek();
-    const tutorAvailabilityCopy =
-      TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
-
-    setTutorAvailability(tutorAvailabilityCopy);
-  }, [tutorAvailability]);
-
-  const backToThisWeek = useCallback(() => {
-    tutorAvailability.resetWeek();
-    const tutorAvailabilityCopy =
-      TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
-
-    setTutorAvailability(tutorAvailabilityCopy);
-  }, [tutorAvailability]);
 
   return (
     <article

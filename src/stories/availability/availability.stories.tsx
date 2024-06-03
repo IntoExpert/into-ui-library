@@ -14,7 +14,6 @@ export default {
 const Template: ComponentStory<typeof AvailabilityCalendar> = (args) => (
   <AvailabilityCalendar {...args} />
 );
-
 const calendar: TutorCalendarBackendType = {
   weeklySchedule: [
     {
@@ -152,9 +151,38 @@ const calendar: TutorCalendarBackendType = {
 
 const avail = TutorAvailability.createFromBackend(calendar, "");
 
-export const tutorAvailability = TutorsWeeklyAvailability.create(avail);
+export let tutorAvailability = TutorsWeeklyAvailability.create(avail);
+
+const handleNextWeek = () => {
+  tutorAvailability.nextWeek();
+  const tutorAvailabilityCopy =
+    TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
+
+  tutorAvailability = tutorAvailabilityCopy;
+};
+
+const handlePrevWeek = () => {
+  tutorAvailability.prevWeek();
+  const tutorAvailabilityCopy =
+    TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
+
+  tutorAvailability = tutorAvailabilityCopy;
+};
+
+const backToThisWeek = () => {
+  tutorAvailability.resetWeek();
+  const tutorAvailabilityCopy =
+    TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
+
+  tutorAvailability = tutorAvailabilityCopy;
+};
 
 export const defaultState = Template.bind({});
 defaultState.args = {
-  availability: tutorAvailability,
+  dayAvailability: tutorAvailability.daysAvailability,
+  isInFirstWeek: tutorAvailability.isInFirstWeek,
+  handleNextWeek,
+  handlePrevWeek,
+  backToThisWeek,
+  bookedTimes: tutorAvailability.bookedTimes,
 };
