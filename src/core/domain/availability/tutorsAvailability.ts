@@ -20,13 +20,13 @@ export interface CalendarDayEventsBackendType {
   events?: CalendarEventType[];
 }
 
-export interface TutorCalendarBackendType {
+export interface UserCalendar {
   datesOverride?: CalendarDayEventsBackendType[];
   weeklySchedule?: CalendarDayEventsBackendType[];
   timesBooked?: { startTime: number; endTime: number }[];
 }
 export interface TutorAvailabilityBackendType {
-  calendar: TutorCalendarBackendType;
+  calendar: UserCalendar;
   timezone?: string | null;
 }
 
@@ -42,7 +42,7 @@ export class TutorAvailability {
   };
 
   static createFromBackend = (
-    tutorAvailability: TutorCalendarBackendType,
+    tutorAvailability: UserCalendar,
     timezone?: string
   ) => {
     const days = tutorAvailability.weeklySchedule?.length
@@ -112,7 +112,7 @@ export class TutorAvailability {
     this._calendar = calendar;
   }
 
-  get backendCalendar(): TutorCalendarBackendType {
+  get backendCalendar(): UserCalendar {
     const calendarJson = this._calendar.toJson();
 
     return {

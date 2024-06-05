@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { AvailabilityCalendar } from "../../components/availability/availabilityCalendar";
 import {
   TutorAvailability,
-  TutorCalendarBackendType,
+  UserCalendar,
   TutorsWeeklyAvailability,
 } from "../../core/domain/availability/tutorsAvailability";
 
@@ -14,7 +14,7 @@ export default {
 const Template: ComponentStory<typeof AvailabilityCalendar> = (args) => (
   <AvailabilityCalendar {...args} />
 );
-const calendar: TutorCalendarBackendType = {
+const calendar: UserCalendar = {
   weeklySchedule: [
     {
       name: "mo",
