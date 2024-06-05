@@ -66,7 +66,7 @@ export const AvailabilityCalendar = ({
             availabilities={a.availabilities}
             bookedTimes={bookedTimes}
             noSlots={noSlots}
-            noSwipe={noSwipe}
+            noSwipeTitle={noSwipe}
           />
         ),
       })),

@@ -6,7 +6,7 @@ import { CalculatedDay } from "./moduleAvailabity/calendar/calculatedDay";
 export interface DaysAvailabilityProps extends UiElementProps {
   availabilities: CalculatedDay;
   bookedTimes: { startTime: Date; endTime: Date }[];
-  noSwipe: string;
+  noSwipeTitle: string;
   noSlots: string;
 }
 
@@ -14,7 +14,7 @@ export const DaysAvailability = ({
   availabilities,
   bookedTimes,
   className = "",
-  noSwipe,
+  noSwipeTitle: noSwipe,
   noSlots,
 }: DaysAvailabilityProps) => {
   const slots = useMemo(
