@@ -4,15 +4,15 @@ import { UiElementProps } from "../common";
 import { LeftArrowIcon } from "../icons";
 import { useCallback, useMemo } from "react";
 import { DaysAvailability } from "./daysAvailability";
-import { TutorDaysAvailability } from "../../core/domain/availability/tutorsAvailability";
+import { DayAvailability } from "./moduleAvailabity/availability/tutorsAvailability";
 
 export interface AvailabilityCalendarProps extends UiElementProps {
-  dayAvailability: TutorDaysAvailability[];
+  dayAvailability: DayAvailability[];
 
   noSwipe?: string;
   noSlots?: string;
-  today?: string;
-  tomorrow?: string;
+  todayTitle?: string;
+  tomorrowTitle?: string;
   backToThisWeekLocal?: string;
   isInFirstWeek?: boolean;
   bookedTimes: { startTime: Date; endTime: Date }[];
@@ -27,8 +27,8 @@ export const AvailabilityCalendar = ({
 
   noSwipe = "no Swipe",
   noSlots = "no Slots",
-  today = "today",
-  tomorrow = "tomorrow",
+  todayTitle: today = "today",
+  tomorrowTitle: tomorrow = "tomorrow",
   dayAvailability,
   isInFirstWeek,
   bookedTimes,

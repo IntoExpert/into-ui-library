@@ -4,7 +4,7 @@ import {
   TutorAvailability,
   UserCalendar,
   TutorsWeeklyAvailability,
-} from "../../core/domain/availability/tutorsAvailability";
+} from "../../components/availability/moduleAvailabity/availability/tutorsAvailability";
 
 export default {
   title: "availability/availability",

@@ -2,7 +2,7 @@ import {
   DayName,
   getDayNameByDate,
   setDateAtMidnight,
-} from "../../../../components/countdown/dateTime";
+} from "../../../../countdown/dateTime";
 import {
   CalendarDayEvents,
   CalendarDayEventsType,

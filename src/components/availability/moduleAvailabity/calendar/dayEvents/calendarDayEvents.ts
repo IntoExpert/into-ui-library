@@ -7,10 +7,7 @@ import {
   CalendarEvent as CalendarEvent,
 } from "./event";
 import { DateTime } from "luxon";
-import {
-  DayName,
-  getFirstDayOfWeek,
-} from "../../../../components/countdown/dateTime";
+import { DayName, getFirstDayOfWeek } from "../../../../countdown/dateTime";
 
 export interface CalendarDayEventsType {
   name: DayName;

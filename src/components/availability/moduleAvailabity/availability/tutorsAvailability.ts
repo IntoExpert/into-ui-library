@@ -3,7 +3,7 @@ import {
   DayName,
   getFirstDayOfWeek,
   setDateAtMidnight,
-} from "../../../components/countdown/dateTime";
+} from "../../../countdown/dateTime";
 import { Calendar, CalendarEventType } from "../calendar";
 import { CALENDAR_DEFAULT_DAYS_STATE } from "../calendar/calendarConst";
 import { TUTOR_AVAILABILITY_CALENDAR_OPTIONS } from "./tutorAvailabilitConts";
@@ -155,7 +155,7 @@ export class TutorAvailability {
   }
 }
 
-export interface TutorDaysAvailability {
+export interface DayAvailability {
   date: Date;
   availabilities: CalculatedDay;
 }
@@ -228,7 +228,7 @@ export class TutorsWeeklyAvailability {
   get daysAvailability() {
     if (!this._availability) return [];
 
-    const availabilities: TutorDaysAvailability[] = [];
+    const availabilities: DayAvailability[] = [];
     const now = new Date();
     setDateAtMidnight(now);
 

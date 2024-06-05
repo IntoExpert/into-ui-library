@@ -6,10 +6,7 @@ import {
   CalendarEvent,
   CalendarEventType,
 } from "../dayEvents";
-import {
-  DayName,
-  getDayNameByDate,
-} from "../../../../components/countdown/dateTime";
+import { DayName, getDayNameByDate } from "../../../../countdown/dateTime";
 
 export class CalendarTimeZoneTransformer {
   protected _calendar: Calendar;

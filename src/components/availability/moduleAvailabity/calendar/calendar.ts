@@ -1,6 +1,5 @@
 import { DateOverride, DateOverrideType } from "./dateOverride/dateOverride";
 
-
 import {
   CALENDAR_EVENT_DEFAULT_OPTIONS,
   CalendarEvent as CalendarEvent,
@@ -12,7 +11,7 @@ import {
 } from "./dayEvents/calendarDayEvents";
 import { CalculatedDay } from "./calculatedDay/calculatedDay";
 import { CALENDAR_DEFAULT_DAYS_STATE } from "./calendarConst";
-import { DayName } from "../../../components/countdown/dateTime";
+import { DayName } from "../../../countdown/dateTime";
 
 export interface CalendarType {
   days: CalendarDayEventsType[];

@@ -1,4 +1,4 @@
-import { setDateAtMidnight } from "../../../components/countdown/dateTime";
+import { setDateAtMidnight } from "../../../countdown/dateTime";
 import {
   CalculatedDay,
   CalculatedDayType,
