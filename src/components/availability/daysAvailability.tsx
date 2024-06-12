@@ -5,8 +5,6 @@ import { CalculatedDay } from "./moduleAvailabity/calendar/calculatedDay";
 import { DateTime } from "luxon";
 
 export interface DaysAvailabilityProps extends UiElementProps {
-  availabilities: CalculatedDay;
-  bookedTimes: { startTime: Date; endTime: Date }[];
   noSwipeTitle: string;
   noSlots: string;
   slots: {
@@ -17,8 +15,6 @@ export interface DaysAvailabilityProps extends UiElementProps {
 }
 
 export const DaysAvailability = ({
-  availabilities,
-  bookedTimes,
   className = "",
   noSwipeTitle: noSwipe,
   noSlots,

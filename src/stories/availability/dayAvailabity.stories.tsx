@@ -1,15 +1,13 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { AvailabilityCalendar } from "../../components/availability/availabilityCalendar";
 import {
   TutorAvailability,
   UserCalendar,
   TutorsWeeklyAvailability,
 } from "../../components/availability/moduleAvailabity/availability/tutorsAvailability";
 import { DaysAvailability } from "../../components/availability/daysAvailability";
-import { DateTime } from "luxon";
 
 export default {
-  title: "availability/Day availabity",
+  title: "availability/Day availability",
   component: DaysAvailability,
 } as ComponentMeta<typeof DaysAvailability>;
 
@@ -155,30 +153,6 @@ const avail = TutorAvailability.createFromBackend(calendar, "");
 
 export let tutorAvailability = TutorsWeeklyAvailability.create(avail);
 
-const handleNextWeek = () => {
-  tutorAvailability.nextWeek();
-  const tutorAvailabilityCopy =
-    TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
-
-  tutorAvailability = tutorAvailabilityCopy;
-};
-
-const handlePrevWeek = () => {
-  tutorAvailability.prevWeek();
-  const tutorAvailabilityCopy =
-    TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
-
-  tutorAvailability = tutorAvailabilityCopy;
-};
-
-const backToThisWeek = () => {
-  tutorAvailability.resetWeek();
-  const tutorAvailabilityCopy =
-    TutorsWeeklyAvailability.createFromInstance(tutorAvailability);
-
-  tutorAvailability = tutorAvailabilityCopy;
-};
-
 const availabilities = tutorAvailability.daysAvailability.map(
   (availabilities) => availabilities.availabilities
 );
@@ -189,8 +163,6 @@ const slots = dayAvailability.eventsDividedIntoSlotsOfMinutes(
 
 export const defaultState = Template.bind({});
 defaultState.args = {
-  availabilities: dayAvailability,
-  bookedTimes: tutorAvailability.bookedTimes,
   slots: slots,
   noSlots: "no Slots",
   noSwipeTitle: "no Swipe",

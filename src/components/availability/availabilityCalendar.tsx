@@ -70,8 +70,6 @@ export const AvailabilityCalendar = ({
               }),
         element: (
           <DaysAvailability
-            availabilities={a.availabilities}
-            bookedTimes={bookedTimes}
             noSlots={noSlots}
             noSwipeTitle={noSwipe}
             slots={slots}
