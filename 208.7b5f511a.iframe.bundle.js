@@ -4,6 +4,11 @@
       ${this.data.deprecated?"\nThis is deprecated and won't work in Storybook 8 anymore.\n":""}
       Please provide an explicit spy to your args like this:
         import { fn } from '@storybook/test';
+import { createRequire } from 'module';
+
+var require = createRequire(import.meta.url);
+var module = { exports: {} };
+
         ... 
         args: {
          ${this.data.name}: fn()
