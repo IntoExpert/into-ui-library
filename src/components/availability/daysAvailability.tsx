@@ -1,7 +1,5 @@
-import { useMemo } from "react";
 import { UiElementProps } from "../common";
 import { SadFaceIcon } from "../icons";
-import { CalculatedDay } from "./moduleAvailabity/calendar/calculatedDay";
 import { DateTime } from "luxon";
 
 export interface DaysAvailabilityProps extends UiElementProps {
