@@ -5,6 +5,7 @@ import { LeftArrowIcon } from "../icons";
 import { useCallback, useMemo } from "react";
 import { DaysAvailability } from "./daysAvailability";
 import { DayAvailability } from "./moduleAvailabity/availability/tutorsAvailability";
+import { DateTime } from "luxon";
 
 export interface AvailabilityCalendarProps extends UiElementProps {
   dayAvailability: DayAvailability[];
@@ -20,6 +21,11 @@ export interface AvailabilityCalendarProps extends UiElementProps {
   handlePrevWeek: () => void;
 
   backToThisWeek: () => void;
+  slots: {
+    startDate: DateTime<boolean>;
+    startTime: string;
+    endTime: string;
+  }[];
 }
 
 export const AvailabilityCalendar = ({
@@ -35,6 +41,7 @@ export const AvailabilityCalendar = ({
   handleNextWeek,
   handlePrevWeek,
   backToThisWeek,
+  slots,
 }: AvailabilityCalendarProps) => {
   const nowDate = useMemo(() => {
     return new Date();
@@ -67,6 +74,7 @@ export const AvailabilityCalendar = ({
             bookedTimes={bookedTimes}
             noSlots={noSlots}
             noSwipeTitle={noSwipe}
+            slots={slots}
           />
         ),
       })),
@@ -79,6 +87,7 @@ export const AvailabilityCalendar = ({
       noSwipe,
       bookedTimes,
       today,
+      slots,
       tomorrow,
     ]
   );

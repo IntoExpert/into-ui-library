@@ -5,14 +5,16 @@ import {
   UserCalendar,
   TutorsWeeklyAvailability,
 } from "../../components/availability/moduleAvailabity/availability/tutorsAvailability";
+import { DaysAvailability } from "../../components/availability/daysAvailability";
+import { DateTime } from "luxon";
 
 export default {
-  title: "availability/availability",
-  component: AvailabilityCalendar,
-} as ComponentMeta<typeof AvailabilityCalendar>;
+  title: "availability/Day availabity",
+  component: DaysAvailability,
+} as ComponentMeta<typeof DaysAvailability>;
 
-const Template: ComponentStory<typeof AvailabilityCalendar> = (args) => (
-  <AvailabilityCalendar {...args} />
+const Template: ComponentStory<typeof DaysAvailability> = (args) => (
+  <DaysAvailability {...args} />
 );
 const calendar: UserCalendar = {
   weeklySchedule: [
@@ -180,20 +182,16 @@ const backToThisWeek = () => {
 const availabilities = tutorAvailability.daysAvailability.map(
   (availabilities) => availabilities.availabilities
 );
-
-const slots = availabilities
-  .map((item) =>
-    item.eventsDividedIntoSlotsOfMinutes(tutorAvailability.bookedTimes)
-  )
-  .flat();
+const dayAvailability = availabilities[1];
+const slots = dayAvailability.eventsDividedIntoSlotsOfMinutes(
+  tutorAvailability.bookedTimes
+);
 
 export const defaultState = Template.bind({});
 defaultState.args = {
-  dayAvailability: tutorAvailability.daysAvailability,
-  isInFirstWeek: tutorAvailability.isInFirstWeek,
-  handleNextWeek,
-  handlePrevWeek,
-  backToThisWeek,
+  availabilities: dayAvailability,
   bookedTimes: tutorAvailability.bookedTimes,
-  slots,
+  slots: slots,
+  noSlots: "no Slots",
+  noSwipeTitle: "no Swipe",
 };

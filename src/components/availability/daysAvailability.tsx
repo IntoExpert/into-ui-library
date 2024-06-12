@@ -2,12 +2,18 @@ import { useMemo } from "react";
 import { UiElementProps } from "../common";
 import { SadFaceIcon } from "../icons";
 import { CalculatedDay } from "./moduleAvailabity/calendar/calculatedDay";
+import { DateTime } from "luxon";
 
 export interface DaysAvailabilityProps extends UiElementProps {
   availabilities: CalculatedDay;
   bookedTimes: { startTime: Date; endTime: Date }[];
   noSwipeTitle: string;
   noSlots: string;
+  slots: {
+    startDate: DateTime<boolean>;
+    startTime: string;
+    endTime: string;
+  }[];
 }
 
 export const DaysAvailability = ({
@@ -16,12 +22,8 @@ export const DaysAvailability = ({
   className = "",
   noSwipeTitle: noSwipe,
   noSlots,
+  slots,
 }: DaysAvailabilityProps) => {
-  const slots = useMemo(
-    () => availabilities.eventsDividedIntoSlotsOfMinutes(bookedTimes),
-    [availabilities, bookedTimes]
-  );
-
   return (
     <div className={`h-52 overflow-auto ${className}`}>
       {slots.length ? (
