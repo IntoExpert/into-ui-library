@@ -39,7 +39,7 @@ BasicScheduler.args = {
       name: "Strategy Session",
       slot: (
         <Slot
-          color="text-primary"
+          color="primary"
           status="ongoing"
           title="Finincial Acounting"
           className="bg-primaryVariant border-primary border rounded   w-full h-full"

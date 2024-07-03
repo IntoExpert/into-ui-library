@@ -66,6 +66,15 @@ const eventInSlot = (event: Event, day: Date, slot: string): boolean => {
   return eventStart >= slotStart && eventStart < slotEnd;
 };
 
+const isCurrentWeek = (weekStart: Date): boolean => {
+  const currentWeekStart = getWeekStart(new Date());
+  return (
+    weekStart.getFullYear() === currentWeekStart.getFullYear() &&
+    weekStart.getMonth() === currentWeekStart.getMonth() &&
+    weekStart.getDate() === currentWeekStart.getDate()
+  );
+};
+
 export const SchedulerTable: React.FC<SchedulerTableProps> = ({
   events,
   className,
@@ -100,20 +109,22 @@ export const SchedulerTable: React.FC<SchedulerTableProps> = ({
     newWeekStart.setDate(weekStart.getDate() + 7);
     setWeekStart(getWeekStart(newWeekStart));
   };
-  const isCurrentWeek = (weekStart: Date): boolean => {
-    const currentWeekStart = getWeekStart(new Date());
-    return weekStart.getTime() === currentWeekStart.getTime();
-  };
+
   return (
     <div className={className}>
       <table className="min-w-full bg-white">
         <thead className="bg-white text-black">
           <tr>
-            <th className="w-20 py-3 px-4 flex uppercase font-semibold text-sm min-w-40">
+            <th className="w-20 py-3 px-4 flex uppercase gap-1  !text-xs  min-w-40">
+              <p className="py-3 !font-medium">
+                {isCurrentWeek(weekStart)
+                  ? "This Week"
+                  : "Week of " + weekStart.toLocaleDateString()}
+              </p>
               <div className="flex my-2 gap-1 ">
                 <button
                   onClick={handlePreviousWeek}
-                  className="bg-primaryVariant  px-2 py-1 rounded"
+                  className="bg-primaryVariant  px-2 py- rounded"
                 >
                   <span className="cursor-pointer text-primary ">
                     <FontAwesomeIcon icon={faChevronLeft} />
@@ -128,10 +139,6 @@ export const SchedulerTable: React.FC<SchedulerTableProps> = ({
                   </span>
                 </button>
               </div>
-
-              {isCurrentWeek(weekStart)
-                ? "This Week"
-                : "Week of " + weekStart.toLocaleDateString()}
             </th>
             {weekDays.map((day, index) => (
               <th

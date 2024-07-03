@@ -10,6 +10,7 @@ export interface SlotsProps extends UiElementProps {
   avatar?: AvatarProps;
   color?: string;
   dropdownMenu?: DropdownMenuProps;
+  isTrail?: boolean;
 }
 
 export const Slot: React.FC<SlotsProps> = ({
@@ -19,13 +20,14 @@ export const Slot: React.FC<SlotsProps> = ({
   color,
   avatar,
   dropdownMenu,
+  isTrail,
 }) => {
   return (
     <div className={`m-0 px-2 h-full ${className}`}>
       <div
         className={` py-1 text-surface text-xs flex items-center gap-1 w-full  `}
       >
-        {status && (
+        {status && !isTrail && (
           <div
             className={`slot-status text-xs flex h-5  w-full justify-between ${status.toLowerCase()}`}
           >
@@ -37,7 +39,7 @@ export const Slot: React.FC<SlotsProps> = ({
                   className={`absolute w-2 h-2  bg-surface rounded-full `}
                 ></span>
               </span>
-              <span className={` ${color}   pl-3 `}>{status}</span>
+              <span className={` text-${color}   pl-3 `}>{status}</span>
             </div>
             {dropdownMenu ? (
               <Dropdown
@@ -60,7 +62,8 @@ export const Slot: React.FC<SlotsProps> = ({
         )}
       </div>
       {title && <div className="slot-title text-sm ">{title}</div>}
-      {avatar && (
+
+      {avatar && !isTrail ? (
         <Avatar
           label={{ name: avatar.firstName }}
           src={avatar.src ?? ""}
@@ -69,6 +72,8 @@ export const Slot: React.FC<SlotsProps> = ({
           lastName={avatar.lastName}
           className="!justify-start"
         />
+      ) : (
+        <p className={`" flex justify-end text-xs text-${color} "`}>Trail</p>
       )}
     </div>
   );
