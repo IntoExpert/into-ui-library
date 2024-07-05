@@ -11,6 +11,7 @@ export interface SlotsProps extends UiElementProps {
   color?: string;
   dropdownMenu?: DropdownMenuProps;
   isTrail?: boolean;
+  isMonthlyView?: boolean;
 }
 
 export const Slot: React.FC<SlotsProps> = ({
@@ -21,6 +22,7 @@ export const Slot: React.FC<SlotsProps> = ({
   avatar,
   dropdownMenu,
   isTrail,
+  isMonthlyView,
 }) => {
   return (
     <div className={`m-0 px-2 h-full ${className}`}>
@@ -63,7 +65,7 @@ export const Slot: React.FC<SlotsProps> = ({
       </div>
       {title && <div className="slot-title text-sm ">{title}</div>}
 
-      {avatar && !isTrail ? (
+      {avatar && !isTrail && !isMonthlyView ? (
         <Avatar
           label={{ name: avatar.firstName }}
           src={avatar.src ?? ""}

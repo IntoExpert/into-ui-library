@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UiElementProps } from "../../common";
+import { UiElementProps } from "../../../common";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
