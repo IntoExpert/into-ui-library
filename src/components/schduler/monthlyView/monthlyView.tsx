@@ -49,6 +49,15 @@ const generateCalendar = (year: number, month: number): (Date | null)[][] => {
   return weeks;
 };
 
+const filterEventsByDate = (events: Event[], day: Date) => {
+  return events.filter(
+    (event) =>
+      new Date(event.startTime).getFullYear() === day.getFullYear() &&
+      new Date(event.startTime).getMonth() === day.getMonth() &&
+      new Date(event.startTime).getDate() === day.getDate()
+  );
+};
+
 export const MonthlyView: React.FC<SchedulerTableProps> = ({
   events,
   className,
@@ -80,14 +89,18 @@ export const MonthlyView: React.FC<SchedulerTableProps> = ({
     );
   });
 
+  const daysOfWeek = Array.from({ length: 7 }, (_, i) =>
+    new Date(1970, 0, i + 4).toLocaleString("default", { weekday: "long" })
+  );
+
   return (
     <div className={`${className} p-4`}>
       <div className="flex justify-between mb-4">
         <button
           onClick={handlePreviousMonth}
-          className="px-4 py-2 bg-primaryVariant rounded "
+          className="px-4 py-2 bg-primaryVariant rounded"
         >
-          <span className="cursor-pointer text-primary ">
+          <span className="cursor-pointer text-primary">
             <FontAwesomeIcon icon={faChevronLeft} />
           </span>
         </button>
@@ -99,7 +112,7 @@ export const MonthlyView: React.FC<SchedulerTableProps> = ({
         </h2>
         <button
           onClick={handleNextMonth}
-          className="px-4 py-2 bg-primaryVariant rounded "
+          className="px-4 py-2 bg-primaryVariant rounded"
         >
           <span className="cursor-pointer text-primary">
             <FontAwesomeIcon icon={faChevronRight} />
@@ -109,15 +122,7 @@ export const MonthlyView: React.FC<SchedulerTableProps> = ({
       <table className="table-auto w-full border-collapse">
         <thead>
           <tr>
-            {[
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-            ].map((day) => (
+            {daysOfWeek.map((day) => (
               <th key={day} className="border border-gray-200 p-2 min-w-28">
                 {day}
               </th>
@@ -137,17 +142,11 @@ export const MonthlyView: React.FC<SchedulerTableProps> = ({
                       <div className="text-sm font-semibold">
                         {day.getDate()}
                       </div>
-                      {monthEvents
-                        .filter(
-                          (event) =>
-                            new Date(event.startTime).toDateString() ===
-                            day.toDateString()
-                        )
-                        .map((event) => (
-                          <div key={event.name} className="mt-2">
-                            {event.slot}
-                          </div>
-                        ))}
+                      {filterEventsByDate(monthEvents, day).map((event) => (
+                        <div key={event.name} className="mt-2">
+                          {event.slot}
+                        </div>
+                      ))}
                     </>
                   )}
                 </td>

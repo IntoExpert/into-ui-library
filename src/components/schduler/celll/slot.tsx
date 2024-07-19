@@ -8,7 +8,7 @@ export interface SlotsProps extends UiElementProps {
   status?: string;
   title?: string;
   avatar?: AvatarProps;
-  color?: string;
+  textColor?: string;
   dropdownMenu?: DropdownMenuProps;
   isTrail?: boolean;
   isMonthlyView?: boolean;
@@ -18,7 +18,7 @@ export const Slot: React.FC<SlotsProps> = ({
   className,
   status,
   title,
-  color,
+  textColor,
   avatar,
   dropdownMenu,
   isTrail,
@@ -41,7 +41,7 @@ export const Slot: React.FC<SlotsProps> = ({
                   className={`absolute w-2 h-2  bg-surface rounded-full `}
                 ></span>
               </span>
-              <span className={` text-${color}   pl-3 `}>{status}</span>
+              <span className={` ${textColor}   pl-3 `}>{status}</span>
             </div>
             {dropdownMenu ? (
               <Dropdown
@@ -75,7 +75,7 @@ export const Slot: React.FC<SlotsProps> = ({
           className="!justify-start"
         />
       ) : (
-        <p className={`" flex justify-end text-xs text-${color} "`}>Trail</p>
+        <p className={`" flex justify-end text-xs ${textColor} "`}>Trail</p>
       )}
     </div>
   );
