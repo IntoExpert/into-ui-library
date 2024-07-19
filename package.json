@@ -1,6 +1,6 @@
 {
   "name": "@intoexpert/into-ui-library",
-  "version": "0.1.711",
+  "version": "0.1.712",
   "repository": {
     "type": "git",
     "url": "https://github.com/IntoExpert/into-ui-library.git"
@@ -22,14 +22,14 @@
     "react-player": "^2.11.2",
     "react-select": "^5.7.0",
     "react-star-rate": "^0.2.0",
-    "react-webcam": "^7.1.1"
+    "react-webcam": "^7.1.1",
+    "luxon": "^3.4.4"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@types/node": "^16.18.60",
-    "fortawesome": "^0.0.1-security",
-    "luxon": "^3.4.4"
+    "fortawesome": "^0.0.1-security"
   },
   "scripts": {
     "predeploy": "npm run build-storybook",

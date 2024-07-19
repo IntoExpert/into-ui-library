@@ -15,7 +15,7 @@ interface Event {
   merge: boolean;
 }
 
-interface SchedulerTableProps extends UiElementProps {
+export interface SchedulerTableProps extends UiElementProps {
   events: Event[];
 }
 
