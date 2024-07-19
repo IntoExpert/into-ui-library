@@ -17,3 +17,4 @@ export * from "./badge";
 export * from "./video";
 export * from "./availability";
 export * from "./tabs";
+export * from "./schduler/index";
