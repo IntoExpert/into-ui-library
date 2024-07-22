@@ -1,9 +1,8 @@
 import { ReactElement } from "react";
 import { UiElementProps } from "../../common";
-import { Dropdown, DropdownMenuProps } from "../../dropdown";
+
 import { Avatar, AvatarProps } from "../../image";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 export interface SlotsProps extends UiElementProps {
   status?: string;
