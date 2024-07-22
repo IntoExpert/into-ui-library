@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { UiElementProps } from "../../common";
 import { Dropdown, DropdownMenuProps } from "../../dropdown";
 import { Avatar, AvatarProps } from "../../image";
@@ -9,7 +10,7 @@ export interface SlotsProps extends UiElementProps {
   title?: string;
   avatar?: AvatarProps;
   textColor?: string;
-  dropdownMenu?: DropdownMenuProps;
+  dropdownMenu?: ReactElement;
   isTrail?: boolean;
   isMonthlyView?: boolean;
 }
@@ -43,29 +44,13 @@ export const Slot: React.FC<SlotsProps> = ({
               </span>
               <span className={` ${textColor}   pl-3 `}>{status}</span>
             </div>
-            {dropdownMenu ? (
-              <Dropdown
-                icon={
-                  <div className={``}>
-                    <FontAwesomeIcon
-                      size="xs"
-                      className={` text-gray-500`}
-                      icon={faEllipsisVertical}
-                    />
-                  </div>
-                }
-                className=" w-2 h-4"
-                menu={dropdownMenu}
-              />
-            ) : (
-              ""
-            )}
+            {dropdownMenu ? dropdownMenu : ""}
           </div>
         )}
       </div>
       {title && <div className="slot-title text-sm ">{title}</div>}
 
-      {avatar && !isTrail && !isMonthlyView ? (
+      {avatar && isTrail && !isMonthlyView ? (
         <Avatar
           label={{ name: avatar.firstName }}
           src={avatar.src ?? ""}
@@ -75,7 +60,7 @@ export const Slot: React.FC<SlotsProps> = ({
           className="!justify-start"
         />
       ) : (
-        <p className={`" flex justify-end text-xs ${textColor} "`}>Trail</p>
+        <p className={`" flex justify-end text-xs ${textColor} "`}></p>
       )}
     </div>
   );

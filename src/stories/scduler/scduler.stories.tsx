@@ -46,7 +46,7 @@ BasicScheduler.args = {
           title="Finincial Acounting"
           className="bg-primaryVariant border-primary border rounded   w-full h-full"
           avatar={{ src: imageUR, firstName: "Hasan", lastName: "tfaily" }}
-          dropdownMenu={dropdownMenu}
+          dropdownMenu={<div>hi</div>}
           isMonthlyView
         />
       ),
