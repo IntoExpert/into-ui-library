@@ -45,7 +45,7 @@ export const Slot: React.FC<SlotsProps> = ({
             </div>
           </div>
         )}
-        {dropdownMenu ? dropdownMenu : ""}
+        {dropdownMenu}
       </div>
       {title && <div className="slot-title text-sm ">{title}</div>}
 
