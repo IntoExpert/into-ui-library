@@ -41,7 +41,7 @@ export const Slot: React.FC<SlotsProps> = ({
                   className={`absolute w-2 h-2  bg-surface rounded-full `}
                 ></span>
               </span>
-              <span className={` ${textColor}   pl-3 `}>{status}</span>
+              <span className={` ${textColor}  pl-3 `}>{status}</span>
             </div>
             {dropdownMenu ? dropdownMenu : ""}
           </div>
