@@ -60,7 +60,9 @@ export const Slot: React.FC<SlotsProps> = ({
           className="!justify-start"
         />
       ) : (
-        <p className={`" flex justify-end text-xs ${textColor} "`}></p>
+        <p className={`" flex justify-end text-xs ${textColor} "`}>
+          {isTrail ? "Trail" : ""}
+        </p>
       )}
     </div>
   );
