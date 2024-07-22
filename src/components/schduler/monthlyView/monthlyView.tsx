@@ -14,7 +14,7 @@ interface Event {
   merge: boolean;
 }
 
-interface SchedulerTableProps extends UiElementProps {
+interface MonthlyTableProps extends UiElementProps {
   events: Event[];
 }
 
@@ -58,7 +58,7 @@ const filterEventsByDate = (events: Event[], day: Date) => {
   );
 };
 
-export const MonthlyView: React.FC<SchedulerTableProps> = ({
+export const MonthlyView: React.FC<MonthlyTableProps> = ({
   events,
   className,
 }) => {

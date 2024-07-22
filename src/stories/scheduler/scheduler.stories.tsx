@@ -46,8 +46,8 @@ BasicScheduler.args = {
           isMonthlyView
         />
       ),
-      startTime: "2024-07-03T11:00",
-      endTime: "2024-07-03T12:00",
+      startTime: "2024-07-22T11:00",
+      endTime: "2024-07-22T12:00",
       merge: true,
     },
     {
