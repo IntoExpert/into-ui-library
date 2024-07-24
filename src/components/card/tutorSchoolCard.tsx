@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { UiElementProps } from "../common";
 import { Avatar } from "../image";
 import { Card } from "./card";
@@ -12,7 +12,7 @@ export interface TutorSchoolCardProps extends UiElementProps {
   id?: string;
   branch?: string;
   subject?: string;
-  Button?: ReactElement;
+  children?: ReactNode;
 }
 
 export const TutorSchoolCard = ({
@@ -25,7 +25,7 @@ export const TutorSchoolCard = ({
   id,
   branch,
   subject,
-  Button,
+  children,
 }: TutorSchoolCardProps) => {
   return (
     <div className="max-w-xs relative  rounded-lg  bg-surface drop-shadow ">
@@ -60,7 +60,7 @@ export const TutorSchoolCard = ({
           <p className={`text-red-400 `}>{subject}</p>
         </div>
         <div className=" py-1 px-3 flex justify-center">
-          <>{Button}</>
+          <>{children}</>
         </div>
       </div>
     </div>

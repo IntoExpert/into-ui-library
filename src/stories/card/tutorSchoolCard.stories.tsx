@@ -23,7 +23,7 @@ defaultState.args = {
   id: "SR 9832315",
   branch: "Branch 01",
   subject: "Math",
-  Button: <>hello</>,
+  children: <>hello</>,
 };
 
 
