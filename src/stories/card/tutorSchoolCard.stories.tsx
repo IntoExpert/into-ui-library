@@ -26,39 +26,4 @@ defaultState.args = {
   Button: <>hello</>,
 };
 
-// children: <h1>Mathmatecis</h1>,
-// badge: {
-//   children: <span>$1,400</span>,
-// },
-// list: [
-//   {
-//     key: 0,
-//     title: "Curriculum",
-//     content: "American - Britch - Lebanese - French",
-//   },
 
-//   {
-//     key: 1,
-//     title: "Curriculum",
-//     content: "American - Britch - Lebanese - French",
-//   },
-//   {
-//     key: 2,
-//     title: "Curriculum",
-//     content: "American - Britch - Lebanese - French",
-//   },
-// ],
-
-// button: {
-//   className: " w-full",
-//   children: (
-//     <h2>
-//       {" "}
-//       <strong>Get Free Consultation</strong>
-//     </h2>
-//   ),
-//   onClick: () => {
-//     alert("clicked");
-//   },
-//   title: "Click here!",
-// },
