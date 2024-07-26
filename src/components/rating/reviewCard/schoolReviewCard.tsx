@@ -2,8 +2,9 @@ import { DateTime } from "luxon";
 import { Card } from "../../card";
 import { getRatingFaceByRating } from "../faces/ratingFaces";
 import { EditIcon } from "../../icons";
+import { UiElementProps } from "../../common";
 
-export interface schoolReviewCardProps {
+export interface schoolReviewCardProps extends UiElementProps {
     rating?: number;
     date?: DateTime;
     description?: string;
@@ -11,11 +12,11 @@ export interface schoolReviewCardProps {
     onEdit?: () => void;
 }
 
-export function SchoolReviewCard({ rating = 1, date, description, isEditable, onEdit }: schoolReviewCardProps) {
+export function SchoolReviewCard({ rating = 1, date, description, isEditable, onEdit, className = '' }: schoolReviewCardProps) {
 
     const RatingFace = getRatingFaceByRating(rating);
 
-    return <Card className={`relative p-8`}>
+    return <Card className={`relative p-8 ${className}`}>
         <>
             {isEditable ? <div className="absolute top-2 right-2">
                 <button title="Edit" type="button" className="px-0.5" onClick={onEdit}><EditIcon /></button>
