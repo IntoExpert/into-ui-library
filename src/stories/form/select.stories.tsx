@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Select } from '../../components';
+import { AsyncSelect } from '../../components';
 
 
 export default {
     title: 'Form/Select',
-    component: Select,
+    component: AsyncSelect,
 
-} as ComponentMeta<typeof Select>;
+} as ComponentMeta<typeof AsyncSelect>;
 
 const colourOptions = [
     { value: "ocean1", label: "Ocean" },
@@ -21,7 +21,7 @@ const colourOptions = [
     { value: "silver", label: "Silver" },
 ];
 
-const Template: ComponentStory<typeof Select> = (args) => <Select {...args} options={colourOptions} />;
+const Template: ComponentStory<typeof AsyncSelect> = (args) => <AsyncSelect {...args} options={colourOptions} />;
 
 export const DefaultState = Template.bind({});
 DefaultState.args = {
