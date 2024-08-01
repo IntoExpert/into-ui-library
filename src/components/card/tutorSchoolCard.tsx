@@ -1,7 +1,6 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import { UiElementProps } from "../common";
 import { Avatar } from "../image";
-import { Card } from "./card";
 
 export interface TutorSchoolCardProps extends UiElementProps {
   src?: string;
