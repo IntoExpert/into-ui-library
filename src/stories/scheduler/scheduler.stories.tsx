@@ -39,7 +39,7 @@ BasicScheduler.args = {
         <Slot
           textColor="text-primary"
           status="ongoing"
-          title="Finincial Acounting"
+          title={<></>}
           className="bg-primaryVariant border-primary border rounded   w-full h-full"
           avatar={{ src: imageUR, firstName: "Hasan", lastName: "tfaily" }}
           dropdownMenu={<div>hi</div>}
