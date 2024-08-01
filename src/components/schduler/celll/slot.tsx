@@ -1,12 +1,11 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { UiElementProps } from "../../common";
 
 import { Avatar, AvatarProps } from "../../image";
 
-
 export interface SlotsProps extends UiElementProps {
   status?: string;
-  title?: string;
+  title?: ReactNode;
   avatar?: AvatarProps;
   textColor?: string;
   dropdownMenu?: ReactElement;
