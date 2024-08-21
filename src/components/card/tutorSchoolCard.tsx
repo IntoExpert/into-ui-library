@@ -34,7 +34,7 @@ export const TutorSchoolCard = ({
         <div
           className={` border-4 ${
             borderColor ?? " border-secondary"
-          }border-secondary rounded-full `}
+          }  rounded-full `}
         >
           <Avatar src={src} className="  w-20 h-20" />
         </div>
