@@ -12,6 +12,7 @@ export interface TutorSchoolCardProps extends UiElementProps {
   branch?: string;
   subject?: string;
   children?: ReactNode;
+  borderColor?: string;
 }
 
 export const TutorSchoolCard = ({
@@ -25,11 +26,16 @@ export const TutorSchoolCard = ({
   branch,
   subject,
   children,
+  borderColor,
 }: TutorSchoolCardProps) => {
   return (
     <div className="max-w-xs relative  rounded-lg  bg-surface drop-shadow ">
       <div className="flex justify-center absolute w-full -top-10  overflow ">
-        <div className="border-4 border-secondary rounded-full ">
+        <div
+          className={` border-4 ${
+            borderColor ?? "border-secondary"
+          }border-secondary rounded-full `}
+        >
           <Avatar src={src} className="  w-20 h-20" />
         </div>
       </div>
