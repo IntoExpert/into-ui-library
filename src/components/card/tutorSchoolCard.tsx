@@ -33,7 +33,7 @@ export const TutorSchoolCard = ({
       <div className="flex justify-center absolute w-full -top-10  overflow ">
         <div
           className={` border-4 ${
-            borderColor ?? "border-secondary"
+            borderColor ?? " border-secondary"
           }border-secondary rounded-full `}
         >
           <Avatar src={src} className="  w-20 h-20" />
