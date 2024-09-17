@@ -16,7 +16,7 @@ export interface TutorSchoolCardProps extends UiElementProps {
 }
 
 export const TutorSchoolCard = ({
-  className,
+  className = '',
   src,
   name,
   status,
@@ -29,20 +29,19 @@ export const TutorSchoolCard = ({
   borderColor,
 }: TutorSchoolCardProps) => {
   return (
-    <div className="max-w-xs relative  rounded-lg  bg-surface drop-shadow ">
-      <div className="flex justify-center absolute w-full -top-10  overflow ">
+    <div className={`md:min-w-80 relative  rounded-lg pt-14 md:pt-0  bg-surface drop-shadow ${className}`}>
+      <div className="flex justify-center absolute w-full -top-10  overflow">
         <div
-          className={` border-4 ${
-            borderColor ?? " border-secondary"
-          }  rounded-full `}
+          className={` border-4 ${borderColor ?? " border-secondary"
+            }  rounded-full `}
         >
-          <Avatar src={src} className="  w-20 h-20" />
+          <Avatar src={src} className="w-20 h-20" />
         </div>
       </div>
       <div>
         <div className="px-1 py-2">
           <div
-            className={`slot-status text-xs flex h-5  w-full justify-between ${status?.toLowerCase()}`}
+            className={`slot-status text-xs flex md:h-5  w-full justify-between ${status?.toLowerCase()}`}
           >
             <div className="flex">
               <span
@@ -56,7 +55,7 @@ export const TutorSchoolCard = ({
             </div>
           </div>
         </div>
-        <div className="pt-5 pb-4">
+        <div className="md:pt-5 pb-4">
           <h4 className="text-center font-bold">{name}</h4>
           <h4 className="text-sm text-center font-thin">{id}</h4>
         </div>
@@ -65,7 +64,7 @@ export const TutorSchoolCard = ({
           <p className={`text-red-400 `}>{subject}</p>
         </div>
         <div className=" py-1 px-3 flex justify-center">
-          <>{children}</>
+          {children}
         </div>
       </div>
     </div>
