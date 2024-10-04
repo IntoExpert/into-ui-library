@@ -164,9 +164,8 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
           disabled:!bg-gray-100
           ${props.errormessage ? 'border-error' : 'border-secondary'}
           ${props.className ?? ''}
-          ${props.inputPostfix ? props.dir === 'rtl' ? 'pl-12' : 'pr-12' : ''}
-          ${props.inputPrefix ? 'input-prefixed' : ''}`
-            }
+          ${props.inputPostfix ? 'input-postfixed' : ''}
+          ${props.inputPrefix ? 'input-prefixed' : ''}`}
             onChange={handleOnChange}
             onPaste={onPast}
             value={state.value}
