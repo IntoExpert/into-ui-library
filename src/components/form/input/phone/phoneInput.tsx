@@ -1,9 +1,10 @@
 import PhoneInput2, { PhoneInputProps as PhoneInput2Props } from 'react-phone-input-2';
-import './styles.scss'
 import { UiElementSize } from '../../../common';
-import { inputHeightClassDurToSize } from '../shared';
+import { inputHeightClassBySize } from '../shared';
 import { InputLabel } from '../label';
 import { ReactElement } from 'react';
+
+import './styles.scss'
 
 export interface PhoneInputProps extends PhoneInput2Props {
     errormessage?: string;
@@ -45,12 +46,13 @@ export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
             excludeCountries={["il", "IL"]}
             {...props}
             containerClass={`${props.errormessage ? '!border-error' : '!border-secondary'} 
-                ${inputHeightClassDurToSize(size)} w-full ${props.containerClass ?? ''}`}
+                ${inputHeightClassBySize(size)} w-full ${props.containerClass ?? ''}`}
             inputClass={`${props.errormessage ? '!border-error' : '!border-secondary'} 
-                !${inputHeightClassDurToSize(size)} disabled:!bg-gray-100 ${props.inputClass ?? ''}`}
+                !${inputHeightClassBySize(size)} disabled:!bg-gray-100 ${props.inputClass ?? ''}`}
+            dropdownClass={`${inputHeightClassBySize(size)}`}
             buttonClass={`${props.errormessage ? '!border-error' : '!border-secondary'} !bg-surface 
-                ${inputHeightClassDurToSize(size)} !border-r-0 
-                ${props.disabled ? '!bg-gray-100' : ''} 
+                phone-dropdown
+                ${props.disabled ? '!bg-gray-p00' : ''} 
                 ${props.buttonClass ?? ''}`}
         />
         {props.errormessage && <p className="text-error text-xs italic mt-1">{props.errormessage}</p>}

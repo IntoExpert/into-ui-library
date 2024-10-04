@@ -8,9 +8,19 @@ export default {
 
 } as ComponentMeta<typeof PhoneInput>;
 
-const Template: ComponentStory<typeof PhoneInput> = (args) => <PhoneInput {...args} />;
+const Template: ComponentStory<typeof PhoneInput> = (args) =>
+    <PhoneInput {...args} />
+
+const RTLTemplate: ComponentStory<typeof PhoneInput> = (args) => <div dir='rtl'>
+    <PhoneInput {...args} />
+</div>;
 
 export const DefaultState = Template.bind({});
+DefaultState.args = {
+
+};
+
+export const RTLState = RTLTemplate.bind({});
 DefaultState.args = {
 
 };

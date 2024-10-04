@@ -2,7 +2,7 @@
 import { ChangeEvent, ClipboardEvent, FocusEvent, HTMLInputTypeAttribute, ReactElement, Ref, forwardRef, useEffect, useState } from "react";
 import { InputLabel } from "../label/label";
 import { UiElementSize } from "../../../common";
-import { inputHeightClassDurToSize } from "../shared";
+import { inputHeightClassBySize } from "../shared";
 
 export interface InputFieldProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   /**
@@ -156,7 +156,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
           <input
             {...props}
             className={`shadow appearance-none border w-full
-                            rounded ${inputHeightClassDurToSize(size)} px-3 text-gray-700 leading-tight 
+                            rounded ${inputHeightClassBySize(size)} px-3 text-gray-700 leading-tight 
                             focus:outline-none focus:shadow-outline
                             placeholder:!text-gray-500 ${size === 'sm' ? 'placeholder:text-xs' : ''}
           disabled:!bg-gray-100

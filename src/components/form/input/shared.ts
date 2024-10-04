@@ -1,6 +1,6 @@
 import { UiElementSize } from "../../common";
 
-export const inputHeightClassDurToSize = (size?: UiElementSize) => {
+export const inputHeightClassBySize = (size?: UiElementSize) => {
   switch (size) {
     case "xs": {
       return `h-8`;
