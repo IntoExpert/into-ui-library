@@ -1,0 +1,15 @@
+.prefix {
+  left: 1rem;
+}
+
+*[dir="rtl"] .prefix {
+  right: 1rem;
+}
+
+.input-prefixed {
+  left: 3rem;
+}
+
+*[dir="rtl"] .input-prefixed {
+  right: 3rem;
+}

@@ -4,6 +4,8 @@ import { InputLabel } from "../label/label";
 import { UiElementSize } from "../../../common";
 import { inputHeightClassBySize } from "../shared";
 
+import "./styles.scss";
+
 export interface InputFieldProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   /**
    * The id of the input element
@@ -149,7 +151,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
         <InputLabel inputId={props.id} content={props.label} className="block mb-2" />
         <div className={`relative`}>
           {props.inputPrefix
-            ? <div className={`absolute top-1/2 -translate-y-1/2 ${props.dir === 'rtl' ? 'right-4' : 'left-4'}`}>
+            ? <div className={`absolute top-1/2 -translate-y-1/2 prefix`}>
               {props.inputPrefix}
             </div>
             : null}
@@ -163,7 +165,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
           ${props.errormessage ? 'border-error' : 'border-secondary'}
           ${props.className ?? ''}
           ${props.inputPostfix ? props.dir === 'rtl' ? 'pl-12' : 'pr-12' : ''}
-          ${props.inputPrefix ? props.dir === 'ltr' ? 'pl-12' : 'pr-12' : ''}`
+          ${props.inputPrefix ? 'input-prefixed' : ''}`
             }
             onChange={handleOnChange}
             onPaste={onPast}

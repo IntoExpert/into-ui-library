@@ -3,22 +3,24 @@ import { ReactElement, useCallback, useEffect, useRef, useState } from "react";
 import { UiElementProps } from "../common";
 import { IconButton } from "../button";
 
+import "./styles.scss";
+
 export interface ModalProps extends UiElementProps {
   show?: boolean;
   hasCloseButton?: boolean;
   onClose?: () => void;
   children?: ReactElement;
   size?:
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "full";
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl"
+  | "full";
   bgClassname?: string;
   containerElementId?: string;
   disableCloseOnOutsideCLick?: boolean;
@@ -64,19 +66,17 @@ export const Modal = ({
     <div
       ref={ref}
       onClick={handleClose}
-      className={`fixed w-screen h-screen top-0 flex justify-center items-center z-30 ${
-        bgClassname ?? ""
-      }`}
+      className={`fixed w-screen h-screen top-0 flex justify-center items-center z-30 ${bgClassname ?? ""
+        }`}
     >
       <section
         onClick={(e) => e.stopPropagation()}
-        className={`relative w-full bg-surface ${
-          size ? `max-w-${size}` : ""
-        } ${className}`}
+        className={`relative w-full bg-surface ${size ? `max-w-${size}` : ""
+          } ${className}`}
       >
         {hasCloseButton && (
           <IconButton
-            className={`absolute top-1 right-1 !p-0 flex items-center`}
+            className={`absolute modal-close top-1 !p-0 flex items-center`}
             icon={<span>&times;</span>}
             onClick={onClose}
           ></IconButton>
