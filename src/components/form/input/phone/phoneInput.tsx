@@ -47,7 +47,7 @@ export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
             {...props}
             containerClass={`${props.errormessage ? '!border-error' : '!border-secondary'} 
                 ${inputHeightClassBySize(size)} w-full ${props.containerClass ?? ''}`}
-            inputClass={`${props.errormessage ? '!border-error' : '!border-secondary'} 
+            inputClass={`phone-input ${props.errormessage ? '!border-error' : '!border-secondary'} 
                 !${inputHeightClassBySize(size)} disabled:!bg-gray-100 ${props.inputClass ?? ''}`}
             dropdownClass={`${inputHeightClassBySize(size)}`}
             buttonClass={`${props.errormessage ? '!border-error' : '!border-secondary'} !bg-surface 
