@@ -1,6 +1,7 @@
 @import "react-phone-input-2/lib/style.css";
 
-*[dir="ltr"] .phone-input {
+*[dir="rtl"] .phone-input {
+  text-align: start;
   padding-left: 0;
   padding-right: 48px;
 }
