@@ -7,9 +7,17 @@
 }
 
 .input-prefixed {
-  left: 3rem;
+  padding-left: 3rem;
 }
 
 *[dir="rtl"] .input-prefixed {
-  right: 3rem;
+  padding-right: 3rem;
+}
+
+.input-postfixed {
+  padding-right: 3rem;
+}
+
+*[dir="rtl"] .input-postfixed {
+  padding-left: 3rem;
 }
