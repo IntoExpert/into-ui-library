@@ -7,3 +7,4 @@ export * from "./date";
 export * from "./verificationCode";
 export * from "./password";
 export * from "./phone";
+export * from "./toggle";

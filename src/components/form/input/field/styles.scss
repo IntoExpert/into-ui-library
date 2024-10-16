@@ -4,6 +4,7 @@
 
 *[dir="rtl"] .prefix {
   right: 1rem;
+  left: auto;
 }
 
 .input-prefixed {
@@ -20,4 +21,13 @@
 
 *[dir="rtl"] .input-postfixed {
   padding-left: 3rem;
+}
+
+.postfix {
+  right: 1rem;
+}
+
+*[dir="rtl"] .postfix {
+  left: 1rem;
+  right: auto;
 }

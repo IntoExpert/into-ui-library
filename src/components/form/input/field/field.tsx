@@ -171,7 +171,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(({ value
             value={state.value}
             ref={ref}
           />
-          {props.inputPostfix ? <div className={`absolute top-1/2 -translate-y-1/2 ${props.dir === 'rtl' ? 'left-4' : 'right-4'}`}>
+          {props.inputPostfix ? <div className={`absolute postfix top-1/2 -translate-y-1/2`}>
             {props.inputPostfix}
           </div> : null}
           {/* Featured placeholder */}
