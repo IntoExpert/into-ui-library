@@ -10,9 +10,10 @@ export interface schoolReviewCardProps extends UiElementProps {
     description?: string;
     isEditable?: boolean;
     onEdit?: () => void;
+    locale?: string;
 }
 
-export function SchoolReviewCard({ rating = 1, date, description, isEditable, onEdit, className = '' }: schoolReviewCardProps) {
+export function SchoolReviewCard({ rating = 1, date, description, isEditable, onEdit, locale, className = '' }: schoolReviewCardProps) {
 
     const RatingFace = getRatingFaceByRating(rating);
 
@@ -26,7 +27,7 @@ export function SchoolReviewCard({ rating = 1, date, description, isEditable, on
                     <RatingFace isFilled />
                 </div>
                 <div>
-                    <p className={`text-xs text-gray-400`}>{date?.toLocaleString({ dateStyle: 'medium' })}</p>
+                    <p className={`text-xs text-gray-400`}>{date?.toLocaleString({ dateStyle: 'medium' }, { locale })}</p>
                     <p className="text-sm">
                         {description}
                     </p>
