@@ -148,7 +148,7 @@ export const VerificationCodeInput = ({
   }, [state.value, onChange]);
 
   return (
-    <div className={`flex justify-between gap-2 max-w-xs ${className}`}>
+    <div dir='ltr' className={`flex justify-between gap-2 max-w-xs ${className}`}>
       {Array(codeLength)
         .fill(0)
         .map((_, index) => {
