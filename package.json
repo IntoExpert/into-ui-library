@@ -1,6 +1,6 @@
 {
   "name": "@intoexpert/into-ui-library",
-  "version": "0.1.756",
+  "version": "0.1.757",
   "repository": {
     "type": "git",
     "url": "https://github.com/IntoExpert/into-ui-library.git"
@@ -12,6 +12,7 @@
     "@types/react-star-rating-component": "^1.4.1",
     "hamburger-react": "^2.5.0",
     "lottie-react": "^2.4.0",
+    "luxon": "^3.4.4",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-datepicker": "^4.10.0",
@@ -22,8 +23,7 @@
     "react-player": "^2.11.2",
     "react-select": "^5.7.0",
     "react-star-rate": "^0.2.0",
-    "react-webcam": "^7.1.1",
-    "luxon": "^3.4.4"
+    "react-webcam": "^7.1.1"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
