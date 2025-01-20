@@ -40,7 +40,7 @@ export const masks = {
 
 export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
     return <div>
-        <InputLabel content={props.label} className="block mb-2" />
+        <InputLabel content={props.label} className="block mb-2 h-48" />
         <PhoneInput2
             masks={masks}
             excludeCountries={["il", "IL"]}
@@ -55,6 +55,6 @@ export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
                 ${props.disabled ? '!bg-gray-p00' : ''} 
                 ${props.buttonClass ?? ''}`}
         />
-        {props.errormessage && <p className="text-error text-xs italic mt-1">{props.errormessage}</p>}
+        {props.errormessage && <p className="text-error text-xs italic mt-1 h-2">{props.errormessage}</p>}
     </div>
 }
