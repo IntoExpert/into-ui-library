@@ -3,22 +3,22 @@ import { UiElementSize } from "../../common";
 export const inputHeightClassBySize = (size?: UiElementSize) => {
   switch (size) {
     case "xs": {
-      return `h-28`;
+      return `h-8`;
     }
     case "sm": {
-      return `h-32`;
+      return `h-10`;
     }
     case "md": {
-      return `h-36`;
+      return `h-12`;
     }
     case "lg": {
-      return `h-40`;
+      return `h-14`;
     }
     case "xl": {
-      return `h-44`;
+      return `h-16`;
     }
 
     default:
-      return "h-48";
+      return "h-14";
   }
 };

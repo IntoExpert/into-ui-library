@@ -40,7 +40,7 @@ export const masks = {
 
 export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
     return <div>
-        <InputLabel content={props.label} className="block mb-2 h-48" />
+        <InputLabel content={props.label} className="block mb-2" />
         <PhoneInput2
             masks={masks}
             excludeCountries={["il", "IL"]}
@@ -49,7 +49,7 @@ export const PhoneInput = ({ size, ...props }: PhoneInputProps) => {
                 ${inputHeightClassBySize(size)} w-full ${props.containerClass ?? ''}`}
             inputClass={`phone-input ${props.errormessage ? '!border-error' : '!border-secondary'} 
                 !${inputHeightClassBySize(size)} disabled:!bg-gray-100 ${props.inputClass ?? ''}`}
-            dropdownClass={`${inputHeightClassBySize(size)}`}
+            dropdownClass={`h-48`}
             buttonClass={`${props.errormessage ? '!border-error' : '!border-secondary'} !bg-surface 
                 phone-dropdown
                 ${props.disabled ? '!bg-gray-p00' : ''} 
