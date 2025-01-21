@@ -1,10 +1,11 @@
 import ReactSelect, { components } from 'react-select';
-import { UiElementProps } from '../../../common';
+import { UiElementProps, UiElementSize } from '../../../common';
 import { StateManagerProps } from 'react-select/dist/declarations/src/useStateManager';
 import { InputLabel } from '../label';
 import { DropdownArrowIcon, SearchIcon } from '../../../icons';
 import { DropdownIndicatorProps } from 'react-select/dist/declarations/src/components/indicators';
 import { ReactElement, useCallback } from 'react';
+import { inputHeightClassBySize } from '../shared';
 
 export interface SelectProps<Option = unknown, IsMulti extends boolean = boolean> extends UiElementProps, StateManagerProps<Option, IsMulti> {
     errormessage?: string;
@@ -15,7 +16,7 @@ export interface SelectProps<Option = unknown, IsMulti extends boolean = boolean
     /**
      * 
      */
-    size?: 'sm' | 'md'
+    size?: UiElementSize
 };
 
 export const Select = <Option = unknown, IsMulti extends boolean = false>(props: SelectProps<Option, IsMulti>) => {
@@ -69,7 +70,7 @@ export const Select = <Option = unknown, IsMulti extends boolean = false>(props:
                         `w-full`
                     ,
                     control: (state) =>
-                        `!rounded ${props.size === 'sm' ? 'h-10' : 'h-14'} 
+                        `!rounded ${inputHeightClassBySize(props.size)} 
                         ${props.errormessage ? '!border-error' : state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: () => `!bg-transparent`,
                     dropdownIndicator: () => `!text-black`,
