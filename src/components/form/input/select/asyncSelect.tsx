@@ -1,9 +1,10 @@
 import ReactSelect, { AsyncProps } from 'react-select/async';
 import { components, DropdownIndicatorProps, GroupBase } from 'react-select';
-import { UiElementProps } from '../../../common';
+import { UiElementProps, UiElementSize } from '../../../common';
 import { InputLabel } from '../label';
 import { ReactElement, useCallback } from 'react';
 import { SearchIcon } from '../../../icons';
+import { inputHeightClassBySize } from '../shared';
 
 export interface AsyncSelectProps<Option = unknown, IsMulti extends boolean = boolean, GROUP extends GroupBase<Option> = any> extends UiElementProps, AsyncProps<Option, IsMulti, GROUP> {
     errormessage?: string;
@@ -14,7 +15,7 @@ export interface AsyncSelectProps<Option = unknown, IsMulti extends boolean = bo
     /**
      * 
      */
-    size?: 'sm' | 'md'
+    size?: UiElementSize
 };
 
 export const AsyncSelect = <Option = unknown, IsMulti extends boolean = false>(props: AsyncSelectProps<Option, IsMulti, any>) => {
@@ -59,7 +60,7 @@ export const AsyncSelect = <Option = unknown, IsMulti extends boolean = false>(p
                 classNames={{
                     container: () => `w-full`,
                     control: (state) =>
-                        `!rounded ${props.size === 'sm' ? 'h-10' : 'h-14'} 
+                        `!rounded ${inputHeightClassBySize(props.size)} 
                         ${props.errormessage ? '!border-error' : state.isFocused ? 'border-primary' : '!border-secondary'}`,
                     indicatorSeparator: () => `!bg-transparent`,
                     dropdownIndicator: () => `!text-black`,
