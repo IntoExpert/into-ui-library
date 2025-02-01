@@ -37,7 +37,7 @@ export const Select = <Option = unknown, IsMulti extends boolean = false>(props:
         );
     }
 
-    const MultiSelectOption = useCallback((props: any) => {
+    const MultiSelectOption = (props: any) => {
         return (
             <div>
                 <components.Option {...props}>
@@ -48,11 +48,33 @@ export const Select = <Option = unknown, IsMulti extends boolean = false>(props:
                             checked={props.isSelected}
                             onChange={() => null}
                         />{" "}
-                        {props.label}</label>
+                        <span dir="auto">{props.label}</span></label>
                 </components.Option>
             </div>
         );
-    }, []);
+    }
+
+    const SingleSelectOption = (props: any) => {
+        return <components.Option {...props}>
+            <span dir='auto'>{props.label}</span>
+        </components.Option>
+    }
+
+    const CustomSingleValue = (props: any) => {
+        return (
+            <components.SingleValue {...props}>
+                <span dir="auto">{props.data.label}</span>
+            </components.SingleValue>
+        );
+    }
+
+    const CustomMultiValue = (props: any) => {
+        return (
+            <components.MultiValueLabel {...props}>
+                <span dir="auto">{props.data.label}</span>
+            </components.MultiValueLabel>
+        );
+    };
 
     return (
         <div className={`${props.className}`}>
@@ -62,7 +84,9 @@ export const Select = <Option = unknown, IsMulti extends boolean = false>(props:
                 closeMenuOnSelect={!props.isMulti}
                 components={{
                     DropdownIndicator: props.isSearchable ? DropdownSearchIcon : DropdownIcon,
-                    Option: props.isMulti ? MultiSelectOption : components.Option
+                    Option: props.isMulti ? MultiSelectOption : SingleSelectOption,
+                    SingleValue: CustomSingleValue,
+                    MultiValueLabel: CustomMultiValue
                 }}
                 {...props}
                 classNames={{
@@ -84,3 +108,5 @@ export const Select = <Option = unknown, IsMulti extends boolean = false>(props:
         </div>
     )
 }
+
+export { components };
