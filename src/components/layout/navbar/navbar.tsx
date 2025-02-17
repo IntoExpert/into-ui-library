@@ -7,11 +7,12 @@ import { Sling as Hamburger } from 'hamburger-react'
 
 export interface IntoNavbarProps extends UiElementProps {
     logo?: JSX.Element;
+    logoClassName?: string;
     links?: NavbarLinkProps;
     dropdowns?: NavbarDropdownProps;
 };
 
-export const IntoNavbar = ({ dir, ...props }: IntoNavbarProps) => {
+export const IntoNavbar = ({ dir, logoClassName = '', ...props }: IntoNavbarProps) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +21,7 @@ export const IntoNavbar = ({ dir, ...props }: IntoNavbarProps) => {
             <div className={`md:hidden`}>
                 <Hamburger toggled={isOpen} toggle={setIsOpen} size={20} />
             </div>
-            <div className={`w-24`}>
+            <div className={`w-24 ${logoClassName}`}>
                 {props.logo}
             </div>
             <span className={`mx-4`}></span>
