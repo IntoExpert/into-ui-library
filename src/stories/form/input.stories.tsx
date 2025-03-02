@@ -21,6 +21,13 @@ OnError.args = {
     errormessage: "Type at least 4 characters"
 };
 
+export const DateField = Template.bind({
+    type: 'date'
+});
+DateField.args = {
+    defaultValue: "02/03/2024",
+};
+
 export const Checkbox = Template.bind({});
 Checkbox.args = {
     type: "checkbox",
