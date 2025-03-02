@@ -8,3 +8,4 @@ export * from "./verificationCode";
 export * from "./password";
 export * from "./phone";
 export * from "./toggle";
+export * from "./date";
